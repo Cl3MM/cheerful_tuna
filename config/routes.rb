@@ -1,4 +1,6 @@
 CheerfulTuna::Application.routes.draw do
+  resources :countries
+
   resources :contacts
 
   root :to => 'contacts#index'

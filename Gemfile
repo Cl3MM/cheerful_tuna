@@ -14,6 +14,7 @@ gem 'roo'
 gem 'nokogiri'
 gem 'mysql2'
 gem 'irbtools', :require => false
+gem 'country_select'
 
 # Gems used only for assets and not required
 # in production environments by default.

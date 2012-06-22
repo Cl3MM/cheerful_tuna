@@ -4,34 +4,38 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dt><strong><%= :address %>:</strong></dt>
   <dd><%= @contact.address %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
+  <dt><strong><%= :postal_code %>:</strong></dt>
   <dd><%= @contact.postal_code %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
+  <dt><strong><%= :category %>:</strong></dt>
   <dd><%= @contact.category %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
+  <dt><strong><%= :country %>:</strong></dt>
   <dd><%= @contact.country %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:first_name) %>:</strong></dt>
+  <dt><strong><%= :first_name %>:</strong></dt>
   <dd><%= @contact.first_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:last_name) %>:</strong></dt>
+  <dt><strong><%= :last_name %>:</strong></dt>
   <dd><%= @contact.last_name %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:infos) %>:</strong></dt>
+  <dt><strong><%= :infos %>:</strong></dt>
   <dd><%= @contact.infos %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:is_active) %>:</strong></dt>
+  <dt><strong><%= :is_active %>:</strong></dt>
   <dd><%= @contact.is_active %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:is_ceres_member) %>:</strong></dt>
+  <dt><strong><%= :is_ceres_member %>:</strong></dt>
   <dd><%= @contact.is_ceres_member %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
+  <dt><strong><%= :company %>:</strong></dt>
   <dd><%= @contact.company %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:position) %>:</strong></dt>
+  <dt><strong><%= :position %>:</strong></dt>
   <dd><%= @contact.position %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:telphone) %>:</strong></dt>
+  <dt><strong><%= :telphone %>:</strong></dt>
   <dd><%= @contact.telphone %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:fax) %>:</strong></dt>
+  <dt><strong><%= :fax %>:</strong></dt>
   <dd><%= @contact.fax %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:cell) %>:</strong></dt>
+  <dt><strong><%= :cell %>:</strong></dt>
   <dd><%= @contact.cell %></dd>
+  <dt><strong><%= :email %>:</strong></dt>
+  <% @contact.emails.each do |m| %>
+  <dd><%= m.address %></dd>
+  <% end -%>
 </dl>
 
 <div class="form-actions">

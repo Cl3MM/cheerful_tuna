@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>English:</b>
+  <%= @country.english %>
+</p>
+
+<p>
+  <b>French:</b>
+  <%= @country.french %>
+</p>
+
+<p>
+  <b>Chinese:</b>
+  <%= @country.chinese %>
+</p>
+
+
+<%= link_to 'Edit', edit_country_path(@country) %> |
+<%= link_to 'Back', countries_path %>

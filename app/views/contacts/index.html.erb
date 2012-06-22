@@ -2,47 +2,30 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
 </div>
+
+<%= paginate @contacts %>
+
 <table class="table table-striped">
   <thead>
     <tr>
-      <th><%= model_class.human_attribute_name(:id) %></th>
-      <th><%= model_class.human_attribute_name(:address) %></th>
-      <th><%= model_class.human_attribute_name(:postal_code) %></th>
+      <th><%= model_class.human_attribute_name(:company) %></th>
+      <th>Contact Name</th>
+      <th>Email</th>
       <th><%= model_class.human_attribute_name(:category) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
-      <th><%= model_class.human_attribute_name(:first_name) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%= model_class.human_attribute_name(:infos) %></th>
-      <th><%= model_class.human_attribute_name(:is_active) %></th>
-      <th><%= model_class.human_attribute_name(:is_ceres_member) %></th>
-      <th><%= model_class.human_attribute_name(:company) %></th>
-      <th><%= model_class.human_attribute_name(:position) %></th>
-      <th><%= model_class.human_attribute_name(:telphone) %></th>
-      <th><%= model_class.human_attribute_name(:fax) %></th>
-      <th><%= model_class.human_attribute_name(:cell) %></th>
-      <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
   <tbody>
     <% @contacts.each do |contact| %>
       <tr>
-        <td><%= link_to contact.id, contact_path(contact) %></td>
-        <td><%= contact.address %></td>
-        <td><%= contact.postal_code %></td>
+        <td><%= link_to contact.company, contact_path(contact) %></td>
+        <td><%= contact.last_name %></td>
+        <td>
+          <%= contact.emails.map(&:address).join(" | ") %>
+        </td>
         <td><%= contact.category %></td>
         <td><%= contact.country %></td>
-        <td><%= contact.first_name %></td>
-        <td><%= contact.last_name %></td>
-        <td><%= contact.infos %></td>
-        <td><%= contact.is_active %></td>
-        <td><%= contact.is_ceres_member %></td>
-        <td><%= contact.company %></td>
-        <td><%= contact.position %></td>
-        <td><%= contact.telphone %></td>
-        <td><%= contact.fax %></td>
-        <td><%= contact.cell %></td>
-        <td><%=l contact.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_contact_path(contact), :class => 'btn btn-mini' %>

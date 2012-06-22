@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.all
+    @contacts = Contact.order(:company).page(params[:page]).per(10)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,7 +25,7 @@ class ContactsController < ApplicationController
   # GET /contacts/new.json
   def new
     @contact = Contact.new
-
+    @contact.emails.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @contact }
