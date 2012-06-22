@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: MyString
+  contact_id: 1
+  has_bounced: 1
+
+two:
+  address: MyString
+  contact_id: 1
+  has_bounced: 1
