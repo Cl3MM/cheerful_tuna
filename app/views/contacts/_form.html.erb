@@ -1,4 +1,16 @@
 <%= simple_form_for @contact, :html => { :class => 'form-horizontal' } do |f| %>
+  <% if @contact.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading"><%= pluralize(@contact.errors.count, "error") %> prohibited this user from being saved:</h4>
+      <a class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% @contact.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <%= f.input :company %>
   <%= f.input :address %>
   <%= f.input :postal_code %>
