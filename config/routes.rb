@@ -1,4 +1,10 @@
 CheerfulTuna::Application.routes.draw do
+  get "stat/index"
+
+  get "stat/user"
+
+  get "stat/contact"
+
   devise_for :users
 
   resources :countries

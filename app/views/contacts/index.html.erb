@@ -1,9 +1,25 @@
 <%- model_class = Contact.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
+  <% unless current_user.is_admin? %>
     <%= link_to "New contact", new_contact_path, :class => 'btn btn-primary pull-right' %>
+  <% end -%>
   </h1>
 </div>
+<% if current_user.is_admin? %>
+  <form class="well form-inline">
+    <label class="checkbox">
+      Show contacts create by users:<%= raw ("&nbsp;"*4) %>
+    </label>
+    <% @users.each do |u| %>
+      <label class="checkbox">
+        <%= check_box_tag "sort_user_contact", u.id, :checked => true %>
+        <%= u.username %>
+      </label>
+    <% end -%>
+    <%= link_to "New contact", new_contact_path, :class => 'btn btn-primary pull-right' %>
+  </form>
+<% end -%>
 
 <%= paginate @contacts %>
 
@@ -21,7 +37,7 @@
   </thead>
   <tbody>
     <% @contacts.each do |contact| %>
-      <tr>
+      <tr id="contact_table" value="<%= contact.user_id %>">
         <td><%= link_to contact.company, contact_path(contact) %></td>
         <td><%= contact.last_name %></td>
         <td>
@@ -32,7 +48,7 @@
         <td><%= contact.country %></td>
         <td>
           <div class="btn-group pull-right">
-            <%= link_to raw('<i class="icon-eye-open"></i>'),
+            <%= link_to raw('<i class="icon-edit"></i>'),
               edit_contact_path(contact), :class => 'btn btn-mini', :title => 'edit contact' %>
             <% if current_user.is_admin? %>
               <%= link_to raw('<i class="icon-trash icon-white"></i>'),

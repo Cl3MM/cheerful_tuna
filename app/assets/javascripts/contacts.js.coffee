@@ -12,3 +12,10 @@ jQuery ->
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).parent().parent().before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
+
+  $('input#sort_user_contact').on 'click', (event) ->
+    id = $(this).val()
+    $('tr#contact_table').each ->
+      if $(this).attr("value") == id
+        $(this).fadeToggle(800)
+

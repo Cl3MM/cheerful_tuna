@@ -1,8 +1,8 @@
 class Contact < ActiveRecord::Base
+  versioned :dependent => :tracking
   has_many :emails
   belongs_to :user
 
-  # :dependent => :tracking
 
   accepts_nested_attributes_for :emails, allow_destroy: true #, :reject_if => proc {|a| a["address"].blank?}
 
@@ -12,8 +12,8 @@ class Contact < ActiveRecord::Base
 
   validates_associated :emails
   validates_presence_of :company, :country
-  versioned
 
+  #scope :limit, lambda { |num| { :limit => num } }
   #validate :something
 
   def something

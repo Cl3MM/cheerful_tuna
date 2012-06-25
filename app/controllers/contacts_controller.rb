@@ -6,6 +6,7 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     @contacts = Contact.order(:company).page(params[:page]).per(50)
+    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
