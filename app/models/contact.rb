@@ -5,7 +5,7 @@ class Contact < ActiveRecord::Base
   accepts_nested_attributes_for :emails, allow_destroy: true #, :reject_if => proc {|a| a["address"].blank?}
 
   attr_accessible :address, :category, :cell, :company, :country, :fax,
-    :first_name, :infos, :is_active, :is_ceres_member, :last_name,
+    :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
     :position, :postal_code, :telphone, :emails_attributes
 
   validates_associated :emails

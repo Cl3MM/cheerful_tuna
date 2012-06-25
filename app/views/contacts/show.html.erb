@@ -32,6 +32,8 @@
   <dd><%= dash_display @contact.fax %></dd>
   <dt><strong><%= :cell %>:</strong></dt>
   <dd><%= dash_display @contact.cell %></dd>
+  <dt><strong><%= :website %>:</strong></dt>
+  <dd><%= dash_display @contact.website %></dd>
   <dt><strong><%= :email %>:</strong></dt>
   <% @contact.emails.each do |m| %>
     <dd><%= m.address %></dd>

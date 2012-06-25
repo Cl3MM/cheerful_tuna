@@ -18,6 +18,7 @@
 
   <%= f.input :country, :prompt => "Select a country" %>
 
+  <%= f.input :website %>
   <%= f.fields_for :emails do |m| %>
     <%= render 'email_fields', f: m %>
   <% end %>

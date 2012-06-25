@@ -13,6 +13,7 @@
       <th><%= model_class.human_attribute_name(:company) %></th>
       <th>Contact Name</th>
       <th>Email</th>
+      <th>Website</th>
       <th><%= model_class.human_attribute_name(:category) %></th>
       <th><%= model_class.human_attribute_name(:country) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
@@ -26,6 +27,7 @@
         <td>
           <%= raw(contact.emails.map(&:address).join("<br />")) %>
         </td>
+        <td><%= contact.website %></td>
         <td><%= contact.category %></td>
         <td><%= contact.country %></td>
         <td>
