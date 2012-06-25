@@ -8,7 +8,7 @@ class Contact < ActiveRecord::Base
 
   attr_accessible :address, :category, :cell, :company, :country, :fax,
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
-    :position, :postal_code, :telphone, :emails_attributes, :versions_attributes
+    :position, :postal_code, :phone, :emails_attributes, :versions_attributes
 
   validates_associated :emails
   validates_presence_of :company, :country

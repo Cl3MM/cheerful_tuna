@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625170023) do
+ActiveRecord::Schema.define(:version => 20120625171948) do
 
   create_table "contacts", :force => true do |t|
     t.string   "address"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(:version => 20120625170023) do
     t.boolean  "is_ceres_member", :default => false
     t.string   "company"
     t.string   "position"
-    t.string   "telphone"
+    t.string   "phone"
     t.string   "fax"
     t.string   "cell"
     t.datetime "created_at",                         :null => false
