@@ -4,40 +4,42 @@
 </div>
 
 <dl class="dl-horizontal">
-  <dt><strong><%= :address %>:</strong></dt>
-  <dd><%= @contact.address %></dd>
-  <dt><strong><%= :postal_code %>:</strong></dt>
-  <dd><%= @contact.postal_code %></dd>
-  <dt><strong><%= :category %>:</strong></dt>
-  <dd><%= @contact.category %></dd>
-  <dt><strong><%= :country %>:</strong></dt>
-  <dd><%= @contact.country %></dd>
-  <dt><strong><%= :first_name %>:</strong></dt>
-  <dd><%= @contact.first_name %></dd>
-  <dt><strong><%= :last_name %>:</strong></dt>
-  <dd><%= @contact.last_name %></dd>
-  <dt><strong><%= :infos %>:</strong></dt>
-  <dd><%= @contact.infos %></dd>
-  <dt><strong><%= :is_active %>:</strong></dt>
-  <dd><%= @contact.is_active %></dd>
-  <dt><strong><%= :is_ceres_member %>:</strong></dt>
-  <dd><%= @contact.is_ceres_member %></dd>
   <dt><strong><%= :company %>:</strong></dt>
-  <dd><%= @contact.company %></dd>
+  <dd><%= dash_display @contact.company %></dd>
+  <dt><strong><%= :category %>:</strong></dt>
+  <dd><%= dash_display @contact.category %></dd>
+  <dt><strong><%= :address %>:</strong></dt>
+  <dd><%= dash_display @contact.address %></dd>
+  <dt><strong><%= :postal_code %>:</strong></dt>
+  <dd><%= dash_display @contact.postal_code %></dd>
+  <dt><strong><%= :country %>:</strong></dt>
+  <dd><%= dash_display @contact.country %></dd>
+  <dt><strong><%= :first_name %>:</strong></dt>
+  <dd><%= dash_display @contact.first_name %></dd>
+  <dt><strong><%= :last_name %>:</strong></dt>
+  <dd><%= dash_display @contact.last_name %></dd>
+  <dt><strong><%= :infos %>:</strong></dt>
+  <dd><%= dash_display @contact.infos %></dd>
+  <dt><strong><%= :is_active %>:</strong></dt>
+  <dd><%= dash_display @contact.is_active %></dd>
+  <dt><strong><%= :is_ceres_member %>:</strong></dt>
+  <dd><%= dash_display @contact.is_ceres_member %></dd>
   <dt><strong><%= :position %>:</strong></dt>
-  <dd><%= @contact.position %></dd>
+  <dd><%= dash_display @contact.position %></dd>
   <dt><strong><%= :telphone %>:</strong></dt>
-  <dd><%= @contact.telphone %></dd>
+  <dd><%= dash_display @contact.telphone %></dd>
   <dt><strong><%= :fax %>:</strong></dt>
-  <dd><%= @contact.fax %></dd>
+  <dd><%= dash_display @contact.fax %></dd>
   <dt><strong><%= :cell %>:</strong></dt>
-  <dd><%= @contact.cell %></dd>
+  <dd><%= dash_display @contact.cell %></dd>
   <dt><strong><%= :email %>:</strong></dt>
   <% @contact.emails.each do |m| %>
-  <dd><%= m.address %></dd>
+    <dd><%= m.address %></dd>
   <% end -%>
 </dl>
 
+<div style="clear:both;">
+</div>
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),
               contacts_path, :class => 'btn'  %>

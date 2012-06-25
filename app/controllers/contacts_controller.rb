@@ -2,7 +2,7 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.order(:company).page(params[:page]).per(10)
+    @contacts = Contact.order(:company).page(params[:page]).per(50)
 
     respond_to do |format|
       format.html # index.html.erb
