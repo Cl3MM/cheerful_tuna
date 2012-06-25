@@ -16,6 +16,8 @@ gem 'mysql2'
 gem 'irbtools', :require => false
 gem 'country_select'
 gem 'devise'
+gem 'vestal_versions', :git => 'git://github.com/milkfarm/vestal_versions.git'
+#gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
 
 # Gems used only for assets and not required
 # in production environments by default.

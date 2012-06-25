@@ -44,6 +44,16 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(params[:contact])
+    @contact.update_attribute(:user_id, current_user)
+=begin
+    @contact.version
+    if current_user
+      @contact.update_attribute(:updated_by, current_user)
+    else
+      Rails.logger.info "[ERROR] Contact creation without current_user :#{params.attributes}"
+      @contact.update_attribute(:updated_by, "ERROR")
+    end
+=end
 
     respond_to do |format|
       if @contact.save
@@ -60,6 +70,7 @@ class ContactsController < ApplicationController
   # PUT /contacts/1.json
   def update
     @contact = Contact.find(params[:id])
+    @contact.update_attribute(:updated_by, current_user)
 
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
@@ -76,7 +87,9 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1.json
   def destroy
     @contact = Contact.find(params[:id])
+
     @contact.destroy
+    @contact.version
 
     respond_to do |format|
       format.html { redirect_to contacts_url }
