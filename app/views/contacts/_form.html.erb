@@ -11,14 +11,14 @@
     </div>
   <% end %>
 
-  <%= f.input :company %>
+  <%= f.input :company, :required => true, :autofocus => true %>
   <%= f.input :address %>
   <%= f.input :postal_code %>
   <%= f.input :category %>
 
-  <%= f.input :country, :prompt => "Select a country" %>
+  <%= f.input :country, :prompt => "Select a country", :required => true %>
 
-  <%= f.input :website %>
+  <%= f.input :website, :label => "Website" %>
   <%= f.fields_for :emails do |m| %>
     <%= render 'email_fields', f: m %>
   <% end %>

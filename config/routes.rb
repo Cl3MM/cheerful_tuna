@@ -1,4 +1,6 @@
 CheerfulTuna::Application.routes.draw do
+  devise_for :users
+
   resources :countries
 
   resources :contacts

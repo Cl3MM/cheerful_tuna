@@ -20,8 +20,6 @@
   <dd><%= dash_display @contact.last_name %></dd>
   <dt><strong><%= :infos %>:</strong></dt>
   <dd><%= dash_display @contact.infos %></dd>
-  <dt><strong><%= :is_active %>:</strong></dt>
-  <dd><%= dash_display @contact.is_active %></dd>
   <dt><strong><%= :is_ceres_member %>:</strong></dt>
   <dd><%= dash_display @contact.is_ceres_member %></dd>
   <dt><strong><%= :position %>:</strong></dt>
@@ -47,9 +45,11 @@
               contacts_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_contact_path(@contact), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+  <% if current_user.is_admin? %>
+    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               contact_path(@contact),
               :method => 'delete',
               :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
               :class => 'btn btn-danger' %>
+  <% end -%>
 </div>

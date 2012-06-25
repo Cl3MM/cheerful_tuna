@@ -33,12 +33,14 @@
         <td>
           <div class="btn-group pull-right">
             <%= link_to raw('<i class="icon-eye-open"></i>'),
-              edit_contact_path(contact), :class => 'btn btn-mini' %>
-            <%= link_to raw('<i class="icon-trash icon-white"></i>'),
-              contact_path(contact),
-              :method => :delete,
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              :class => 'btn btn-mini btn-danger' %>
+              edit_contact_path(contact), :class => 'btn btn-mini', :title => 'edit contact' %>
+            <% if current_user.is_admin? %>
+              <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+                contact_path(contact),
+                :method => :delete,
+                :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                :class => 'btn btn-mini btn-danger' %>
+            <% end -%>
           </div>
         </td>
       </tr>

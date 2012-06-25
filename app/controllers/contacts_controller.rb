@@ -1,4 +1,7 @@
 class ContactsController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /contacts
   # GET /contacts.json
   def index
