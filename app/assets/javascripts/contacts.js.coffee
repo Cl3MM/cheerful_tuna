@@ -19,3 +19,19 @@ jQuery ->
       if $(this).attr("value") == id
         $(this).fadeToggle(800)
 
+  $('input#check_all').on 'click', (event) ->
+    if $(this).is(':checked')
+      state = true
+      texti = "uncheck all"
+    else
+      state = false
+      texti = "check all"
+    $('span#check_all_span').text(texti)
+    $(this).attr('checked', state)
+    $('input#sort_user_contact').each ->
+      $(this).attr('checked', state)
+
+  $('span#options_filter').hide()
+
+  $('a#show_options_filter').on 'click', (event) ->
+    $('span#options_filter').fadeToggle(800)

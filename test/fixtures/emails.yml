@@ -1,11 +1,35 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  address: MyString
+  address: email1
   contact_id: 1
-  has_bounced: 1
+  has_bounced: 0
 
 two:
-  address: MyString
+  address: email2
   contact_id: 1
-  has_bounced: 1
+  has_bounced: 0
+three:
+  address: email3
+  contact_id: 2
+  has_bounced: 0
+four:
+  address: email4
+  contact_id: 3
+  has_bounced: 0
+five:
+  address: email5
+  contact_id: 4
+  has_bounced: 0
+six:
+  address: email6
+  contact_id: 4
+  has_bounced: 0
+seven:
+  address: email7
+  contact_id: 5
+  has_bounced: 0
+eight:
+  address: email8
+  contact_id: 6
+  has_bounced: 0

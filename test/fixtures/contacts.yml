@@ -4,30 +4,91 @@ one:
   address: MyString
   postal_code: MyString
   category: MyString
-  country: MyString
+  country: France
   first_name: MyString
   last_name: MyString
   infos: MyString
   is_active: false
   is_ceres_member: false
-  company: MyString
+  company: AAA
   position: MyString
-  telphone: MyString
+  phone: MyString
   fax: MyString
   cell: MyString
+  user_id: 1
+  id: 1
 
 two:
-  address: MyString
-  postal_code: MyString
-  category: MyString
-  country: MyString
-  first_name: MyString
-  last_name: MyString
-  infos: MyString
-  is_active: false
-  is_ceres_member: false
-  company: MyString
-  position: MyString
-  telphone: MyString
-  fax: MyString
-  cell: MyString
+  country: France
+  company: BBB
+  user_id: 1
+  id: 2
+
+three:
+  country: France
+  company: CCC
+  id: 3
+  user_id: 3
+
+four:
+  country: France
+  id: 15
+  company: DDD
+  user_id: 1
+
+five:
+  country: France
+  company: EEE
+  user_id: 2
+  id: 4
+
+six:
+  country: France
+  company: FFF
+  user_id: 4
+  id: 5
+seven:
+  country: France
+  company: GGG
+  user_id: 2
+  id: 6
+eight:
+  country: France
+  company: HHH
+  user_id: 4
+  id: 7
+nine:
+  country: France
+  company: III
+  user_id: 4
+  id: 8
+ten:
+  country: France
+  company: JJJ
+  user_id: 1
+  id: 9
+eleven:
+  country: France
+  company: KKK
+  user_id: 4
+  id: 10
+twelve:
+  country: France
+  company: HHH
+  user_id: 4
+  id: 11
+thirteen:
+  country: France
+  company: LLL
+  user_id: 3
+  id: 12
+fourteen:
+  country: France
+  company: BBB
+  user_id: 4
+  id: 13
+fivteen:
+  country: France
+  company: XXX
+  user_id: 3
+  id: 14

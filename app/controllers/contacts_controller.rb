@@ -5,7 +5,8 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @contacts = Contact.order(:company).page(params[:page]).per(50)
+    #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
+    @contacts = Contact.search(params)
     @users = User.all
 
     respond_to do |format|
@@ -45,7 +46,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(params[:contact])
-    @contact.update_attribute(:user_id, current_user)
+    @contact.update_attribute(:user_id, current_user.id)
 =begin
     @contact.version
     if current_user

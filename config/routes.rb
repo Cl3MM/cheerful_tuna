@@ -11,6 +11,10 @@ CheerfulTuna::Application.routes.draw do
 
   resources :contacts
 
+  resources :contacts do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+
   root :to => 'contacts#index'
 
   # The priority is based upon order of creation:

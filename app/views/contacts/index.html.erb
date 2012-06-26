@@ -1,67 +1,84 @@
 <%- model_class = Contact.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
-  <% unless current_user.is_admin? %>
-    <%= link_to "New contact", new_contact_path, :class => 'btn btn-primary pull-right' %>
-  <% end -%>
+  <h1><i class="icon-user"></i>
+    <%=t '.title', :default => model_class.model_name.human.pluralize %>
+    <small>{<%= Contact.count %>}</small>
   </h1>
 </div>
-<% if current_user.is_admin? %>
-  <form class="well form-inline">
-    <label class="checkbox">
-      Show contacts create by users:<%= raw ("&nbsp;"*4) %>
-    </label>
-    <% @users.each do |u| %>
-      <label class="checkbox">
-        <%= check_box_tag "sort_user_contact", u.id, :checked => true %>
-        <%= u.username %>
-      </label>
-    <% end -%>
-    <%= link_to "New contact", new_contact_path, :class => 'btn btn-primary pull-right' %>
-  </form>
+  <%= form_tag contacts_path, method: :get, :class=>"well form-inline" do %>
+    <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
+    <%= submit_tag "Search", name: nil, :class=>"btn" %>
+    <% if current_user.is_admin? %>
+      <%= link_to raw('<i class="icon-plus-sign"></i>'), "#", :class => 'btn', :id => 'show_options_filter' %>
+      <span id="options_filter">
+        <label class="checkbox">
+          Show contacts create by users:<%= raw ("&nbsp;"*4) %>
+        </label>
+        <% @users.each do |u| %>
+          <label class="checkbox">
+            <%= check_box_tag "sort_user_contact", u.id, :checked => false %>
+            <%= u.username %>
+          </label> |
+        <% end -%>
+        <label class="checkbox">
+          <%= check_box_tag "check_all", :checked => false %>
+          <span id="check_all_span">uncheck all</span>
+        </label>
+      </span>
+    <% end %>
+    <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
 <% end -%>
 
-<%= paginate @contacts %>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:company) %></th>
-      <th>Contact Name</th>
-      <th>Email</th>
-      <th>Website</th>
-      <th><%= model_class.human_attribute_name(:category) %></th>
-      <th><%= model_class.human_attribute_name(:country) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @contacts.each do |contact| %>
-      <tr id="contact_table" value="<%= contact.user_id %>">
-        <td><%= link_to contact.company, contact_path(contact) %></td>
-        <td><%= contact.last_name %></td>
-        <td>
-          <%= raw(contact.emails.map(&:address).join("<br />")) %>
-        </td>
-        <td><%= contact.website %></td>
-        <td><%= contact.category %></td>
-        <td><%= contact.country %></td>
-        <td>
-          <div class="btn-group pull-right">
-            <%= link_to raw('<i class="icon-edit"></i>'),
-              edit_contact_path(contact), :class => 'btn btn-mini', :title => 'edit contact' %>
-            <% if current_user.is_admin? %>
-              <%= link_to raw('<i class="icon-trash icon-white"></i>'),
-                contact_path(contact),
-                :method => :delete,
-                :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                :class => 'btn btn-mini btn-danger' %>
-            <% end -%>
-          </div>
-        </td>
+<% if @contacts.empty? %>
+  <div class="alert alert-error">
+    <strong>
+      <i class="icon-exclamation-sign"></i> Sorry, no results :(
+    </strong>
+  </div>
+<% else %>
+  <%= paginate @contacts %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th><%= model_class.human_attribute_name(:company) %></th>
+        <th>Contact Name</th>
+        <th>Email</th>
+        <th>Created by</th>
+        <th>Website</th>
+        <th><%= model_class.human_attribute_name(:category) %></th>
+        <th><%= model_class.human_attribute_name(:country) %></th>
+        <th><%=t '.actions', :default => t("helpers.actions") %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @contacts.each do |contact| %>
+        <tr id="contact_table" value="<%= contact.user_id %>">
+          <td><%= link_to contact.company, contact_path(contact) %></td>
+          <td><%= contact.last_name %></td>
+          <td><%= User.find_by_id(contact.user_id).username %></td>
+          <td>
+            <%= raw(contact.emails.map(&:address).join("<br />")) %>
+          </td>
+          <td><%= contact.website %></td>
+          <td><%= contact.category %></td>
+          <td><%= contact.country %></td>
+          <td>
+            <div class="btn-group pull-right">
+              <%= link_to raw('<i class="icon-edit"></i>'),
+                edit_contact_path(contact), :class => 'btn btn-mini', :title => 'edit contact' %>
+              <% if current_user.is_admin? %>
+                <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+                  contact_path(contact),
+                  :method => :delete,
+                  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                  :class => 'btn btn-mini btn-danger' %>
+              <% end -%>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= paginate @contacts %>
+  <%= paginate @contacts %>
+<% end -%>
