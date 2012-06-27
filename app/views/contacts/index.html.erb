@@ -36,14 +36,19 @@
     </strong>
   </div>
 <% else %>
-  <%= paginate @contacts %>
+  <% if @q %>
+  <div class="alert alert-info">
+    <strong>Search results: <%= "#{pluralize(@contacts.total, 'result')}" %> matching the patern</strong>
+  </div>
+  <% end %>
+  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%#= paginate @contacts %>
   <table class="table table-striped">
     <thead>
       <tr>
         <th><%= model_class.human_attribute_name(:company) %></th>
         <th>Contact Name</th>
         <th>Email</th>
-        <th>Created by</th>
         <th>Website</th>
         <th><%= model_class.human_attribute_name(:category) %></th>
         <th><%= model_class.human_attribute_name(:country) %></th>
@@ -55,7 +60,6 @@
         <tr id="contact_table" value="<%= contact.user_id %>">
           <td><%= link_to contact.company, contact_path(contact) %></td>
           <td><%= contact.last_name %></td>
-          <td><%= User.find_by_id(contact.user_id).username %></td>
           <td>
             <%= raw(contact.emails.map(&:address).join("<br />")) %>
           </td>
@@ -80,5 +84,6 @@
     </tbody>
   </table>
 
-  <%= paginate @contacts %>
+  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%#= paginate @contacts %>
 <% end -%>

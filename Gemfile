@@ -8,7 +8,9 @@ gem 'rails'
 
 gem 'sqlite3'
 gem 'thin'
-gem 'kaminari'
+#gem 'kaminari'
+gem 'will_paginate', '> 3.0'
+gem 'will_paginate-bootstrap'
 gem 'simple_form'
 gem 'roo'
 gem 'nokogiri'
@@ -18,6 +20,7 @@ gem 'country_select'
 gem 'devise'
 gem 'vestal_versions', :git => 'git://github.com/milkfarm/vestal_versions.git'
 gem 'tire'
+gem 'yaml_db'
 
 #gem 'thinking-sphinx', '2.0.10'
 

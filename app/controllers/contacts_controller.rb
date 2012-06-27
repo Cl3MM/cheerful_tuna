@@ -7,6 +7,7 @@ class ContactsController < ApplicationController
   def index
     #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
     @contacts = Contact.search(params)
+    @q = params[:query].present?
     @users = User.all
 
     respond_to do |format|
@@ -45,8 +46,23 @@ class ContactsController < ApplicationController
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(params[:contact])
-    @contact.update_attribute(:user_id, current_user.id)
+    begin
+      @contact = Contact.new(params[:contact])
+      @contact.update_attribute(:user_id, current_user.id)
+      @contact.save
+    rescue ActiveRecord::RecordNotUnique
+      company = params[:contact][:company] || "ERROR"
+      country = params[:contact][:country] || "ERROR"
+      flash[:error] = <<EOL
+<h3>An error prevented the reccord from being saved (duplicate entry):</h3>
+Sorry, the company <strong>"#{company}"</strong> already exists 
+in the country: <strong>"#{country}"</strong>. Please take one of the following action:
+<ul>
+	<li>Check the company, country, address and first name fields</li>
+	<li>Find and update the already existing company using the search form on the main contact page</li>
+</ul>
+EOL
+    end
 =begin
     @contact.version
     if current_user
@@ -56,9 +72,8 @@ class ContactsController < ApplicationController
       @contact.update_attribute(:updated_by, "ERROR")
     end
 =end
-
     respond_to do |format|
-      if @contact.save
+      unless flash[:error]
         format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
       else

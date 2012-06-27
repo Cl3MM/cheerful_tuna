@@ -19,7 +19,7 @@
           <div class="span10 offset1">
             <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
               <a class="close" data-dismiss="alert">×</a>
-              <%= msg %>
+              <%= raw(msg) %>
             </div>
           </div>
         </div>
