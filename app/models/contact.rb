@@ -19,6 +19,7 @@ class Contact < ActiveRecord::Base
   validates_presence_of :company, :country
 
   before_validation :clean_up_attributes
+  scope :countries, { :select => :country, :group => :country }
 
   def clean_up_attributes
     Rails.logger.debug(attributes)
@@ -32,6 +33,7 @@ class Contact < ActiveRecord::Base
       end
     end
   end
+
   #scope :limit, lambda { |num| { :limit => num } }
   #validate :something
   #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
@@ -43,18 +45,13 @@ class Contact < ActiveRecord::Base
     indexes :first_name, type: 'string'
     indexes :last_name, type: 'string'
     indexes :company, type: 'multi_field', fields: {
-                        company: {
-                            type: "string",
-                            index: "analyzed"
-                        },
-                        untouched: {
-                            type: "string",
-                            index: "not_analyzed"
-                        }
+                        company: { type: "string", index: "analyzed" },
+                        untouched: { type: "string", index: "not_analyzed" }
                       }
     indexes :country, type: 'string'
     indexes :email_addresses
   end
+
   def self.search(params)
     tire.search(page: params[:page], per_page: 50) do
       if params[:query].present?
