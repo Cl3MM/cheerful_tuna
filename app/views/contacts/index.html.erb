@@ -61,7 +61,7 @@
           <td><%= link_to contact.company, contact_path(contact) %></td>
           <td><%= contact.last_name %></td>
           <td>
-            <%= raw(contact.emails.map(&:address).join("<br />")) %>
+            <%= raw(contact.email_addresses.join("<br />")) %>
           </td>
           <td><%= contact.website %></td>
           <td><%= contact.category %></td>
@@ -74,7 +74,7 @@
                 <%= link_to raw('<i class="icon-trash icon-white"></i>'),
                   contact_path(contact),
                   :method => :delete,
-                  :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+                  :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
                   :class => 'btn btn-mini btn-danger' %>
               <% end -%>
             </div>
