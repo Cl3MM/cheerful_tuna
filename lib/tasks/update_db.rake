@@ -43,19 +43,11 @@ namespace :udb do
     Rake::Task['tire:import'].invoke
   end
 
-  desc "Reset Database"
-  task :find_invalid => :environment do
+  desc "Clean up database"
+  task :clean => :environment do
     Contact.all.each do |c|
-      c.attributes.each do |a|
-        unless a.class == Array
-          a.force_encoding "utf-8"
-          unless a.valid_encoding?
-            puts "Invalid attribute: #{a} in user id: #{c.id}"
-            #email.encode!("utf-8", "utf-8", :invalid => :replace)
-            #user.update_attribute(:school_email, email)
-          end
-        end
-      end
+      c.clean_up_attributes
+      c.save
     end
   end
 end

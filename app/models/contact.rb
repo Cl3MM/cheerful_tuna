@@ -6,7 +6,7 @@ class Contact < ActiveRecord::Base
   WWW_PATERN  = /\b[http:\/\/]?([A-Za-z0-9\._%-]+\.[A-Za-z]{2,4})\b/
 
   versioned :dependent => :tracking
-  has_many :emails
+  has_many :emails, :inverse_of => :contact
   belongs_to :user
 
   accepts_nested_attributes_for :emails, allow_destroy: true #, :reject_if => proc {|a| a["address"].blank?}
@@ -22,18 +22,28 @@ class Contact < ActiveRecord::Base
   scope :countries, { :select => :country, :group => :country }
 
   def clean_up_attributes
-    Rails.logger.debug(attributes)
-    attributes.each_pair do |k,v|
-      v.gsub!(/  +|\n/, " ") if v.class == String and not v.nil?
-      v.lstrip! if v.class == String and not v.nil?
-      v.rstrip! if v.class == String and not v.nil?
-      if k == "website" and v.match(WWW_PATERN)
-        web = v.scan(WWW_PATERN).flatten.map{|w| "http://#{w}"}.join(";")
-        update_attribute(:website, web)
+    attributes.each_pair do |k, v|
+      if v.class == String and not v.nil?
+        x = v.gsub(/\n/, " ")
+        x.gsub!(/  +/, " ") unless x.nil?
+        x.strip! unless x.nil?
+        x.capitalize! if k == "company"
+        if k == "website"
+          x = x.scan(WWW_PATERN).flatten.map{|w| "http://#{w}"}.join(";") if v.match(WWW_PATERN)
+        end
+        send("#{k}=", x)
       end
     end
   end
 
+  def clean_data
+    # trim whitespace from beginning and end of string attributes
+    attribute_names.each do |name|
+      if send(name).respond_to?(:strip)
+        send("#{name}=", send(name).strip)
+      end
+    end
+  end
   #scope :limit, lambda { |num| { :limit => num } }
   #validate :something
   #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
