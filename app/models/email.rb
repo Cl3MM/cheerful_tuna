@@ -9,7 +9,7 @@ class Email < ActiveRecord::Base
   before_validation :clean_up_address
 
   def clean_up_address
-    update_attribute(:address, address.gsub(/ /, ""))
+    self.address = address.gsub(/\n/,";").gsub(/ /, "").downcase
   end
 
 end

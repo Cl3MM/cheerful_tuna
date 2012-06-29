@@ -46,8 +46,10 @@ namespace :udb do
   desc "Clean up database"
   task :clean => :environment do
     Contact.all.each do |c|
-      c.clean_up_attributes
-      c.save
+      c.skip_version do
+        c.clean_up_attributes
+        c.save
+      end
     end
   end
 end

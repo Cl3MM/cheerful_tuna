@@ -3,7 +3,7 @@ class Contact < ActiveRecord::Base
   include Tire::Model::Callbacks
 
 
-  WWW_PATERN  = /\b[http:\/\/]?([A-Za-z0-9\._%-]+\.[A-Za-z]{2,4})\b/
+  WWW_PATERN  = /\b[http:\/\/]?([a-z0-9\._%-]+\.[a-z]{2,4})\b/i
 
   versioned :dependent => :tracking
   has_many :emails, :inverse_of => :contact
@@ -29,7 +29,7 @@ class Contact < ActiveRecord::Base
         x.strip! unless x.nil?
         x.capitalize! if k == "company"
         if k == "website"
-          x = x.scan(WWW_PATERN).flatten.map{|w| "http://#{w}"}.join(";") if v.match(WWW_PATERN)
+          x = x.scan(WWW_PATERN).flatten.map{|w| "http://#{w}"}.join(";") if x.match(WWW_PATERN)
         end
         send("#{k}=", x)
       end
