@@ -43,6 +43,12 @@ namespace :udb do
     Rake::Task['tire:import'].invoke
   end
 
+  desc "Clean up email whose contacts have been deleted"
+  task :clean_emails => :environment do
+    ids = Contact.all.map(&:id)
+    Email.all.map{|m| m.destroy unless ids.include?(m.contact_id)}.compact
+  end
+
   desc "Clean up database"
   task :clean => :environment do
     Contact.all.each do |c|
