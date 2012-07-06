@@ -5,7 +5,7 @@ class Contact < ActiveRecord::Base
 
   WWW_PATERN  = /\b[http:\/\/]?([a-z0-9\._%-]+\.[a-z]{2,4})\b/i
 
-  versioned :dependent => :tracking
+  versioned #:dependent => :tracking
   has_many :emails, :inverse_of => :contact, :dependent => :destroy
   belongs_to :user
 

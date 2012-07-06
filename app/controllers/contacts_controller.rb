@@ -112,7 +112,7 @@ EOL
     @contact = Contact.find(params[:id])
 
     @contact.destroy
-    @contact.version
+    #@contact.version
 
     respond_to do |format|
       format.html { redirect_to contacts_url }

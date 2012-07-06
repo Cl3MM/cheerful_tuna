@@ -45,8 +45,13 @@ namespace :udb do
 
   desc "Clean up email whose contacts have been deleted"
   task :clean_emails => :environment do
-    ids = Contact.all.map(&:id)
-    Email.all.map{|m| m.destroy unless ids.include?(m.contact_id)}.compact
+    ids = Contact.all.map(&:id).to_set
+    Email.all.map do |m|
+      unless ids.include?(m.contact_id)
+        puts "id: #{m.id.to_s}, email: #{m.address}"
+        m.destroy
+      end
+    end
   end
 
   desc "Clean up database"
