@@ -1,4 +1,6 @@
 CheerfulTuna::Application.routes.draw do
+  resources :members
+
   get "stat/index"
 
   get "stat/user"

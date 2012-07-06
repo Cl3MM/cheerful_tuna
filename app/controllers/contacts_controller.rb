@@ -23,6 +23,12 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
+      format.pdf do # show.html.erb
+        pdf = ContactPdf.new(@contact)
+        send_data pdf.render, filename: "Contact_#{@contact.company.gsub(/ /, "_").capitalize}.pdf",
+                            type: "application/pdf",
+                            disposition: "inline"
+      end
       format.json { render json: @contact }
     end
   end

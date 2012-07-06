@@ -1,0 +1,40 @@
+= prawn-fast-png
+An extension of Prawn[http://github.com/sandal/prawn] that improves the
+performance when embedding PNG images containing an alpha channel. Uses
+RMagick[http://rmagick.rubyforge.org/] to separate RGB and alpha channels.
+
+= Usage
+This gem doesn't introduce any API changes, so please refer to
+{Prawn's RDoc}[http://prawn.majesticseacreature.com/docs/prawn-core/].
+
+  require 'prawn'
+  require 'prawn/fast_png'
+
+  pdf = Prawn::Document.new
+  pdf.image 'dice.png'
+  pdf.render_file 'example.pdf'
+
+= Running Prawn's tests
+
+  cd path_to_prawn_src
+  git tag # available versions
+  git checkout version.tag
+  # or
+  git checkout master
+  cd -
+  rake test PRAWN_DIR=path_to_prawn_src
+
+for versions 0.5.1-0.8.3 add PRAWN_REQUIRE=prawn/core option
+
+  rake test PRAWN_DIR=path_to_prawn_src PRAWN_REQUIRE=prawn/core
+
+= GitHub
+http://github.com/amberbit/prawn-fast-png
+
+= Mailing list
+http://groups.google.com/group/prawn-ruby
+
+=Credits
+prawn-fast-png is maintained by {Wojciech Piekutowski}[http://piekutowski.net],
+and is funded by AmberBit[http://amberbit.com].
+

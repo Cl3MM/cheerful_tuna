@@ -1,0 +1,65 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Company:</b>
+  <%= @member.company %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%= @member.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @member.city %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%= @member.postal_code %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%= @member.country %>
+</p>
+
+<p>
+  <b>Activity:</b>
+  <%= @member.activity %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @member.category %>
+</p>
+
+<p>
+  <b>Vat number:</b>
+  <%= @member.vat_number %>
+</p>
+
+<p>
+  <b>Billing address:</b>
+  <%= @member.billing_address %>
+</p>
+
+<p>
+  <b>Billing city:</b>
+  <%= @member.billing_city %>
+</p>
+
+<p>
+  <b>Billing postal code:</b>
+  <%= @member.billing_postal_code %>
+</p>
+
+<p>
+  <b>Billing country:</b>
+  <%= @member.billing_country %>
+</p>
+
+
+<%= link_to 'Edit', edit_member_path(@member) %> |
+<%= link_to 'Back', members_path %>

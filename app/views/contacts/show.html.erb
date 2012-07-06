@@ -2,12 +2,11 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-
 <dl class="dl-horizontal">
   <dt><strong><%= :company %>:</strong></dt>
   <dd><%= dash_display @contact.company %></dd>
   <dt><strong><%= :category %>:</strong></dt>
-  <dd><%= dash_display @contact.category %></dd>
+  <dd><%= dash_display @contact.category %></dd>"
   <dt><strong><%= :address %>:</strong></dt>
   <dd><%= dash_display @contact.address %></dd>
   <dt><strong><%= :postal_code %>:</strong></dt>
@@ -43,6 +42,7 @@
               contacts_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_contact_path(@contact), :class => 'btn' %>
+  <%= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
   <% if current_user.is_admin? %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               contact_path(@contact),

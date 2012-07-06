@@ -6,7 +6,7 @@ class Contact < ActiveRecord::Base
   WWW_PATERN  = /\b[http:\/\/]?([a-z0-9\._%-]+\.[a-z]{2,4})\b/i
 
   versioned :dependent => :tracking
-  has_many :emails, :inverse_of => :contact
+  has_many :emails, :inverse_of => :contact, :dependent => :destroy
   belongs_to :user
 
   accepts_nested_attributes_for :emails, allow_destroy: true #, :reject_if => proc {|a| a["address"].blank?}

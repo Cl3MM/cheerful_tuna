@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627152408) do
+ActiveRecord::Schema.define(:version => 20120706041058) do
 
   create_table "contacts", :force => true do |t|
     t.string   "address"
@@ -32,9 +32,13 @@ ActiveRecord::Schema.define(:version => 20120627152408) do
     t.datetime "updated_at",                         :null => false
     t.string   "website"
     t.integer  "user_id"
+    t.integer  "member_id"
   end
 
   add_index "contacts", ["company", "country", "last_name", "address"], :name => "index_contacts_on_company_and_country_and_last_name_and_address", :unique => true
+  add_index "contacts", ["company"], :name => "index_contacts_on_company"
+  add_index "contacts", ["country"], :name => "index_contacts_on_country"
+  add_index "contacts", ["member_id"], :name => "index_contacts_on_member_id"
 
   create_table "countries", :force => true do |t|
     t.string   "english"
@@ -51,6 +55,26 @@ ActiveRecord::Schema.define(:version => 20120627152408) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
+
+  create_table "members", :force => true do |t|
+    t.string   "company"
+    t.string   "address"
+    t.string   "city"
+    t.string   "postal_code"
+    t.string   "country"
+    t.string   "activity"
+    t.string   "category"
+    t.string   "vat_number"
+    t.string   "billing_address"
+    t.string   "billing_city"
+    t.string   "billing_postal_code"
+    t.string   "billing_country"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
+  end
+
+  add_index "members", ["company", "country", "address"], :name => "index_members_on_company_and_country_and_address", :unique => true
+  add_index "members", ["company"], :name => "index_members_on_company"
 
   create_table "users", :force => true do |t|
     t.string   "role",                   :default => "user"
