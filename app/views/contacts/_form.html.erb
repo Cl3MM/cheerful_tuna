@@ -12,13 +12,6 @@
   <% end %>
 
   <%= f.input :company, :required => true, :autofocus => true %>
-  <%= f.input :address %>
-  <%= f.input :postal_code %>
-  <%= f.input :category %>
-
-  <%= f.input :country, :prompt => "Select a country", :required => true %>
-
-  <%= f.input :website, :label => "Website" %>
   <%= f.fields_for :emails do |m| %>
     <%= render 'email_fields', f: m %>
   <% end %>
@@ -27,6 +20,11 @@
       <%= link_to_add_fields "Add another email address", f, :emails %>
     </div>
   </div>
+  <%= f.input :website, :label => "Website" %>
+  <%= f.input :address %>
+  <%= f.input :postal_code %>
+  <%= f.input :category %>
+  <%= f.input :country, :prompt => "Select a country", :required => true %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>
   <%= f.input :is_ceres_member, :label => "CERES member?" %>
