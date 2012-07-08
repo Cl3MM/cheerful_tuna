@@ -27,7 +27,7 @@ class Contact < ActiveRecord::Base
         x = v.gsub(/\n/, " ")
         x.gsub!(/  +/, " ") unless x.nil?
         x.strip! unless x.nil?
-        x.capitalize! if k == "company"
+        x.upcase! if k == "company"
         if k == "website"
           x = x.scan(WWW_PATERN).flatten.map{|w| "http://#{w}"}.join(";") if x.match(WWW_PATERN)
         end
