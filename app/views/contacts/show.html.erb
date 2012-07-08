@@ -30,7 +30,7 @@
   <dt><strong><%= :cell %>:</strong></dt>
   <dd><%= dash_display @contact.cell %></dd>
   <dt><strong><%= :website %>:</strong></dt>
-  <dd><%= dash_display @contact.website %></dd>
+  <dd><%= display_website @contact.website %></dd>
   <dt><strong><%= :email %>:</strong></dt>
   <%= raw @contact.email_addresses.map{|a| "<dd>#{a}</dd>"}.join %>
 </dl>
@@ -42,6 +42,7 @@
               contacts_path, :class => 'btn'  %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_contact_path(@contact), :class => 'btn' %>
+  <%= link_to "Duplicate", duplicate_path, :class => 'btn'  %>
   <%= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
   <% if current_user.is_admin? %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),

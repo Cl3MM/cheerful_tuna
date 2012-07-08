@@ -13,13 +13,26 @@ class Contact < ActiveRecord::Base
 
   attr_accessible :address, :category, :cell, :company, :country, :fax,
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
-    :position, :postal_code, :phone, :emails_attributes, :versions_attributes
+    :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
+    :member_id
 
   validates_associated :emails
   validates_presence_of :company, :country
 
   before_validation :clean_up_attributes
   scope :countries, { :select => :country, :group => :country }
+
+  def duplicate
+    copy_attributes = self.attributes
+    copy_attributes.delete('id')
+    copy_attributes.delete('created_at')
+    copy_attributes.delete('updated_at')
+    copy_attributes.delete('user_id')
+    copy_attributes.delete('emails_attributes')
+    copy_attributes[:company] = self.company + " (copy)"
+    new_contact = Contact.new(copy_attributes)
+    return new_contact
+  end
 
   def clean_up_attributes
     attributes.each_pair do |k, v|

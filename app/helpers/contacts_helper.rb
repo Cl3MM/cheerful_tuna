@@ -3,6 +3,6 @@ module ContactsHelper
     arg.blank? ? "-" : arg
   end
   def display_website web
-    raw("<a href=\"#{web}\">#{web}</a>") unless web.blank? and web.match(/http.*/i)
+    raw("<a target=\"_blank\" href=\"#{web}\">#{web}</a>") unless web.blank? and web.match(/http.*/i)
   end
 end

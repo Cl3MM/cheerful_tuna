@@ -12,6 +12,7 @@ CheerfulTuna::Application.routes.draw do
   resources :countries
 
   resources :contacts
+  match 'contacts/duplicate/:id' => 'contacts#duplicate', :as => :duplicate
 
   resources :contacts do
     get 'page/:page', :action => :index, :on => :collection

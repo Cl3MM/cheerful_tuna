@@ -45,6 +45,12 @@ class ContactsController < ApplicationController
   end
 
   # GET /contacts/1/edit
+  def duplicate
+    @contact = Contact.find(params[:id]).duplicate
+    render "edit"
+  end
+
+  # GET /contacts/1/edit
   def edit
     @contact = Contact.find(params[:id])
   end
