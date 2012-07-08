@@ -56,15 +56,23 @@ class ContactsController < ApplicationController
       @contact = Contact.new(params[:contact])
       @contact.update_attribute(:user_id, current_user.id)
       @contact.save
-    rescue ActiveRecord::RecordNotUnique
-      company = params[:contact][:company] || "ERROR"
-      country = params[:contact][:country] || "ERROR"
+    rescue ActiveRecord::RecordNotUnique => e
+      if e.message =~ /for key 'index_emails_on_address'/
+        email   = e.message.scan(/Duplicate entry '(.*)' for key 'index_emails_on_address'.*/).flatten.first
+        err = ["the email address <strong>'#{email}'</strong>",
+               "Check the emails fields"]
+      else
+        company = params[:contact][:company] || "ERROR"
+        country = params[:contact][:country] || "ERROR"
+        err = ["the company <strong>\"#{company}\"</strong> in the country: <strong>\"#{country}\"</strong>",
+               "Check the company, country, address and first name fields"]
+      end
+      #flash[:error] = "<br /> #{e}"
       flash[:error] = <<EOL
 <h3>An error prevented the reccord from being saved (duplicate entry):</h3>
-Sorry, the company <strong>"#{company}"</strong> already exists 
-in the country: <strong>"#{country}"</strong>. Please take one of the following action:
+Sorry, #{err.first} already exists in the database. Please take one of the following action:
 <ul>
-	<li>Check the company, country, address and first name fields</li>
+	<li>#{err.last}</li>
 	<li>Find and update the already existing company using the search form on the main contact page</li>
 </ul>
 EOL
