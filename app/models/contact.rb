@@ -29,7 +29,7 @@ class Contact < ActiveRecord::Base
     copy_attributes.delete('updated_at')
     copy_attributes.delete('user_id')
     copy_attributes.delete('emails_attributes')
-    copy_attributes[:company] = self.company + " (copy)"
+    copy_attributes[:company] = self.company + " (COPY)"
     new_contact = Contact.new(copy_attributes)
     return new_contact
   end
