@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706041058) do
+ActiveRecord::Schema.define(:version => 20120706045033) do
 
   create_table "contacts", :force => true do |t|
     t.string   "address"
@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(:version => 20120706041058) do
     t.datetime "created_at",                 :null => false
     t.datetime "updated_at",                 :null => false
   end
+
+  add_index "emails", ["address"], :name => "index_emails_on_address", :unique => true
+  add_index "emails", ["contact_id"], :name => "index_emails_on_contact_id"
 
   create_table "members", :force => true do |t|
     t.string   "company"

@@ -54,7 +54,17 @@ namespace :udb do
     end
   end
 
+  desc "Clean up company"
+  task :upcase_company => :environment do
+    Contact.all.each do |c|
+      c.skip_version do
+        c.update_attribute(:company, c.company.upcase)
+        c.save
+      end
+    end
+  end
   desc "Clean up database"
+
   task :clean => :environment do
     Contact.all.each do |c|
       c.skip_version do
