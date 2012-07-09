@@ -2,8 +2,8 @@
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human %></h1>
 </div>
-  <%= link_to "Logo", @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
-  <%= link_to "Membershop form", @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
+  <%= link_to raw('<i class="icon-download"></i> download logo'), @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
+  <%= link_to raw('<i class="icon-download"></i> membership form (pdf)'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
   <dd><%= @member.company %></dd>
