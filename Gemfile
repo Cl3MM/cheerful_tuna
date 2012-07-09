@@ -22,6 +22,9 @@ gem 'vestal_versions', :git => 'git://github.com/milkfarm/vestal_versions.git'
 gem 'tire'
 gem 'yaml_db'
 gem 'prawn'
+gem "rmagick"
+gem "carrierwave"
+
 #gem 'thinking-sphinx', '2.0.10'
 
 #gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'

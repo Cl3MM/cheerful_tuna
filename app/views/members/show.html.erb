@@ -1,65 +1,45 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Company:</b>
-  <%= @member.company %>
-</p>
-
-<p>
-  <b>Address:</b>
-  <%= @member.address %>
-</p>
-
-<p>
-  <b>City:</b>
-  <%= @member.city %>
-</p>
-
-<p>
-  <b>Postal code:</b>
-  <%= @member.postal_code %>
-</p>
-
-<p>
-  <b>Country:</b>
-  <%= @member.country %>
-</p>
-
-<p>
-  <b>Activity:</b>
-  <%= @member.activity %>
-</p>
-
-<p>
-  <b>Category:</b>
-  <%= @member.category %>
-</p>
-
-<p>
-  <b>Vat number:</b>
-  <%= @member.vat_number %>
-</p>
-
-<p>
-  <b>Billing address:</b>
-  <%= @member.billing_address %>
-</p>
-
-<p>
-  <b>Billing city:</b>
-  <%= @member.billing_city %>
-</p>
-
-<p>
-  <b>Billing postal code:</b>
-  <%= @member.billing_postal_code %>
-</p>
-
-<p>
-  <b>Billing country:</b>
-  <%= @member.billing_country %>
-</p>
-
-
-<%= link_to 'Edit', edit_member_path(@member) %> |
-<%= link_to 'Back', members_path %>
+<%- model_class = @member.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
+  <%= link_to "Logo", @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
+  <%= link_to "Membershop form", @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
+  <dd><%= @member.company %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
+  <dd><%= @member.address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
+  <dd><%= @member.city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
+  <dd><%= @member.postal_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
+  <dd><%= @member.country %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:activity) %>:</strong></dt>
+  <dd><%= @member.activity %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
+  <dd><%= @member.category %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:vat_number) %>:</strong></dt>
+  <dd><%= @member.vat_number %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:billing_address) %>:</strong></dt>
+  <dd><%= @member.billing_address %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:billing_city) %>:</strong></dt>
+  <dd><%= @member.billing_city %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:billing_postal_code) %>:</strong></dt>
+  <dd><%= @member.billing_postal_code %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:billing_country) %>:</strong></dt>
+  <dd><%= @member.billing_country %></dd>
+</dl>
+<div style="clear:both;">
+</div>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              members_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_member_path(@member), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              member_path(@member),
+              :method => 'delete',
+              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+              :class => 'btn btn-danger' %>
+</div>

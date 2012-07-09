@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120706045033) do
+ActiveRecord::Schema.define(:version => 20120708235115) do
 
   create_table "contacts", :force => true do |t|
     t.string   "address"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20120706045033) do
     t.integer  "member_id"
   end
 
-  add_index "contacts", ["company", "country", "last_name", "address"], :name => "index_contacts_on_company_and_country_and_last_name_and_address", :unique => true
+  add_index "contacts", ["company", "country", "last_name"], :name => "index_contacts_on_company_and_country_and_last_name", :unique => true
   add_index "contacts", ["company"], :name => "index_contacts_on_company"
   add_index "contacts", ["country"], :name => "index_contacts_on_country"
   add_index "contacts", ["member_id"], :name => "index_contacts_on_member_id"
@@ -74,6 +74,9 @@ ActiveRecord::Schema.define(:version => 20120706045033) do
     t.string   "billing_country"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+    t.string   "membership_file"
+    t.string   "logo_file"
+    t.date     "start_date"
   end
 
   add_index "members", ["company", "country", "address"], :name => "index_members_on_company_and_country_and_address", :unique => true

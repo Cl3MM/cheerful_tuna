@@ -42,6 +42,9 @@ GEM
     bcrypt-ruby (3.0.1)
     boson (1.1.1)
     builder (3.0.0)
+    carrierwave (0.6.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     choice (0.1.6)
     clipboard (1.0.1)
     coderay (1.0.7)
@@ -170,6 +173,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.1)
     roo (1.10.1)
       choice (>= 0.1.4)
       google-spreadsheet-ruby (>= 0.1.5)
@@ -241,6 +245,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  carrierwave
   coffee-rails (~> 3.2.1)
   country_select
   devise
@@ -250,6 +255,7 @@ DEPENDENCIES
   nokogiri
   prawn
   rails
+  rmagick
   roo
   sass-rails (~> 3.2.3)
   simple_form
