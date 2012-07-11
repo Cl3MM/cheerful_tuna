@@ -19,9 +19,9 @@ class CertificatePdf < Prawn::Document
           left_margin: 0,
           info: {
             Title: "CERES Membership Certificate for #{@member.company} ",
-            Author: "CERES - Centre Européen pour le Recyclage des Panneaux Solaires",
+            Author: "CERES - Centre Europeen pour le Recyclage des Panneaux Solaires",
             Keywords: "CERES Membership Certificate for #{@member.company} http://www.ceres-recycle.org",
-            Creator: "CERES - Centre Européen pour le Recyclage des Panneaux Solaires",
+            Creator: "CERES - Centre Europeen pour le Recyclage des Panneaux Solaires",
             Producer: "CERES Certificate Generator",
             CreationDate: Time.now.strftime('%d.%m.%Y::%H:%M:%S'),
             CertifId: "#{@member.object_id}",
