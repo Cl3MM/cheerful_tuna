@@ -4,6 +4,7 @@
 </div>
   <%= link_to raw('<i class="icon-download"></i> download logo'), @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
   <%= link_to raw('<i class="icon-download"></i> membership form (pdf)'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
+  <%= link_to raw('<i class="icon-download"></i> Download Certificate'), member_path(@member, format: "pdf", certif: true), :class => "btn btn-inverse" %>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
   <dd><%= @member.company %></dd>
