@@ -36,7 +36,7 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     left_side
     body
     company
-    #stroke_axis height: 900
+    ##stroke_axis height: 900
     new_footer
   end
 end
