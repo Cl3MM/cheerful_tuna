@@ -44,7 +44,6 @@
               edit_contact_path(@contact), :class => 'btn' %>
   <%= link_to "Duplicate", duplicate_path, :class => 'btn'  %>
   <%= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
-  <%= link_to raw('<i class="icon-download"></i> Download Certificate'), contact_path(@contact, format: "pdf", certif: true), :class => "btn btn-inverse" %>
   <% if current_user.is_admin? %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               contact_path(@contact),
