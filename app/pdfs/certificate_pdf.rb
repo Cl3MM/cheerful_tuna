@@ -37,7 +37,7 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     body
     company
     #stroke_axis height: 900
-    footer
+    new_footer
   end
 end
 
@@ -133,7 +133,7 @@ def company
   bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 15, align: :center, leading: 5, shift:100
 end
 
-def footer
+def new_footer
   fill_color "a0a0a0"
   font @fonts[:DS]
   address = "CERES • 96 rue Losserand • 75014 Paris • France • www.ceres-recycle.org"
