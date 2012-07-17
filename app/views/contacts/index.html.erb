@@ -5,27 +5,9 @@
     <small>{<%= Contact.count %>}</small>
   </h1>
 </div>
-  <%= form_tag contacts_path, method: :get, :class=>"well form-inline" do %>
+  <%= form_tag contacts_path, method: :get, :class=>"well form-inline", style: "clear:none;" do %>
     <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
     <%= submit_tag "Search", name: nil, :class=>"btn" %>
-    <% if current_user.is_admin? %>
-      <%= link_to raw('<i class="icon-plus-sign"></i>'), "#", :class => 'btn', :id => 'show_options_filter' %>
-      <span id="options_filter">
-        <label class="checkbox">
-          Show contacts create by users:<%= raw ("&nbsp;"*4) %>
-        </label>
-        <% @users.each do |u| %>
-          <label class="checkbox">
-            <%= check_box_tag "sort_user_contact", u.id, :checked => false %>
-            <%= u.username %>
-          </label> |
-        <% end -%>
-        <label class="checkbox">
-          <%= check_box_tag "check_all", :checked => false %>
-          <span id="check_all_span">uncheck all</span>
-        </label>
-      </span>
-    <% end %>
     <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
 <% end -%>
 
@@ -90,3 +72,22 @@
   <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
   <%#= paginate @contacts %>
 <% end -%>
+
+<%#<% if current_user.is_admin? %>%>
+  <%#<%= link_to raw('<i class="icon-plus-sign"></i>'), "#", :class => 'btn', :id => 'show_options_filter' %>%>
+  <%#<span id="options_filter">%>
+    <%#<label class="checkbox">%>
+      <%#Show contacts create by users:<%= raw ("&nbsp;"*4) %>%>
+  <%#</label>%>
+  <%#<% @users.each do |u| %>%>
+    <%#<label class="checkbox">%>
+      <%#<%= check_box_tag "sort_user_contact", u.id, :checked => false %>%>
+      <%#<%= u.username %>%>
+    <%#</label> |%>
+  <%#<% end -%>%>
+  <%#<label class="checkbox">%>
+    <%#<%= check_box_tag "check_all", :checked => false %>%>
+    <%#<span id="check_all_span">uncheck all</span>%>
+  <%#</label>%>
+<%#</span>%>
+    <%#<% end %>%>

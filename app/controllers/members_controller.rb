@@ -1,4 +1,5 @@
 class MembersController < ApplicationController
+  before_filter :authenticate_user!
   # GET /members
   # GET /members.json
   def index
@@ -21,8 +22,8 @@ class MembersController < ApplicationController
         if params[:certif].present?
           pdf = CertificatePdf.new(@member)
           send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf",
-            type: "application/pdf"#,
-            #disposition: "inline"
+            type: "application/pdf",
+            disposition: "inline"
         end
       end
       format.json { render json: @member }

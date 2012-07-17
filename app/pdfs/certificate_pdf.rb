@@ -7,6 +7,9 @@ class CertificatePdf < Prawn::Document
                UR: "#{Rails.root}/app/assets/fonts/Ubuntu-R.ttf",
                UM: "#{Rails.root}/app/assets/fonts/Ubuntu-M.ttf",
                DS: "#{Rails.root}/app/assets/fonts/DroidSans.ttf",
+               MPR: "#{Rails.root}/app/assets/fonts/MyriadPro-Regular.ttf",
+               MPB: "#{Rails.root}/app/assets/fonts/MyriadPro-Bold.ttf",
+               MPSB: "#{Rails.root}/app/assets/fonts/MyriadPro-Semibold.ttf",
                AR: "#{Rails.root}/app/assets/fonts/ARIALUNI.TTF"
     }
     require "prawn/measurement_extensions"
@@ -31,24 +34,27 @@ for the period #{@member.start_date.strftime('%B %d, %Y')} \
 to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
           }
          )
-    encrypt_document :permissions => { modify_contents: false, copy_contents: false, print_document: true }, owner_password: :random
+    #encrypt_document :permissions => { modify_contents: false, copy_contents: false, print_document: true }, owner_password: :random
     images
     left_side
     body
     company
-    ##stroke_axis height: 900
+    #stroke_axis height: 900
     new_footer
   end
 end
 
 def left_side
   # images
-  fill_color "41b23b"
+  fill_color "41AD49"
   fill_rectangle [0, 900], 105, 950
-  font @fonts[:AR]
+  font @fonts[:MPR]
   fill_color "ffffff"
-  txt = "Certificat • Сертификат • Zertificat • 证书 • Certificate"
-  draw_text txt, size: 34, at: [65,18], rotate: 90, rotate_around: :upper_left
+  txt = "Certificat • Сертификат • Zertificat •" + " "*12 + "• Certificate"
+  draw_text txt, size: 36, at: [66,30], rotate: 90, rotate_around: :upper_left
+  font @fonts[:AR]
+  txt = "证书"
+  draw_text txt, size: 36, at: [66,565], rotate: 90, rotate_around: :upper_left
   fill_color "000000"
 end
 
@@ -77,8 +83,8 @@ end
 def images
   head = "#{Rails.root}/app/assets/images/CERES_480px.jpg"
   image head, :width => 145, at: [280,845]
-  background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
-  image background, width: 500, at: [100,650]
+  #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
+  #image background, width: 500, at: [100,650]
   signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
   image signature, width: 105, at: [300,220]
 end
@@ -86,27 +92,27 @@ end
 def body
   opts = [
     {
-      font:  @fonts[:UB], height: 685,
+      font:  @fonts[:MPB], height: 685,
             text: "CERTIFICATE",
-            options: {size: 55.5, :leading => 5, align: :center }
+            options: {size: 59, :leading => 5, align: :center }
     },
     {
-      font:  @fonts[:DS], height: 595,
+      font:  @fonts[:MPR], height: 596,
             text: "We hereby certify that based upon the current commitment",
-            options: {size: 16.5, :leading => 5, shift: 10, align: :center }
+            options: {size: 18, :leading => 5, shift: 10, align: :center }
     },
     {
-      font:  @fonts[:UB], height: 343,
+      font:  @fonts[:MPB], height: 343,
             text: "is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.",
-            options: {size: 19, :leading => 5, shift: 18}
+            options: {size: 21, :leading => 0, shift: 18}
     },
     {
-      font:  @fonts[:UR], height: 117,
+      font:  @fonts[:MPSB], height: 117,
             text: "Jean-Pierre Palier",
             options: {size: 11, :leading => 5, shift: 10, align: :center }
     },
     {
-      font:  @fonts[:UM], height: 103,
+      font:  @fonts[:MPSB], height: 103,
             text: "President",
             options: {size: 11, :leading => 5, shift: 10, align: :center }
     }
@@ -119,23 +125,23 @@ def body
 end
 
 def company
-  font @fonts[:UB]
-  bounding_text 515, @member.company, size: 45, align: :center, leading: 5
+  font @fonts[:MPB]
+  bounding_text 516, @member.company, size: 48, align: :center, leading: 5
 
-  font @fonts[:UR]
-  bounding_text 465, "#{@member.postal_code}, #{@member.city.capitalize}\n#{@member.country.upcase}", size: 26.5, align: :center, leading: 5
+  font @fonts[:MPR]
+  bounding_text 468, "#{@member.postal_code}, #{@member.city.capitalize}\n#{@member.country.upcase}", size: 28, align: :center, leading: 5
 
-  font @fonts[:DS]
+  font @fonts[:MPR]
   end_date = @member.start_date + 1.year
   day   = end_date.strftime('%d').to_i.ordinalize
   month = end_date.strftime('%B')
   year  = end_date.strftime('%Y')
-  bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 15, align: :center, leading: 5, shift:100
+  bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 16, align: :center, leading: 5, shift:100
 end
 
 def new_footer
   fill_color "a0a0a0"
-  font @fonts[:DS]
+  font @fonts[:MPSB]
   address = "CERES • 96 rue Losserand • 75014 Paris • France • www.ceres-recycle.org"
   bounding_text 50, address, size: 9.5, :leading => 5, shift: 10, align: :center
 end
