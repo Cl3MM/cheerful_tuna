@@ -17,5 +17,5 @@ pickle-email-*.html
 /config/database.yml
 /config/initializers/devise.rb
 /db/data*.yml
-/public/uploads*
+/public/*
 /app/assets/images/Signature_JP_white_bg.jpg
