@@ -2,6 +2,8 @@
 
 class MemberFilesUploader < CarrierWave::Uploader::Base
 
+  include MyTools
+
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
@@ -14,10 +16,29 @@ class MemberFilesUploader < CarrierWave::Uploader::Base
   storage :file
   # storage :fog
 
+  # Override the filename of the uploaded files:
+  # Avoid using model.id or version_name here, see uploader/store.rb for details.
+  def filename
+    if original_filename
+      ext = File.extname(original_filename)
+      hash_data = "#{model.class.to_s.underscore}/#{mounted_as}/#{model.company}/#{model.created_at}"
+      filename = "#{hash_hash(hash_data)}#{ext}"
+      Rails.logger.debug "******** hash_data: #{hash_data}"
+      Rails.logger.debug "******** hash: #{hash_hash(hash_data)}"
+      Rails.logger.debug "******** ext: #{ext}"
+      Rails.logger.debug "******** filename: #{filename}"
+      filename = "#{hash_hash(hash_data)}#{ext}"
+    end
+  end
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    ## original
+    #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+
+    "#{Rails.root}/public/assets/uploads"
+    #{model.class.to_s.underscore}/#{mounted_as}/#{model.company}"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -44,12 +65,6 @@ class MemberFilesUploader < CarrierWave::Uploader::Base
   # For images you might use something like this:
   # def extension_white_list
   #   %w(jpg jpeg gif png)
-  # end
-
-  # Override the filename of the uploaded files:
-  # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
   # end
 
 end

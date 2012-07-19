@@ -1,10 +1,14 @@
 <%- model_class = @member.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>
+    <%= @member.company %>
+  </h1>
 </div>
   <%= link_to raw('<i class="icon-download"></i> download logo'), @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
   <%= link_to raw('<i class="icon-download"></i> membership form (pdf)'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
-  <%= link_to raw('<i class="icon-download"></i> Download Certificate'), member_path(@member, format: "pdf", certif: true), :class => "btn btn-inverse" %>
+  <%= link_to raw('<i class="icon-download"></i> Certificate 1'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-inverse" %>
+  <%= link_to raw('<i class="icon-download"></i> Generate QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
+  <%= image_tag @member.qr_code_asset_url, class: "pull-right no_margin" unless @member.qr_code_asset_url.nil? %>
 <dl class="dl-horizontal">
   <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
   <dd><%= @member.company %></dd>

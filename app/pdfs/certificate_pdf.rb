@@ -22,9 +22,9 @@ class CertificatePdf < Prawn::Document
           left_margin: 0,
           info: {
             Title: "CERES Membership Certificate for #{@member.company} ",
-            Author: "CERES - Centre Europeen pour le Recyclage des Panneaux Solaires",
+            Author: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaires",
             Keywords: "CERES Membership Certificate for #{@member.company} http://www.ceres-recycle.org",
-            Creator: "CERES - Centre Europeen pour le Recyclage des Panneaux Solaires",
+            Creator: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaires",
             Producer: "CERES Certificate Generator",
             CreationDate: Time.now.strftime('%d.%m.%Y::%H:%M:%S'),
             CertifId: "#{@member.object_id}",
@@ -65,11 +65,12 @@ def bounding_text page_height = 0, txt = "I'm here. "*10, options = {}.symbolize
               leading: 0,
               strike: false,
               shift: 0,
+              width: 594,
               shift_left: 105
   }.merge(options)
 
   shift = options[:shift] + options[:shift_left]
-  width = 594 - options[:shift_left] - (options[:shift] * 2)
+  width = options[:width] - options[:shift_left] - (options[:shift] * 2)
 
   box_height = options[:height] || (height_of(txt, size: options[:size], align: options[:align], leading: options[:leading])+20)
   move_cursor_to bounds.height
@@ -129,7 +130,7 @@ def company
   bounding_text 516, @member.company, size: 48, align: :center, leading: 5
 
   font @fonts[:MPR]
-  bounding_text 468, "#{@member.postal_code}, #{@member.city.capitalize}\n#{@member.country.upcase}", size: 28, align: :center, leading: 5
+  bounding_text 468, "#{@member.postal_code}, #{@member.city.capitalize}\n#{@member.country.capitalize}", size: 28, align: :center, leading: 5
 
   font @fonts[:MPR]
   end_date = @member.start_date + 1.year
@@ -137,13 +138,16 @@ def company
   month = end_date.strftime('%B')
   year  = end_date.strftime('%Y')
   bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 16, align: :center, leading: 5, shift:100
+
+  qr_code = @member.qr_code_path
+  image qr_code, :width => 75, at: [500,102]
 end
 
 def new_footer
   fill_color "a0a0a0"
   font @fonts[:MPSB]
   address = "CERES • 96 rue Losserand • 75014 Paris • France • www.ceres-recycle.org"
-  bounding_text 50, address, size: 9.5, :leading => 5, shift: 10, align: :center
+  bounding_text 35, address, size: 9.5, :leading => 5, shift: 0, align: :center, width:500
 end
 
 def stroke_axis(options={})

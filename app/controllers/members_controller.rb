@@ -17,7 +17,12 @@ class MembersController < ApplicationController
     @member = Member.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html do # show.html.erb
+        if params[:qr_code].present?
+          @member.qr_encode(url = "Prout", scale = 4)
+          flash[:notice] = "QRCode create: #{@member.qr_code_asset_url}"
+        end
+      end
       format.pdf do # show.html.erb
         if params[:certif].present?
           pdf = CertificatePdf.new(@member)

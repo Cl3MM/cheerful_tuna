@@ -6,6 +6,12 @@ GIT
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
 
+GIT
+  remote: http://github.com/whomwah/rqrcode
+  revision: de2fb26d152130d0436985b9e528c429f8ef0f25
+  specs:
+    rqrcode (0.4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -257,6 +263,7 @@ DEPENDENCIES
   rails
   rmagick
   roo
+  rqrcode!
   sass-rails (~> 3.2.3)
   simple_form
   sqlite3
