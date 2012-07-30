@@ -20,6 +20,9 @@ class ContactsController < ApplicationController
   # GET /contacts/1.json
   def show
     @contact = Contact.find(params[:id])
+    @contact.update_attribute(:is_active, false) if params[:deactivate].present?
+    @contact.update_attribute(:is_active, true) if params[:activate].present?
+    @class = @contact.is_active ? "btn" : "btn disabled"
 
     respond_to do |format|
       format.html # show.html.erb
