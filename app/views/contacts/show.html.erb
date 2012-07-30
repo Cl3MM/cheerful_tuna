@@ -1,10 +1,10 @@
 <%- model_class = @contact.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+  <h1>Company: <%= @contact.company %></h1>
 </div>
 <dl class="dl-horizontal">
-  <dt><strong><%= :company %>:</strong></dt>
-  <dd><%= dash_display @contact.company %></dd>
+  <dt><strong>Status:</strong></dt>
+  <dd><i class="<%= @contact.is_active ? "icon-ok-circle" : "icon-ban-circle" %>"></i> <%= @contact.is_active ? "Active" : "Inactive" %> contact</dd>
   <dt><strong><%= :category %>:</strong></dt>
   <dd><%= dash_display @contact.category %></dd>
   <dt><strong><%= :address %>:</strong></dt>
@@ -38,17 +38,24 @@
 <div style="clear:both;">
 </div>
 <div class="form-actions">
+  <%= image_tag (@contact.is_active ? "glyphicons/glyphicons_198_ok.png" : "glyphicons/glyphicons_199_ban.png") %>&nbsp;
   <%= link_to t('.back', :default => t("helpers.links.back")),
-              contacts_path, :class => 'btn'  %>
+                contacts_path, class: "btn" %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_contact_path(@contact), :class => 'btn' %>
-  <%= link_to "Duplicate", duplicate_path, :class => 'btn'  %>
-  <%= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
+              edit_contact_path(@contact), class: @class %>
+  <%= link_to "Bounce", contact_path(@contact, bounce: true), class: "btn btn-primary"  %>
+  <% if @contact.is_active %>
+    <%= link_to "Deactivate", contact_path(@contact, deactivate: true), class: "btn btn-warning"  %>
+  <% else %>
+    <%= link_to "Activate", contact_path(@contact, activate: true), class: "btn btn-warning"  %>
+  <% end %>
+  <%#= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
+  <%= link_to "Duplicate", duplicate_path, class: "#{@class} btn-primary" %>
   <% if current_user.is_admin? %>
     <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
               contact_path(@contact),
               :method => 'delete',
               :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-              :class => 'btn btn-danger' %>
+              class: "#{@class} btn-danger" %>
   <% end -%>
 </div>
