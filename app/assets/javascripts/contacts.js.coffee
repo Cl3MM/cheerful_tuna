@@ -35,3 +35,7 @@ jQuery ->
 
   $('a#show_options_filter').on 'click', (event) ->
     $('span#options_filter').fadeToggle(800)
+
+  $('.btn.disabled').each (index) ->
+    $(this).attr "href", "#"
+
