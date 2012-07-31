@@ -1,5 +1,17 @@
 class MembersController < ApplicationController
   before_filter :authenticate_user!
+
+  def create_user_name_from_company
+    c = Member.generate_username params[:company] if params[:company].present?
+    Rails.logger.debug "c: #{c}"
+    #c = MyTools.friendly_user_name params[:company] if params[:company].present?
+    c = "Please verify the username" if c.nil?
+    Rails.logger.debug "c: #{c}"
+    respond_to do |format|
+      format.json { render json: c.to_json }
+    end
+  end
+
   # GET /members
   # GET /members.json
   def index
@@ -19,13 +31,14 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html do # show.html.erb
         if params[:qr_code].present?
-          @member.qr_encode(url = "Prout", scale = 4)
+          @member.qr_encode(url = "#{@member.company}_#{@member.address}_#{@member.id}", scale = 4)
           flash[:notice] = "QRCode create: #{@member.qr_code_asset_url}"
         end
       end
       format.pdf do # show.html.erb
         if params[:certif].present?
-          pdf = CertificatePdf.new(@member)
+          specimen = params[:specimen].present? ? true : nil
+          pdf = CertificatePdf.new(@member, specimen)
           send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf",
             type: "application/pdf",
             disposition: "inline"
@@ -54,9 +67,17 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
+    generated_password = Devise.friendly_token.first(10)
     @member = Member.new(params[:member])
-
+    @member.update_attributes(
+      password: generated_password,
+      password_confirmation: generated_password
+    )
+    Rails.logger.debug params[:member]
+    Rails.logger.debug generated_password
     respond_to do |format|
+      # TODO: send email with credentials
+      #RegistrationMailer.welcome(user, generated_password).deliver
       if @member.save
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render json: @member, status: :created, location: @member }
