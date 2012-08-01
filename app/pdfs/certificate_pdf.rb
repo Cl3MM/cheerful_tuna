@@ -1,8 +1,9 @@
 #encoding: utf-8
 #
 class CertificatePdf < Prawn::Document
-  def initialize(member)
+  def initialize(member, specimen = false)
     @member = member
+    @specimen = specimen
     @fonts = { UB: "#{Rails.root}/app/assets/fonts/Ubuntu-B.ttf",
                UR: "#{Rails.root}/app/assets/fonts/Ubuntu-R.ttf",
                UM: "#{Rails.root}/app/assets/fonts/Ubuntu-M.ttf",
@@ -41,7 +42,17 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     company
     #stroke_axis height: 900
     new_footer
+    fake_specimen if @specimen
   end
+end
+
+def fake_specimen
+  fill_color "444444"
+  font @fonts[:MPSB]
+  draw_text "SPECIMEN", size: 180, at: [130,30], rotate: 58, rotate_around: :upper_left
+  fill_color "ffffff"
+  fill_rectangle [300, 220], 110, 103
+  fill_rectangle [300, 118], 7, 5
 end
 
 def left_side
@@ -66,6 +77,7 @@ def bounding_text page_height = 0, txt = "I'm here. "*10, options = {}.symbolize
               strike: false,
               shift: 0,
               width: 594,
+              overflow: :shrink_to_fit,
               shift_left: 105
   }.merge(options)
 
@@ -77,15 +89,18 @@ def bounding_text page_height = 0, txt = "I'm here. "*10, options = {}.symbolize
 
   bounding_box([shift,page_height], :width => width, height: box_height) do
     stroke_bounds if options[:strike]
-    text txt, size: options[:size], align: options[:align], leading: options[:leading]
+  #  text txt, size: options[:size], align: options[:align], leading: options[:leading]
   end
+    text_box txt, :at => [shift,page_height], size: options[:size], align: options[:align], leading: options[:leading],
+      width: width, height: box_height,
+      :overflow => options[:overflow]
 end
 
 def images
   head = "#{Rails.root}/app/assets/images/CERES_480px.jpg"
   image head, :width => 145, at: [280,845]
-  #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
-  #image background, width: 500, at: [100,650]
+  background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
+  image background, width: 500, at: [100,650]
   signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
   image signature, width: 105, at: [300,220]
 end
@@ -95,10 +110,11 @@ def body
     {
       font:  @fonts[:MPB], height: 685,
             text: "CERTIFICATE",
-            options: {size: 59, :leading => 5, align: :center }
+            options: {size: 50, :leading => 5, align: :center }
     },
     {
-      font:  @fonts[:MPR], height: 596,
+      #font:  @fonts[:MPR], height: 596,
+      font:  @fonts[:MPR], height: 620,
             text: "We hereby certify that based upon the current commitment",
             options: {size: 18, :leading => 5, shift: 10, align: :center }
     },
@@ -127,7 +143,8 @@ end
 
 def company
   font @fonts[:MPB]
-  bounding_text 516, @member.company, size: 48, align: :center, leading: 5
+  #bounding_text 525, @member.company, size: 52, align: :center, leading: 0, shift: 20, height: 50
+  bounding_text 540, @member.company, size: 52, align: :center, leading: 0, shift: 20, height: 50
 
   font @fonts[:MPR]
   bounding_text 468, "#{@member.postal_code}, #{@member.city.capitalize}\n#{@member.country.capitalize}", size: 28, align: :center, leading: 5
@@ -137,17 +154,17 @@ def company
   day   = end_date.strftime('%d').to_i.ordinalize
   month = end_date.strftime('%B')
   year  = end_date.strftime('%Y')
-  bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 16, align: :center, leading: 5, shift:100
+  bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 16, align: :center, leading: 0, shift:100
 
   qr_code = @member.qr_code_path
-  image qr_code, :width => 75, at: [500,102]
+  image qr_code, at: [525,78], :width => 50
 end
 
 def new_footer
   fill_color "a0a0a0"
   font @fonts[:MPSB]
   address = "CERES • 96 rue Losserand • 75014 Paris • France • www.ceres-recycle.org"
-  bounding_text 35, address, size: 9.5, :leading => 5, shift: 0, align: :center, width:500
+  bounding_text 35, address, size: 9.5, :leading => 5, shift: 0, align: :center, width:524
 end
 
 def stroke_axis(options={})
