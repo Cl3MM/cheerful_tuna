@@ -57,6 +57,10 @@ class Contact < ActiveRecord::Base
       end
     end
   end
+
+  #def bounce
+    #if 
+  #end
   #scope :limit, lambda { |num| { :limit => num } }
   #validate :something
   #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
@@ -94,13 +98,11 @@ class Contact < ActiveRecord::Base
   def email_addresses
     emails.map(&:address)
   end
-
+  #validate validate_contact_uniqness
   def validate_contact_uniqness
-    Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
-    if Contact.all.map()
-      errors[:base] << "C'est la merde"
-      errors.add(:emails, "Tututu")
-    end
+    #Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
+    errors[:base] << "C'est la merde"
+    errors.add(:emails, "Tututu")
   end
   #def self.paginate(options = {})
     #page(options[:page]).per(options[:per_page])
