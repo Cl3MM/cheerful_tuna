@@ -1,39 +1,50 @@
+#encoding: utf-8
 class Member < ActiveRecord::Base
 
   include MyTools
 
-  Devise.setup do |config|
-    # ==> Mailer Configuration
-    # Configure the e-mail address which will be shown in Devise::Mailer,
-    # note that it will be overwritten if you use your own mailer class with default "from" parameter.
-    config.mailer_sender = "admin@ceres-recycle.org"
-    config.authentication_keys = [ :username ]
-    config.case_insensitive_keys = [ :username ]
-    config.strip_whitespace_keys = [ :username ]
+#  validate :validate_contact_uniqness
+  #def validate_contact_uniqness
+    ##Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
+    #errors[:base] << "C'est la merde"
+    #errors.add(:emails, "Tututu")
+  #end
 
-  end
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
-  #devise :database_authenticatable, :registerable,
-         #:recoverable, :rememberable, :trackable, :validatable
+  ## Include default devise modules. Others available are:
+  ## :token_authenticatable, :confirmable,
+  ## :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :timeoutable, :lockable,
+         :recoverable, :rememberable, :trackable, :validatable , :registerable,
+          authentication_keys: [ :user_name ], case_insensitive_keys: [ :user_name ], strip_whitespace_keys: [ :user_name ],
+            timeout_in: 15.minutes, lock_strategy: :failed_attempts, unlock_keys: [ :user_name ], unlock_strategy: :email,
+    maximum_attempts: 5
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :contact_email, :user_name, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :user_name, :password, :password_confirmation, :remember_me
   attr_accessible :activity, :address, :billing_address,
     :billing_city, :billing_country, :billing_postal_code, :category,
     :city, :company, :country, :postal_code, :vat_number,
-    :logo_file, :membership_file, :start_date
+    :logo_file, :membership_file, :start_date, :is_approved
 
   has_many :contacts, :inverse_of => :contact
   accepts_nested_attributes_for :contacts
 
+  validates :user_name, uniqueness: true
+
+  def self.generate_username str
+    names = Member.all.map(&:user_name).to_set
+    username = MyTools.friendly_user_name str
+    Rails.logger.debug "username:#{username}"
+    Rails.logger.debug "names:#{names.to_a.to_s}"
+    while names.include? username
+      username = "#{MyTools.friendly_user_name(str)}_#{MyTools.generate_random_string 4}"
+    end
+    username
+  end
   mount_uploader :logo_file, MemberFilesUploader
   mount_uploader :membership_file, MemberFilesUploader
 
-  after_save :qr_encode
-
-  #after_save qr_encode(color = "#41AD49")
+  after_save :qr_encode, on: :create
 
   def qr_code_name
     hash_data_path = "qr_code://#{self.class.to_s.underscore}/#{self.company}/#{self.created_at}"
@@ -51,11 +62,11 @@ class Member < ActiveRecord::Base
     File.exist?(f) ? f : nil
   end
 
-  def qr_encode url = "http://www.ceres-recycle.org", scale = 3, margin = 0
+  def qr_encode url = "http://www.ceres-recycle.org/", scale = 3, margin = 0
     require 'open3'
     path = "#{Rails.root}/public/assets/uploads/"
     outfile = path + qr_code_name
-
+    #url = self.company
     FileUtils.mkpath(path) unless File.directory?(path)
 
     cmd = "qrencode -m #{margin} -o #{outfile} -s #{scale} '#{url}'"
