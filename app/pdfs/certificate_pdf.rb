@@ -22,12 +22,12 @@ class CertificatePdf < Prawn::Document
           right_margin: 0,
           left_margin: 0,
           info: {
-            Title: "CERES Membership Certificate for #{@member.company} ",
-            Author: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaires",
-            Keywords: "CERES Membership Certificate for #{@member.company} http://www.ceres-recycle.org",
-            Creator: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaires",
+            Title: "CERES Membership Certificate for #{@member.company}",
+            Author: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaire",
+            Keywords: "CERES Membership Certificate #{@member.company} http://www.ceres-recycle.org",
+            Creator: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaire",
             Producer: "CERES Certificate Generator",
-            CreationDate: Time.now.strftime('%d.%m.%Y::%H:%M:%S'),
+            CreationDate: Time.now.strftime('%a %b %e %H:%M:%S %Y'),
             CertifId: "#{@member.object_id}",
             Subject: "This documents certify that #{@member.company}, #{@member.postal_code} \
 #{@member.city.capitalize}, #{@member.country.upcase} is a member of CERES \
@@ -35,7 +35,7 @@ for the period #{@member.start_date.strftime('%B %d, %Y')} \
 to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
           }
          )
-    #encrypt_document :permissions => { modify_contents: false, copy_contents: false, print_document: true }, owner_password: :random
+    encrypt_document :permissions => { modify_contents: false, copy_contents: false, print_document: true }, owner_password: :random
     images
     left_side
     body
@@ -99,7 +99,8 @@ end
 def images
   head = "#{Rails.root}/app/assets/images/CERES_480px.jpg"
   image head, :width => 145, at: [280,845]
-  background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
+  background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_6.jpg"
+  #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
   image background, width: 500, at: [100,650]
   signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
   image signature, width: 105, at: [300,220]
@@ -156,8 +157,10 @@ def company
   year  = end_date.strftime('%Y')
   bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 16, align: :center, leading: 0, shift:100
 
-  qr_code = @member.qr_code_path
-  image qr_code, at: [525,78], :width => 50
+  unless @member.qr_code_path.nil?
+    qr_code = @member.qr_code_path
+    image qr_code, at: [525,78], :width => 50
+  end
 end
 
 def new_footer
