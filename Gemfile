@@ -25,6 +25,8 @@ gem 'prawn'
 gem "rmagick"
 gem "carrierwave"
 gem 'rqrcode', git: 'http://github.com/whomwah/rqrcode'
+#gem 'rack-mini-profiler'
+
 #gem 'thinking-sphinx', '2.0.10'
 
 #gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
