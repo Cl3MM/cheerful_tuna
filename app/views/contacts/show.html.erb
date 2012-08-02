@@ -4,35 +4,35 @@
 </div>
 <dl class="dl-horizontal">
   <dt><strong>Status:</strong></dt>
-  <dd><i class="<%= @contact.is_active ? "icon-ok-circle" : "icon-ban-circle" %>"></i> <%= @contact.is_active ? "Active" : "Inactive" %> contact</dd>
+  <dd<%= @contact.is_active ? "" : " class='status_inactive'" %>> <i class="<%= @contact.is_active ? "icon-ok-circle" : "icon-ban-circle" %>"></i> <%= @contact.is_active ? "Active" : "Inactive" %> contact</dd>
   <dt><strong><%= :category %>:</strong></dt>
-  <dd><%= dash_display @contact.category %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.category %></dd>
   <dt><strong><%= :address %>:</strong></dt>
-  <dd><%= dash_display @contact.address %></dd>
-  <dt><strong><%= :postal_code %>:</strong></dt>
-  <dd><%= dash_display @contact.postal_code %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.address %></dd>
+  <dt<%= @contact.is_active ? "" : " class='inactive'" %>><strong><%= :postal_code %>:</strong></dt>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.postal_code %></dd>
   <dt><strong><%= :country %>:</strong></dt>
-  <dd><%= dash_display @contact.country %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.country %></dd>
   <dt><strong><%= :first_name %>:</strong></dt>
-  <dd><%= dash_display @contact.first_name %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.first_name %></dd>
   <dt><strong><%= :last_name %>:</strong></dt>
-  <dd><%= dash_display @contact.last_name %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.last_name %></dd>
   <dt><strong><%= :infos %>:</strong></dt>
-  <dd><%= dash_display @contact.infos %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.infos %></dd>
   <dt><strong><%= :is_ceres_member %>:</strong></dt>
-  <dd><%= dash_display @contact.is_ceres_member %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.is_ceres_member %></dd>
   <dt><strong><%= :position %>:</strong></dt>
-  <dd><%= dash_display @contact.position %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.position %></dd>
   <dt><strong>phone:</strong></dt>
-  <dd><%= dash_display @contact.phone %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.phone %></dd>
   <dt><strong><%= :fax %>:</strong></dt>
-  <dd><%= dash_display @contact.fax %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.fax %></dd>
   <dt><strong><%= :cell %>:</strong></dt>
-  <dd><%= dash_display @contact.cell %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.cell %></dd>
   <dt><strong><%= :website %>:</strong></dt>
-  <dd><%= display_website @contact.website %></dd>
+  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= display_website @contact.website %></dd>
   <dt><strong><%= :email %>:</strong></dt>
-  <%= raw @contact.email_addresses.map{|a| "<dd>#{a}</dd>"}.join %>
+  <%= raw @contact.email_addresses.map{|a| "<dd#{@contact.is_active ? "" : " class='inactive'"}>#{a}</dd>"}.join %>
 </dl>
 
 <div style="clear:both;">
