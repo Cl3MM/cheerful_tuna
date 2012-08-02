@@ -1,0 +1,19 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+jQuery ->
+
+  $('#member_company').on 'focusout', (event) ->
+    <%#$('#member_user_name').val $(this).val()%>
+    company = $(this).val()
+    if company == ""
+      $(this).focus()
+    else
+      company = company.replace(/\./g, " ")
+      #console.log(company)
+      url = '/members/create_user_name/' + company
+      $.post url, (data) ->
+        #console.log(data)
+        $('#member_user_name').val data
+      , "json"
+    false
