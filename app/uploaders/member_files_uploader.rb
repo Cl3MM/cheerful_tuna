@@ -23,10 +23,10 @@ class MemberFilesUploader < CarrierWave::Uploader::Base
       ext = File.extname(original_filename)
       hash_data = "#{model.class.to_s.underscore}/#{mounted_as}/#{model.company}/#{model.created_at}"
       filename = "#{hash_hash(hash_data)}#{ext}"
-      Rails.logger.debug "******** hash_data: #{hash_data}"
-      Rails.logger.debug "******** hash: #{hash_hash(hash_data)}"
-      Rails.logger.debug "******** ext: #{ext}"
-      Rails.logger.debug "******** filename: #{filename}"
+      #Rails.logger.debug "******** hash_data: #{hash_data}"
+      #Rails.logger.debug "******** hash: #{hash_hash(hash_data)}"
+      #Rails.logger.debug "******** ext: #{ext}"
+      #Rails.logger.debug "******** filename: #{filename}"
       filename = "#{hash_hash(hash_data)}#{ext}"
     end
   end
@@ -37,7 +37,7 @@ class MemberFilesUploader < CarrierWave::Uploader::Base
     ## original
     #"uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
 
-    "#{Rails.root}/public/assets/uploads"
+    "#{Rails.root}/public/assets/uploads/#{hash_hash(model.company)[0..18]}"
     #{model.class.to_s.underscore}/#{mounted_as}/#{model.company}"
   end
 
