@@ -8,11 +8,15 @@
       </a>
       <a class="brand" href="#"><i class="icon-fire"></i> Über contact database <i class="icon-fire"></i></a>
       <div class="nav-collapse">
+        <% if current_member %>
+          <%= current_member.user_name %>
+        <% end %>
+        <% if current_user %>
         <ul class="nav">
-          <li><%= link_to raw('<i class="icon-user"></i> Contacts'), contacts_path %></li>
+          <%#"#{image_tag 'glyphicons/glyphicons_043_group.png'} %>
+          <li><%= link_to raw("<i class=\"icon-user\"></i> Contacts"), contacts_path %></li>
           <li><%= link_to raw('<i class="icon-globe"></i> Members'), members_path %></li>
         </ul>
-        <% if current_user %>
         <!-- Admin menu -->
           <ul class="nav pull-right">
             <li class="dropdown">
