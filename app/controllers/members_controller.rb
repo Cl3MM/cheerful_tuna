@@ -31,7 +31,8 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html do # show.html.erb
         if params[:qr_code].present?
-          @member.qr_encode(url = "#{@member.company}_#{@member.address}_#{@member.id}", scale = 4)
+          #@member.qr_encode(url = "#{@member.company}_#{@member.address}_#{@member.id}", scale = 4)
+          @member.qr_encode(url = "http://www.ceres-recycle.org/member-list/members/nice-sun-pv-co-ltd", scale = 4)
           flash[:notice] = "QRCode create: #{@member.qr_code_asset_url}"
         end
       end
@@ -40,8 +41,8 @@ class MembersController < ApplicationController
           specimen = params[:specimen].present? ? true : nil
           pdf = CertificatePdf.new(@member, specimen)
           send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf",
-            type: "application/pdf",
-            disposition: "inline"
+            #disposition: "inline",
+            type: "application/pdf"
         end
       end
       format.json { render json: @member }
