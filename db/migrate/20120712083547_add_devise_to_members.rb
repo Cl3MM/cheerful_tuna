@@ -2,7 +2,7 @@ class AddDeviseToMembers < ActiveRecord::Migration
   def self.up
     change_table(:members) do |t|
       ## Database authenticatable
-      t.string :contact_email,      :null => false, :default => ""
+      t.string :email,      :null => false, :default => ""
       t.string :user_name,          :null => false, :default => ""
       t.string :encrypted_password, :null => false, :default => ""
 
@@ -27,9 +27,9 @@ class AddDeviseToMembers < ActiveRecord::Migration
       # t.string   :unconfirmed_email # Only if using reconfirmable
 
       ## Lockable
-      # t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
-      # t.string   :unlock_token # Only if unlock strategy is :email or :both
-      # t.datetime :locked_at
+      t.integer  :failed_attempts, :default => 0 # Only if lock strategy is :failed_attempts
+      t.string   :unlock_token # Only if unlock strategy is :email or :both
+      t.datetime :locked_at
 
       ## Token authenticatable
       # t.string :authentication_token
@@ -40,9 +40,10 @@ class AddDeviseToMembers < ActiveRecord::Migration
     end
 
     add_index :members, :email,                :unique => true
+    add_index :members, :user_name,            :unique => true
     add_index :members, :reset_password_token, :unique => true
     # add_index :members, :confirmation_token,   :unique => true
-    # add_index :members, :unlock_token,         :unique => true
+    add_index :members, :unlock_token,         :unique => true
     # add_index :members, :authentication_token, :unique => true
   end
 

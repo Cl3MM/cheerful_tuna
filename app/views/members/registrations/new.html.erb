@@ -1,0 +1,47 @@
+<div class="page-header">
+  <h2>Sign up</h2>
+</div>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :class => 'form-horizontal' }) do |f| %>
+
+  <% if resource.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading"><%= pluralize(resource.errors.count, "error") %> prohibited this user from being saved:</h4>
+      <a class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% resource.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <fieldset>
+    <%= f.input :company %>
+    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :user_name, :required => true, :autofocus => true %>
+    <%= f.input :password, :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+    <hr />
+    <%= f.input :address %>
+    <%= f.input :city %>
+    <%= f.input :postal_code %>
+    <%= f.input :country %>
+    <%= f.input :activity %>
+    <%= f.input :category %>
+    <%= f.input :vat_number %>
+    <%= f.input :start_date %>
+    <%= f.input :membership_file %>
+    <%= f.input :logo_file %>
+    <hr />
+    <%= f.input :billing_address %>
+    <%= f.input :billing_city %>
+    <%= f.input :billing_postal_code %>
+    <%= f.input :billing_country %>
+  </fieldset>
+  <div class="form-actions">
+    <div class="actions">
+      <%= f.button :submit, "Sign up" %>
+    </div>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>

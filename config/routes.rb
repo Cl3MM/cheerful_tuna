@@ -1,24 +1,24 @@
 CheerfulTuna::Application.routes.draw do
-  devise_for :members
 
-  resources :members
-
-  get "stat/index"
-
-  get "stat/user"
-
-  get "stat/contact"
+  #get "stat/index"
+  #get "stat/user"
+  #get "stat/contact"
 
   devise_for :users
 
-  resources :countries
+  devise_for :members
+  devise_for :members, :path => "", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+
+  #resources :countries
 
   resources :contacts
   match 'contacts/duplicate/:id' => 'contacts#duplicate', :as => :duplicate
-
   resources :contacts do
     get 'page/:page', :action => :index, :on => :collection
   end
+
+  resources :members
+  match "members/create_user_name/:company", :to => "members#create_user_name_from_company", :via => "post", as: :create_user_name
 
   root :to => 'contacts#index'
 

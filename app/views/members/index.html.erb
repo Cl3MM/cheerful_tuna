@@ -24,6 +24,7 @@
         <td><%= member.category %></td>
         <td><%= member.start_date %></td>
         <td>
+          <%= link_to raw('<i class="icon-star"></i>'), member_path(member, format: "pdf", certif: true), :class => "btn btn-inverse btn-mini" %>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
                       edit_member_path(member), :class => 'btn btn-mini' %>
         <% if current_user.is_admin? %>
