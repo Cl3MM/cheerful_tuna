@@ -14,10 +14,10 @@ class Member < ActiveRecord::Base
   ## :token_authenticatable, :confirmable,
   ## :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :timeoutable, :lockable,
-         :recoverable, :rememberable, :trackable, :validatable , :registerable,
+         :recoverable, :rememberable, :trackable, :validatable ,
           authentication_keys: [ :user_name ], case_insensitive_keys: [ :user_name ], strip_whitespace_keys: [ :user_name ],
             timeout_in: 15.minutes, lock_strategy: :failed_attempts, unlock_keys: [ :user_name ], unlock_strategy: :email,
-    maximum_attempts: 5
+    maximum_attempts: 5 # :registerable,
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :user_name, :password, :password_confirmation, :remember_me
