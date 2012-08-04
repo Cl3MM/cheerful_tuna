@@ -4,10 +4,13 @@ CheerfulTuna::Application.routes.draw do
   #get "stat/user"
   #get "stat/contact"
 
-  devise_for :users
+  match "members/profile" => "profiles#index", via: "get"
+  #match "profile" => "profiles#index", via: "get"
 
-  devise_for :members
-  devise_for :members, :path => "", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+  devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+
+  #devise_for :members
+  devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
   #resources :countries
 
