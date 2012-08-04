@@ -1,5 +1,6 @@
 class ContactsController < ApplicationController
 
+  before_filter :redirect_member!
   before_filter :authenticate_user!
 
   # GET /contacts
