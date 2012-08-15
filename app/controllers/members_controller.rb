@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
 
-  before_filter :redirect_member!
+  #before_filter :redirect_member!
   before_filter :authenticate_user!
 
   def create_user_name_from_company
@@ -34,7 +34,7 @@ class MembersController < ApplicationController
       format.html do # show.html.erb
         if params[:qr_code].present?
           #@member.qr_encode(url = "#{@member.company}_#{@member.address}_#{@member.id}", scale = 4)
-          @member.qr_encode(url = "http://www.ceres-recycle.org/member-list/members/nice-sun-pv-co-ltd", scale = 4)
+          @member.qr_encode(url = "http://www.ceres-recycle.org/member-list/members/nice-sun-pv-co-ltd", scale = 3)
           flash[:notice] = "QRCode create: #{@member.qr_code_asset_url}"
         end
       end
@@ -70,18 +70,18 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-    generated_password = Devise.friendly_token.first(10)
+    #generated_password = Devise.friendly_token.first(10)
     @member = Member.new(params[:member])
-    @member.update_attributes(
-      password: generated_password,
-      password_confirmation: generated_password
-    )
-    Rails.logger.debug params[:member]
-    Rails.logger.debug generated_password
+#    @member.update_attributes(
+      #password: generated_password,
+      #password_confirmation: generated_password
+    #)
+#    Rails.logger.debug params[:member]
+    #Rails.logger.debug generated_password
     respond_to do |format|
       # TODO: send email with credentials
       #RegistrationMailer.welcome(user, generated_password).deliver
-      if @member.save
+      if @member.save!
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render json: @member, status: :created, location: @member }
       else
