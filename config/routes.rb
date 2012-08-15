@@ -5,12 +5,13 @@ CheerfulTuna::Application.routes.draw do
   #get "stat/contact"
 
   match "members/profile" => "profiles#index", via: "get"
-  #match "profile" => "profiles#index", via: "get"
 
   devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
-  #devise_for :members
-  devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
+  devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
+  as :member do
+    match 'members/confirmation' => 'members/confirmations#update', :via => :put, :as => :update_member_confirmation
+  end
 
   #resources :countries
 
