@@ -61,7 +61,7 @@ def left_side
   fill_rectangle [0, 900], 105, 950
   font @fonts[:MPR]
   fill_color "ffffff"
-  txt = "Certificat • Сертификат • Zertificat •" + " "*12 + "• Certificate"
+  txt = "Certificat • Сертификат • Zertificat •" + " " * 12 + "• Certificate"
   draw_text txt, size: 36, at: [66,30], rotate: 90, rotate_around: :upper_left
   font @fonts[:AR]
   txt = "证书"
@@ -143,15 +143,19 @@ def body
 end
 
 def company
-  font @fonts[:MPB]
-  #bounding_text 525, @member.company, size: 52, align: :center, leading: 0, shift: 20, height: 50
-  bounding_text 540, @member.company, size: 52, align: :center, leading: 0, shift: 20, height: 50
+  if @member.company =~ /ZHEJIANG TIANMING SOLAR/
+    font @fonts[:MPB]
+    bounding_text 590, "Zhejiang Tianming\nSolar Technology\nCo. Ltd.", size: 46, align: :center, leading: 0, shift: 20, height: 50, overflow: :expand
+    font @fonts[:MPR]
+    bounding_text 425, "311215, Xiaoshan, Hangzhou,\nZhejiang, CHINA", size: 28, align: :center, leading: 5#, overflow: :expand
+  else
+    font @fonts[:MPB]
+    bounding_text 540, @member.company.tileize, size: 52, align: :center, leading: 0, shift: 20, height: 50
+    font @fonts[:MPR]
+    bounding_text 468, "#{@member.postal_code}, #{@member.city.titleize}\n#{@member.country.capitalize}", size: 28, align: :center, leading: 5
+  end
 
-  font @fonts[:MPR]
-  bounding_text 468, "#{@member.postal_code}, #{@member.city.capitalize}\n#{@member.country.capitalize}", size: 28, align: :center, leading: 5
-
-  font @fonts[:MPR]
-  end_date = @member.start_date + 1.year
+  end_date = (@member.start_date + 1.year).prev_month.end_of_month
   day   = end_date.strftime('%d').to_i.ordinalize
   month = end_date.strftime('%B')
   year  = end_date.strftime('%Y')
