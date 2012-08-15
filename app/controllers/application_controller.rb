@@ -2,16 +2,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   def redirect_user!
-    if current_user
+    if current_user and not current_member
       flash[:error] = "Sorry, this section is for Members only !"
       redirect_to root_path
     end
   end
 
   def redirect_member!
-    if current_member
+    if current_member and not current_user
       flash[:error] = "Sorry, this section is closed to members"
-      redirect_to profile_path
+      redirect_to members_profile_path
     end
   end
 
