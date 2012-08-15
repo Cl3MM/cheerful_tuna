@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h2>Account Activation<% if resource.user_name %> for <%= resource.user_name %><% end %> </h2>
+</div>
+<%= simple_form_for resource, :as => resource_name, :url => update_member_confirmation_path, :html => {:method => 'put', class: "form-horizontal"}, :id => 'activation-form' do |f| %>
+  <%= devise_error_messages! %>
+
+  <% if @requires_password %>
+    <div class="form-inputs">
+      <%= f.input :password, :required => true %>
+      <%= f.input :password_confirmation, :required => true %>
+    </div>
+  <% end %>
+  <%= f.hidden_field :confirmation_token %> <%#, value: @confirmation_token %>
+  <div class="form-actions">
+    <%= f.button :submit, "Activate" %>
+  </div>
+<% end %>
