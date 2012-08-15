@@ -11,19 +11,40 @@ class Member < ActiveRecord::Base
   #end
 
   ## Include default devise modules. Others available are:
-  ## :token_authenticatable, :confirmable,
+  ## :token_authenticatable,
   ## :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :timeoutable, :lockable,
+  devise :database_authenticatable, :timeoutable, :lockable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable ,
           authentication_keys: [ :user_name ], case_insensitive_keys: [ :user_name ], strip_whitespace_keys: [ :user_name ],
             timeout_in: 15.minutes, lock_strategy: :failed_attempts, unlock_keys: [ :user_name ], unlock_strategy: :email,
-    maximum_attempts: 5 # :registerable,
+            allow_unconfirmed_access_for: 0, maximum_attempts: 5, reconfirmable: false  # :registerable,
+  def attempt_set_password(params)
+    #raise "c'est la merde :("
+    p = {}
+    p[:password] = params[:password]
+    p[:password_confirmation] = params[:password_confirmation]
+    update_attributes(p)
+  end
 
+  def only_if_unconfirmed
+    pending_any_confirmation {yield}
+  end
+  def password_required?
+    # Password is required if it is being set, but not for new records
+    if !persisted?
+      false
+    else
+      !password.nil? || !password_confirmation.nil?
+    end
+  end
+  def has_no_password?
+    self.encrypted_password.blank?
+  end
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :user_name, :password, :password_confirmation, :remember_me
   attr_accessible :activity, :address, :billing_address,
     :billing_city, :billing_country, :billing_postal_code, :category,
-    :city, :company, :country, :postal_code, :vat_number,
+    :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
     :logo_file, :membership_file, :start_date, :is_approved
 
   has_many :contacts, :inverse_of => :contact
@@ -66,7 +87,7 @@ class Member < ActiveRecord::Base
     require 'open3'
     path = "#{Rails.root}/public/assets/uploads/"
     outfile = path + qr_code_name
-    #url = self.company
+    url = self.web_profile_url
     FileUtils.mkpath(path) unless File.directory?(path)
 
     cmd = "qrencode -m #{margin} -o #{outfile} -s #{scale} '#{url}'"
