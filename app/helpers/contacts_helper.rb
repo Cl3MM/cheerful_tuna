@@ -3,11 +3,11 @@ module ContactsHelper
     arg.blank? ? "-" : arg
   end
   def display_website web
-    if web.match(/http.*/i)
+    if web and web.match(/http.*/i)
       raw("<a title=\"#{web}\" target=\"_blank\" href=\"#{web}\">[URL]</a>")
     else
       "-"
-    end if web
+    end
     #if web.blank?
       #str = "-"
     #end
