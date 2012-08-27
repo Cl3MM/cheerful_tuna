@@ -1,0 +1,3488 @@
+--- !ruby/object:Senators
+base_url: http://www.senat.fr
+index_page: senateurs/senatl.html
+index_url: http://www.senat.fr/senateurs/senatl.html
+senators:
+- !ruby/object:Senator
+  url: /senateur/adnot_philippe89017r.html
+  file: senateur*adnot_philippe89017r.html
+  departement: Champagne-Ardenne
+  email: p.adnot@senat.fr
+  first_name: Philippe
+  last_name: ADNOT
+  region: Aube
+  title: Sénateur de l'Aube (Champagne-Ardenne)
+  name: ADNOT Philippe
+- !ruby/object:Senator
+  url: /senateur/aichi_leila11076s.html
+  file: senateur*aichi_leila11076s.html
+  departement: Ile-de-France
+  email: l.aichi@senat.fr
+  first_name: Leila
+  last_name: AÏCHI
+  region: Paris
+  title: Sénatrice de Paris (Ile-de-France)
+  name: AÏCHI Leila
+- !ruby/object:Senator
+  url: /senateur/alfonsi_nicolas01065w.html
+  file: senateur*alfonsi_nicolas01065w.html
+  departement: Corse
+  email: 
+  first_name: Nicolas
+  last_name: ALFONSI
+  region: Corse-du-Sud
+  title: Sénateur de la Corse-du-Sud (Corse)
+  name: ALFONSI Nicolas
+- !ruby/object:Senator
+  url: /senateur/alquier_jacqueline04087r.html
+  file: senateur*alquier_jacqueline04087r.html
+  departement: Midi-Pyrénées
+  email: j.alquier@senat.fr
+  first_name: Jacqueline
+  last_name: ALQUIER
+  region: Tarn
+  title: Sénatrice du Tarn (Midi-Pyrénées)
+  name: ALQUIER Jacqueline
+- !ruby/object:Senator
+  url: /senateur/amoudry_jean_paul95005a.html
+  file: senateur*amoudry_jean_paul95005a.html
+  departement: Rhône-Alpes
+  email: jp.amoudry@senat.fr
+  first_name: Jean-Paul
+  last_name: AMOUDRY
+  region: Haute-Savoie
+  title: Sénateur de la Haute-Savoie (Rhône-Alpes)
+  name: AMOUDRY Jean-Paul
+- !ruby/object:Senator
+  url: /senateur/andre_michele01031l.html
+  file: senateur*andre_michele01031l.html
+  departement: Auvergne
+  email: m.andre@senat.fr
+  first_name: Michèle
+  last_name: ANDRÉ
+  region: Puy-de-Dôme
+  title: Sénatrice du Puy-de-Dôme (Auvergne)
+  name: ANDRÉ Michèle
+- !ruby/object:Senator
+  url: /senateur/andre_pierre98036v.html
+  file: senateur*andre_pierre98036v.html
+  departement: Picardie
+  email: p.andre@senat.fr
+  first_name: Pierre
+  last_name: ANDRÉ
+  region: Aisne
+  title: Sénateur de l'Aisne (Picardie)
+  name: ANDRÉ Pierre
+- !ruby/object:Senator
+  url: /senateur/andreoni_serge08040s.html
+  file: senateur*andreoni_serge08040s.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: s.andreoni@senat.fr
+  first_name: Serge
+  last_name: ANDREONI
+  region: Bouches-du-Rhône
+  title: Sénateur des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: ANDREONI Serge
+- !ruby/object:Senator
+  url: /senateur/ango_ela_kalliopi12040w.html
+  file: senateur*ango_ela_kalliopi12040w.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: 
+  first_name: Kalliopi
+  last_name: ANGO ELA
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: ANGO ELA Kalliopi
+- !ruby/object:Senator
+  url: /senateur/antiste_maurice11109j.html
+  file: senateur*antiste_maurice11109j.html
+  departement: Martinique
+  email: m.antiste@senat.fr
+  first_name: Maurice
+  last_name: ANTISTE
+  region: Martinique
+  title: Sénateur de la Martinique (Martinique)
+  name: ANTISTE Maurice
+- !ruby/object:Senator
+  url: /senateur/antoinette_jean_etienne08072b.html
+  file: senateur*antoinette_jean_etienne08072b.html
+  departement: Guyane
+  email: je.antoinette@senat.fr
+  first_name: Jean-Étienne
+  last_name: ANTOINETTE
+  region: Guyane
+  title: Sénateur de la Guyane (Guyane)
+  name: ANTOINETTE Jean-Étienne
+- !ruby/object:Senator
+  url: /senateur/anziani_alain08025t.html
+  file: senateur*anziani_alain08025t.html
+  departement: Aquitaine
+  email: a.anziani@senat.fr
+  first_name: Alain
+  last_name: ANZIANI
+  region: Gironde
+  title: Sénateur de la Gironde (Aquitaine)
+  name: ANZIANI Alain
+- !ruby/object:Senator
+  url: /senateur/archimbaud_aline11055m.html
+  file: senateur*archimbaud_aline11055m.html
+  departement: Ile-de-France
+  email: a.archimbaud@senat.fr
+  first_name: Aline
+  last_name: ARCHIMBAUD
+  region: Seine-Saint-Denis
+  title: Sénatrice de la Seine-Saint-Denis (Ile-de-France)
+  name: ARCHIMBAUD Aline
+- !ruby/object:Senator
+  url: /senateur/arthuis_jean83011j.html
+  file: senateur*arthuis_jean83011j.html
+  departement: Pays de la Loire
+  email: j.arthuis@senat.fr
+  first_name: Jean
+  last_name: ARTHUIS
+  region: Mayenne
+  title: Sénateur de la Mayenne (Pays de la Loire)
+  name: ARTHUIS Jean
+- !ruby/object:Senator
+  url: /senateur/assassi_eliane04085p.html
+  file: senateur*assassi_eliane04085p.html
+  departement: Ile-de-France
+  email: e.assassi@senat.fr
+  first_name: ''
+  last_name: Éliane ASSASSI
+  region: Seine-Saint-Denis
+  title: Sénatrice de la Seine-Saint-Denis (Ile-de-France)
+  name: ASSASSI Éliane
+- !ruby/object:Senator
+  url: /senateur/assouline_david04059m.html
+  file: senateur*assouline_david04059m.html
+  departement: Ile-de-France
+  email: d.assouline@senat.fr
+  first_name: David
+  last_name: ASSOULINE
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: ASSOULINE David
+- !ruby/object:Senator
+  url: /senateur/auban_bertrand98011l.html
+  file: senateur*auban_bertrand98011l.html
+  departement: Midi-Pyrénées
+  email: b.auban@senat.fr
+  first_name: Bertrand
+  last_name: AUBAN
+  region: Haute-Garonne
+  title: Sénateur de la Haute-Garonne (Midi-Pyrénées)
+  name: AUBAN Bertrand
+- !ruby/object:Senator
+  url: /senateur/bailly_dominique11039m.html
+  file: senateur*bailly_dominique11039m.html
+  departement: Nord-Pas-de-Calais
+  email: d.bailly@senat.fr
+  first_name: Dominique
+  last_name: BAILLY
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: BAILLY Dominique
+- !ruby/object:Senator
+  url: /senateur/bailly_gerard01008m.html
+  file: senateur*bailly_gerard01008m.html
+  departement: Franche-Comté
+  email: g.bailly@senat.fr
+  first_name: Gérard
+  last_name: BAILLY
+  region: Jura
+  title: Sénateur du Jura (Franche-Comté)
+  name: BAILLY Gérard
+- !ruby/object:Senator
+  url: /senateur/barbier_gilbert01046t.html
+  file: senateur*barbier_gilbert01046t.html
+  departement: Franche-Comté
+  email: senat.barbiergilbert@wanadoo.fr
+  first_name: Gilbert
+  last_name: BARBIER
+  region: Jura
+  title: Sénateur du Jura (Franche-Comté)
+  name: BARBIER Gilbert
+- !ruby/object:Senator
+  url: /senateur/bas_philippe05008e.html
+  file: senateur*bas_philippe05008e.html
+  departement: Basse-Normandie
+  email: p.bas@senat.fr
+  first_name: Philippe
+  last_name: BAS
+  region: Manche
+  title: Sénateur de la Manche (Basse-Normandie)
+  name: BAS Philippe
+- !ruby/object:Senator
+  url: /senateur/bataille_delphine11036j.html
+  file: senateur*bataille_delphine11036j.html
+  departement: Nord-Pas-de-Calais
+  email: d.bataille@senat.fr
+  first_name: Delphine
+  last_name: BATAILLE
+  region: Nord
+  title: Sénatrice du Nord (Nord-Pas-de-Calais)
+  name: BATAILLE Delphine
+- !ruby/object:Senator
+  url: /senateur/baylet_jean_michel86010v.html
+  file: senateur*baylet_jean_michel86010v.html
+  departement: Midi-Pyrénées
+  email: 
+  first_name: Jean-Michel
+  last_name: BAYLET
+  region: Tarn-et-Garonne
+  title: Sénateur de Tarn-et-Garonne (Midi-Pyrénées)
+  name: BAYLET Jean-Michel
+- !ruby/object:Senator
+  url: /senateur/beaufils_marie_france01013j.html
+  file: senateur*beaufils_marie_france01013j.html
+  departement: Centre
+  email: mariefrance.beaufils@wanadoo.fr
+  first_name: Marie-France
+  last_name: BEAUFILS
+  region: Indre-et-Loire
+  title: Sénatrice d'Indre-et-Loire (Centre)
+  name: BEAUFILS Marie-France
+- !ruby/object:Senator
+  url: /senateur/beaumont_rene04091m.html
+  file: senateur*beaumont_rene04091m.html
+  departement: Bourgogne
+  email: r.beaumont@senat.fr
+  first_name: René
+  last_name: BEAUMONT
+  region: Saône-et-Loire
+  title: Sénateur de la Saône-et-Loire (Bourgogne)
+  name: BEAUMONT René
+- !ruby/object:Senator
+  url: /senateur/bechu_christophe11030c.html
+  file: senateur*bechu_christophe11030c.html
+  departement: Pays de la Loire
+  email: c.bechu@senat.fr
+  first_name: Christophe
+  last_name: BÉCHU
+  region: Maine-et-Loire
+  title: Sénateur de Maine-et-Loire (Pays de la Loire)
+  name: BÉCHU Christophe
+- !ruby/object:Senator
+  url: /senateur/becot_michel95009e.html
+  file: senateur*becot_michel95009e.html
+  departement: Poitou-Charentes
+  email: m.becot@senat.fr
+  first_name: Michel
+  last_name: BÉCOT
+  region: Deux-Sèvres
+  title: Sénateur des Deux-Sèvres (Poitou-Charentes)
+  name: BÉCOT Michel
+- !ruby/object:Senator
+  url: /senateur/bel_jean_pierre98006p.html
+  file: senateur*bel_jean_pierre98006p.html
+  departement: Midi-Pyrénées
+  email: bel1.jean-pierre@wanadoo.fr
+  first_name: Jean-Pierre
+  last_name: BEL
+  region: Ariège
+  title: Sénateur de l'Ariège (Midi-Pyrénées)
+  name: BEL Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/belot_claude89013m.html
+  file: senateur*belot_claude89013m.html
+  departement: Poitou-Charentes
+  email: c.belot@senat.fr
+  first_name: Claude
+  last_name: BELOT
+  region: Charente-Maritime
+  title: Sénateur de la Charente-Maritime (Poitou-Charentes)
+  name: BELOT Claude
+- !ruby/object:Senator
+  url: /senateur/benbassa_esther11033f.html
+  file: senateur*benbassa_esther11033f.html
+  departement: Ile-de-France
+  email: e.benbassa@senat.fr
+  first_name: Esther
+  last_name: BENBASSA
+  region: Val-de-Marne
+  title: Sénatrice du Val-de-Marne (Ile-de-France)
+  name: BENBASSA Esther
+- !ruby/object:Senator
+  url: /senateur/berit_debat_claude08055a.html
+  file: senateur*berit_debat_claude08055a.html
+  departement: Aquitaine
+  email: c.berit-debat@senat.fr
+  first_name: Claude
+  last_name: BÉRIT-DÉBAT
+  region: Dordogne
+  title: Sénateur de la Dordogne (Aquitaine)
+  name: BÉRIT-DÉBAT Claude
+- !ruby/object:Senator
+  url: /senateur/bernard_reymond_pierre07003h.html
+  file: senateur*bernard_reymond_pierre07003h.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: senateur.pbr@orange.fr
+  first_name: Pierre
+  last_name: BERNARD-REYMOND
+  region: Hautes-Alpes
+  title: Sénateur des Hautes-Alpes (Provence-Alpes-Côte d'Azur)
+  name: BERNARD-REYMOND Pierre
+- !ruby/object:Senator
+  url: /senateur/berson_michel11068s.html
+  file: senateur*berson_michel11068s.html
+  departement: Ile-de-France
+  email: m.berson@senat.fr
+  first_name: Michel
+  last_name: BERSON
+  region: Essonne
+  title: Sénateur de l'Essonne (Ile-de-France)
+  name: BERSON Michel
+- !ruby/object:Senator
+  url: /senateur/berthou_jacques08059e.html
+  file: senateur*berthou_jacques08059e.html
+  departement: Rhône-Alpes
+  email: j.berthou@senat.fr
+  first_name: Jacques
+  last_name: BERTHOU
+  region: Ain
+  title: Sénateur de l'Ain (Rhône-Alpes)
+  name: BERTHOU Jacques
+- !ruby/object:Senator
+  url: /senateur/bertrand_alain11081p.html
+  file: senateur*bertrand_alain11081p.html
+  departement: Languedoc-Roussillon
+  email: a.bertrand@senat.fr
+  first_name: Alain
+  last_name: BERTRAND
+  region: Lozère
+  title: Sénateur de la Lozère (Languedoc-Roussillon)
+  name: BERTRAND Alain
+- !ruby/object:Senator
+  url: /senateur/besson_jean89015p.html
+  file: senateur*besson_jean89015p.html
+  departement: Rhône-Alpes
+  email: besson.jean@wanadoo.fr
+  first_name: Jean
+  last_name: BESSON
+  region: Drôme
+  title: Sénateur de la Drôme (Rhône-Alpes)
+  name: BESSON Jean
+- !ruby/object:Senator
+  url: /senateur/billard_joel01064v.html
+  file: senateur*billard_joel01064v.html
+  departement: Centre
+  email: j.billard@senat.fr
+  first_name: Joël
+  last_name: BILLARD
+  region: Eure-et-Loir
+  title: Sénateur d'Eure-et-Loir (Centre)
+  name: BILLARD Joël
+- !ruby/object:Senator
+  url: /senateur/billout_michel04054g.html
+  file: senateur*billout_michel04054g.html
+  departement: Ile-de-France
+  email: m.billout@senat.fr
+  first_name: Michel
+  last_name: BILLOUT
+  region: Seine-et-Marne
+  title: Sénateur de la Seine-et-Marne (Ile-de-France)
+  name: BILLOUT Michel
+- !ruby/object:Senator
+  url: /senateur/bizet_jean96004d.html
+  file: senateur*bizet_jean96004d.html
+  departement: Basse-Normandie
+  email: j.bizet@senat.fr
+  first_name: Jean
+  last_name: BIZET
+  region: Manche
+  title: Sénateur de la Manche (Basse-Normandie)
+  name: BIZET Jean
+- !ruby/object:Senator
+  url: /senateur/blandin_marie_christine01044r.html
+  file: senateur*blandin_marie_christine01044r.html
+  departement: Nord-Pas-de-Calais
+  email: mc.blandin@senat.fr
+  first_name: Marie-Christine
+  last_name: BLANDIN
+  region: Nord
+  title: Sénatrice du Nord (Nord-Pas-de-Calais)
+  name: BLANDIN Marie-Christine
+- !ruby/object:Senator
+  url: /senateur/blondin_maryvonne08043v.html
+  file: senateur*blondin_maryvonne08043v.html
+  departement: Bretagne
+  email: m.blondin@senat.fr
+  first_name: Maryvonne
+  last_name: BLONDIN
+  region: Finistère
+  title: Sénatrice du Finistère (Bretagne)
+  name: BLONDIN Maryvonne
+- !ruby/object:Senator
+  url: /senateur/bockel_jean_marie04040a.html
+  file: senateur*bockel_jean_marie04040a.html
+  departement: Alsace
+  email: jm.bockel@senat.fr
+  first_name: Jean-Marie
+  last_name: BOCKEL
+  region: Haut-Rhin
+  title: Sénateur du Haut-Rhin (Alsace)
+  name: BOCKEL Jean-Marie
+- !ruby/object:Senator
+  url: /senateur/bocquet_eric11040e.html
+  file: senateur*bocquet_eric11040e.html
+  departement: Nord-Pas-de-Calais
+  email: 
+  first_name: ''
+  last_name: Éric BOCQUET
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: BOCQUET Éric
+- !ruby/object:Senator
+  url: /senateur/bonnefoy_nicole08060w.html
+  file: senateur*bonnefoy_nicole08060w.html
+  departement: Poitou-Charentes
+  email: n.bonnefoy@senat.fr
+  first_name: Nicole
+  last_name: BONNEFOY
+  region: Charente
+  title: Sénatrice de la Charente (Poitou-Charentes)
+  name: BONNEFOY Nicole
+- !ruby/object:Senator
+  url: /senateur/bordier_pierre04073k.html
+  file: senateur*bordier_pierre04073k.html
+  departement: Bourgogne
+  email: p.bordier@senat.fr
+  first_name: Pierre
+  last_name: BORDIER
+  region: Yonne
+  title: Sénateur de l'Yonne (Bourgogne)
+  name: BORDIER Pierre
+- !ruby/object:Senator
+  url: /senateur/borvo_cohen_seat_nicole95011x.html
+  file: senateur*borvo_cohen_seat_nicole95011x.html
+  departement: Ile-de-France
+  email: n.borvo@senat.fr
+  first_name: Nicole
+  last_name: BORVO COHEN-SEAT
+  region: Paris
+  title: Sénatrice de Paris (Ile-de-France)
+  name: BORVO COHEN-SEAT Nicole
+- !ruby/object:Senator
+  url: /senateur/botrel_yannick08014q.html
+  file: senateur*botrel_yannick08014q.html
+  departement: Bretagne
+  email: y.botrel@senat.fr
+  first_name: Yannick
+  last_name: BOTREL
+  region: Côtes-d'Armor
+  title: Sénateur des Côtes-d'Armor (Bretagne)
+  name: BOTREL Yannick
+- !ruby/object:Senator
+  url: /senateur/bouchart_natacha11060j.html
+  file: senateur*bouchart_natacha11060j.html
+  departement: Nord-Pas-de-Calais
+  email: n.bouchart@senat.fr
+  first_name: Natacha
+  last_name: BOUCHART
+  region: Pas-de-Calais
+  title: Sénateur du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: BOUCHART Natacha
+- !ruby/object:Senator
+  url: /senateur/bouchoux_corinne11029k.html
+  file: senateur*bouchoux_corinne11029k.html
+  departement: Pays de la Loire
+  email: c.bouchoux@senat.fr
+  first_name: Corinne
+  last_name: BOUCHOUX
+  region: Maine-et-Loire
+  title: Sénatrice de Maine-et-Loire (Pays de la Loire)
+  name: BOUCHOUX Corinne
+- !ruby/object:Senator
+  url: /senateur/boulaud_didier01051q.html
+  file: senateur*boulaud_didier01051q.html
+  departement: Bourgogne
+  email: d.boulaud@senat.fr
+  first_name: Didier
+  last_name: BOULAUD
+  region: Nièvre
+  title: Sénateur de la Nièvre (Bourgogne)
+  name: BOULAUD Didier
+- !ruby/object:Senator
+  url: /senateur/bourdin_joel89022n.html
+  file: senateur*bourdin_joel89022n.html
+  departement: Haute-Normandie
+  email: 
+  first_name: Joël
+  last_name: BOURDIN
+  region: Eure
+  title: Sénateur de l'Eure (Haute-Normandie)
+  name: BOURDIN Joël
+- !ruby/object:Senator
+  url: /senateur/bourquin_christian11018g.html
+  file: senateur*bourquin_christian11018g.html
+  departement: Languedoc-Roussillon
+  email: c.bourquin@senat.fr
+  first_name: Christian
+  last_name: BOURQUIN
+  region: Pyrénées-Orientales
+  title: Sénateur des Pyrénées-Orientales (Languedoc-Roussillon)
+  name: BOURQUIN Christian
+- !ruby/object:Senator
+  url: /senateur/bourquin_martial08068f.html
+  file: senateur*bourquin_martial08068f.html
+  departement: Franche-Comté
+  email: m.bourquin@senat.fr
+  first_name: Martial
+  last_name: BOURQUIN
+  region: Doubs
+  title: Sénateur du Doubs (Franche-Comté)
+  name: BOURQUIN Martial
+- !ruby/object:Senator
+  url: /senateur/bourzai_bernadette08050u.html
+  file: senateur*bourzai_bernadette08050u.html
+  departement: Limousin
+  email: b.bourzai@senat.fr
+  first_name: Bernadette
+  last_name: BOURZAI
+  region: Corrèze
+  title: Sénatrice de la Corrèze (Limousin)
+  name: BOURZAI Bernadette
+- !ruby/object:Senator
+  url: /senateur/boutant_michel08058d.html
+  file: senateur*boutant_michel08058d.html
+  departement: Poitou-Charentes
+  email: m.boutant@senat.fr
+  first_name: Michel
+  last_name: BOUTANT
+  region: Charente
+  title: Sénateur de la Charente (Poitou-Charentes)
+  name: BOUTANT Michel
+- !ruby/object:Senator
+  url: /senateur/boyer_jean01052r.html
+  file: senateur*boyer_jean01052r.html
+  departement: Auvergne
+  email: contact@jean-boyer.com
+  first_name: Jean
+  last_name: BOYER
+  region: Haute-Loire
+  title: Sénateur de la Haute-Loire (Auvergne)
+  name: BOYER Jean
+- !ruby/object:Senator
+  url: /senateur/bruguiere_marie_therese08020n.html
+  file: senateur*bruguiere_marie_therese08020n.html
+  departement: Languedoc-Roussillon
+  email: mt.bruguiere@senat.fr
+  first_name: Marie-Thérèse
+  last_name: BRUGUIÈRE
+  region: Hérault
+  title: Sénateur de l'Hérault (Languedoc-Roussillon)
+  name: BRUGUIÈRE Marie-Thérèse
+- !ruby/object:Senator
+  url: /senateur/buffet_francois_noel04047h.html
+  file: senateur*buffet_francois_noel04047h.html
+  departement: Rhône-Alpes
+  email: fn.buffet@senat.fr
+  first_name: François-Noël
+  last_name: BUFFET
+  region: Rhône
+  title: Sénateur du Rhône (Rhône-Alpes)
+  name: BUFFET François-Noël
+- !ruby/object:Senator
+  url: /senateur/caffet_jean_pierre04066l.html
+  file: senateur*caffet_jean_pierre04066l.html
+  departement: Ile-de-France
+  email: jp.caffet@senat.fr
+  first_name: Jean-Pierre
+  last_name: CAFFET
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: CAFFET Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/calvet_francois11101a.html
+  file: senateur*calvet_francois11101a.html
+  departement: Languedoc-Roussillon
+  email: f.calvet@senat.fr
+  first_name: François
+  last_name: CALVET
+  region: Pyrénées-Orientales
+  title: Sénateur des Pyrénées-Orientales (Languedoc-Roussillon)
+  name: CALVET François
+- !ruby/object:Senator
+  url: /senateur/camani_pierre11095v.html
+  file: senateur*camani_pierre11095v.html
+  departement: Aquitaine
+  email: p.camani@senat.fr
+  first_name: Pierre
+  last_name: CAMANI
+  region: Lot-et-Garonne
+  title: Sénateur de Lot-et-Garonne (Aquitaine)
+  name: CAMANI Pierre
+- !ruby/object:Senator
+  url: /senateur/cambon_christian04042c.html
+  file: senateur*cambon_christian04042c.html
+  departement: Ile-de-France
+  email: c.cambon@senat.fr
+  first_name: Christian
+  last_name: CAMBON
+  region: Val-de-Marne
+  title: Sénateur du Val-de-Marne (Ile-de-France)
+  name: CAMBON Christian
+- !ruby/object:Senator
+  url: /senateur/campion_claire_lise00003c.html
+  file: senateur*campion_claire_lise00003c.html
+  departement: Ile-de-France
+  email: cl.campion@senat.fr
+  first_name: Claire-Lise
+  last_name: CAMPION
+  region: Essonne
+  title: Sénatrice de l'Essonne (Ile-de-France)
+  name: CAMPION Claire-Lise
+- !ruby/object:Senator
+  url: /senateur/cantegrit_jean_pierre77002u.html
+  file: senateur*cantegrit_jean_pierre77002u.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: jp.cantegrit@senat.fr
+  first_name: Jean-Pierre
+  last_name: CANTEGRIT
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: CANTEGRIT Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/capo_canellas_vincent11053k.html
+  file: senateur*capo_canellas_vincent11053k.html
+  departement: Ile-de-France
+  email: v.capo-canellas@senat.fr
+  first_name: Vincent
+  last_name: CAPO-CANELLAS
+  region: Seine-Saint-Denis
+  title: Sénateur de la Seine-Saint-Denis (Ile-de-France)
+  name: CAPO-CANELLAS Vincent
+- !ruby/object:Senator
+  url: /senateur/cardoux_jean_noel11103c.html
+  file: senateur*cardoux_jean_noel11103c.html
+  departement: Centre
+  email: jn.cardoux@senat.fr
+  first_name: Jean-Noël
+  last_name: CARDOUX
+  region: Loiret
+  title: Sénateur du Loiret (Centre)
+  name: CARDOUX Jean-Noël
+- !ruby/object:Senator
+  url: /senateur/carle_jean_claude95015c.html
+  file: senateur*carle_jean_claude95015c.html
+  departement: Rhône-Alpes
+  email: jean-claude.carle@wanadoo.fr
+  first_name: Jean-Claude
+  last_name: CARLE
+  region: Haute-Savoie
+  title: Sénateur de la Haute-Savoie (Rhône-Alpes)
+  name: CARLE Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/carrere_jean_louis92015p.html
+  file: senateur*carrere_jean_louis92015p.html
+  departement: Aquitaine
+  email: jl.carrere@wanadoo.fr
+  first_name: Jean-Louis
+  last_name: CARRÈRE
+  region: Landes
+  title: Sénateur des Landes (Aquitaine)
+  name: CARRÈRE Jean-Louis
+- !ruby/object:Senator
+  url: /senateur/cartron_francoise08024s.html
+  file: senateur*cartron_francoise08024s.html
+  departement: Aquitaine
+  email: f.cartron@senat.fr
+  first_name: Françoise
+  last_name: CARTRON
+  region: Gironde
+  title: Sénatrice de la Gironde (Aquitaine)
+  name: CARTRON Françoise
+- !ruby/object:Senator
+  url: /senateur/carvounas_luc11032e.html
+  file: senateur*carvounas_luc11032e.html
+  departement: Ile-de-France
+  email: l.carvounas@senat.fr
+  first_name: Luc
+  last_name: CARVOUNAS
+  region: Val-de-Marne
+  title: Sénateur du Val-de-Marne (Ile-de-France)
+  name: CARVOUNAS Luc
+- !ruby/object:Senator
+  url: /senateur/cayeux_caroline11044j.html
+  file: senateur*cayeux_caroline11044j.html
+  departement: Picardie
+  email: c.cayeux@senat.fr
+  first_name: Caroline
+  last_name: CAYEUX
+  region: Oise
+  title: Sénateur de l'Oise (Picardie)
+  name: CAYEUX Caroline
+- !ruby/object:Senator
+  url: /senateur/cazeau_bernard98029w.html
+  file: senateur*cazeau_bernard98029w.html
+  departement: Aquitaine
+  email: b.cazeau@senat.fr
+  first_name: Bernard
+  last_name: CAZEAU
+  region: Dordogne
+  title: Sénateur de la Dordogne (Aquitaine)
+  name: CAZEAU Bernard
+- !ruby/object:Senator
+  url: /senateur/cesar_gerard90003b.html
+  file: senateur*cesar_gerard90003b.html
+  departement: Aquitaine
+  email: 
+  first_name: Gérard
+  last_name: CÉSAR
+  region: Gironde
+  title: Sénateur de la Gironde (Aquitaine)
+  name: CÉSAR Gérard
+- !ruby/object:Senator
+  url: /senateur/charon_pierre11080n.html
+  file: senateur*charon_pierre11080n.html
+  departement: Ile-de-France
+  email: p.charon@senat.fr
+  first_name: Pierre
+  last_name: CHARON
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: CHARON Pierre
+- !ruby/object:Senator
+  url: /senateur/chastan_yves08057c.html
+  file: senateur*chastan_yves08057c.html
+  departement: Rhône-Alpes
+  email: y.chastan@senat.fr
+  first_name: Yves
+  last_name: CHASTAN
+  region: Ardèche
+  title: Sénateur de l'Ardèche (Rhône-Alpes)
+  name: CHASTAN Yves
+- !ruby/object:Senator
+  url: /senateur/chatillon_alain08028w.html
+  file: senateur*chatillon_alain08028w.html
+  departement: Midi-Pyrénées
+  email: a.chatillon@senat.fr
+  first_name: Alain
+  last_name: CHATILLON
+  region: Haute-Garonne
+  title: Sénateur de la Haute-Garonne (Midi-Pyrénées)
+  name: CHATILLON Alain
+- !ruby/object:Senator
+  url: /senateur/chauveau_jean_pierre04099v.html
+  file: senateur*chauveau_jean_pierre04099v.html
+  departement: Pays de la Loire
+  email: jp.chauveau@senat.fr
+  first_name: Jean-Pierre
+  last_name: CHAUVEAU
+  region: Sarthe
+  title: Sénateur de la Sarthe (Pays de la Loire)
+  name: CHAUVEAU Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/chevenement_jean_pierre02053w.html
+  file: senateur*chevenement_jean_pierre02053w.html
+  departement: Franche-Comté
+  email: jp.chevenement@senat.fr
+  first_name: Jean-Pierre
+  last_name: CHEVÈNEMENT
+  region: Territoire de Belfort
+  title: Sénateur du Territoire de Belfort (Franche-Comté)
+  name: CHEVÈNEMENT Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/chiron_jacques11042g.html
+  file: senateur*chiron_jacques11042g.html
+  departement: Rhône-Alpes
+  email: j.chiron@senat.fr
+  first_name: Jacques
+  last_name: CHIRON
+  region: Isère
+  title: Sénateur de l'Isère (Rhône-Alpes)
+  name: CHIRON Jacques
+- !ruby/object:Senator
+  url: /senateur/claireaux_karine11023d.html
+  file: senateur*claireaux_karine11023d.html
+  departement: Saint-Pierre-et-Miquelon
+  email: k.claireaux@senat.fr
+  first_name: Karine
+  last_name: CLAIREAUX
+  region: Saint-Pierre-et-Miquelon
+  title: Sénateur de Saint-Pierre-et-Miquelon (Saint-Pierre-et-Miquelon)
+  name: CLAIREAUX Karine
+- !ruby/object:Senator
+  url: /senateur/cleach_marcel_pierre95019g.html
+  file: senateur*cleach_marcel_pierre95019g.html
+  departement: Pays de la Loire
+  email: mp.cleach@senat.fr
+  first_name: Marcel-Pierre
+  last_name: CLÉACH
+  region: Sarthe
+  title: Sénateur de la Sarthe (Pays de la Loire)
+  name: CLÉACH Marcel-Pierre
+- !ruby/object:Senator
+  url: /senateur/cohen_laurence11031d.html
+  file: senateur*cohen_laurence11031d.html
+  departement: Ile-de-France
+  email: l.cohen@senat.fr
+  first_name: Laurence
+  last_name: COHEN
+  region: Val-de-Marne
+  title: Sénatrice du Val-de-Marne (Ile-de-France)
+  name: COHEN Laurence
+- !ruby/object:Senator
+  url: /senateur/cointat_christian01063u.html
+  file: senateur*cointat_christian01063u.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: c.cointat@senat.fr
+  first_name: Christian
+  last_name: COINTAT
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: COINTAT Christian
+- !ruby/object:Senator
+  url: /senateur/collin_yvon88008l.html
+  file: senateur*collin_yvon88008l.html
+  departement: Midi-Pyrénées
+  email: y.collin@senat.fr
+  first_name: Yvon
+  last_name: COLLIN
+  region: Tarn-et-Garonne
+  title: Sénateur de Tarn-et-Garonne (Midi-Pyrénées)
+  name: COLLIN Yvon
+- !ruby/object:Senator
+  url: /senateur/collomb_gerard99002p.html
+  file: senateur*collomb_gerard99002p.html
+  departement: Rhône-Alpes
+  email: g.collomb@senat.fr
+  first_name: Gérard
+  last_name: COLLOMB
+  region: Rhône
+  title: Sénateur du Rhône (Rhône-Alpes)
+  name: COLLOMB Gérard
+- !ruby/object:Senator
+  url: /senateur/collombat_pierre_yves04038g.html
+  file: senateur*collombat_pierre_yves04038g.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: py.collombat@senat.fr
+  first_name: Pierre-Yves
+  last_name: COLLOMBAT
+  region: Var
+  title: Sénateur du Var (Provence-Alpes-Côte d'Azur)
+  name: COLLOMBAT Pierre-Yves
+- !ruby/object:Senator
+  url: /senateur/cornano_jacques11114f.html
+  file: senateur*cornano_jacques11114f.html
+  departement: Guadeloupe
+  email: j.cornano@senat.fr
+  first_name: Jacques
+  last_name: CORNANO
+  region: Guadeloupe
+  title: Sénateur de la Guadeloupe (Guadeloupe)
+  name: CORNANO Jacques
+- !ruby/object:Senator
+  url: /senateur/cornu_gerard98023q.html
+  file: senateur*cornu_gerard98023q.html
+  departement: Centre
+  email: g.cornu@senat.fr
+  first_name: Gérard
+  last_name: CORNU
+  region: Eure-et-Loir
+  title: Sénateur d'Eure-et-Loir (Centre)
+  name: CORNU Gérard
+- !ruby/object:Senator
+  url: /senateur/couderc_raymond07030l.html
+  file: senateur*couderc_raymond07030l.html
+  departement: Languedoc-Roussillon
+  email: r.couderc@senat.fr
+  first_name: Raymond
+  last_name: COUDERC
+  region: Hérault
+  title: Sénateur de l'Hérault (Languedoc-Roussillon)
+  name: COUDERC Raymond
+- !ruby/object:Senator
+  url: /senateur/courteau_roland80013x.html
+  file: senateur*courteau_roland80013x.html
+  departement: Languedoc-Roussillon
+  email: roland.courteau@wanadoo.fr
+  first_name: Roland
+  last_name: COURTEAU
+  region: Aude
+  title: Sénateur de l'Aude (Languedoc-Roussillon)
+  name: COURTEAU Roland
+- !ruby/object:Senator
+  url: /senateur/courtois_jean_patrick95020y.html
+  file: senateur*courtois_jean_patrick95020y.html
+  departement: Bourgogne
+  email: jp.courtois@senat.fr
+  first_name: Jean-Patrick
+  last_name: COURTOIS
+  region: Saône-et-Loire
+  title: Sénateur de la Saône-et-Loire (Bourgogne)
+  name: COURTOIS Jean-Patrick
+- !ruby/object:Senator
+  url: /senateur/cukierman_cecile11056n.html
+  file: senateur*cukierman_cecile11056n.html
+  departement: Rhône-Alpes
+  email: c.cukierman@senat.fr
+  first_name: Cécile
+  last_name: CUKIERMAN
+  region: Loire
+  title: Sénatrice de la Loire (Rhône-Alpes)
+  name: CUKIERMAN Cécile
+- !ruby/object:Senator
+  url: /senateur/dallier_philippe04086q.html
+  file: senateur*dallier_philippe04086q.html
+  departement: Ile-de-France
+  email: p.dallier@senat.fr
+  first_name: Philippe
+  last_name: DALLIER
+  region: Seine-Saint-Denis
+  title: Sénateur de la Seine-Saint-Denis (Ile-de-France)
+  name: DALLIER Philippe
+- !ruby/object:Senator
+  url: /senateur/dantec_ronan11065p.html
+  file: senateur*dantec_ronan11065p.html
+  departement: Pays de la Loire
+  email: r.dantec@senat.fr
+  first_name: Ronan
+  last_name: DANTEC
+  region: Loire-Atlantique
+  title: Sénateur de la Loire-Atlantique (Pays de la Loire)
+  name: DANTEC Ronan
+- !ruby/object:Senator
+  url: /senateur/darniche_philippe95021a.html
+  file: senateur*darniche_philippe95021a.html
+  departement: Pays de la Loire
+  email: p.darniche@senat.fr
+  first_name: Philippe
+  last_name: DARNICHE
+  region: Vendée
+  title: Sénateur de la Vendée (Pays de la Loire)
+  name: DARNICHE Philippe
+- !ruby/object:Senator
+  url: /senateur/dassault_serge04055h.html
+  file: senateur*dassault_serge04055h.html
+  departement: Ile-de-France
+  email: 
+  first_name: Serge
+  last_name: DASSAULT
+  region: Essonne
+  title: Sénateur de l'Essonne (Ile-de-France)
+  name: DASSAULT Serge
+- !ruby/object:Senator
+  url: /senateur/daudigny_yves08052w.html
+  file: senateur*daudigny_yves08052w.html
+  departement: Picardie
+  email: y.daudigny@senat.fr
+  first_name: Yves
+  last_name: DAUDIGNY
+  region: Aisne
+  title: Sénateur de l'Aisne (Picardie)
+  name: DAUDIGNY Yves
+- !ruby/object:Senator
+  url: /senateur/daunis_marc08038y.html
+  file: senateur*daunis_marc08038y.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: m.daunis@senat.fr
+  first_name: Marc
+  last_name: DAUNIS
+  region: Alpes-Maritimes
+  title: Sénateur des Alpes-Maritimes (Provence-Alpes-Côte d'Azur)
+  name: DAUNIS Marc
+- !ruby/object:Senator
+  url: /senateur/david_annie01059y.html
+  file: senateur*david_annie01059y.html
+  departement: Rhône-Alpes
+  email: a.david@senat.fr
+  first_name: Annie
+  last_name: DAVID
+  region: Isère
+  title: Sénatrice de l'Isère (Rhône-Alpes)
+  name: DAVID Annie
+- !ruby/object:Senator
+  url: /senateur/debre_isabelle04081k.html
+  file: senateur*debre_isabelle04081k.html
+  departement: Ile-de-France
+  email: i.debre@senat.fr
+  first_name: Isabelle
+  last_name: DEBRÉ
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: DEBRÉ Isabelle
+- !ruby/object:Senator
+  url: /senateur/del_picchia_robert98018t.html
+  file: senateur*del_picchia_robert98018t.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: r.delpicchia@senat.fr
+  first_name: Robert
+  last_name: del PICCHIA
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: del PICCHIA Robert
+- !ruby/object:Senator
+  url: /senateur/delahaye_vincent11070l.html
+  file: senateur*delahaye_vincent11070l.html
+  departement: Ile-de-France
+  email: v.delahaye@senat.fr
+  first_name: Vincent
+  last_name: DELAHAYE
+  region: Essonne
+  title: Sénateur de l'Essonne (Ile-de-France)
+  name: DELAHAYE Vincent
+- !ruby/object:Senator
+  url: /senateur/delattre_francis11088w.html
+  file: senateur*delattre_francis11088w.html
+  departement: Ile-de-France
+  email: f.delattre@senat.fr
+  first_name: Francis
+  last_name: DELATTRE
+  region: Val-d'Oise
+  title: Sénateur du Val-d'Oise (Ile-de-France)
+  name: DELATTRE Francis
+- !ruby/object:Senator
+  url: /senateur/delebarre_michel11035h.html
+  file: senateur*delebarre_michel11035h.html
+  departement: Nord-Pas-de-Calais
+  email: m.delebarre@senat.fr
+  first_name: Michel
+  last_name: DELEBARRE
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: DELEBARRE Michel
+- !ruby/object:Senator
+  url: /senateur/demerliat_jean_pierre90004c.html
+  file: senateur*demerliat_jean_pierre90004c.html
+  departement: Limousin
+  email: jp.demerliat@senat.fr
+  first_name: Jean-Pierre
+  last_name: DEMERLIAT
+  region: Haute-Vienne
+  title: Sénateur de la Haute-Vienne (Limousin)
+  name: DEMERLIAT Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/demessine_michelle92018s.html
+  file: senateur*demessine_michelle92018s.html
+  departement: Nord-Pas-de-Calais
+  email: m.demessine@senat.fr
+  first_name: Michelle
+  last_name: DEMESSINE
+  region: Nord
+  title: Sénatrice du Nord (Nord-Pas-de-Calais)
+  name: DEMESSINE Michelle
+- !ruby/object:Senator
+  url: /senateur/demontes_christiane04046g.html
+  file: senateur*demontes_christiane04046g.html
+  departement: Rhône-Alpes
+  email: c.demontes@senat.fr
+  first_name: Christiane
+  last_name: DEMONTÈS
+  region: Rhône
+  title: Sénatrice du Rhône (Rhône-Alpes)
+  name: DEMONTÈS Christiane
+- !ruby/object:Senator
+  url: /senateur/deneux_marcel95025e.html
+  file: senateur*deneux_marcel95025e.html
+  departement: Picardie
+  email: m.deneux@senat.fr
+  first_name: Marcel
+  last_name: DENEUX
+  region: Somme
+  title: Sénateur de la Somme (Picardie)
+  name: DENEUX Marcel
+- !ruby/object:Senator
+  url: /senateur/deriot_gerard98024r.html
+  file: senateur*deriot_gerard98024r.html
+  departement: Auvergne
+  email: g.deriot@senat.fr
+  first_name: Gérard
+  last_name: DÉRIOT
+  region: Allier
+  title: Sénateur de l'Allier (Auvergne)
+  name: DÉRIOT Gérard
+- !ruby/object:Senator
+  url: /senateur/deroche_catherine10006l.html
+  file: senateur*deroche_catherine10006l.html
+  departement: Pays de la Loire
+  email: c.deroche@senat.fr
+  first_name: Catherine
+  last_name: DEROCHE
+  region: Maine-et-Loire
+  title: Sénatrice de Maine-et-Loire (Pays de la Loire)
+  name: DEROCHE Catherine
+- !ruby/object:Senator
+  url: /senateur/des_esgaulx_marie_helene08022q.html
+  file: senateur*des_esgaulx_marie_helene08022q.html
+  departement: Aquitaine
+  email: mh.des-esgaulx@senat.fr
+  first_name: Marie-Hélène
+  last_name: DES ESGAULX
+  region: Gironde
+  title: Sénateur de la Gironde (Aquitaine)
+  name: DES ESGAULX Marie-Hélène
+- !ruby/object:Senator
+  url: /senateur/desessard_jean04067m.html
+  file: senateur*desessard_jean04067m.html
+  departement: Ile-de-France
+  email: j.desessard@senat.fr
+  first_name: Jean
+  last_name: DESESSARD
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: DESESSARD Jean
+- !ruby/object:Senator
+  url: /senateur/desplan_felix11113e.html
+  file: senateur*desplan_felix11113e.html
+  departement: Guadeloupe
+  email: f.desplan@senat.fr
+  first_name: Félix
+  last_name: DESPLAN
+  region: Guadeloupe
+  title: Sénateur de la Guadeloupe (Guadeloupe)
+  name: DESPLAN Félix
+- !ruby/object:Senator
+  url: /senateur/detraigne_yves01024m.html
+  file: senateur*detraigne_yves01024m.html
+  departement: Champagne-Ardenne
+  email: y.detraigne@senat.fr
+  first_name: Yves
+  last_name: DÉTRAIGNE
+  region: Marne
+  title: Sénateur de la Marne (Champagne-Ardenne)
+  name: DÉTRAIGNE Yves
+- !ruby/object:Senator
+  url: /senateur/didier_evelyne01015l.html
+  file: senateur*didier_evelyne01015l.html
+  departement: Lorraine
+  email: evelyne-didier@orange.fr
+  first_name: ''
+  last_name: Évelyne DIDIER
+  region: Meurthe-et-Moselle
+  title: Sénatrice de la Meurthe-et-Moselle (Lorraine)
+  name: DIDIER Évelyne
+- !ruby/object:Senator
+  url: /senateur/dilain_claude11051h.html
+  file: senateur*dilain_claude11051h.html
+  departement: Ile-de-France
+  email: c.dilain@senat.fr
+  first_name: Claude
+  last_name: DILAIN
+  region: Seine-Saint-Denis
+  title: Sénateur de la Seine-Saint-Denis (Ile-de-France)
+  name: DILAIN Claude
+- !ruby/object:Senator
+  url: /senateur/dini_muguette04051d.html
+  file: senateur*dini_muguette04051d.html
+  departement: Rhône-Alpes
+  email: m.dini@senat.fr
+  first_name: Muguette
+  last_name: DINI
+  region: Rhône
+  title: Sénatrice du Rhône (Rhône-Alpes)
+  name: DINI Muguette
+- !ruby/object:Senator
+  url: /senateur/dolige_eric01027q.html
+  file: senateur*dolige_eric01027q.html
+  departement: Centre
+  email: e.dolige@senat.fr
+  first_name: ''
+  last_name: Éric DOLIGÉ
+  region: Loiret
+  title: Sénateur du Loiret (Centre)
+  name: DOLIGÉ Éric
+- !ruby/object:Senator
+  url: /senateur/domeizel_claude98030p.html
+  file: senateur*domeizel_claude98030p.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: c.domeizel@senat.fr
+  first_name: Claude
+  last_name: DOMEIZEL
+  region: Alpes de Haute-Provence
+  title: Sénateur des Alpes de Haute-Provence (Provence-Alpes-Côte d'Azur)
+  name: DOMEIZEL Claude
+- !ruby/object:Senator
+  url: /senateur/dominati_philippe04071h.html
+  file: senateur*dominati_philippe04071h.html
+  departement: Ile-de-France
+  email: ph.dominati@senat.fr
+  first_name: Philippe
+  last_name: DOMINATI
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: DOMINATI Philippe
+- !ruby/object:Senator
+  url: /senateur/doublet_michel89014n.html
+  file: senateur*doublet_michel89014n.html
+  departement: Poitou-Charentes
+  email: Michel.Doublet@wanadoo.fr
+  first_name: Michel
+  last_name: DOUBLET
+  region: Charente-Maritime
+  title: Sénateur de la Charente-Maritime (Poitou-Charentes)
+  name: DOUBLET Michel
+- !ruby/object:Senator
+  url: /senateur/dubois_daniel04089t.html
+  file: senateur*dubois_daniel04089t.html
+  departement: Picardie
+  email: d.dubois@senat.fr
+  first_name: Daniel
+  last_name: DUBOIS
+  region: Somme
+  title: Sénateur de la Somme (Picardie)
+  name: DUBOIS Daniel
+- !ruby/object:Senator
+  url: /senateur/duchene_marie_annick11091r.html
+  file: senateur*duchene_marie_annick11091r.html
+  departement: Ile-de-France
+  email: ma.duchene@senat.fr
+  first_name: Marie-Annick
+  last_name: DUCHÊNE
+  region: Yvelines
+  title: Sénateur des Yvelines (Ile-de-France)
+  name: DUCHÊNE Marie-Annick
+- !ruby/object:Senator
+  url: /senateur/dufaut_alain87003b.html
+  file: senateur*dufaut_alain87003b.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: Alain.Dufaut@wanadoo.fr
+  first_name: Alain
+  last_name: DUFAUT
+  region: Vaucluse
+  title: Sénateur de Vaucluse (Provence-Alpes-Côte d'Azur)
+  name: DUFAUT Alain
+- !ruby/object:Senator
+  url: /senateur/dulait_andre95028h.html
+  file: senateur*dulait_andre95028h.html
+  departement: Poitou-Charentes
+  email: a.dulait@senat.fr
+  first_name: André
+  last_name: DULAIT
+  region: Deux-Sèvres
+  title: Sénateur des Deux-Sèvres (Poitou-Charentes)
+  name: DULAIT André
+- !ruby/object:Senator
+  url: /senateur/dupont_ambroise89007p.html
+  file: senateur*dupont_ambroise89007p.html
+  departement: Basse-Normandie
+  email: a.dupont@senat.fr
+  first_name: Ambroise
+  last_name: DUPONT
+  region: Calvados
+  title: Sénateur du Calvados (Basse-Normandie)
+  name: DUPONT Ambroise
+- !ruby/object:Senator
+  url: /senateur/dupont_jean_leonce98042t.html
+  file: senateur*dupont_jean_leonce98042t.html
+  departement: Basse-Normandie
+  email: jl.dupont@senat.fr
+  first_name: Jean-Léonce
+  last_name: DUPONT
+  region: Calvados
+  title: Sénateur du Calvados (Basse-Normandie)
+  name: DUPONT Jean-Léonce
+- !ruby/object:Senator
+  url: /senateur/duriez_odette11062l.html
+  file: senateur*duriez_odette11062l.html
+  departement: Nord-Pas-de-Calais
+  email: o.duriez@senat.fr
+  first_name: Odette
+  last_name: DURIEZ
+  region: Pas-de-Calais
+  title: Sénatrice du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: DURIEZ Odette
+- !ruby/object:Senator
+  url: /senateur/durrieu_josette92020l.html
+  file: senateur*durrieu_josette92020l.html
+  departement: Midi-Pyrénées
+  email: j.durrieu@senat.fr
+  first_name: Josette
+  last_name: DURRIEU
+  region: Hautes-Pyrénées
+  title: Sénatrice des Hautes-Pyrénées (Midi-Pyrénées)
+  name: DURRIEU Josette
+- !ruby/object:Senator
+  url: /senateur/duvernois_louis01041n.html
+  file: senateur*duvernois_louis01041n.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: l.duvernois@senat.fr
+  first_name: Louis
+  last_name: DUVERNOIS
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: DUVERNOIS Louis
+- !ruby/object:Senator
+  url: /senateur/eble_vincent11074q.html
+  file: senateur*eble_vincent11074q.html
+  departement: Ile-de-France
+  email: v.eble@senat.fr
+  first_name: Vincent
+  last_name: EBLÉ
+  region: Seine-et-Marne
+  title: Sénateur de la Seine-et-Marne (Ile-de-France)
+  name: EBLÉ Vincent
+- !ruby/object:Senator
+  url: /senateur/emorine_jean_paul95030b.html
+  file: senateur*emorine_jean_paul95030b.html
+  departement: Bourgogne
+  email: JeanPaul.Emorine@wanadoo.fr
+  first_name: Jean-Paul
+  last_name: EMORINE
+  region: Saône-et-Loire
+  title: Sénateur de la Saône-et-Loire (Bourgogne)
+  name: EMORINE Jean-Paul
+- !ruby/object:Senator
+  url: /senateur/esnol_philippe11096w.html
+  file: senateur*esnol_philippe11096w.html
+  departement: Ile-de-France
+  email: p.esnol@senat.fr
+  first_name: Philippe
+  last_name: ESNOL
+  region: Yvelines
+  title: Sénateur des Yvelines (Ile-de-France)
+  name: ESNOL Philippe
+- !ruby/object:Senator
+  url: /senateur/espagnac_frederique11110b.html
+  file: senateur*espagnac_frederique11110b.html
+  departement: Aquitaine
+  email: f.espagnac@senat.fr
+  first_name: Frédérique
+  last_name: ESPAGNAC
+  region: Pyrénées-Atlantiques
+  title: Sénatrice des Pyrénées-Atlantiques (Aquitaine)
+  name: ESPAGNAC Frédérique
+- !ruby/object:Senator
+  url: /senateur/falco_hubert95031c.html
+  file: senateur*falco_hubert95031c.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: hfalco@mairie-toulon.fr
+  first_name: Hubert
+  last_name: FALCO
+  region: Var
+  title: Sénateur du Var (Provence-Alpes-Côte d'Azur)
+  name: FALCO Hubert
+- !ruby/object:Senator
+  url: /senateur/farreyrol_jacqueline11022c.html
+  file: senateur*farreyrol_jacqueline11022c.html
+  departement: La Réunion
+  email: j.farreyrol@senat.fr
+  first_name: Jacqueline
+  last_name: FARREYROL
+  region: La Réunion
+  title: Sénatrice de La Réunion (La Réunion)
+  name: FARREYROL Jacqueline
+- !ruby/object:Senator
+  url: /senateur/fauconnier_alain08066d.html
+  file: senateur*fauconnier_alain08066d.html
+  departement: Midi-Pyrénées
+  email: a.fauconnier@senat.fr
+  first_name: Alain
+  last_name: FAUCONNIER
+  region: Aveyron
+  title: Sénateur de l'Aveyron (Midi-Pyrénées)
+  name: FAUCONNIER Alain
+- !ruby/object:Senator
+  url: /senateur/favier_christian11034g.html
+  file: senateur*favier_christian11034g.html
+  departement: Ile-de-France
+  email: c.favier@senat.fr
+  first_name: Christian
+  last_name: FAVIER
+  region: Val-de-Marne
+  title: Sénateur du Val-de-Marne (Ile-de-France)
+  name: FAVIER Christian
+- !ruby/object:Senator
+  url: /senateur/ferat_francoise01025n.html
+  file: senateur*ferat_francoise01025n.html
+  departement: Champagne-Ardenne
+  email: f.ferat@senat.fr
+  first_name: Françoise
+  last_name: FÉRAT
+  region: Marne
+  title: Sénateur de la Marne (Champagne-Ardenne)
+  name: FÉRAT Françoise
+- !ruby/object:Senator
+  url: /senateur/ferrand_andre98019u.html
+  file: senateur*ferrand_andre98019u.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: a.ferrand@senat.fr
+  first_name: André
+  last_name: FERRAND
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: FERRAND André
+- !ruby/object:Senator
+  url: /senateur/fichet_jean_luc08045x.html
+  file: senateur*fichet_jean_luc08045x.html
+  departement: Bretagne
+  email: jl.fichet@senat.fr
+  first_name: Jean-Luc
+  last_name: FICHET
+  region: Finistère
+  title: Sénateur du Finistère (Bretagne)
+  name: FICHET Jean-Luc
+- !ruby/object:Senator
+  url: /senateur/filleul_jean_jacques11107g.html
+  file: senateur*filleul_jean_jacques11107g.html
+  departement: Centre
+  email: jj.filleul@senat.fr
+  first_name: Jean-Jacques
+  last_name: FILLEUL
+  region: Indre-et-Loire
+  title: Sénateur d'Indre-et-Loire (Centre)
+  name: FILLEUL Jean-Jacques
+- !ruby/object:Senator
+  url: /senateur/fischer_guy95032d.html
+  file: senateur*fischer_guy95032d.html
+  departement: Rhône-Alpes
+  email: g.fischer@senat.fr
+  first_name: Guy
+  last_name: FISCHER
+  region: Rhône
+  title: Sénateur du Rhône (Rhône-Alpes)
+  name: FISCHER Guy
+- !ruby/object:Senator
+  url: /senateur/fleming_louis_constant08023r.html
+  file: senateur*fleming_louis_constant08023r.html
+  departement: Saint-Martin
+  email: lc.fleming@senat.fr
+  first_name: Louis-Constant
+  last_name: FLEMING
+  region: Saint-Martin
+  title: Sénateur de Saint-Martin (Saint-Martin)
+  name: FLEMING Louis-Constant
+- !ruby/object:Senator
+  url: /senateur/flosse_gaston98052v.html
+  file: senateur*flosse_gaston98052v.html
+  departement: Polynésie française
+  email: 
+  first_name: Gaston
+  last_name: FLOSSE
+  region: Polynésie française
+  title: Sénateur de la Polynésie française (Polynésie française)
+  name: FLOSSE Gaston
+- !ruby/object:Senator
+  url: /senateur/fontaine_michel11020a.html
+  file: senateur*fontaine_michel11020a.html
+  departement: La Réunion
+  email: m.fontaine@senat.fr
+  first_name: Michel
+  last_name: FONTAINE
+  region: La Réunion
+  title: Sénateur de La Réunion (La Réunion)
+  name: FONTAINE Michel
+- !ruby/object:Senator
+  url: /senateur/fortassin_francois01003g.html
+  file: senateur*fortassin_francois01003g.html
+  departement: Midi-Pyrénées
+  email: f.fortassin@senat.fr
+  first_name: François
+  last_name: FORTASSIN
+  region: Hautes-Pyrénées
+  title: Sénateur des Hautes-Pyrénées (Midi-Pyrénées)
+  name: FORTASSIN François
+- !ruby/object:Senator
+  url: /senateur/foucaud_thierry98053w.html
+  file: senateur*foucaud_thierry98053w.html
+  departement: Haute-Normandie
+  email: 
+  first_name: Thierry
+  last_name: FOUCAUD
+  region: Seine-Maritime
+  title: Sénateur de la Seine-Maritime (Haute-Normandie)
+  name: FOUCAUD Thierry
+- !ruby/object:Senator
+  url: /senateur/fouche_alain02002k.html
+  file: senateur*fouche_alain02002k.html
+  departement: Poitou-Charentes
+  email: a.fouche@senat.fr
+  first_name: Alain
+  last_name: FOUCHÉ
+  region: Vienne
+  title: Sénateur de la Vienne (Poitou-Charentes)
+  name: FOUCHÉ Alain
+- !ruby/object:Senator
+  url: /senateur/fournier_bernard97011g.html
+  file: senateur*fournier_bernard97011g.html
+  departement: Rhône-Alpes
+  email: b.fournier@senat.fr
+  first_name: Bernard
+  last_name: FOURNIER
+  region: Loire
+  title: Sénateur de la Loire (Rhône-Alpes)
+  name: FOURNIER Bernard
+- !ruby/object:Senator
+  url: /senateur/fournier_jean_paul08065c.html
+  file: senateur*fournier_jean_paul08065c.html
+  departement: Languedoc-Roussillon
+  email: jp.fournier@senat.fr
+  first_name: Jean-Paul
+  last_name: FOURNIER
+  region: Gard
+  title: Sénateur du Gard (Languedoc-Roussillon)
+  name: FOURNIER Jean-Paul
+- !ruby/object:Senator
+  url: /senateur/frassa_christophe_andre08018u.html
+  file: senateur*frassa_christophe_andre08018u.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: c.frassa@senat.fr
+  first_name: Christophe-André
+  last_name: FRASSA
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: FRASSA Christophe-André
+- !ruby/object:Senator
+  url: /senateur/frecon_jean_claude01037s.html
+  file: senateur*frecon_jean_claude01037s.html
+  departement: Rhône-Alpes
+  email: jc.frecon@wanadoo.fr
+  first_name: Jean-Claude
+  last_name: FRÉCON
+  region: Loire
+  title: Sénateur de la Loire (Rhône-Alpes)
+  name: FRÉCON Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/frogier_pierre11010l.html
+  file: senateur*frogier_pierre11010l.html
+  departement: Nouvelle-Calédonie
+  email: p.frogier@senat.fr
+  first_name: Pierre
+  last_name: FROGIER
+  region: Nouvelle-Calédonie
+  title: Sénateur de la Nouvelle-Calédonie (Nouvelle-Calédonie)
+  name: FROGIER Pierre
+- !ruby/object:Senator
+  url: /senateur/gaillard_yann94003t.html
+  file: senateur*gaillard_yann94003t.html
+  departement: Champagne-Ardenne
+  email: y.gaillard@senat.fr
+  first_name: Yann
+  last_name: GAILLARD
+  region: Aube
+  title: Sénateur de l'Aube (Champagne-Ardenne)
+  name: GAILLARD Yann
+- !ruby/object:Senator
+  url: /senateur/garrec_rene98041s.html
+  file: senateur*garrec_rene98041s.html
+  departement: Basse-Normandie
+  email: 
+  first_name: René
+  last_name: GARREC
+  region: Calvados
+  title: Sénateur du Calvados (Basse-Normandie)
+  name: GARREC René
+- !ruby/object:Senator
+  url: /senateur/garriaud_maylam_joelle04035d.html
+  file: senateur*garriaud_maylam_joelle04035d.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: j.garriaud-maylam@senat.fr
+  first_name: Joëlle
+  last_name: GARRIAUD-MAYLAM
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: GARRIAUD-MAYLAM Joëlle
+- !ruby/object:Senator
+  url: /senateur/gattolin_andre11083r.html
+  file: senateur*gattolin_andre11083r.html
+  departement: Ile-de-France
+  email: a.gattolin@senat.fr
+  first_name: André
+  last_name: GATTOLIN
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: GATTOLIN André
+- !ruby/object:Senator
+  url: /senateur/gaudin_jean_claude89029v.html
+  file: senateur*gaudin_jean_claude89029v.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: 
+  first_name: Jean-Claude
+  last_name: GAUDIN
+  region: Bouches-du-Rhône
+  title: Sénateur des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: GAUDIN Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/gautier_jacques07024n.html
+  file: senateur*gautier_jacques07024n.html
+  departement: Ile-de-France
+  email: jacques.gautier@senat.fr
+  first_name: Jacques
+  last_name: GAUTIER
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: GAUTIER Jacques
+- !ruby/object:Senator
+  url: /senateur/gelard_patrice95034f.html
+  file: senateur*gelard_patrice95034f.html
+  departement: Haute-Normandie
+  email: p.gelard@senat.fr
+  first_name: Patrice
+  last_name: GÉLARD
+  region: Seine-Maritime
+  title: Sénateur de la Seine-Maritime (Haute-Normandie)
+  name: GÉLARD Patrice
+- !ruby/object:Senator
+  url: /senateur/genisson_catherine11061k.html
+  file: senateur*genisson_catherine11061k.html
+  departement: Nord-Pas-de-Calais
+  email: c.genisson@senat.fr
+  first_name: Catherine
+  last_name: GÉNISSON
+  region: Pas-de-Calais
+  title: Sénatrice du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: GÉNISSON Catherine
+- !ruby/object:Senator
+  url: /senateur/germain_jean11108h.html
+  file: senateur*germain_jean11108h.html
+  departement: Centre
+  email: j.germain@senat.fr
+  first_name: Jean
+  last_name: GERMAIN
+  region: Indre-et-Loire
+  title: Sénateur d'Indre-et-Loire (Centre)
+  name: GERMAIN Jean
+- !ruby/object:Senator
+  url: /senateur/ghali_samia08035v.html
+  file: senateur*ghali_samia08035v.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: s.ghali@senat.fr
+  first_name: Samia
+  last_name: GHALI
+  region: Bouches-du-Rhône
+  title: Sénatrice des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: GHALI Samia
+- !ruby/object:Senator
+  url: /senateur/gilles_bruno08048b.html
+  file: senateur*gilles_bruno08048b.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: b.gilles@senat.fr
+  first_name: Bruno
+  last_name: GILLES
+  region: Bouches-du-Rhône
+  title: Sénateur des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: GILLES Bruno
+- !ruby/object:Senator
+  url: /senateur/gillot_dominique11089x.html
+  file: senateur*gillot_dominique11089x.html
+  departement: Ile-de-France
+  email: d.gillot@senat.fr
+  first_name: Dominique
+  last_name: GILLOT
+  region: Val-d'Oise
+  title: Sénatrice du Val-d'Oise (Ile-de-France)
+  name: GILLOT Dominique
+- !ruby/object:Senator
+  url: /senateur/gillot_jacques04095r.html
+  file: senateur*gillot_jacques04095r.html
+  departement: Guadeloupe
+  email: j.gillot@senat.fr
+  first_name: Jacques
+  last_name: GILLOT
+  region: Guadeloupe
+  title: Sénateur de la Guadeloupe (Guadeloupe)
+  name: GILLOT Jacques
+- !ruby/object:Senator
+  url: /senateur/giudicelli_colette08041t.html
+  file: senateur*giudicelli_colette08041t.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: c.giudicelli@senat.fr
+  first_name: Colette
+  last_name: GIUDICELLI
+  region: Alpes-Maritimes
+  title: Sénateur des Alpes-Maritimes (Provence-Alpes-Côte d'Azur)
+  name: GIUDICELLI Colette
+- !ruby/object:Senator
+  url: /senateur/godefroy_jean_pierre01011g.html
+  file: senateur*godefroy_jean_pierre01011g.html
+  departement: Basse-Normandie
+  email: jp.godefroy@senat.fr
+  first_name: Jean-Pierre
+  last_name: GODEFROY
+  region: Manche
+  title: Sénateur de la Manche (Basse-Normandie)
+  name: GODEFROY Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/gonthier_maurin_brigitte07026q.html
+  file: senateur*gonthier_maurin_brigitte07026q.html
+  departement: Ile-de-France
+  email: b.gonthier-maurin@senat.fr
+  first_name: Brigitte
+  last_name: GONTHIER-MAURIN
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: GONTHIER-MAURIN Brigitte
+- !ruby/object:Senator
+  url: /senateur/gorce_gaetan11015d.html
+  file: senateur*gorce_gaetan11015d.html
+  departement: Bourgogne
+  email: g.gorce@senat.fr
+  first_name: Gaëtan
+  last_name: GORCE
+  region: Nièvre
+  title: Sénateur de la Nièvre (Bourgogne)
+  name: GORCE Gaëtan
+- !ruby/object:Senator
+  url: /senateur/goulet_nathalie07004j.html
+  file: senateur*goulet_nathalie07004j.html
+  departement: Basse-Normandie
+  email: 
+  first_name: Nathalie
+  last_name: GOULET
+  region: Orne
+  title: Sénateur de l'Orne (Basse-Normandie)
+  name: GOULET Nathalie
+- !ruby/object:Senator
+  url: /senateur/gourault_jacqueline01007l.html
+  file: senateur*gourault_jacqueline01007l.html
+  departement: Centre
+  email: j.gourault@senat.fr
+  first_name: Jacqueline
+  last_name: GOURAULT
+  region: Loir-et-Cher
+  title: Sénatrice de Loir-et-Cher (Centre)
+  name: GOURAULT Jacqueline
+- !ruby/object:Senator
+  url: /senateur/gournac_alain95035g.html
+  file: senateur*gournac_alain95035g.html
+  departement: Ile-de-France
+  email: a.gournac@senat.fr
+  first_name: Alain
+  last_name: GOURNAC
+  region: Yvelines
+  title: Sénateur des Yvelines (Ile-de-France)
+  name: GOURNAC Alain
+- !ruby/object:Senator
+  url: /senateur/goy_chavent_sylvie08056b.html
+  file: senateur*goy_chavent_sylvie08056b.html
+  departement: Rhône-Alpes
+  email: s.goy-chavent@senat.fr
+  first_name: Sylvie
+  last_name: GOY-CHAVENT
+  region: Ain
+  title: Sénateur de l'Ain (Rhône-Alpes)
+  name: GOY-CHAVENT Sylvie
+- !ruby/object:Senator
+  url: /senateur/grignon_francis95036h.html
+  file: senateur*grignon_francis95036h.html
+  departement: Alsace
+  email: f.grignon@senat.fr
+  first_name: Francis
+  last_name: GRIGNON
+  region: Bas-Rhin
+  title: Sénateur du Bas-Rhin (Alsace)
+  name: GRIGNON Francis
+- !ruby/object:Senator
+  url: /senateur/grosdidier_francois11049p.html
+  file: senateur*grosdidier_francois11049p.html
+  departement: Lorraine
+  email: grosdidier@mairie-woippy.fr
+  first_name: François
+  last_name: GROSDIDIER
+  region: Moselle
+  title: Sénateur de la Moselle (Lorraine)
+  name: GROSDIDIER François
+- !ruby/object:Senator
+  url: /senateur/guene_charles01057w.html
+  file: senateur*guene_charles01057w.html
+  departement: Champagne-Ardenne
+  email: c.guene@senat.fr
+  first_name: Charles
+  last_name: GUENÉ
+  region: Haute-Marne
+  title: Sénateur de la Haute-Marne (Champagne-Ardenne)
+  name: GUENÉ Charles
+- !ruby/object:Senator
+  url: /senateur/guerini_jean_noel98022p.html
+  file: senateur*guerini_jean_noel98022p.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: jn.guerini@senat.fr
+  first_name: Jean-Noël
+  last_name: GUÉRINI
+  region: Bouches-du-Rhône
+  title: Sénateur des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: GUÉRINI Jean-Noël
+- !ruby/object:Senator
+  url: /senateur/guerriau_joel11064n.html
+  file: senateur*guerriau_joel11064n.html
+  departement: Pays de la Loire
+  email: j.guerriau@senat.fr
+  first_name: Joël
+  last_name: GUERRIAU
+  region: Loire-Atlantique
+  title: Sénateur de la Loire-Atlantique (Pays de la Loire)
+  name: GUERRIAU Joël
+- !ruby/object:Senator
+  url: /senateur/guillaume_didier08016s.html
+  file: senateur*guillaume_didier08016s.html
+  departement: Rhône-Alpes
+  email: d.guillaume@senat.fr
+  first_name: Didier
+  last_name: GUILLAUME
+  region: Drôme
+  title: Sénateur de la Drôme (Rhône-Alpes)
+  name: GUILLAUME Didier
+- !ruby/object:Senator
+  url: /senateur/haut_claude95037j.html
+  file: senateur*haut_claude95037j.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: c.haut@wanadoo.fr
+  first_name: Claude
+  last_name: HAUT
+  region: Vaucluse
+  title: Sénateur de Vaucluse (Provence-Alpes-Côte d'Azur)
+  name: HAUT Claude
+- !ruby/object:Senator
+  url: /senateur/herisson_pierre95038k.html
+  file: senateur*herisson_pierre95038k.html
+  departement: Rhône-Alpes
+  email: p.herisson@senat.fr
+  first_name: Pierre
+  last_name: HÉRISSON
+  region: Haute-Savoie
+  title: Sénateur de la Haute-Savoie (Rhône-Alpes)
+  name: HÉRISSON Pierre
+- !ruby/object:Senator
+  url: /senateur/herve_edmond08027v.html
+  file: senateur*herve_edmond08027v.html
+  departement: Bretagne
+  email: e.herve@senat.fr
+  first_name: Edmond
+  last_name: HERVÉ
+  region: Ille-et-Vilaine
+  title: Sénateur d'Ille-et-Vilaine (Bretagne)
+  name: HERVÉ Edmond
+- !ruby/object:Senator
+  url: /senateur/herviaux_odette01022k.html
+  file: senateur*herviaux_odette01022k.html
+  departement: Bretagne
+  email: o.herviaux@senat.fr
+  first_name: Odette
+  last_name: HERVIAUX
+  region: Morbihan
+  title: Sénatrice du Morbihan (Bretagne)
+  name: HERVIAUX Odette
+- !ruby/object:Senator
+  url: /senateur/houel_michel04048j.html
+  file: senateur*houel_michel04048j.html
+  departement: Ile-de-France
+  email: m.houel@senat.fr
+  first_name: Michel
+  last_name: HOUEL
+  region: Seine-et-Marne
+  title: Sénateur de la Seine-et-Marne (Ile-de-France)
+  name: HOUEL Michel
+- !ruby/object:Senator
+  url: /senateur/houpert_alain08069g.html
+  file: senateur*houpert_alain08069g.html
+  departement: Bourgogne
+  email: a.houpert@senat.fr
+  first_name: Alain
+  last_name: HOUPERT
+  region: Côte-d'Or
+  title: Sénateur de la Côte-d'Or (Bourgogne)
+  name: HOUPERT Alain
+- !ruby/object:Senator
+  url: /senateur/hue_robert04078q.html
+  file: senateur*hue_robert04078q.html
+  departement: Ile-de-France
+  email: robert.hue-senat@wanadoo.fr
+  first_name: Robert
+  last_name: HUE
+  region: Val-d'Oise
+  title: Sénateur du Val-d'Oise (Ile-de-France)
+  name: HUE Robert
+- !ruby/object:Senator
+  url: /senateur/humbert_jean_francois98028v.html
+  file: senateur*humbert_jean_francois98028v.html
+  departement: Franche-Comté
+  email: 
+  first_name: Jean-François
+  last_name: HUMBERT
+  region: Doubs
+  title: Sénateur du Doubs (Franche-Comté)
+  name: HUMBERT Jean-François
+- !ruby/object:Senator
+  url: /senateur/hummel_christiane04041b.html
+  file: senateur*hummel_christiane04041b.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: c.hummel@senat.fr
+  first_name: Christiane
+  last_name: HUMMEL
+  region: Var
+  title: Sénateur du Var (Provence-Alpes-Côte d'Azur)
+  name: HUMMEL Christiane
+- !ruby/object:Senator
+  url: /senateur/hure_benoit04097t.html
+  file: senateur*hure_benoit04097t.html
+  departement: Champagne-Ardenne
+  email: benoit.hure@wanadoo.fr
+  first_name: Benoît
+  last_name: HURÉ
+  region: Ardennes
+  title: Sénateur des Ardennes (Champagne-Ardenne)
+  name: HURÉ Benoît
+- !ruby/object:Senator
+  url: /senateur/husson_jean_francois11048n.html
+  file: senateur*husson_jean_francois11048n.html
+  departement: Lorraine
+  email: jf.husson@senat.fr
+  first_name: Jean-François
+  last_name: HUSSON
+  region: Meurthe-et-Moselle
+  title: Sénateur de la Meurthe-et-Moselle (Lorraine)
+  name: HUSSON Jean-François
+- !ruby/object:Senator
+  url: /senateur/hyest_jean_jacques95039l.html
+  file: senateur*hyest_jean_jacques95039l.html
+  departement: Ile-de-France
+  email: jj.hyest@senat.fr
+  first_name: Jean-Jacques
+  last_name: HYEST
+  region: Seine-et-Marne
+  title: Sénateur de la Seine-et-Marne (Ile-de-France)
+  name: HYEST Jean-Jacques
+- !ruby/object:Senator
+  url: /senateur/jarlier_pierre98027u.html
+  file: senateur*jarlier_pierre98027u.html
+  departement: Auvergne
+  email: p.jarlier@senat.fr
+  first_name: Pierre
+  last_name: JARLIER
+  region: Cantal
+  title: Sénateur du Cantal (Auvergne)
+  name: JARLIER Pierre
+- !ruby/object:Senator
+  url: /senateur/jeannerot_claude08067e.html
+  file: senateur*jeannerot_claude08067e.html
+  departement: Franche-Comté
+  email: c.jeannerot@senat.fr
+  first_name: Claude
+  last_name: JEANNEROT
+  region: Doubs
+  title: Sénateur du Doubs (Franche-Comté)
+  name: JEANNEROT Claude
+- !ruby/object:Senator
+  url: /senateur/joissains_sophie08044w.html
+  file: senateur*joissains_sophie08044w.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: s.joissains@senat.fr
+  first_name: Sophie
+  last_name: JOISSAINS
+  region: Bouches-du-Rhône
+  title: Sénateur des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: JOISSAINS Sophie
+- !ruby/object:Senator
+  url: /senateur/jouanno_chantal09001p.html
+  file: senateur*jouanno_chantal09001p.html
+  departement: Ile-de-France
+  email: c.jouanno@senat.fr
+  first_name: Chantal
+  last_name: JOUANNO
+  region: Paris
+  title: Sénatrice de Paris (Ile-de-France)
+  name: JOUANNO Chantal
+- !ruby/object:Senator
+  url: /senateur/kaltenbach_philippe11084s.html
+  file: senateur*kaltenbach_philippe11084s.html
+  departement: Ile-de-France
+  email: p.kaltenbach@senat.fr
+  first_name: Philippe
+  last_name: KALTENBACH
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: KALTENBACH Philippe
+- !ruby/object:Senator
+  url: /senateur/kammermann_christiane04036e.html
+  file: senateur*kammermann_christiane04036e.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: c.kammermann@senat.fr
+  first_name: Christiane
+  last_name: KAMMERMANN
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: KAMMERMANN Christiane
+- !ruby/object:Senator
+  url: /senateur/karoutchi_roger99004r.html
+  file: senateur*karoutchi_roger99004r.html
+  departement: Ile-de-France
+  email: r.karoutchi@senat.fr
+  first_name: Roger
+  last_name: KAROUTCHI
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: KAROUTCHI Roger
+- !ruby/object:Senator
+  url: /senateur/keller_fabienne04061f.html
+  file: senateur*keller_fabienne04061f.html
+  departement: Alsace
+  email: f.keller@senat.fr
+  first_name: Fabienne
+  last_name: KELLER
+  region: Bas-Rhin
+  title: Sénateur du Bas-Rhin (Alsace)
+  name: KELLER Fabienne
+- !ruby/object:Senator
+  url: /senateur/kerdraon_ronan10003h.html
+  file: senateur*kerdraon_ronan10003h.html
+  departement: Bretagne
+  email: r.kerdraon@senat.fr
+  first_name: Ronan
+  last_name: KERDRAON
+  region: Côtes-d'Armor
+  title: Sénateur des Côtes-d'Armor (Bretagne)
+  name: KERDRAON Ronan
+- !ruby/object:Senator
+  url: /senateur/khiari_bariza04077p.html
+  file: senateur*khiari_bariza04077p.html
+  departement: Ile-de-France
+  email: b.khiari@senat.fr
+  first_name: Bariza
+  last_name: KHIARI
+  region: Paris
+  title: Sénatrice de Paris (Ile-de-France)
+  name: KHIARI Bariza
+- !ruby/object:Senator
+  url: /senateur/kles_virginie08032s.html
+  file: senateur*kles_virginie08032s.html
+  departement: Bretagne
+  email: v.kles@senat.fr
+  first_name: Virginie
+  last_name: KLÈS
+  region: Ille-et-Vilaine
+  title: Sénateur d'Ille-et-Vilaine (Bretagne)
+  name: KLÈS Virginie
+- !ruby/object:Senator
+  url: /senateur/krattinger_yves03001n.html
+  file: senateur*krattinger_yves03001n.html
+  departement: Franche-Comté
+  email: y.krattinger@senat.fr
+  first_name: Yves
+  last_name: KRATTINGER
+  region: Haute-Saône
+  title: Sénateur de la Haute-Saône (Franche-Comté)
+  name: KRATTINGER Yves
+- !ruby/object:Senator
+  url: /senateur/labazee_georges11112d.html
+  file: senateur*labazee_georges11112d.html
+  departement: Aquitaine
+  email: g.labazee@senat.fr
+  first_name: Georges
+  last_name: LABAZÉE
+  region: Pyrénées-Atlantiques
+  title: Sénateur des Pyrénées-Atlantiques (Aquitaine)
+  name: LABAZÉE Georges
+- !ruby/object:Senator
+  url: /senateur/labbe_joel11099a.html
+  file: senateur*labbe_joel11099a.html
+  departement: Bretagne
+  email: j.labbe@senat.fr
+  first_name: Joël
+  last_name: LABBÉ
+  region: Morbihan
+  title: Sénateur du Morbihan (Bretagne)
+  name: LABBÉ Joël
+- !ruby/object:Senator
+  url: /senateur/laborde_francoise08031r.html
+  file: senateur*laborde_francoise08031r.html
+  departement: Midi-Pyrénées
+  email: f.laborde@senat.fr
+  first_name: Françoise
+  last_name: LABORDE
+  region: Haute-Garonne
+  title: Sénatrice de la Haute-Garonne (Midi-Pyrénées)
+  name: LABORDE Françoise
+- !ruby/object:Senator
+  url: /senateur/lamenie_marc07029t.html
+  file: senateur*lamenie_marc07029t.html
+  departement: Champagne-Ardenne
+  email: m.lamenie@senat.fr
+  first_name: Marc
+  last_name: LAMÉNIE
+  region: Ardennes
+  title: Sénateur des Ardennes (Champagne-Ardenne)
+  name: LAMÉNIE Marc
+- !ruby/object:Senator
+  url: /senateur/lamure_elisabeth04049k.html
+  file: senateur*lamure_elisabeth04049k.html
+  departement: Rhône-Alpes
+  email: e.lamure@senat.fr
+  first_name: ''
+  last_name: Élisabeth LAMURE
+  region: Rhône
+  title: Sénateur du Rhône (Rhône-Alpes)
+  name: LAMURE Élisabeth
+- !ruby/object:Senator
+  url: /senateur/larcher_gerard86034e.html
+  file: senateur*larcher_gerard86034e.html
+  departement: Ile-de-France
+  email: g.larcher@senat.fr
+  first_name: Gérard
+  last_name: LARCHER
+  region: Yvelines
+  title: Sénateur des Yvelines (Ile-de-France)
+  name: LARCHER Gérard
+- !ruby/object:Senator
+  url: /senateur/larcher_serge04094q.html
+  file: senateur*larcher_serge04094q.html
+  departement: Martinique
+  email: s.larcher@senat.fr
+  first_name: Serge
+  last_name: LARCHER
+  region: Martinique
+  title: Sénateur de la Martinique (Martinique)
+  name: LARCHER Serge
+- !ruby/object:Senator
+  url: /senateur/lasserre_jean_jacques11111c.html
+  file: senateur*lasserre_jean_jacques11111c.html
+  departement: Aquitaine
+  email: jj.lasserre@senat.fr
+  first_name: Jean-Jacques
+  last_name: LASSERRE
+  region: Pyrénées-Atlantiques
+  title: Sénateur des Pyrénées-Atlantiques (Aquitaine)
+  name: LASSERRE Jean-Jacques
+- !ruby/object:Senator
+  url: /senateur/laufoaulu_robert98005n.html
+  file: senateur*laufoaulu_robert98005n.html
+  departement: Iles Wallis et Futuna
+  email: r.laufoaulu@senat.fr
+  first_name: Robert
+  last_name: LAUFOAULU
+  region: Iles Wallis et Futuna
+  title: Sénateur des Iles Wallis et Futuna (Iles Wallis et Futuna)
+  name: LAUFOAULU Robert
+- !ruby/object:Senator
+  url: /senateur/laurent_daniel08015r.html
+  file: senateur*laurent_daniel08015r.html
+  departement: Poitou-Charentes
+  email: d.laurentsenateur17@orange.fr
+  first_name: Daniel
+  last_name: LAURENT
+  region: Charente-Maritime
+  title: Sénateur de la Charente-Maritime (Poitou-Charentes)
+  name: LAURENT Daniel
+- !ruby/object:Senator
+  url: /senateur/laurent_perrigot_francoise08063a.html
+  file: senateur*laurent_perrigot_francoise08063a.html
+  departement: Languedoc-Roussillon
+  email: f.laurent-perrigot@senat.fr
+  first_name: Françoise
+  last_name: LAURENT-PERRIGOT
+  region: Gard
+  title: Sénateur du Gard (Languedoc-Roussillon)
+  name: LAURENT-PERRIGOT Françoise
+- !ruby/object:Senator
+  url: /senateur/le_cam_gerard98038x.html
+  file: senateur*le_cam_gerard98038x.html
+  departement: Bretagne
+  email: Gerard.Lecam@wanadoo.fr
+  first_name: Gérard
+  last_name: LE CAM
+  region: Côtes-d'Armor
+  title: Sénateur des Côtes-d'Armor (Bretagne)
+  name: LE CAM Gérard
+- !ruby/object:Senator
+  url: /senateur/lecerf_jean_rene01042p.html
+  file: senateur*lecerf_jean_rene01042p.html
+  departement: Nord-Pas-de-Calais
+  email: jr.lecerf@senat.fr
+  first_name: Jean-René
+  last_name: LECERF
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: LECERF Jean-René
+- !ruby/object:Senator
+  url: /senateur/leconte_jean_yves11026g.html
+  file: senateur*leconte_jean_yves11026g.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: jy.leconte@senat.fr
+  first_name: Jean-Yves
+  last_name: LECONTE
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: LECONTE Jean-Yves
+- !ruby/object:Senator
+  url: /senateur/lefevre_antoine08010l.html
+  file: senateur*lefevre_antoine08010l.html
+  departement: Picardie
+  email: a.lefevre@senat.fr
+  first_name: Antoine
+  last_name: LEFÈVRE
+  region: Aisne
+  title: Sénateur de l'Aisne (Picardie)
+  name: LEFÈVRE Antoine
+- !ruby/object:Senator
+  url: /senateur/legendre_jacques92031p.html
+  file: senateur*legendre_jacques92031p.html
+  departement: Nord-Pas-de-Calais
+  email: jacques.legendre@wanadoo.fr
+  first_name: Jacques
+  last_name: LEGENDRE
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: LEGENDRE Jacques
+- !ruby/object:Senator
+  url: /senateur/de_legge_dominique08034u.html
+  file: senateur*de_legge_dominique08034u.html
+  departement: Bretagne
+  email: d.de-legge@senat.fr
+  first_name: Dominique
+  last_name: de LEGGE
+  region: Ille-et-Vilaine
+  title: Sénateur d'Ille-et-Vilaine (Bretagne)
+  name: de LEGGE Dominique
+- !ruby/object:Senator
+  url: /senateur/leleux_jean_pierre08039a.html
+  file: senateur*leleux_jean_pierre08039a.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: jp.leleux@senat.fr
+  first_name: Jean-Pierre
+  last_name: LELEUX
+  region: Alpes-Maritimes
+  title: Sénateur des Alpes-Maritimes (Provence-Alpes-Côte d'Azur)
+  name: LELEUX Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/le_menn_jacky08037x.html
+  file: senateur*le_menn_jacky08037x.html
+  departement: Bretagne
+  email: j.le-menn@senat.fr
+  first_name: Jacky
+  last_name: LE MENN
+  region: Ille-et-Vilaine
+  title: Sénateur d'Ille-et-Vilaine (Bretagne)
+  name: LE MENN Jacky
+- !ruby/object:Senator
+  url: /senateur/lenoir_jean_claude11100y.html
+  file: senateur*lenoir_jean_claude11100y.html
+  departement: Basse-Normandie
+  email: jc.lenoir@senat.fr
+  first_name: Jean-Claude
+  last_name: LENOIR
+  region: Orne
+  title: Sénateur de l'Orne (Basse-Normandie)
+  name: LENOIR Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/lepage_claudine08017t.html
+  file: senateur*lepage_claudine08017t.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: c.lepage@senat.fr
+  first_name: Claudine
+  last_name: LEPAGE
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénatrice représentant les Français établis hors de France
+  name: LEPAGE Claudine
+- !ruby/object:Senator
+  url: /senateur/leroy_jean_claude11059r.html
+  file: senateur*leroy_jean_claude11059r.html
+  departement: Nord-Pas-de-Calais
+  email: jc.leroy@senat.fr
+  first_name: Jean-Claude
+  last_name: LEROY
+  region: Pas-de-Calais
+  title: Sénateur du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: LEROY Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/leroy_philippe01061s.html
+  file: senateur*leroy_philippe01061s.html
+  departement: Lorraine
+  email: p.leroy@senat.fr
+  first_name: Philippe
+  last_name: LEROY
+  region: Moselle
+  title: Sénateur de la Moselle (Lorraine)
+  name: LEROY Philippe
+- !ruby/object:Senator
+  url: /senateur/le_scouarnec_michel11098y.html
+  file: senateur*le_scouarnec_michel11098y.html
+  departement: Bretagne
+  email: m.le-scouarnec@senat.fr
+  first_name: Michel
+  last_name: LE SCOUARNEC
+  region: Morbihan
+  title: Sénateur du Morbihan (Bretagne)
+  name: LE SCOUARNEC Michel
+- !ruby/object:Senator
+  url: /senateur/letard_valerie01043q.html
+  file: senateur*letard_valerie01043q.html
+  departement: Nord-Pas-de-Calais
+  email: 
+  first_name: Valérie
+  last_name: LÉTARD
+  region: Nord
+  title: Sénatrice du Nord (Nord-Pas-de-Calais)
+  name: LÉTARD Valérie
+- !ruby/object:Senator
+  url: /senateur/le_vern_alain07025p.html
+  file: senateur*le_vern_alain07025p.html
+  departement: Haute-Normandie
+  email: 
+  first_name: Alain
+  last_name: LE VERN
+  region: Seine-Maritime
+  title: Sénateur de la Seine-Maritime (Haute-Normandie)
+  name: LE VERN Alain
+- !ruby/object:Senator
+  url: /senateur/lienemann_marie_noelle11077t.html
+  file: senateur*lienemann_marie_noelle11077t.html
+  departement: Ile-de-France
+  email: mn.lienemann@senat.fr
+  first_name: Marie-Noëlle
+  last_name: LIENEMANN
+  region: Paris
+  title: Sénatrice de Paris (Ile-de-France)
+  name: LIENEMANN Marie-Noëlle
+- !ruby/object:Senator
+  url: /senateur/lipietz_helene12035a.html
+  file: senateur*lipietz_helene12035a.html
+  departement: Ile-de-France
+  email: 
+  first_name: Hélène
+  last_name: LIPIETZ
+  region: Seine-et-Marne
+  title: Sénatrice de la Seine-et-Marne (Ile-de-France)
+  name: LIPIETZ Hélène
+- !ruby/object:Senator
+  url: /senateur/longuet_gerard01048v.html
+  file: senateur*longuet_gerard01048v.html
+  departement: Lorraine
+  email: 
+  first_name: Gérard
+  last_name: LONGUET
+  region: Meuse
+  title: Sénateur de la Meuse (Lorraine)
+  name: LONGUET Gérard
+- !ruby/object:Senator
+  url: /senateur/lorgeoux_jeanny11106f.html
+  file: senateur*lorgeoux_jeanny11106f.html
+  departement: Centre
+  email: j.lorgeoux@senat.fr
+  first_name: Jeanny
+  last_name: LORGEOUX
+  region: Loir-et-Cher
+  title: Sénateur de Loir-et-Cher (Centre)
+  name: LORGEOUX Jeanny
+- !ruby/object:Senator
+  url: /senateur/lorrain_jean_louis95045j.html
+  file: senateur*lorrain_jean_louis95045j.html
+  departement: Alsace
+  email: jl.lorrain@senat.fr
+  first_name: Jean-Louis
+  last_name: LORRAIN
+  region: Haut-Rhin
+  title: Sénateur du Haut-Rhin (Alsace)
+  name: LORRAIN Jean-Louis
+- !ruby/object:Senator
+  url: /senateur/lozach_jean_jacques08012n.html
+  file: senateur*lozach_jean_jacques08012n.html
+  departement: Limousin
+  email: jj.lozach@senat.fr
+  first_name: Jean-Jacques
+  last_name: LOZACH
+  region: Creuse
+  title: Sénateur de la Creuse (Limousin)
+  name: LOZACH Jean-Jacques
+- !ruby/object:Senator
+  url: /senateur/du_luart_roland77043e.html
+  file: senateur*du_luart_roland77043e.html
+  departement: Pays de la Loire
+  email: r.duluart@senat.fr
+  first_name: Roland
+  last_name: du LUART
+  region: Sarthe
+  title: Sénateur de la Sarthe (Pays de la Loire)
+  name: du LUART Roland
+- !ruby/object:Senator
+  url: /senateur/madec_roger04079r.html
+  file: senateur*madec_roger04079r.html
+  departement: Ile-de-France
+  email: r.madec@senat.fr
+  first_name: Roger
+  last_name: MADEC
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: MADEC Roger
+- !ruby/object:Senator
+  url: /senateur/madrelle_philippe80027e.html
+  file: senateur*madrelle_philippe80027e.html
+  departement: Aquitaine
+  email: 
+  first_name: Philippe
+  last_name: MADRELLE
+  region: Gironde
+  title: Sénateur de la Gironde (Aquitaine)
+  name: MADRELLE Philippe
+- !ruby/object:Senator
+  url: /senateur/magner_jacques_bernard11104d.html
+  file: senateur*magner_jacques_bernard11104d.html
+  departement: Auvergne
+  email: jb.magner@senat.fr
+  first_name: Jacques-Bernard
+  last_name: MAGNER
+  region: Puy-de-Dôme
+  title: Sénateur du Puy-de-Dôme (Auvergne)
+  name: MAGNER Jacques-Bernard
+- !ruby/object:Senator
+  url: /senateur/magras_michel08019v.html
+  file: senateur*magras_michel08019v.html
+  departement: Saint-Barthélemy
+  email: m.magras@senat.fr
+  first_name: Michel
+  last_name: MAGRAS
+  region: Saint-Barthélemy
+  title: Sénateur de Saint-Barthélemy (Saint-Barthélemy)
+  name: MAGRAS Michel
+- !ruby/object:Senator
+  url: /senateur/marc_francois98046x.html
+  file: senateur*marc_francois98046x.html
+  departement: Bretagne
+  email: f.marc@senat.fr
+  first_name: François
+  last_name: MARC
+  region: Finistère
+  title: Sénateur du Finistère (Bretagne)
+  name: MARC François
+- !ruby/object:Senator
+  url: /senateur/marini_philippe92035t.html
+  file: senateur*marini_philippe92035t.html
+  departement: Picardie
+  email: p.marini@senat.fr
+  first_name: Philippe
+  last_name: MARINI
+  region: Oise
+  title: Sénateur de l'Oise (Picardie)
+  name: MARINI Philippe
+- !ruby/object:Senator
+  url: /senateur/marseille_herve11085t.html
+  file: senateur*marseille_herve11085t.html
+  departement: Ile-de-France
+  email: h.marseille@senat.fr
+  first_name: Hervé
+  last_name: MARSEILLE
+  region: Hauts-de-Seine
+  title: Sénateur des Hauts-de-Seine (Ile-de-France)
+  name: MARSEILLE Hervé
+- !ruby/object:Senator
+  url: /senateur/martin_pierre95047l.html
+  file: senateur*martin_pierre95047l.html
+  departement: Picardie
+  email: p.martin@senat.fr
+  first_name: Pierre
+  last_name: MARTIN
+  region: Somme
+  title: Sénateur de la Somme (Picardie)
+  name: MARTIN Pierre
+- !ruby/object:Senator
+  url: /senateur/massion_marc95003x.html
+  file: senateur*massion_marc95003x.html
+  departement: Haute-Normandie
+  email: m.massion@senat.fr
+  first_name: Marc
+  last_name: MASSION
+  region: Seine-Maritime
+  title: Sénateur de la Seine-Maritime (Haute-Normandie)
+  name: MASSION Marc
+- !ruby/object:Senator
+  url: /senateur/masson_jean_louis01060r.html
+  file: senateur*masson_jean_louis01060r.html
+  departement: Lorraine
+  email: 
+  first_name: Jean Louis
+  last_name: MASSON
+  region: Moselle
+  title: Sénateur de la Moselle (Lorraine)
+  name: MASSON Jean Louis
+- !ruby/object:Senator
+  url: /senateur/maurey_herve08009t.html
+  file: senateur*maurey_herve08009t.html
+  departement: Haute-Normandie
+  email: h.maurey@senat.fr
+  first_name: Hervé
+  last_name: MAUREY
+  region: Eure
+  title: Sénateur de l'Eure (Haute-Normandie)
+  name: MAUREY Hervé
+- !ruby/object:Senator
+  url: /senateur/mayet_jean_francois08062y.html
+  file: senateur*mayet_jean_francois08062y.html
+  departement: Centre
+  email: jf.mayet@senat.fr
+  first_name: Jean-François
+  last_name: MAYET
+  region: Indre
+  title: Sénateur de l'Indre (Centre)
+  name: MAYET Jean-François
+- !ruby/object:Senator
+  url: /senateur/mazars_stephane12039e.html
+  file: senateur*mazars_stephane12039e.html
+  departement: Midi-Pyrénées
+  email: 
+  first_name: Stéphane
+  last_name: MAZARS
+  region: Aveyron
+  title: Sénateur de l'Aveyron (Midi-Pyrénées)
+  name: MAZARS Stéphane
+- !ruby/object:Senator
+  url: /senateur/mazuir_rachel08053x.html
+  file: senateur*mazuir_rachel08053x.html
+  departement: Rhône-Alpes
+  email: r.mazuir@senat.fr
+  first_name: Rachel
+  last_name: MAZUIR
+  region: Ain
+  title: Sénateur de l'Ain (Rhône-Alpes)
+  name: MAZUIR Rachel
+- !ruby/object:Senator
+  url: /senateur/melot_colette04057k.html
+  file: senateur*melot_colette04057k.html
+  departement: Ile-de-France
+  email: c.melot@senat.fr
+  first_name: Colette
+  last_name: MÉLOT
+  region: Seine-et-Marne
+  title: Sénateur de la Seine-et-Marne (Ile-de-France)
+  name: MÉLOT Colette
+- !ruby/object:Senator
+  url: /senateur/merceron_jean_claude04083m.html
+  file: senateur*merceron_jean_claude04083m.html
+  departement: Pays de la Loire
+  email: jc.merceron@senat.fr
+  first_name: Jean-Claude
+  last_name: MERCERON
+  region: Vendée
+  title: Sénateur de la Vendée (Pays de la Loire)
+  name: MERCERON Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/mercier_michel95049n.html
+  file: senateur*mercier_michel95049n.html
+  departement: Rhône-Alpes
+  email: m.mercier@senat.fr
+  first_name: Michel
+  last_name: MERCIER
+  region: Rhône
+  title: Sénateur du Rhône (Rhône-Alpes)
+  name: MERCIER Michel
+- !ruby/object:Senator
+  url: /senateur/meunier_michelle11067r.html
+  file: senateur*meunier_michelle11067r.html
+  departement: Pays de la Loire
+  email: m.meunier@senat.fr
+  first_name: Michelle
+  last_name: MEUNIER
+  region: Loire-Atlantique
+  title: Sénatrice de la Loire-Atlantique (Pays de la Loire)
+  name: MEUNIER Michelle
+- !ruby/object:Senator
+  url: /senateur/mezard_jacques08051v.html
+  file: senateur*mezard_jacques08051v.html
+  departement: Auvergne
+  email: j.mezard@senat.fr
+  first_name: Jacques
+  last_name: MÉZARD
+  region: Cantal
+  title: Sénateur du Cantal (Auvergne)
+  name: MÉZARD Jacques
+- !ruby/object:Senator
+  url: /senateur/michel_danielle11014c.html
+  file: senateur*michel_danielle11014c.html
+  departement: Aquitaine
+  email: d.michel@senat.fr
+  first_name: Danielle
+  last_name: MICHEL
+  region: Landes
+  title: Sénateur des Landes (Aquitaine)
+  name: MICHEL Danielle
+- !ruby/object:Senator
+  url: /senateur/michel_jean_pierre04084n.html
+  file: senateur*michel_jean_pierre04084n.html
+  departement: Franche-Comté
+  email: jp.michel@senat.fr
+  first_name: Jean-Pierre
+  last_name: MICHEL
+  region: Haute-Saône
+  title: Sénateur de la Haute-Saône (Franche-Comté)
+  name: MICHEL Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/milon_alain04092n.html
+  file: senateur*milon_alain04092n.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: a.milon@senat.fr
+  first_name: Alain
+  last_name: MILON
+  region: Vaucluse
+  title: Sénateur de Vaucluse (Provence-Alpes-Côte d'Azur)
+  name: MILON Alain
+- !ruby/object:Senator
+  url: /senateur/miquel_gerard92039x.html
+  file: senateur*miquel_gerard92039x.html
+  departement: Midi-Pyrénées
+  email: gerard-miquel@wanadoo.fr
+  first_name: Gérard
+  last_name: MIQUEL
+  region: Lot
+  title: Sénateur du Lot (Midi-Pyrénées)
+  name: MIQUEL Gérard
+- !ruby/object:Senator
+  url: /senateur/mirassou_jean_jacques08033t.html
+  file: senateur*mirassou_jean_jacques08033t.html
+  departement: Midi-Pyrénées
+  email: jj.mirassou@senat.fr
+  first_name: Jean-Jacques
+  last_name: MIRASSOU
+  region: Haute-Garonne
+  title: Sénateur de la Haute-Garonne (Midi-Pyrénées)
+  name: MIRASSOU Jean-Jacques
+- !ruby/object:Senator
+  url: /senateur/mohamed_soilihi_thani11072n.html
+  file: senateur*mohamed_soilihi_thani11072n.html
+  departement: Mayotte
+  email: t.mohamed-soilihi@senat.fr
+  first_name: Thani
+  last_name: MOHAMED SOILIHI
+  region: Mayotte
+  title: Sénateur de Mayotte (Mayotte)
+  name: MOHAMED SOILIHI Thani
+- !ruby/object:Senator
+  url: /senateur/de_montesquiou_aymeri98032r.html
+  file: senateur*de_montesquiou_aymeri98032r.html
+  departement: Midi-Pyrénées
+  email: a.demontesquiou@senat.fr
+  first_name: Aymeri
+  last_name: de MONTESQUIOU
+  region: Gers
+  title: Sénateur du Gers (Midi-Pyrénées)
+  name: de MONTESQUIOU Aymeri
+- !ruby/object:Senator
+  url: /senateur/de_montgolfier_alberic08011m.html
+  file: senateur*de_montgolfier_alberic08011m.html
+  departement: Centre
+  email: a.de-montgolfier@senat.fr
+  first_name: Albéric
+  last_name: de MONTGOLFIER
+  region: Eure-et-Loir
+  title: Sénateur d'Eure-et-Loir (Centre)
+  name: de MONTGOLFIER Albéric
+- !ruby/object:Senator
+  url: /senateur/morin_desailly_catherine04070g.html
+  file: senateur*morin_desailly_catherine04070g.html
+  departement: Haute-Normandie
+  email: c.morin-desailly@senat.fr
+  first_name: Catherine
+  last_name: MORIN-DESAILLY
+  region: Seine-Maritime
+  title: Sénatrice de la Seine-Maritime (Haute-Normandie)
+  name: MORIN-DESAILLY Catherine
+- !ruby/object:Senator
+  url: /senateur/nachbar_philippe92040q.html
+  file: senateur*nachbar_philippe92040q.html
+  departement: Lorraine
+  email: 
+  first_name: Philippe
+  last_name: NACHBAR
+  region: Meurthe-et-Moselle
+  title: Sénateur de la Meurthe-et-Moselle (Lorraine)
+  name: NACHBAR Philippe
+- !ruby/object:Senator
+  url: /senateur/namy_christian11082q.html
+  file: senateur*namy_christian11082q.html
+  departement: Lorraine
+  email: c.namy@senat.fr
+  first_name: Christian
+  last_name: NAMY
+  region: Meuse
+  title: Sénateur de la Meuse (Lorraine)
+  name: NAMY Christian
+- !ruby/object:Senator
+  url: /senateur/navarro_robert08021p.html
+  file: senateur*navarro_robert08021p.html
+  departement: Languedoc-Roussillon
+  email: r.navarro@senat.fr
+  first_name: Robert
+  last_name: NAVARRO
+  region: Hérault
+  title: Sénateur de l'Hérault (Languedoc-Roussillon)
+  name: NAVARRO Robert
+- !ruby/object:Senator
+  url: /senateur/negre_louis08042u.html
+  file: senateur*negre_louis08042u.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: l.negre@senat.fr
+  first_name: Louis
+  last_name: NÈGRE
+  region: Alpes-Maritimes
+  title: Sénateur des Alpes-Maritimes (Provence-Alpes-Côte d'Azur)
+  name: NÈGRE Louis
+- !ruby/object:Senator
+  url: /senateur/neri_alain11105e.html
+  file: senateur*neri_alain11105e.html
+  departement: Auvergne
+  email: a.neri@senat.fr
+  first_name: Alain
+  last_name: NÉRI
+  region: Puy-de-Dôme
+  title: Sénateur du Puy-de-Dôme (Auvergne)
+  name: NÉRI Alain
+- !ruby/object:Senator
+  url: /senateur/nicoux_renee09012s.html
+  file: senateur*nicoux_renee09012s.html
+  departement: Limousin
+  email: r.nicoux@senat.fr
+  first_name: Renée
+  last_name: NICOUX
+  region: Creuse
+  title: Sénatrice de la Creuse (Limousin)
+  name: NICOUX Renée
+- !ruby/object:Senator
+  url: /senateur/pasquet_isabelle08026u.html
+  file: senateur*pasquet_isabelle08026u.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: i.pasquet@senat.fr
+  first_name: Isabelle
+  last_name: PASQUET
+  region: Bouches-du-Rhône
+  title: Sénatrice des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: PASQUET Isabelle
+- !ruby/object:Senator
+  url: /senateur/pastor_jean_marc95052h.html
+  file: senateur*pastor_jean_marc95052h.html
+  departement: Midi-Pyrénées
+  email: j-m.pastor@wanadoo.fr
+  first_name: Jean-Marc
+  last_name: PASTOR
+  region: Tarn
+  title: Sénateur du Tarn (Midi-Pyrénées)
+  name: PASTOR Jean-Marc
+- !ruby/object:Senator
+  url: /senateur/patient_georges08073c.html
+  file: senateur*patient_georges08073c.html
+  departement: Guyane
+  email: g.patient@senat.fr
+  first_name: Georges
+  last_name: PATIENT
+  region: Guyane
+  title: Sénateur de la Guyane (Guyane)
+  name: PATIENT Georges
+- !ruby/object:Senator
+  url: /senateur/patriat_francois08061x.html
+  file: senateur*patriat_francois08061x.html
+  departement: Bourgogne
+  email: f.patriat@senat.fr
+  first_name: François
+  last_name: PATRIAT
+  region: Côte-d'Or
+  title: Sénateur de la Côte-d'Or (Bourgogne)
+  name: PATRIAT François
+- !ruby/object:Senator
+  url: /senateur/paul_philippe08047a.html
+  file: senateur*paul_philippe08047a.html
+  departement: Bretagne
+  email: p.paul@senat.fr
+  first_name: Philippe
+  last_name: PAUL
+  region: Finistère
+  title: Sénateur du Finistère (Bretagne)
+  name: PAUL Philippe
+- !ruby/object:Senator
+  url: /senateur/percheron_daniel83047w.html
+  file: senateur*percheron_daniel83047w.html
+  departement: Nord-Pas-de-Calais
+  email: d.percheron@senat.fr
+  first_name: Daniel
+  last_name: PERCHERON
+  region: Pas-de-Calais
+  title: Sénateur du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: PERCHERON Daniel
+- !ruby/object:Senator
+  url: /senateur/peyronnet_jean_claude95055l.html
+  file: senateur*peyronnet_jean_claude95055l.html
+  departement: Limousin
+  email: jc.peyronnet@senat.fr
+  first_name: Jean-Claude
+  last_name: PEYRONNET
+  region: Haute-Vienne
+  title: Sénateur de la Haute-Vienne (Limousin)
+  name: PEYRONNET Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/pierre_jackie04088s.html
+  file: senateur*pierre_jackie04088s.html
+  departement: Lorraine
+  email: j.pierre@senat.fr
+  first_name: Jackie
+  last_name: PIERRE
+  region: Vosges
+  title: Sénateur des Vosges (Lorraine)
+  name: PIERRE Jackie
+- !ruby/object:Senator
+  url: /senateur/pillet_francois07034q.html
+  file: senateur*pillet_francois07034q.html
+  departement: Centre
+  email: f.pillet@senat.fr
+  first_name: François
+  last_name: PILLET
+  region: Cher
+  title: Sénateur du Cher (Centre)
+  name: PILLET François
+- !ruby/object:Senator
+  url: /senateur/pintat_xavier98021n.html
+  file: senateur*pintat_xavier98021n.html
+  departement: Aquitaine
+  email: x.pintat@senat.fr
+  first_name: Xavier
+  last_name: PINTAT
+  region: Gironde
+  title: Sénateur de la Gironde (Aquitaine)
+  name: PINTAT Xavier
+- !ruby/object:Senator
+  url: /senateur/pinton_louis07032n.html
+  file: senateur*pinton_louis07032n.html
+  departement: Centre
+  email: l.pinton@senat.fr
+  first_name: Louis
+  last_name: PINTON
+  region: Indre
+  title: Sénateur de l'Indre (Centre)
+  name: PINTON Louis
+- !ruby/object:Senator
+  url: /senateur/piras_bernard96006f.html
+  file: senateur*piras_bernard96006f.html
+  departement: Rhône-Alpes
+  email: bernard.piras@wanadoo.fr
+  first_name: Bernard
+  last_name: PIRAS
+  region: Drôme
+  title: Sénateur de la Drôme (Rhône-Alpes)
+  name: PIRAS Bernard
+- !ruby/object:Senator
+  url: /senateur/place_jean_vincent11069t.html
+  file: senateur*place_jean_vincent11069t.html
+  departement: Ile-de-France
+  email: jv.place@senat.fr
+  first_name: Jean-Vincent
+  last_name: PLACÉ
+  region: Essonne
+  title: Sénateur de l'Essonne (Ile-de-France)
+  name: PLACÉ Jean-Vincent
+- !ruby/object:Senator
+  url: /senateur/plancade_jean_pierre98010k.html
+  file: senateur*plancade_jean_pierre98010k.html
+  departement: Midi-Pyrénées
+  email: jp.plancade@senat.fr
+  first_name: Jean-Pierre
+  last_name: PLANCADE
+  region: Haute-Garonne
+  title: Sénateur de la Haute-Garonne (Midi-Pyrénées)
+  name: PLANCADE Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/pointereau_remy05012a.html
+  file: senateur*pointereau_remy05012a.html
+  departement: Centre
+  email: r.pointereau@senat.fr
+  first_name: Rémy
+  last_name: POINTEREAU
+  region: Cher
+  title: Sénateur du Cher (Centre)
+  name: POINTEREAU Rémy
+- !ruby/object:Senator
+  url: /senateur/poncelet_christian77058m.html
+  file: senateur*poncelet_christian77058m.html
+  departement: Lorraine
+  email: c.poncelet@senat.fr
+  first_name: Christian
+  last_name: PONCELET
+  region: Vosges
+  title: Sénateur des Vosges (Lorraine)
+  name: PONCELET Christian
+- !ruby/object:Senator
+  url: /senateur/poniatowski_ladislas98050t.html
+  file: senateur*poniatowski_ladislas98050t.html
+  departement: Haute-Normandie
+  email: l.poniatowski@senat.fr
+  first_name: Ladislas
+  last_name: PONIATOWSKI
+  region: Eure
+  title: Sénateur de l'Eure (Haute-Normandie)
+  name: PONIATOWSKI Ladislas
+- !ruby/object:Senator
+  url: /senateur/portelli_hugues04074l.html
+  file: senateur*portelli_hugues04074l.html
+  departement: Ile-de-France
+  email: h.portelli@senat.fr
+  first_name: Hugues
+  last_name: PORTELLI
+  region: Val-d'Oise
+  title: Sénateur du Val-d'Oise (Ile-de-France)
+  name: PORTELLI Hugues
+- !ruby/object:Senator
+  url: /senateur/povinelli_roland08029x.html
+  file: senateur*povinelli_roland08029x.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: r.povinelli@senat.fr
+  first_name: Roland
+  last_name: POVINELLI
+  region: Bouches-du-Rhône
+  title: Sénateur des Bouches-du-Rhône (Provence-Alpes-Côte d'Azur)
+  name: POVINELLI Roland
+- !ruby/object:Senator
+  url: /senateur/pozzo_di_borgo_yves04080j.html
+  file: senateur*pozzo_di_borgo_yves04080j.html
+  departement: Ile-de-France
+  email: y.pozzodiborgo@senat.fr
+  first_name: Yves
+  last_name: di POZZO BORGO
+  region: Paris
+  title: Sénateur de Paris (Ile-de-France)
+  name: POZZO di BORGO Yves
+- !ruby/object:Senator
+  url: /senateur/primas_sophie11090q.html
+  file: senateur*primas_sophie11090q.html
+  departement: Ile-de-France
+  email: s.primas@senat.fr
+  first_name: Sophie
+  last_name: PRIMAS
+  region: Yvelines
+  title: Sénateur des Yvelines (Ile-de-France)
+  name: PRIMAS Sophie
+- !ruby/object:Senator
+  url: /senateur/printz_gisele96007g.html
+  file: senateur*printz_gisele96007g.html
+  departement: Lorraine
+  email: Gisele.Printz@wanadoo.fr
+  first_name: Gisèle
+  last_name: PRINTZ
+  region: Moselle
+  title: Sénatrice de la Moselle (Lorraine)
+  name: PRINTZ Gisèle
+- !ruby/object:Senator
+  url: /senateur/procaccia_catherine04043d.html
+  file: senateur*procaccia_catherine04043d.html
+  departement: Ile-de-France
+  email: c.procaccia@senat.fr
+  first_name: Catherine
+  last_name: PROCACCIA
+  region: Val-de-Marne
+  title: Sénateur du Val-de-Marne (Ile-de-France)
+  name: PROCACCIA Catherine
+- !ruby/object:Senator
+  url: /senateur/raffarin_jean_pierre95059q.html
+  file: senateur*raffarin_jean_pierre95059q.html
+  departement: Poitou-Charentes
+  email: 
+  first_name: Jean-Pierre
+  last_name: RAFFARIN
+  region: Vienne
+  title: Sénateur de la Vienne (Poitou-Charentes)
+  name: RAFFARIN Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/rainaud_marcel06005f.html
+  file: senateur*rainaud_marcel06005f.html
+  departement: Languedoc-Roussillon
+  email: marcel.rainaud@gmail.com
+  first_name: Marcel
+  last_name: RAINAUD
+  region: Aude
+  title: Sénateur de l'Aude (Languedoc-Roussillon)
+  name: RAINAUD Marcel
+- !ruby/object:Senator
+  url: /senateur/de_raincourt_henri86044g.html
+  file: senateur*de_raincourt_henri86044g.html
+  departement: Bourgogne
+  email: h.deraincourt@senat.fr
+  first_name: Henri
+  last_name: de RAINCOURT
+  region: Yonne
+  title: Sénateur de l'Yonne (Bourgogne)
+  name: de RAINCOURT Henri
+- !ruby/object:Senator
+  url: /senateur/raoul_daniel01016m.html
+  file: senateur*raoul_daniel01016m.html
+  departement: Pays de la Loire
+  email: d.raoul@senat.fr
+  first_name: Daniel
+  last_name: RAOUL
+  region: Maine-et-Loire
+  title: Sénateur de Maine-et-Loire (Pays de la Loire)
+  name: RAOUL Daniel
+- !ruby/object:Senator
+  url: /senateur/rebsamen_francois08070y.html
+  file: senateur*rebsamen_francois08070y.html
+  departement: Bourgogne
+  email: f.rebsamen@senat.fr
+  first_name: François
+  last_name: REBSAMEN
+  region: Côte-d'Or
+  title: Sénateur de la Côte-d'Or (Bourgogne)
+  name: REBSAMEN François
+- !ruby/object:Senator
+  url: /senateur/reichardt_andre10015m.html
+  file: senateur*reichardt_andre10015m.html
+  departement: Alsace
+  email: a.reichardt@senat.fr
+  first_name: André
+  last_name: REICHARDT
+  region: Bas-Rhin
+  title: Sénateur du Bas-Rhin (Alsace)
+  name: REICHARDT André
+- !ruby/object:Senator
+  url: /senateur/reiner_daniel01014k.html
+  file: senateur*reiner_daniel01014k.html
+  departement: Lorraine
+  email: d.reiner@senat.fr
+  first_name: Daniel
+  last_name: REINER
+  region: Meurthe-et-Moselle
+  title: Sénateur de la Meurthe-et-Moselle (Lorraine)
+  name: REINER Daniel
+- !ruby/object:Senator
+  url: /senateur/requier_jean_claude11012a.html
+  file: senateur*requier_jean_claude11012a.html
+  departement: Midi-Pyrénées
+  email: senateur-requier@orange.fr
+  first_name: Jean-Claude
+  last_name: REQUIER
+  region: Lot
+  title: Sénateur du Lot (Midi-Pyrénées)
+  name: REQUIER Jean-Claude
+- !ruby/object:Senator
+  url: /senateur/retailleau_bruno04033b.html
+  file: senateur*retailleau_bruno04033b.html
+  departement: Pays de la Loire
+  email: b.retailleau@senat.fr
+  first_name: Bruno
+  last_name: RETAILLEAU
+  region: Vendée
+  title: Sénateur de la Vendée (Pays de la Loire)
+  name: RETAILLEAU Bruno
+- !ruby/object:Senator
+  url: /senateur/revet_charles95062k.html
+  file: senateur*revet_charles95062k.html
+  departement: Haute-Normandie
+  email: revet.charles@wanadoo.fr
+  first_name: Charles
+  last_name: REVET
+  region: Seine-Maritime
+  title: Sénateur de la Seine-Maritime (Haute-Normandie)
+  name: REVET Charles
+- !ruby/object:Senator
+  url: /senateur/richard_alain95063l.html
+  file: senateur*richard_alain95063l.html
+  departement: Ile-de-France
+  email: a.richard@senat.fr
+  first_name: Alain
+  last_name: RICHARD
+  region: Val-d'Oise
+  title: Sénateur du Val-d'Oise (Ile-de-France)
+  name: RICHARD Alain
+- !ruby/object:Senator
+  url: /senateur/ries_roland04065k.html
+  file: senateur*ries_roland04065k.html
+  departement: Alsace
+  email: r.ries@senat.fr
+  first_name: Roland
+  last_name: RIES
+  region: Bas-Rhin
+  title: Sénateur du Bas-Rhin (Alsace)
+  name: RIES Roland
+- !ruby/object:Senator
+  url: /senateur/roche_gerard11093t.html
+  file: senateur*roche_gerard11093t.html
+  departement: Auvergne
+  email: g.roche@senat.fr
+  first_name: Gérard
+  last_name: ROCHE
+  region: Haute-Loire
+  title: Sénateur de la Haute-Loire (Auvergne)
+  name: ROCHE Gérard
+- !ruby/object:Senator
+  url: /senateur/roger_gilbert11054l.html
+  file: senateur*roger_gilbert11054l.html
+  departement: Ile-de-France
+  email: g.roger@senat.fr
+  first_name: Gilbert
+  last_name: ROGER
+  region: Seine-Saint-Denis
+  title: Sénateur de la Seine-Saint-Denis (Ile-de-France)
+  name: ROGER Gilbert
+- !ruby/object:Senator
+  url: /senateur/rome_yves11046l.html
+  file: senateur*rome_yves11046l.html
+  departement: Picardie
+  email: yves.rome@cg60.fr
+  first_name: Yves
+  last_name: ROME
+  region: Oise
+  title: Sénateur de l'Oise (Picardie)
+  name: ROME Yves
+- !ruby/object:Senator
+  url: /senateur/rossignol_laurence11045k.html
+  file: senateur*rossignol_laurence11045k.html
+  departement: Picardie
+  email: l.rossignol@senat.fr
+  first_name: Laurence
+  last_name: ROSSIGNOL
+  region: Oise
+  title: Sénatrice de l'Oise (Picardie)
+  name: ROSSIGNOL Laurence
+- !ruby/object:Senator
+  url: /senateur/saugey_bernard01019q.html
+  file: senateur*saugey_bernard01019q.html
+  departement: Rhône-Alpes
+  email: bernard.saugey@wanadoo.fr
+  first_name: Bernard
+  last_name: SAUGEY
+  region: Isère
+  title: Sénateur de l'Isère (Rhône-Alpes)
+  name: SAUGEY Bernard
+- !ruby/object:Senator
+  url: /senateur/savary_rene_paul11097x.html
+  file: senateur*savary_rene_paul11097x.html
+  departement: Champagne-Ardenne
+  email: rp.savary@senat.fr
+  first_name: René-Paul
+  last_name: SAVARY
+  region: Marne
+  title: Sénateur de la Marne (Champagne-Ardenne)
+  name: SAVARY René-Paul
+- !ruby/object:Senator
+  url: /senateur/savin_michel11043h.html
+  file: senateur*savin_michel11043h.html
+  departement: Rhône-Alpes
+  email: m.savin@senat.fr
+  first_name: Michel
+  last_name: SAVIN
+  region: Isère
+  title: Sénateur de l'Isère (Rhône-Alpes)
+  name: SAVIN Michel
+- !ruby/object:Senator
+  url: /senateur/schillinger_patricia04045f.html
+  file: senateur*schillinger_patricia04045f.html
+  departement: Alsace
+  email: p.schillinger@senat.fr
+  first_name: Patricia
+  last_name: SCHILLINGER
+  region: Haut-Rhin
+  title: Sénateur du Haut-Rhin (Alsace)
+  name: SCHILLINGER Patricia
+- !ruby/object:Senator
+  url: /senateur/schurch_mireille08054y.html
+  file: senateur*schurch_mireille08054y.html
+  departement: Auvergne
+  email: m.schurch@senat.fr
+  first_name: Mireille
+  last_name: SCHURCH
+  region: Allier
+  title: Sénatrice de l'Allier (Auvergne)
+  name: SCHURCH Mireille
+- !ruby/object:Senator
+  url: /senateur/sido_bruno01058x.html
+  file: senateur*sido_bruno01058x.html
+  departement: Champagne-Ardenne
+  email: b.sido@senat.fr
+  first_name: Bruno
+  last_name: SIDO
+  region: Haute-Marne
+  title: Sénateur de la Haute-Marne (Champagne-Ardenne)
+  name: SIDO Bruno
+- !ruby/object:Senator
+  url: /senateur/sittler_esther04069p.html
+  file: senateur*sittler_esther04069p.html
+  departement: Alsace
+  email: e.sittler@senat.fr
+  first_name: Esther
+  last_name: SITTLER
+  region: Bas-Rhin
+  title: Sénateur du Bas-Rhin (Alsace)
+  name: SITTLER Esther
+- !ruby/object:Senator
+  url: /senateur/soilihi_abdourahamane11071m.html
+  file: senateur*soilihi_abdourahamane11071m.html
+  departement: Mayotte
+  email: a.soilihi@senat.fr
+  first_name: Abdourahamane
+  last_name: SOILIHI
+  region: Mayotte
+  title: Sénateur de Mayotte (Mayotte)
+  name: SOILIHI Abdourahamane
+- !ruby/object:Senator
+  url: /senateur/sueur_jean_pierre01028r.html
+  file: senateur*sueur_jean_pierre01028r.html
+  departement: Centre
+  email: jp.sueur@senat.fr
+  first_name: Jean-Pierre
+  last_name: SUEUR
+  region: Loiret
+  title: Sénateur du Loiret (Centre)
+  name: SUEUR Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/sutour_simon98035u.html
+  file: senateur*sutour_simon98035u.html
+  departement: Languedoc-Roussillon
+  email: Simon.Sutour@wanadoo.fr
+  first_name: Simon
+  last_name: SUTOUR
+  region: Gard
+  title: Sénateur du Gard (Languedoc-Roussillon)
+  name: SUTOUR Simon
+- !ruby/object:Senator
+  url: /senateur/tandonnet_henri11094u.html
+  file: senateur*tandonnet_henri11094u.html
+  departement: Aquitaine
+  email: h.tandonnet@senat.fr
+  first_name: Henri
+  last_name: TANDONNET
+  region: Lot-et-Garonne
+  title: Sénateur de Lot-et-Garonne (Aquitaine)
+  name: TANDONNET Henri
+- !ruby/object:Senator
+  url: /senateur/tasca_catherine04056j.html
+  file: senateur*tasca_catherine04056j.html
+  departement: Ile-de-France
+  email: c.tasca@senat.fr
+  first_name: Catherine
+  last_name: TASCA
+  region: Yvelines
+  title: Sénatrice des Yvelines (Ile-de-France)
+  name: TASCA Catherine
+- !ruby/object:Senator
+  url: /senateur/teston_michel98037w.html
+  file: senateur*teston_michel98037w.html
+  departement: Rhône-Alpes
+  email: m.teston@senat.fr
+  first_name: Michel
+  last_name: TESTON
+  region: Ardèche
+  title: Sénateur de l'Ardèche (Rhône-Alpes)
+  name: TESTON Michel
+- !ruby/object:Senator
+  url: /senateur/teulade_rene08046y.html
+  file: senateur*teulade_rene08046y.html
+  departement: Limousin
+  email: r.teulade@senat.fr
+  first_name: René
+  last_name: TEULADE
+  region: Corrèze
+  title: Sénateur de la Corrèze (Limousin)
+  name: TEULADE René
+- !ruby/object:Senator
+  url: /senateur/todeschini_jean_marc01062t.html
+  file: senateur*todeschini_jean_marc01062t.html
+  departement: Lorraine
+  email: jm.todeschini@senat.fr
+  first_name: Jean-Marc
+  last_name: TODESCHINI
+  region: Moselle
+  title: Sénateur de la Moselle (Lorraine)
+  name: TODESCHINI Jean-Marc
+- !ruby/object:Senator
+  url: /senateur/trillard_andre01056v.html
+  file: senateur*trillard_andre01056v.html
+  departement: Pays de la Loire
+  email: a.trillard@senat.fr
+  first_name: André
+  last_name: TRILLARD
+  region: Loire-Atlantique
+  title: Sénateur de la Loire-Atlantique (Pays de la Loire)
+  name: TRILLARD André
+- !ruby/object:Senator
+  url: /senateur/troendle_catherine04044e.html
+  file: senateur*troendle_catherine04044e.html
+  departement: Alsace
+  email: c.troendle@senat.fr
+  first_name: Catherine
+  last_name: TROENDLE
+  region: Haut-Rhin
+  title: Sénateur du Haut-Rhin (Alsace)
+  name: TROENDLE Catherine
+- !ruby/object:Senator
+  url: /senateur/tropeano_robert06004e.html
+  file: senateur*tropeano_robert06004e.html
+  departement: Languedoc-Roussillon
+  email: robert.tropeano@orange.fr
+  first_name: Robert
+  last_name: TROPEANO
+  region: Hérault
+  title: Sénateur de l'Hérault (Languedoc-Roussillon)
+  name: TROPEANO Robert
+- !ruby/object:Senator
+  url: /senateur/trucy_francois86049m.html
+  file: senateur*trucy_francois86049m.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: f.trucy@senat.fr
+  first_name: François
+  last_name: TRUCY
+  region: Var
+  title: Sénateur du Var (Provence-Alpes-Côte d'Azur)
+  name: TRUCY François
+- !ruby/object:Senator
+  url: /senateur/tuheiava_richard08071a.html
+  file: senateur*tuheiava_richard08071a.html
+  departement: Polynésie française
+  email: r.tuheiava@senat.fr
+  first_name: Richard
+  last_name: TUHEIAVA
+  region: Polynésie française
+  title: Sénateur de la Polynésie française (Polynésie française)
+  name: TUHEIAVA Richard
+- !ruby/object:Senator
+  url: /senateur/turk_alex92044u.html
+  file: senateur*turk_alex92044u.html
+  departement: Nord-Pas-de-Calais
+  email: Alex.turk@wanadoo.fr
+  first_name: Alex
+  last_name: TÜRK
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: TÜRK Alex
+- !ruby/object:Senator
+  url: /senateur/vairetto_andre12038d.html
+  file: senateur*vairetto_andre12038d.html
+  departement: Rhône-Alpes
+  email: 
+  first_name: André
+  last_name: VAIRETTO
+  region: Savoie
+  title: Sénateur de la Savoie (Rhône-Alpes)
+  name: VAIRETTO André
+- !ruby/object:Senator
+  url: /senateur/vall_raymond08049c.html
+  file: senateur*vall_raymond08049c.html
+  departement: Midi-Pyrénées
+  email: r.vall@senat.fr
+  first_name: Raymond
+  last_name: VALL
+  region: Gers
+  title: Sénateur du Gers (Midi-Pyrénées)
+  name: VALL Raymond
+- !ruby/object:Senator
+  url: /senateur/vallini_andre11041f.html
+  file: senateur*vallini_andre11041f.html
+  departement: Rhône-Alpes
+  email: a.vallini@senat.fr
+  first_name: André
+  last_name: VALLINI
+  region: Isère
+  title: Sénateur de l'Isère (Rhône-Alpes)
+  name: VALLINI André
+- !ruby/object:Senator
+  url: /senateur/vandierendonck_rene11037k.html
+  file: senateur*vandierendonck_rene11037k.html
+  departement: Nord-Pas-de-Calais
+  email: r.vandierendonck@senat.fr
+  first_name: René
+  last_name: VANDIERENDONCK
+  region: Nord
+  title: Sénateur du Nord (Nord-Pas-de-Calais)
+  name: VANDIERENDONCK René
+- !ruby/object:Senator
+  url: /senateur/vanlerenberghe_jean_marie01034p.html
+  file: senateur*vanlerenberghe_jean_marie01034p.html
+  departement: Nord-Pas-de-Calais
+  email: jm.vanlerenberghe@senat.fr
+  first_name: Jean-Marie
+  last_name: VANLERENBERGHE
+  region: Pas-de-Calais
+  title: Sénateur du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: VANLERENBERGHE Jean-Marie
+- !ruby/object:Senator
+  url: /senateur/vaugrenard_yannick11066q.html
+  file: senateur*vaugrenard_yannick11066q.html
+  departement: Pays de la Loire
+  email: y.vaugrenard@senat.fr
+  first_name: Yannick
+  last_name: VAUGRENARD
+  region: Loire-Atlantique
+  title: Sénateur de la Loire-Atlantique (Pays de la Loire)
+  name: VAUGRENARD Yannick
+- !ruby/object:Senator
+  url: /senateur/vendasi_francois05011y.html
+  file: senateur*vendasi_francois05011y.html
+  departement: Corse
+  email: 
+  first_name: François
+  last_name: VENDASI
+  region: Haute-Corse
+  title: Sénateur de la Haute-Corse (Corse)
+  name: VENDASI François
+- !ruby/object:Senator
+  url: /senateur/vendegou_hilarion11011m.html
+  file: senateur*vendegou_hilarion11011m.html
+  departement: Nouvelle-Calédonie
+  email: 
+  first_name: Hilarion
+  last_name: VENDEGOU
+  region: Nouvelle-Calédonie
+  title: Sénateur de la Nouvelle-Calédonie (Nouvelle-Calédonie)
+  name: VENDEGOU Hilarion
+- !ruby/object:Senator
+  url: /senateur/verges_paul96003c.html
+  file: senateur*verges_paul96003c.html
+  departement: La Réunion
+  email: 
+  first_name: Paul
+  last_name: VERGÈS
+  region: La Réunion
+  title: Sénateur de La Réunion (La Réunion)
+  name: VERGÈS Paul
+- !ruby/object:Senator
+  url: /senateur/vergoz_michel11025f.html
+  file: senateur*vergoz_michel11025f.html
+  departement: La Réunion
+  email: m.vergoz@senat.fr
+  first_name: Michel
+  last_name: VERGOZ
+  region: La Réunion
+  title: Sénateur de La Réunion (La Réunion)
+  name: VERGOZ Michel
+- !ruby/object:Senator
+  url: /senateur/vestri_rene08036w.html
+  file: senateur*vestri_rene08036w.html
+  departement: Provence-Alpes-Côte d'Azur
+  email: r.vestri@senat.fr
+  first_name: René
+  last_name: VESTRI
+  region: Alpes-Maritimes
+  title: Sénateur des Alpes-Maritimes (Provence-Alpes-Côte d'Azur)
+  name: VESTRI René
+- !ruby/object:Senator
+  url: /senateur/vial_jean_pierre95067q.html
+  file: senateur*vial_jean_pierre95067q.html
+  departement: Rhône-Alpes
+  email: jp.vial@senat.fr
+  first_name: Jean-Pierre
+  last_name: VIAL
+  region: Savoie
+  title: Sénateur de la Savoie (Rhône-Alpes)
+  name: VIAL Jean-Pierre
+- !ruby/object:Senator
+  url: /senateur/vincent_maurice11057p.html
+  file: senateur*vincent_maurice11057p.html
+  departement: Rhône-Alpes
+  email: m.vincent@senat.fr
+  first_name: Maurice
+  last_name: VINCENT
+  region: Loire
+  title: Sénateur de la Loire (Rhône-Alpes)
+  name: VINCENT Maurice
+- !ruby/object:Senator
+  url: /senateur/watrin_dominique11063m.html
+  file: senateur*watrin_dominique11063m.html
+  departement: Nord-Pas-de-Calais
+  email: d.watrin@senat.fr
+  first_name: Dominique
+  last_name: WATRIN
+  region: Pas-de-Calais
+  title: Sénateur du Pas-de-Calais (Nord-Pas-de-Calais)
+  name: WATRIN Dominique
+- !ruby/object:Senator
+  url: /senateur/yung_richard04034c.html
+  file: senateur*yung_richard04034c.html
+  departement: Sénateur représentant les Français établis hors de France
+  email: r.yung@senat.fr
+  first_name: Richard
+  last_name: YUNG
+  region: Sénateur représentant les Français établis hors de France
+  title: Sénateur représentant les Français établis hors de France
+  name: YUNG Richard
+- !ruby/object:Senator
+  url: /senateur/zocchetto_francois01047u.html
+  file: senateur*zocchetto_francois01047u.html
+  departement: Pays de la Loire
+  email: f.zocchetto@senat.fr
+  first_name: François
+  last_name: ZOCCHETTO
+  region: Mayenne
+  title: Sénateur de la Mayenne (Pays de la Loire)
+  name: ZOCCHETTO François
+mode: online
+yaml_senators_file: ./senators.yml
+csv_file: ./senators.csv
