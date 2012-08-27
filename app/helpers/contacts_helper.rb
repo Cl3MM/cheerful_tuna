@@ -7,7 +7,7 @@ module ContactsHelper
       raw("<a title=\"#{web}\" target=\"_blank\" href=\"#{web}\">[URL]</a>")
     else
       "-"
-    end
+    end if web
     #if web.blank?
       #str = "-"
     #end
