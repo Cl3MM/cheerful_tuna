@@ -8,12 +8,5 @@ module ContactsHelper
     else
       "-"
     end
-    #if web.blank?
-      #str = "-"
-    #end
-    #if web.blank? or not web.match(/http.*/i)
-      ##str = raw("<a target=\"_blank\" href=\"#{web}\">#{web}</a>")
-    ##end
-    #str
   end
 end
