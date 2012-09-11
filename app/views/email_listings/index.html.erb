@@ -1,0 +1,34 @@
+<%- model_class = EmailListing.new.class -%>
+<div class="page-header">
+  <h1><i class="icon-envelope"></i>
+    <%=t '.title', :default => model_class.model_name.human.pluralize %>
+    <%= link_to 'New Email listing', new_email_listing_path, class: 'btn btn-primary pull-right' %>
+  </h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Mailing name</th>
+      <th>Email per line</th>
+      <th>Countries</th>
+      <th class="pull-right">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @email_listings.each do |email_listing| %>
+      <tr>
+        <td><%= link_to email_listing.name, email_listing %></td>
+        <td><%= email_listing.per_line %></td>
+        <td><%= email_listing.countries.split(';').join(', ') %></td>
+        <td class="actions">
+          <div class="btn-group pull-right">
+            <%= link_to raw('<i class="icon-edit"></i>'), edit_email_listing_path(email_listing), :class => 'btn btn-mini', :title => 'edit contact' %>
+            <%= link_to raw('<i class="icon-trash icon-white"></i>'), email_listing, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

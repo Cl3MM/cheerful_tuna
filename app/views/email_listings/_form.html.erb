@@ -1,0 +1,30 @@
+<%= simple_form_for(@email_listing, :html => { :class => 'form-horizontal' }) do |f| %>
+  <%= f.error_notification %>
+
+  <% if @email_listing.errors.any? %>
+    <div class="alert alert-error">
+      <h4 class="alert-heading"><%= pluralize(@email_listing.errors.count, "error") %> prohibited this mailing from being saved:</h4>
+      <a class="close" data-dismiss="alert">&times;</a>
+      <ul>
+        <% @email_listing.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.input :name, required: true %>
+  <div class="control-group">
+    <label class="control-label">Country</label>
+    <div class="controls">
+      <%= country_select("country", "name", @countries, {},  {multiple: true})  %>
+    </div>
+  </div>
+  <%= f.input :per_line, :collection => (1..10).map{|m| m * 10 }+[250,500] %>
+  <%#= f.input :sql %>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: "btn btn-primary" %>
+    <%= link_to "Cancel", email_listings_path, class: "btn" %>
+  </div>
+<% end %>

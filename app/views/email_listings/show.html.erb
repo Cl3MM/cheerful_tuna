@@ -1,0 +1,14 @@
+<%- model_class = @email_listing.class -%>
+<div class="page-header">
+  <h1>Mailing: <%= @email_listing.name %> <small>{ <%= @listing_size %> emails / <%= @email_listing.per_line %> per line }</small>
+    <%= link_to 'Edit this mailing', edit_email_listing_path(@email_listing), class: "btn btn-primary pull-right" %>
+  </h1>
+</div>
+
+<% @listing.each_with_index do |list, index| %>
+  <p>
+    <button id="email_btn" type="submit" class="btn btn-mini btn-info">Copy emails to clipboard</button>
+    &nbsp;<strong>Send #<%= "#{index+1}/#{@listing.size}" %></strong>
+  </p>
+    <%= text_area_tag "emails_#{index}", list.join(";"), :rows => 6, style: "width: 100%;" %>
+<% end %>
