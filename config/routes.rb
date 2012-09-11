@@ -14,6 +14,7 @@ CheerfulTuna::Application.routes.draw do
   end
 
   #resources :countries
+  resources :email_listings
 
   resources :contacts
   match 'contacts/duplicate/:id' => 'contacts#duplicate', :as => :duplicate

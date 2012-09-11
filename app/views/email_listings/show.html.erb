@@ -10,5 +10,5 @@
     <button id="email_btn" type="submit" class="btn btn-mini btn-info">Copy emails to clipboard</button>
     &nbsp;<strong>Send #<%= "#{index+1}/#{@listing.size}" %></strong>
   </p>
-    <%= text_area_tag "emails_#{index}", list.join(";"), :rows => 6, style: "width: 100%;" %>
+    <%= text_area_tag "emails_#{index}", list.join(";"), :rows => 6, style: "width: 100%;", class: "prout" %>
 <% end %>

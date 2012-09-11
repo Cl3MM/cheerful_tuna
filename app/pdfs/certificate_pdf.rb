@@ -39,7 +39,7 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     images
     left_side
     body
-    company
+    display_company
     #stroke_axis height: 900
     new_footer
     fake_specimen if @specimen
@@ -142,7 +142,7 @@ def body
   end
 end
 
-def company
+def display_company
   if @member.company =~ /ZHEJIANG TIANMING SOLAR/
     font @fonts[:MPB]
     bounding_text 590, "Zhejiang Tianming\nSolar Technology\nCo. Ltd.", size: 46, align: :center, leading: 0, shift: 20, height: 50, overflow: :expand
