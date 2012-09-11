@@ -24,13 +24,13 @@ class EmailListingsController < ApplicationController
       countries = ["SELECT emails.address"]
       countries << "FROM `contacts` LEFT JOIN `emails` ON contacts.id = emails.contact_id"
       countries << "WHERE ("
-      countries << "contacts.country in (#{@email_listing.countries_to_countries})"
+      countries << "contacts.country in (#{@email_listing.countries_to_sql})"
       countries << "AND contacts.category NOT LIKE 'Sénat%'"
       countries << "AND contacts.is_active"
       countries << ")"
 
-      @listing = Contact.find_by_countries(countries.join(" ")).map(&:address).compact.each_slice(@email_listing.per_line).to_a
-      @listing_size = Contact.find_by_countries(countries.join(" ").gsub("emails.address", select_count)).first.list_size
+      @listing = Contact.find_by_sql(countries.join(" ")).map(&:address).compact.each_slice(@email_listing.per_line).to_a
+      @listing_size = Contact.find_by_sql(countries.join(" ").gsub("emails.address", select_count)).first.list_size
 
       #@listing = Contact.find(
         #:all,
