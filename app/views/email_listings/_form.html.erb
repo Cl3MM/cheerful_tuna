@@ -13,15 +13,15 @@
     </div>
   <% end %>
 
-  <%= f.input :name, required: true %>
+  <%= f.input :name, required: true, class: "input-large" %>
   <div class="control-group">
     <label class="control-label">Country</label>
     <div class="controls">
-      <%= country_select("country", "name", @countries, {},  {multiple: true})  %>
+      <%= country_select("country", "name", @countries, {},  {multiple: true, style: "width:70%;height:300px;"})  %>
     </div>
   </div>
+
   <%= f.input :per_line, :collection => (1..10).map{|m| m * 10 }+[250,500] %>
-  <%#= f.input :sql %>
 
   <div class="form-actions">
     <%= f.button :submit, class: "btn btn-primary" %>
