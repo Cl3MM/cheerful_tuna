@@ -76,4 +76,23 @@ namespace :stats do
 
       puts to_print.join("|")
   end
+  desc "Find contacts with empty country"
+  task :void_countries => :environment do
+    File.open("#{Rails.root}/tmp/empty_countries.txt", "w")do |f|
+      f.write(Contact.where(country: "").map{|c| "http://tuna.ceres-recycle.org/contacts/#{c.id}"}.join("\n"))
+    end
+    File.open("#{Rails.root}/tmp/empty_countries.yml", "w")do |f|
+      f.write(Contact.where(country: "").to_yaml)
+    end
+  end
+
+  desc "Generate user statistics"
+  task :kill, [:date, :range] => :environment do |t, args|
+    args.with_defaults(range: "week", date: Time.now)
+    begin
+      date = Date.parse(args.date)
+    rescue
+      date = Time.now
+    end
+  end
 end
