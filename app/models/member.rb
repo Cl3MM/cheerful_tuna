@@ -53,10 +53,11 @@ class Member < ActiveRecord::Base
   #has_many :contacts, :inverse_of => :contact
   #accepts_nested_attributes_for :contacts
 
-  validates_presence_of :company, :country, :email, :user_name
+  validates_presence_of :company, :country, :email, :user_name, :web_profile_url
   validates :user_name, uniqueness: true
   validates :email, uniqueness: true
-
+  validates :category, :inclusion => { :in => %w[Free A B C D],
+                                   :message => "%{value} is not a valid category" }
   #def self.generate_username str
     #names = Member.all.map(&:user_name).to_set
     #username = MyTools.friendly_user_name str

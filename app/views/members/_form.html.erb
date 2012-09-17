@@ -2,18 +2,18 @@
   <%= render "shared/error_messages", target: @member %>
   <fieldset>
   <%= f.input :company, :autofocus => true %>
-  <%= f.input :email, :required => true %>
+  <%= f.input :email, required: true %>
   <%= f.input :user_name, :required => true %>
-  <%= f.input :web_profile_url %>
+  <%= f.input :web_profile_url, required: true %>
+  <%= f.input :category, collection: %w[Free A B C D], prompt: "Select the membership fee", required: true %>
   <%#<%= f.input :password, :required => true %>
   <%#<%= f.input :password_confirmation, :required => true %>
   <hr />
   <%= f.input :address %>
   <%= f.input :city %>
   <%= f.input :postal_code %>
-  <%= f.input :country %>
+  <%= f.input :country, prompt: "Select a country", required: true %>
   <%= f.input :activity %>
-  <%= f.input :category %>
   <%= f.input :vat_number %>
   <%= f.input :start_date %>
   <%= f.input :membership_file %>
