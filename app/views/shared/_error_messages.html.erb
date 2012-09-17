@@ -1,0 +1,12 @@
+<% if target.errors.any? %>
+  <div class="alert alert-error">
+    <h4 class="alert-heading"><%= pluralize(target.errors.count, "error") %> prohibited this reccord from being saved:</h4>
+    <a class="close" data-dismiss="alert">&times;</a>
+    <ul>
+      <% target.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
