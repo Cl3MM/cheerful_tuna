@@ -3,6 +3,7 @@
   <ul class="nav">
     <%#"#{image_tag 'glyphicons/glyphicons_043_group.png'} %>
     <li><%= link_to raw("<i class=\"icon-user\"></i> Contacts"), contacts_path %></li>
+    <li><%= link_to raw("<i class=\"icon-tags\"></i> Statistics"), stats_contacts_path %></li>
     <li><%= link_to raw('<i class="icon-globe"></i> Members'), members_path %></li>
     <li><%= link_to raw('<i class="icon-envelope"></i> Mailings'), email_listings_path %></li>
   </ul>
@@ -20,11 +21,10 @@
 
       <%#=link_to content_tag('b', '', :class => 'caret') + "BOB",
         current_user, :class => "dropdown-toggle", "data-toggle" => "dropdown"
+        <li class="divider"></li>
       %>
       <ul class="dropdown-menu">
-        <li><%= link_to "Nothing there", "" %></li>
-        <li class="divider"></li>
-        <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
+        <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
       </ul>
     </li>
   </ul>

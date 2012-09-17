@@ -10,6 +10,7 @@
     <% end -%>
     <%= yield(:head) %>
     <%= csrf_meta_tags %>
+    <%= csrf_meta_tag %>
   </head>
   <body>
     <%= render :partial => 'layouts/navbar' %>

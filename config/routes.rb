@@ -4,26 +4,27 @@ CheerfulTuna::Application.routes.draw do
   #get "stat/user"
   #get "stat/contact"
 
-  match "members/profile" => "profiles#index", via: "get"
-
   devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
-  devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
-  as :member do
-    match 'members/confirmation' => 'members/confirmations#update', :via => :put, :as => :update_member_confirmation
-  end
+  #match "members/profile" => "profiles#index", via: "get"
+
+  #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
+  #as :member do
+    #match 'members/confirmation' => 'members/confirmations#update', :via => :put, :as => :update_member_confirmation
+  #end
 
   #resources :countries
   resources :email_listings
 
+  match 'contacts/statistics' => 'contacts#statistics', as: :stats_contacts
+  match 'contacts/duplicate/:id' => 'contacts#duplicate', as: :duplicate
   resources :contacts
-  match 'contacts/duplicate/:id' => 'contacts#duplicate', :as => :duplicate
   resources :contacts do
     get 'page/:page', :action => :index, :on => :collection
   end
 
   resources :members
-  match "members/create_user_name/:company", :to => "members#create_user_name_from_company", :via => "post", as: :create_user_name
+  #match "members/create_user_name/:company", :to => "members#create_user_name_from_company", :via => "post", as: :create_user_name
 
   root :to => 'contacts#index'
 
