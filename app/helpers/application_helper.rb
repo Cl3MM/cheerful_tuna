@@ -14,7 +14,7 @@ module ApplicationHelper
     if member_section.include? request.env['PATH_INFO']
       raw '<a class="brand" href="#">CERES Members area</a>' unless current_user
     elsif  request.env['PATH_INFO'] == "/users/login"
-      raw '<a class="brand" href="#"><i class="icon-fire"></i> Über contact database <i class="icon-fire"></i></a>' unless current_member
+      raw '<a class="brand" href="#"><i class="icon-fire"></i> Über contact database <i class="icon-fire"></i></a>' # unless current_member
     #else
       #raw '<a class="brand" href="#">COUCOU</a>' unless current_user and current_member
     end
