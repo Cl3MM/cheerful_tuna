@@ -19,3 +19,4 @@ pickle-email-*.html
 /db/data*.yml
 /public/*
 /app/assets/images/Signature_JP_white_bg.jpg
+/config/tuna.yml

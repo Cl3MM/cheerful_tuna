@@ -25,6 +25,8 @@ gem 'prawn'
 gem "rmagick"
 gem "carrierwave"
 gem 'rqrcode', git: 'http://github.com/whomwah/rqrcode'
+gem 'roadie'
+
 #gem 'rack-mini-profiler'
 
 #gem 'thinking-sphinx', '2.0.10'
@@ -59,3 +61,14 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
+
+gem "rspec-rails", :group => [:test, :development]
+group :test do
+  gem "factory_girl_rails"
+  gem "capybara"
+  gem "guard-rspec"
+  gem 'spork', '~> 1.0rc'
+  gem "guard-spork"
+  gem 'rb-inotify', '~> 0.8.8'
+  gem "database_cleaner"
+end
