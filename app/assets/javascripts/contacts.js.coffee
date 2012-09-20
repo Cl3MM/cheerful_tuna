@@ -53,6 +53,6 @@ jQuery ->
    ykeys: $("#user_weekly_activity").data('labels')
    labels: $("#user_weekly_activity").data('labels')
 
-  Morris.Donuts
+  Morris.Donut
    element: "contacts_breakdown_by_user"
    data: $("#contacts_breakdown_by_user").data('stats')
