@@ -39,3 +39,16 @@ jQuery ->
   $('.btn.disabled').each (index) ->
     $(this).attr "href", "#"
 
+  #Morris.Line
+   #element: "Users activity"
+   #data: $("#user_monthly_activity")
+   #xkey: 'y'
+   #ykeys: ['a']
+   #labels: ['Series A']
+
+  Morris.Line
+   element: "user_weekly_activity"
+   data: $("#user_weekly_activity").data('stats')
+   xkey: 'day'
+   ykeys: ['a', 'm', 'v']
+   labels: ['Alan', 'Mary', 'Vicky']
