@@ -43,12 +43,12 @@ jQuery ->
    element: "user_monthly_activity"
    data: $("#user_monthly_activity").data('stats')
    xkey: 'day'
-   ykeys: ['a', 'm', 'v']
-   labels: ['Alan', 'Mary', 'Vicky']
+   ykeys: $("#user_monthly_activity").data('labels')
+   labels: $("#user_monthly_activity").data('labels')
 
   Morris.Line
    element: "user_weekly_activity"
    data: $("#user_weekly_activity").data('stats')
    xkey: 'day'
-   ykeys: ['a', 'm', 'v']
-   labels: ['Alan', 'Mary', 'Vicky']
+   ykeys: $("#user_weekly_activity").data('labels')
+   labels: $("#user_weekly_activity").data('labels')
