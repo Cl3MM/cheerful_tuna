@@ -17,8 +17,8 @@
           <dd><%= Email.count %></dd>
         </dl>
         <hr />
-        <h2>Users monthly activity <small><%= Date.today.strftime("%B %Y") %></small></h2>
-        <%= content_tag :div, "", id: "contacts_breakdown_by_user", data: {stats: @contacts_breakdown_by_user } %>
+        <h2>Contact breakdown</h2>
+        <%= content_tag :div, "", id: "contacts_breakdown_by_user", data: {stats: Contact.contacts_breakdown_by_user } %>
       </div>
 
       <% if @contacts_per_day.any? %>

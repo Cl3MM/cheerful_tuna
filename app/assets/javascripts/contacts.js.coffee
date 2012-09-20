@@ -52,3 +52,7 @@ jQuery ->
    xkey: 'day'
    ykeys: $("#user_weekly_activity").data('labels')
    labels: $("#user_weekly_activity").data('labels')
+
+  Morris.Donuts
+   element: "contacts_breakdown_by_user"
+   data: $("#contacts_breakdown_by_user").data('stats')
