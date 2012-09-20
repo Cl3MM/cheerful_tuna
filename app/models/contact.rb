@@ -69,14 +69,14 @@ class Contact < ActiveRecord::Base
   scope :group_and_count, group(:user_id).count
   #scope :select_date_count_username, group("day", "user_id").select("DATE_FORMAT(contacts.created_at, '%Y-%m-%d') as day, count(contacts.user_id) as count")
 
-  def self.weekly_stats week
-    week = week.respond_to?("beginning_of_week") ? week : week.to_date
-    (week.beginning_of_week..week.end_of_week).map do |date|
+  def self.draw_chart scale = "month", date = Date.today
+    range = (scale == "month" ? (date.beginning_of_month..date.end_of_month) : (date.beginning_of_week..date.end_of_week))
+    range.map do |day|
       {
         day: date,
-        a: Contact.by_user("alan").by_date(date).group(:username).count["alan"] || 0,
-        m: Contact.by_user("mary").by_date(date).group(:username).count["mary"] || 0,
-        v: Contact.by_user("vicky").by_date(date).group(:username).count["vicky"] || 0,
+        a: Contact.by_user("alan").by_date(day).group(:username).count["alan"] || 0,
+        m: Contact.by_user("mary").by_date(day).group(:username).count["mary"] || 0,
+        v: Contact.by_user("vicky").by_date(day).group(:username).count["vicky"] || 0,
       }
     end
   end
