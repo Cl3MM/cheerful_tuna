@@ -1,3 +1,8 @@
+<%= javascript_tag do %>
+  window.monthly_labels = <%= raw @monthly_stats.last.to_json %>;
+  window.weekly_labels  = <%= raw @weekly_stats.last.to_json %>;
+<% end %>
+
 <%- model_class = Contact.new.class -%>
 <div class="page-header">
   <h1><i class="icon-tags"></i> Contacts Statistics</h1>
@@ -73,15 +78,13 @@
 <div class="row">
   <div class="span10">
     <h2>Users weekly activity <small>Week #<%= Date.today.strftime("%W") %>: <%= Date.today.beginning_of_week.strftime("%B, %d") %> to <%= Date.today.end_of_week.strftime("%d, %Y") %></small></h2>
-    <%= content_tag :div, "", id: "user_weekly_activity", data: {stats: Contact.draw_chart("week")} %>
-    <%#= content_tag :div, "", id: "user_monthly_activity", data: {orders: Order.chart_data} %>
+    <%= content_tag :div, "", id: "user_weekly_activity", data: {stats: @weekly_stats.first} %>
   </div>
 </div>
 <hr />
 <div class="row">
   <div class="span10">
     <h2>Users monthly activity <small><%= Date.today.strftime("%B %Y") %></small></h2>
-    <%= content_tag :div, "", id: "user_monthly_activity", data: {stats: Contact.draw_chart} %>
-    <%#= content_tag :div, "", id: "user_monthly_activity", data: {orders: Order.chart_data} %>
+    <%= content_tag :div, "", id: "user_monthly_activity", data: {stats: @monthly_stats.first } %>
   </div>
 </div>

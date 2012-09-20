@@ -44,56 +44,9 @@ class Contact < ActiveRecord::Base
   scope :countries, select(:country).uniq
   scope :countries_1, { :select => :country, :group => :country }
 
-  #scope :user_stats, { group: "day, user_id", conditions: ["contacts.created_at BETWEEN ? AND ?", start_date, end_date],
-      #select: "DATE_FORMAT(contacts.created_at, '#{date_format}') as day, count(contacts.user_id) as count, users.username", 
-      #joins: :users }
-  #start_date = args.range == "month" ? date.beginning_of_month : date.beginning_of_week
-  #end_date   = args.range == "month" ? date.end_of_month : date.end_of_week
-  #date_format = args.range == "month" ? "%Y-%m" : "%Y-%m-%d"
-
-  scope :weekly_user_statistics, (lambda do |week|
-    joins(:user).where("contacts.created_at BETWEEN ? AND ?", week.beginning_of_week, week.end_of_week).group("day", "user_id")
-    .select("DATE_FORMAT(contacts.created_at, '%Y-%m-%d') as day, count(contacts.user_id) as count, users.username")
-  end)
-  scope :by_user, (lambda do |username|
-    joins(:user).where("users.username = ?", username)
-  end)
-  scope :by_date, (lambda do |date|
-    #where("contacts.created_at = ?", date)
-    if date.is_a? Date
-      where(created_at: date.beginning_of_day..date.end_of_day) 
-    else
-      where(created_at: Date.parse(date).beginning_of_day..Date.parse(date).end_of_day) 
-    end
-  end)
   scope :per_month, lambda { |date|  group('date(created_at)')
         .where(created_at: date.beginning_of_month..date.end_of_month)
   }
-
-  scope :group_and_count, group(:user_id).count
-  #scope :select_date_count_username, group("day", "user_id").select("DATE_FORMAT(contacts.created_at, '%Y-%m-%d') as day, count(contacts.user_id) as count")
-
-  def self.draw_chart scale = "month", date = Date.today
-    range = (scale == "month" ? (date.beginning_of_month..date.end_of_month) : (date.beginning_of_week..date.end_of_week))
-    range.map do |day|
-      {
-        day: day,
-        a: Contact.by_user("alan").by_date(day).group(:username).count["alan"] || 0,
-        m: Contact.by_user("mary").by_date(day).group(:username).count["mary"] || 0,
-        v: Contact.by_user("vicky").by_date(day).group(:username).count["vicky"] || 0,
-      }
-    end
-  end
-  #def self.last_contacts(num)
-    #last num
-  #end
-  #scope :last_ten_contacts, last_contacts(10)
-
-  #def bounce
-    #if 
-  #end
-  #scope :limit, lambda { |num| { :limit => num } }
-  #validate :something
 
   mapping do
     indexes :id, type: 'integer'

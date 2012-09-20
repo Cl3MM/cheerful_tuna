@@ -25,6 +25,9 @@ class ContactsController < ApplicationController
     @contacts_per_day = User.average_contact_per_day
     @contacts_per_month = User.average_contact_per_month(Date.today)
 
+    @monthly_stats = User.contacts_per_user_stats
+    @weekly_stats  = User.contacts_per_user_stats(Date.today, "week")
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @contacts }
