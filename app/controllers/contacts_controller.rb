@@ -22,6 +22,8 @@ class ContactsController < ApplicationController
     @contacts = Contact.search(params)
     @q = params[:query].present?
     @users = User.all
+    @contacts_per_day = User.average_contact_per_day
+    @contacts_per_month = User.average_contact_per_month(Date.today)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -89,7 +91,6 @@ class ContactsController < ApplicationController
         format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
       else
-        Rails.logger.debug "*" *2 + "Rendering NEW" + "*" *20
         format.html { render action: "new" }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end

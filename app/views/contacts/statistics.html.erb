@@ -4,23 +4,50 @@
 </div>
 
 <div class="row">
+  <div class="span9 hero-unit">
+    <div class="row">
+      <div class="span3">
+        <h2>Global statistics</h2>
+        <dl class="dl-horizontal">
+          <dt>Active contacts</dt>
+          <dd><%= Contact.active_contacts.count %></dd>
+          <dt>Inactive contacts</dt>
+          <dd><%= Contact.inactive_contacts.count %></dd>
+          <dt>Emails addresses</dt>
+          <dd><%= Email.count %></dd>
+        </dl>
+      </div>
 
-  <div class="span3">
-    <h2>Global statistics</h2>
-    <dl class="dl-horizontal">
-    	<dt>Active contacts</dt>
-    	<dd><%= Contact.active_contacts.count %></dd>
-      	<dt>Inactive contacts</dt>
-      	<dd><%= Contact.inactive_contacts.count %></dd>
-        <dt>Emails addresses</dt>
-        <dd><%= Email.count %></dd>
-    </dl>
+      <% if @contacts_per_day.any? %>
+      <div class="span3">
+        <h2>Contact per day</h2>
+        <dl class="dl-horizontal">
+          <% @contacts_per_day.each_pair do |name, average| %>
+            <dt><%= name %></dt>
+          <dd><%= average %></dd>
+        <% end %>
+        </dl>
+      </div>
+      <% end %>
+
+      <% if @contacts_per_month.any? %>
+      <div class="span3">
+        <h2>Contact per month</h2>
+        <dl class="dl-horizontal">
+          <% @contacts_per_month.each_pair do |name, average| %>
+            <dt><%= name %></dt>
+          <dd><%= average %></dd>
+        <% end %>
+        </dl>
+      </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <hr />
 <div class="row">
   <div class="span10">
-    <h2>Last 10 contacts</h2>
+    <h2>Last 10 contacts added</h2>
       <table class="table table-bordered">
       <thead>
         <tr>

@@ -66,6 +66,10 @@ class Contact < ActiveRecord::Base
       where(created_at: Date.parse(date).beginning_of_day..Date.parse(date).end_of_day) 
     end
   end)
+  scope :per_month, lambda { |date|  group('date(created_at)')
+        .where(created_at: date.beginning_of_month..date.end_of_month)
+  }
+
   scope :group_and_count, group(:user_id).count
   #scope :select_date_count_username, group("day", "user_id").select("DATE_FORMAT(contacts.created_at, '%Y-%m-%d') as day, count(contacts.user_id) as count")
 
