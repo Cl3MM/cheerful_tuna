@@ -73,7 +73,7 @@ class Contact < ActiveRecord::Base
     range = (scale == "month" ? (date.beginning_of_month..date.end_of_month) : (date.beginning_of_week..date.end_of_week))
     range.map do |day|
       {
-        day: date,
+        day: day,
         a: Contact.by_user("alan").by_date(day).group(:username).count["alan"] || 0,
         m: Contact.by_user("mary").by_date(day).group(:username).count["mary"] || 0,
         v: Contact.by_user("vicky").by_date(day).group(:username).count["vicky"] || 0,
