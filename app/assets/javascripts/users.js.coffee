@@ -16,9 +16,7 @@ jQuery ->
 
   $('#previous_week').on 'click', (event) ->
     date = $('#previous_week').attr('data-date')
-    console.log date
     url = '/users/chart/week/' + date
-    console.log(url)
     $.post url, (json) ->
       weekly_chart.setData(json.data)
       $('#previous_week').attr('data-date', json.prev_date)
@@ -30,24 +28,19 @@ jQuery ->
 
   $('#next_week').on 'click', (event) ->
     date = $('#next_week').attr('data-date')
-    console.log date
     url = '/users/chart/week/' + date
-    console.log(url)
     $.post url, (json) ->
       weekly_chart.setData(json.data)
       $('#previous_week').attr('data-date', json.prev_date)
       $('#next_week').attr('data-date', json.next_date)
       $('#week_title').html json.title
-      console.log(json)
       false
     , "json"
     event.preventDefault()
 
   $('#previous_month').on 'click', (event) ->
     date = $('#previous_month').attr('data-date')
-    console.log date
     url = '/users/chart/month/' + date
-    console.log(url)
     $.post url, (json) ->
       monthly_chart.setData(json.data)
       $('#previous_month').attr('data-date', json.prev_date)
@@ -59,15 +52,12 @@ jQuery ->
 
   $('#next_month').on 'click', (event) ->
     date = $('#next_month').attr('data-date')
-    console.log date
     url = '/users/chart/month/' + date
-    console.log(url)
     $.post url, (json) ->
       monthly_chart.setData(json.data)
       $('#previous_month').attr('data-date', json.prev_date)
       $('#next_month').attr('data-date', json.next_date)
       $('#month_title').html json.title
-      console.log(json)
       false
     , "json"
     event.preventDefault()
