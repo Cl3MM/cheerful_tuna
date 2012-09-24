@@ -22,6 +22,11 @@ CheerfulTuna::Application.routes.draw do
   resources :contacts do
     get 'page/:page', :action => :index, :on => :collection
   end
+  match 'users/statistics' => 'users#statistics', as: :stats_users
+  match "users/chart/:timeframe/:date",  :to => "users#generate_chart",
+    via: "post", as: :generate_chart, constraints: {timeframe: /week|month/, date: /\d{4}-\d{2}-\d{2}/},
+    defaults: { timeframe: 'month', date: Date.today.to_json }
+  #match "users/monthly_chart/:date", :to => "users#generate_chart", :via => "post", as: :generate_chart
 
   resources :members
   #match "members/create_user_name/:company", :to => "members#create_user_name_from_company", :via => "post", as: :create_user_name

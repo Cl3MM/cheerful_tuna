@@ -71,17 +71,3 @@
     </table>
   </div>
 </div>
-<hr />
-<div class="row">
-  <div class="span10">
-    <h2>Users weekly activity <small>Week #<%= Date.today.strftime("%W") %>: <%= Date.today.beginning_of_week.strftime("%B, %d") %> to <%= Date.today.end_of_week.strftime("%d, %Y") %></small></h2>
-    <%= content_tag :div, "", id: "user_weekly_activity", data: {stats: @weekly_stats.first, labels: @weekly_stats.last } %>
-  </div>
-</div>
-<hr />
-<div class="row">
-  <div class="span10">
-    <h2>Users monthly activity <small><%= Date.today.strftime("%B %Y") %></small></h2>
-    <%= content_tag :div, "", id: "user_monthly_activity", data: {stats: @monthly_stats.first, labels: @monthly_stats.last } %>
-  </div>
-</div>

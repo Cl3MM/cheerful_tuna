@@ -41,14 +41,14 @@ class User < ActiveRecord::Base
     user_contacts = Hash[self.contact_per_user_in_range range]
     usernames = user_contacts.keys
 
-    [range.map do |day|
+    {data: range.map do |day|
       new_hash = Hash[usernames.map do |name|
         val = user_contacts[name].include?(day) ? user_contacts[name][day] : 0
         [name.capitalize, val]
       end]
       new_hash["day"] = day
       new_hash.symbolize_keys!
-    end, usernames.map{|n| n.capitalize}]
+    end, labels: usernames.map{|n| n.capitalize}}
   end
 
   def is_admin?

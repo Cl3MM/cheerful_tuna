@@ -3,9 +3,23 @@
   <ul class="nav">
     <%#"#{image_tag 'glyphicons/glyphicons_043_group.png'} %>
     <li><%= link_to raw("<i class=\"icon-user\"></i> Contacts"), contacts_path %></li>
-    <li><%= link_to raw("<i class=\"icon-tags\">&nbsp;</i><span class=\"label label-important\">&nbsp;! </span>&nbspStatistics"), stats_contacts_path %></li>
     <li><%= link_to raw('<i class="icon-globe"></i> Members'), members_path %></li>
     <li><%= link_to raw('<i class="icon-envelope"></i> Mailings'), email_listings_path %></li>
+    <li class="divider-vertical"></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-tags">&nbsp;</i>
+          <span class="label label-important">&nbsp;! </span>&nbspStatistics 
+          <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Contacts", stats_contacts_path, tabindex: "-1" %></li>
+        <li><%= link_to "Users", stats_users_path, tabindex: "-1" %></li>
+        <li class="muted"><%= link_to "Members", "#", tabindex: "-1", class: "muted" %></li>
+        <li class="divider"></li>
+        <li><%= link_to "Mailings", "#", tabindex: "-1" %></li>
+      </ul>
+    </li>
   </ul>
   <!-- Admin menu -->
   <ul class="nav pull-right">
@@ -23,7 +37,7 @@
         current_user, :class => "dropdown-toggle", "data-toggle" => "dropdown"
         <li class="divider"></li>
       %>
-      <ul class="dropdown-menu">
+      <ul class="dropdown-menu role="menu" aria-labelledby="dropdownMenu"">
         <li><%= link_to "Sign out", destroy_user_session_path, method: 'delete' %></li>
       </ul>
     </li>
