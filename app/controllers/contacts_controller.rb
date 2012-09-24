@@ -18,19 +18,11 @@ class ContactsController < ApplicationController
   end
 
   def statistics
-    #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
-    @contacts = Contact.search(params)
-    @q = params[:query].present?
-    @users = User.all
     @contacts_per_day = User.average_contact_per_day
     @contacts_per_month = User.average_contact_per_month(Date.today)
 
-    @monthly_stats = User.contacts_per_user_stats
-    @weekly_stats  = User.contacts_per_user_stats(Date.today, "week")
-
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @contacts }
     end
   end
 

@@ -15,4 +15,3 @@
 //= require raphael-min
 //= require morris.min
 //= require twitter/bootstrap
-//= require_tree .

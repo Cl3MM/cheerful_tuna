@@ -1,4 +1,5 @@
 jQuery ->
+
   monthly_chart = Morris.Line
    element: "user_monthly_activity"
    data: $("#user_monthly_activity").data('stats')
