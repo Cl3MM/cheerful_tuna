@@ -31,7 +31,7 @@ class User < ActiveRecord::Base
 
   def self.contacts_per_user_stats date = Date.today, timeframe = "month"
     range = (timeframe == "month" ? (date.beginning_of_month..date.end_of_month) : (date.beginning_of_week..date.end_of_week))
-    contacts_by_user = User.joins(:contacts).group(:username, 'date(contacts.created_at)').where(created_at: range ).count
+    contacts_by_user = User.joins(:contacts).group(:username, 'date(contacts.created_at)').where("contacts.created_at", range ).count
     labels = contacts_by_user.keys.map{|k| k.first.capitalize}.uniq.compact
     contacts_by_user_sorted = contacts_by_user.inject({}) do |result, (k, v)|
       begin
