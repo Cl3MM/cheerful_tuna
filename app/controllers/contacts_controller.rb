@@ -31,7 +31,7 @@ class ContactsController < ApplicationController
 
   def statistics
     @last_ten = Contact.last(10).reverse
-    @contacts_by_countries = Contact.group(:country).count.sort_by{|k,v| v}.map{|name, val| {label: name, value: val} }
+    @contacts_by_countries = Contact.group(:country).count.sort_by{|k,v| v}.map{|name, val| {label: name, value: val} if val > 10}.compact
 
     respond_to do |format|
       format.html # index.html.erb
