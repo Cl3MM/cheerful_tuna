@@ -6,7 +6,6 @@
 <div class="row">
   <div class="span9 hero-unit">
     <div class="row">
-      <% if @contacts_per_day.any? %>
       <div class="span3">
         <h2>Global statistics</h2>
         <dl class="dl-horizontal">
@@ -17,39 +16,22 @@
           <dt>Emails addresses</dt>
           <dd><%= Email.count %></dd>
         </dl>
-        <hr />
-        <h2>Contact per day</h2>
-        <dl class="dl-horizontal">
-          <% @contacts_per_day.each_pair do |name, average| %>
-            <dt><%= name %></dt>
-          <dd><%= average %></dd>
-        <% end %>
-        </dl>
-      </div>
-      <% end %>
-      <div class="span3">
-        <h3>Total Breakdown</h3>
-        <%= content_tag :div, "", id: "contacts_breakdown_by_user", data: {stats: Contact.contacts_breakdown_by_user } %>
       </div>
 
-      <% if @contacts_per_month.any? %>
       <div class="span3">
-        <h2>Contact per month</h2>
-        <dl class="dl-horizontal">
-          <% @contacts_per_month.each_pair do |name, average| %>
-            <dt><%= name %></dt>
-          <dd><%= average %></dd>
-        <% end %>
-        </dl>
+        <h3>Contact by country</h3>
+        <%= content_tag :div, "", id: "contacts_by_countries", data: {stats: @contacts_by_countries } %>
       </div>
-      <% end %>
     </div>
   </div>
 </div>
 <div class="row">
   <div class="span10">
-    <h2>Last 10 contacts added</h2>
-      <table class="table table-bordered">
+    <div class="page-header">
+      <h2>Last added contacts</h2>
+    </div>
+
+      <table class="table table-bordered pagination-centered" style="margin: 0 auto 10px;">
       <thead>
         <tr>
           <th>Company</th>
@@ -58,8 +40,8 @@
           <th>Created on</th>
         </tr>
       </thead>
-      <tbody>
-    <% Contact.last(10).each do |contact| %>
+      <tbody id="more_contacts_table">
+    <% @last_ten.each do |contact| %>
       <tr>
         <td><%= link_to contact.company.truncate(30), contact_path(contact.id) %></td>
         <td><%= contact.emails.first.address.truncate(30) %></td>
@@ -70,4 +52,12 @@
       </tbody>
     </table>
   </div>
+  <div class="span10">
+    <div class="well well-small pagination-centered">
+      <div style="max-width: 400px; margin: 0 auto 0px;">
+        <%= link_to "Next 10 contacts...", more_contacts_path(@last_ten.last.id-1) , method: :post, remote: true, id: "more_contacts", class: "btn btn-large btn-block", data: {last: raw(@last_ten.last.id)} %>
+      </div>
+    </div>
+  </div>
 </div>
+<div id="shit"></div>
