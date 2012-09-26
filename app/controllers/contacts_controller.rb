@@ -18,18 +18,15 @@ class ContactsController < ApplicationController
   end
 
   def more_contacts
-    id = (params[:id].to_i? rescue 0)
-
+    id = params[:id].to_i rescue 0
     5.times do
       break if Contact.find_by_id(id)
       id -= 1
     end unless id.nil?
-
     @contacts = (id.nil? ? nil : Contact.find_all_by_id(id-10..id).reverse)
-
     respond_to do |format|
       format.js { render partial: "more_contacts" }
-    end if @contacts
+    end unless @contacts.nil?
   end
 
   def statistics
