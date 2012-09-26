@@ -17,14 +17,15 @@ CheerfulTuna::Application.routes.draw do
   resources :email_listings
 
   match 'contacts/statistics' => 'contacts#statistics', as: :stats_contacts
+  match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: ["post", "get"]#, constraints: {id: /\d/}
   match 'contacts/duplicate/:id' => 'contacts#duplicate', as: :duplicate
   resources :contacts
   resources :contacts do
     get 'page/:page', :action => :index, :on => :collection
   end
   match 'users/statistics' => 'users#statistics', as: :stats_users
-  match "users/chart/:timeframe/:date",  :to => "users#generate_chart",
-    via: "post", as: :generate_chart, constraints: {timeframe: /week|month/, date: /\d{4}-\d{2}-\d{2}/},
+  match "users/chart/:timeframe/:date" => "users#generate_chart", via: "post",
+    as: :generate_chart, constraints: {timeframe: /week|month/, date: /\d{4}-\d{2}-\d{2}/},
     defaults: { timeframe: 'month', date: Date.today.to_json }
   #match "users/monthly_chart/:date", :to => "users#generate_chart", :via => "post", as: :generate_chart
 

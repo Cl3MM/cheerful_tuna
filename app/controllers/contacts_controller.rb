@@ -17,9 +17,19 @@ class ContactsController < ApplicationController
     end
   end
 
+  def more_contacts
+    if Contact.find_by_id(params[:id])
+      id = params[:id].to_i
+      @contacts = Contact.find_all_by_id(id-10..id).reverse
+    end
+    respond_to do |format|
+      format.js { render partial: "more_contacts" }
+    end if @contacts
+  end
+
   def statistics
-    @contacts_per_day = User.average_contact_per_day
-    @contacts_per_month = User.average_contact_per_month(Date.today)
+    @last_ten = Contact.last(10).reverse
+    @contacts_by_countries = Contact.group(:country).count.sort_by{|k,v| v}.map{|name, val| {label: name, value: val} }
 
     respond_to do |format|
       format.html # index.html.erb

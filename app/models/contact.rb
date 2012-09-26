@@ -50,17 +50,6 @@ class Contact < ActiveRecord::Base
         .where(created_at: date.beginning_of_month..date.end_of_month)
   }
 
-  def self.contacts_breakdown_by_user
-    #{}.tap {|hash| Contact.contacts_breakdown_by_user.each {|sym, val| hash[sym.capitalize] = val}}
-    donut = Contact.contacts_group_by_user.count
-    donut.keys.map do |username|
-      {
-        label: username.capitalize,
-        value: donut[username]
-      }
-    end
-  end
-
   mapping do
     indexes :id, type: 'integer'
     indexes :address, type: 'string'

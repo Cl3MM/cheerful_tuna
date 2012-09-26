@@ -1,0 +1,8 @@
+<% @contacts.each do |contact| %>
+  <tr>
+    <td><%= link_to contact.company.truncate(30), contact_path(contact.id) %></td>
+    <td><%= contact.emails.first.address.truncate(30) %></td>
+    <td><%= User.find_by_id(contact.user_id).username %></td>
+    <td><%= contact.created_at.strftime("%d/%m/%y") %></td>
+  </tr>
+<% end %>

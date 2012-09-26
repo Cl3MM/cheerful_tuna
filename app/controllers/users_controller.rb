@@ -24,15 +24,17 @@ class UsersController < ApplicationController
   end
 
   def statistics
-    #unless ENV['RAILS_ENV'] = "production" or Rails.env.production?
+    unless ENV['RAILS_ENV'] = "production" or Rails.env.production?
       @date = Date.today
       @monthly_stats = User.contacts_per_user_stats
       @weekly_stats  = User.contacts_per_user_stats(@date, "week")
-    #else
-      #@date = "2012-06-26".to_date
-      #@monthly_stats = User.contacts_per_user_stats(@date)
-      #@weekly_stats  = User.contacts_per_user_stats(@date, "week")
-    #end
+    else
+      @date = "2012-06-26".to_date
+      @monthly_stats = User.contacts_per_user_stats(@date)
+      @weekly_stats  = User.contacts_per_user_stats(@date, "week")
+    end
+    @contacts_per_day = User.average_contact_per_day
+    @contacts_per_month = User.average_contact_per_month(@date)
 
     respond_to do |format|
       format.html # index.html.erb

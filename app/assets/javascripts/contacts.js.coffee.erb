@@ -38,6 +38,6 @@ jQuery ->
   $('.btn.disabled').each (index) ->
     $(this).attr "href", "#"
 
-  contacts_donut = Morris.Donut
-   element: "contacts_breakdown_by_user"
-   data: $("#contacts_breakdown_by_user").data('stats')
+  contacts_by_country_donut = Morris.Donut
+   element: "contacts_by_countries"
+   data: $("#contacts_by_countries").data('stats')

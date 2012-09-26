@@ -41,4 +41,48 @@ module MyTools
   end
   module_function :generate_random_string
 
+  def time_it_function
+    old_logger = ActiveRecord::Base.logger
+    ActiveRecord::Base.logger = nil
+
+    date = "2012-06-28".to_date
+    runs = [5,10,50,100,500,1000]
+    # run the functions
+    stats = runs.inject({optimized: {}, normal: {}}) do |data, time|
+      start = Time.now
+      time.times do |run|
+        User.optimized date
+      end
+      stop = Time.now - start
+      data[:optimized][time] = stop
+
+      start = Time.now
+      time.times do |run|
+        User.contacts_per_user_stats date
+      end
+      stop = Time.now - start
+      data[:normal][time] = stop
+
+      data
+    end
+
+    ActiveRecord::Base.logger = old_logger
+
+    # display results
+    #
+    puts "    \t|" + runs.map{|r| "#{r.to_s.size < 4 ? "   " : "  " }#{r.to_s}"}.join("\t|") + "\t|  avg |\n"
+    row1, row2 = ["opti"], ["norm"]
+    runs.each do |key|
+      row1 << "#{"%5.2fs" % stats[:optimized][key]}"
+      row2 << "#{"%5.2fs" % stats[:normal][key]}"
+    end
+    row1 << "%5.2fs" % stats[:optimized].values.instance_eval { reduce(:+) / size.to_f }.to_s
+    row2 << "%5.2fs" % stats[:normal].values.instance_eval { reduce(:+) / size.to_f }.to_s
+
+    puts row1.join("\t|") + "|\n"
+    puts row2.join("\t|") + "|\n"
+
+    stats
+  end
+  module_function :time_it_function
 end
