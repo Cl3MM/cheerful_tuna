@@ -19,7 +19,7 @@
       </div>
 
       <div class="span3">
-        <h3>Contact by country</h3>
+        <h2>By country</h2>
         <%= content_tag :div, "", id: "contacts_by_countries", data: {stats: @contacts_by_countries } %>
       </div>
     </div>
@@ -28,7 +28,7 @@
 <div class="row">
   <div class="span10">
     <div class="page-header">
-      <h2>Last added contacts</h2>
+      <h2>Lastest additions</h2>
     </div>
 
       <table class="table table-bordered pagination-centered" style="margin: 0 auto 10px;">
@@ -45,9 +45,8 @@
       <tr>
         <td><%= link_to contact.company.truncate(30), contact_path(contact.id) %></td>
         <td><%= contact.emails.first.address.truncate(30) %></td>
-        <td class="center"><%= contact.user.username %></td>
-        <td class="center"><%= distance_of_time_in_words_to_now(contact.created_at).truncate(30) %></td>
-        <!--<td class="center"><%= contact.created_at.strftime("%d/%m/%y") %></td>-->
+        <td class="center"><%= contact.user.username.capitalize %></td>
+        <td class="center"><%= distance_of_time_in_words_to_now(contact.created_at).truncate(30).capitalize %></td>
       </tr>
     <% end %>
       </tbody>
