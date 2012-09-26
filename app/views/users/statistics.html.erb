@@ -16,8 +16,8 @@
       <div class="span3">
         <h2>Average</h2>
         <div class="span3">
-        <% if @contacts_per_day.any? %>
-          <h3>Per day</h3>
+          <% if @contacts_per_day.any? %>
+            <h3>Per day</h3>
           <dl class="dl-horizontal">
             <% @contacts_per_day.each_pair do |name, average| %>
               <dt><%= name %></dt>
@@ -26,15 +26,16 @@
           </dl>
           <hr />
         <% end %>
-        <% if @contacts_per_month.any? %>
-        <h3>Per month</h3>
-        <dl class="dl-horizontal">
-          <% @contacts_per_month.each_pair do |name, average| %>
-            <dt><%= name %></dt>
-          <dd><%= average %></dd>
+          <% if @contacts_per_month.any? %>
+            <h3>Per month</h3>
+          <dl class="dl-horizontal">
+            <% @contacts_per_month.each_pair do |name, average| %>
+              <dt><%= name %></dt>
+            <dd><%= average %></dd>
+          <% end %>
+          </dl>
         <% end %>
-        </dl>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
