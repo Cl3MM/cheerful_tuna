@@ -46,7 +46,8 @@
         <td><%= link_to contact.company.truncate(30), contact_path(contact.id) %></td>
         <td><%= contact.emails.first.address.truncate(30) %></td>
         <td class="center"><%= contact.user.username %></td>
-        <td class="center"><%= contact.created_at.strftime("%d/%m/%y") %></td>
+        <td class="center"><%= distance_of_time_in_words_to_now(contact.created_at).truncate(30) %></td>
+        <!--<td class="center"><%= contact.created_at.strftime("%d/%m/%y") %></td>-->
       </tr>
     <% end %>
       </tbody>
