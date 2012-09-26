@@ -40,13 +40,13 @@
     <tbody>
       <% @contacts.each do |contact| %>
         <tr id="contact_table" value="<%= contact.user_id %>">
-          <td><%= link_to contact.company, contact_path(contact) %></td>
+          <td><%= link_to contact.company.truncate(20), contact_path(contact) %></td>
           <td><%= contact.last_name %></td>
           <td>
-            <%= raw(contact.email_addresses.join("<br />")) %>
+            <%= raw(contact.email_addresses.map{|e| e.truncate(20)}.join("<br />")) %>
           </td>
           <td><%= display_website contact.website %></td>
-          <td><%= contact.category %></td>
+          <td><%= contact.category.truncate(20) %></td>
           <td><%= contact.country %></td>
           <td class="actions">
             <div class="btn-group pull-right">
