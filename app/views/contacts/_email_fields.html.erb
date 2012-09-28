@@ -1,10 +1,13 @@
-<div class="control-group">
-  <%= f.label "Email address", class: "control-label" %>
+<div class="control-group <%= @email_error %>">
+  <%= f.label raw("<abbr title=\"required\">*</abbr> Email address"), class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :address %>
-    <%= f.hidden_field :_destroy %>
+    <%= f.text_field :address, :value => (params[:contact][:emails_attributes]['0'][:address] rescue "" ) %>
     <span class="help-inline">
+      <% if @email_error %>
+        can't be blank
+    <% end %>
       <%= link_to "remove", '#', class: "remove_fields" %>
     </span>
+    <%= f.hidden_field :_destroy %>
   </div>
 </div>

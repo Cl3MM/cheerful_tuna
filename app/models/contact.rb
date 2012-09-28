@@ -8,36 +8,20 @@ class Contact < ActiveRecord::Base
   has_many :emails, :inverse_of => :contact, :dependent => :destroy
   belongs_to :user
 
-  accepts_nested_attributes_for :emails, allow_destroy: true, :reject_if => proc {|a| a["address"].blank?}
+  accepts_nested_attributes_for :emails, allow_destroy: true#, :reject_if => proc {|a| a["address"].blank?}
 
   attr_accessible :address, :category, :cell, :company, :country, :fax,
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
     :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
     :member_id
 
-  #after_initialize :validate_emails
-  #before_save :clean_up_attributes#, :validate_emails
-  #before_save :validate_company
-  #before_save :valide_country
-  #before_validation :clean_data
+  before_save :clean_up_attributes, :check_company_and_country, :validate_emails
 
-
-  #before_validation :log_validate
-  #before_save :log_save
-
-  #def log something
-    #Rails.logger.debug "*" *2 + something + "*" *20
-  #end
-  #def log_validate
-    #log "Validation"
-  #end
-  #def log_save
-    #log "save"
-  #end
-
+  def validate_emails
+    return false if self.emails.first.address.blank?
+  end
   validates_presence_of :company, :country
-  validates :company, uniqueness: {scope: [:country, :last_name, :address], message: "A contact with similar company, country, last name and address already exists."}
-  #validates_associated :emails
+  validates :company, uniqueness: {scope: [:country, :last_name, :address], message: " already exists with similar country, last name and address."}
 
   scope :active_contacts, where(is_active: true)
   scope :inactive_contacts, where(is_active: false)
@@ -82,54 +66,6 @@ class Contact < ActiveRecord::Base
   def email_addresses
     emails.map(&:address)
   end
-  #validate validate_contact_uniqness
-  #def validate_contact_uniqness
-    ##Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
-    #errors[:base] << "C'est la merde"
-    #errors.add(:emails, "Tututu")
-  #end
-
-  #def check_email
-    #if email.blank?
-      #validates :email, :presence => {:message => "Your email is used to save your greeting."}
-    #else
-      #validates :email,
-        #:email => true,
-        #:uniqueness => { :case_sensitive => false }      
-    #end
-  #end
-
-  protected
-
-  def validate_emails
-    Rails.logger.debug "validate_emails "+"*" * 100
-    Rails.logger.debug self.attributes
-    emails_attributes.each do |email|
-      errors[:base] << "#{email.address} already exists." if Email.find_by_address(email.address)
-    end
-  end
-
-  def validates_associated_emails emails
-    Rails.logger.debug "validates_associated_emails "+"*" * 100
-    Rails.logger.debug emails
-    emails.each do |email|
-      Rails.logger.debug email
-      if address.blank?
-        self.errors[:base] << "Email address can't be blank."
-      else
-        self.errors[:base] << "#{email.address} already exists." if Email.find_by_address(email.address)
-      end
-    end
-    Rails.logger.debug self.errors
-  end
-
-  #validate :country_cant_be_blank
-  #def country_cant_be_blank
-    #Rails.logger.debug "Country:  #{country}"
-    #errors.add(:country, "You must select a country!") if country.blank?
-  #end
-
-  #before_validation :clean_data
 
   def duplicate
     copy_attributes = self.attributes
@@ -142,6 +78,8 @@ class Contact < ActiveRecord::Base
     new_contact = Contact.new(copy_attributes)
     return new_contact
   end
+
+  protected
 
   def clean_up_attributes
     attributes.each_pair do |k, v|
@@ -168,4 +106,7 @@ class Contact < ActiveRecord::Base
     end
   end
 
+  def check_company_and_country
+    return false if self.company.blank? or self.country.blank?
+  end
 end

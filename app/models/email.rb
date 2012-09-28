@@ -8,8 +8,9 @@ class Email < ActiveRecord::Base
 
   before_validation :clean_up_address
 
-  def clean_up_address
-    self.address = address.gsub(/\n/,";").gsub(/ /, "").downcase
-  end
+  private
 
+  def clean_up_address
+    self.address = address.strip.gsub(/\n/,";").gsub(/ /, "").downcase
+  end
 end
