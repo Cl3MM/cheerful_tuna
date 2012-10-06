@@ -1,0 +1,49 @@
+<div class="pagination pagination-centered">
+  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+</div>
+<%#= paginate @contacts %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Company</th>
+      <th>Email</th>
+      <th class="center">Website</th>
+      <th>Category</th>
+      <th>Country</th>
+      <th class="actions">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @contacts.each do |contact| %>
+    <tr id="contact_table" value="<%= contact.user_id %>">
+    <td><%= link_to contact.company.truncate(22), contact_path(contact) %></td>
+    <td>
+      <%= h(contact.email_addresses.map{|e| e.truncate(26)}.join("\n")) %>
+    </td>
+    <td class="center"><%= display_website contact.website %></td>
+    <td><%= contact.category.truncate(16) %></td>
+    <td><%= contact.country.truncate(16) %></td>
+    <td class="actions">
+      <div class="btn-group pull-right">
+        <%= link_to raw('<i class="icon-edit"></i>'),
+          edit_contact_path(contact), :class => 'btn btn-mini', :title => 'edit contact' %>
+        <%= link_to raw('<i class="icon-download"></i>'), contact_path(contact, format: "pdf"), :class => "btn btn-info btn-mini" %>
+          <%= link_to raw('<i class="icon-share"></i>'), duplicate_path(contact),
+            class: 'btn btn-mini btn-info', title: "Duplicate this entry" %>
+          <% if current_user.is_admin? %>
+              <%= link_to raw('<i class="icon-trash icon-white"></i>'),
+                contact_path(contact),
+                :method => :delete,
+                :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+                :class => 'btn btn-mini btn-danger' %>
+            <% end -%>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<div class="pagination pagination-centered">
+  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+</div>

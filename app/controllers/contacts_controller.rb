@@ -7,7 +7,11 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
-    @contacts = Contact.search(params)
+    if params[:tag]
+      @contacts = Contact.tagged_with(params[:tag]).page(params[:page]).per_page(50)
+    else
+      @contacts = Contact.search(params)
+    end
     @q = params[:query].present?
     @users = User.all
 
@@ -27,6 +31,16 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.js { render partial: "more_contacts" }
     end unless @contacts.nil?
+  end
+
+  def tag_cloud
+    if params[:tag]
+      @contacts = Contact.tagged_with(params[:tag]).page(params[:page]).per_page(50)
+      @tag = params[:tag]
+    end
+    respond_to do |format|
+      format.html
+    end
   end
 
   def statistics
@@ -86,87 +100,76 @@ class ContactsController < ApplicationController
   # GET /contacts/1/edit
   def edit
     @contact = Contact.find(params[:id])
+    @count = 0
   end
 
   # POST /contacts
   # POST /contacts.json
   def create
-    @contact = Contact.new(params[:contact])
-    @contact.update_attribute(:user_id, current_user.id)
+    flash.clear
+    begin
+      @contact = Contact.new(params[:contact])
+      @contact.update_attribute(:user_id, current_user.id)
+    rescue ActiveRecord::RecordNotUnique => e
+      if e.message =~ /for key 'index_emails_on_address'/
+        email   = e.message.scan(/Duplicate entry '(.*)' for key 'index_emails_on_address'.*/).flatten.first
+        err = ["the email address <strong>'#{email.html_safe}'</strong>",
+               "Check the emails fields"]
+      else
+        company = params[:contact][:company] || "ERROR"
+        country = params[:contact][:country] || "ERROR"
+        err = ["the company <strong>\"#{company.html_safe}\"</strong> in the country: <strong>\"#{country.html_safe}\"</strong>",
+               "Check the company, country, address and first name fields"]
+      end
+      flash[:error] = <<EOL
+<h3>An error prevented the reccord from being saved (duplicate entry):</h3>
+Sorry, #{err.first.html_safe} already exists in the database. Please take one of the following action:
+<ul>
+  <li>#{err.last.html_safe}</li>
+  <li>Do not create the contact, but find and update the already existing company using the search form on the main contact page</li>
+</ul>
+EOL
+      #flash[:error] +=  e.message
+    end
     respond_to do |format|
       if @contact.save
         format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
       else
+        @email_error = "error" if @contact.errors.full_messages.map{|m| m if(m =~ /email/i)}.size > 0
         format.html { render action: "new" }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
       end
     end
   end
 
-#  # POST /contacts
-  ## POST /contacts.json
-  #def create
-    #flash.clear
-    ##db_error = false
-    ##begin
-      #@contact = Contact.new(params[:contact])
-      #@contact.update_attribute(:user_id, current_user.id)
-      ##@contact.validates_associated_emails(params[:contact][:emails_attributes])
-      ##validation_error = @contact.save ? false : true
-    ##rescue ActiveRecord::RecordNotUnique => e
-      ##db_error = true
-      ##if e.message =~ /for key 'index_emails_on_address'/
-        ##email   = e.message.scan(/Duplicate entry '(.*)' for key 'index_emails_on_address'.*/).flatten.first
-        ##err = ["the email address <strong>'#{email}'</strong>",
-               ##"Check the emails fields"]
-      ##else
-        ##company = params[:contact][:company] || "ERROR"
-        ##country = params[:contact][:country] || "ERROR"
-        ##err = ["the company <strong>\"#{company}\"</strong> in the country: <strong>\"#{country}\"</strong>",
-               ##"Check the company, country, address and first name fields"]
-      ##end
-      ###flash[:error] = "<br /> #{e}"
-      ##if db_error
-      ##flash[:error] = <<EOL
-##<h3>An error prevented the reccord from being saved (duplicate entry):</h3>
-##Sorry, #{err.first} already exists in the database. Please take one of the following action:
-##<ul>
-  ##<li>#{err.last}</li>
-  ##<li>Find and update the already existing company using the search form on the main contact page</li>
-##</ul>
-##EOL
-  ##flash[:error] +=  e.message
-      ##end
-    ##end
-#=begin
-    #@contact.version
-    #if current_user
-      #@contact.update_attribute(:updated_by, current_user)
-    #else
-      #Rails.logger.info "[ERROR] Contact creation without current_user :#{params.attributes}"
-      #@contact.update_attribute(:updated_by, "ERROR")
-    #end
-#=end
-    #respond_to do |format|
-      #if @contact.save
-      ##unless flash[:error]
-      ##unless db_error or validation_error
-        #format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
-        #format.json { render json: @contact, status: :created, location: @contact }
-      #else
-        #format.html { render action: "new" }
-        #format.json { render json: @contact.errors, status: :unprocessable_entity }
-      #end
-    #end
-  #end
-
   # PUT /contacts/1
   # PUT /contacts/1.json
   def update
-    @contact = Contact.find(params[:id])
-    @contact.update_attribute(:updated_by, current_user)
-
+    flash.clear
+    begin
+      @contact = Contact.find(params[:id])
+      @contact.update_attribute(:updated_by, current_user)
+    rescue ActiveRecord::RecordNotUnique => e
+      if e.message =~ /for key 'index_emails_on_address'/
+        email   = e.message.scan(/Duplicate entry '(.*)' for key 'index_emails_on_address'.*/).flatten.first
+        err = ["the email address <strong>'#{h(email)}'</strong>",
+               "Check the emails fields"]
+      else
+        company = params[:contact][:company] || "ERROR"
+        country = params[:contact][:country] || "ERROR"
+        err = ["the company <strong>\"#{h(company)}\"</strong> in the country: <strong>\"#{h(country)}\"</strong>",
+               "Check the company, country, address and first name fields"]
+      end
+      flash[:error] = <<EOL
+<h3>An error prevented the reccord from being saved (duplicate entry):</h3>
+Sorry, #{h(err.first)} already exists in the database. Please take one of the following action:
+<ul>
+  <li>#{h(err.last)}</li>
+  <li>Do not create the contact, but find and update the already existing company using the search form on the main contact page</li>
+</ul>
+EOL
+    end
     respond_to do |format|
       if @contact.update_attributes(params[:contact])
         format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
