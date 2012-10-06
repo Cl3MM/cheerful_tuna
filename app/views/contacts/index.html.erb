@@ -5,12 +5,18 @@
     <small>{<%= Contact.count %>}</small>
   </h1>
 </div>
-  <%= form_tag contacts_path, method: :get, :class=>"well form-inline", style: "clear:none;" do %>
-    <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
-    <%= submit_tag "Search", name: nil, :class=>"btn" %>
-    <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
-<% end -%>
 
+<div class="row">
+  <div class="span10">
+    <%= form_tag contacts_path, method: :get, :class=>"well form-inline", style: "clear:none;" do %>
+      <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
+      <%= submit_tag "Search", name: nil, :class=>"btn" %>
+      <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
+    <% end -%>
+  </div>
+</div>
+<div class="row">
+  <div class="span10">
 <% if @contacts.empty? %>
   <div class="alert alert-error">
     <strong>
@@ -41,13 +47,13 @@
     <tbody>
       <% @contacts.each do |contact| %>
         <tr id="contact_table" value="<%= contact.user_id %>">
-          <td><%= link_to contact.company.truncate(25), contact_path(contact) %></td>
+          <td><%= link_to contact.company.truncate(22), contact_path(contact) %></td>
           <td>
-            <%= raw(contact.email_addresses.map{|e| e.truncate(25)}.join("<br />")) %>
+            <%= h(contact.email_addresses.map{|e| e.truncate(26)}.join("\n")) %>
           </td>
           <td class="center"><%= display_website contact.website %></td>
-          <td><%= contact.category.truncate(20) %></td>
-          <td><%= contact.country.truncate(20) %></td>
+          <td><%= contact.category.truncate(16) %></td>
+          <td><%= contact.country.truncate(16) %></td>
           <td class="actions">
             <div class="btn-group pull-right">
               <%= link_to raw('<i class="icon-edit"></i>'),
@@ -73,3 +79,5 @@
     <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
   </div>
 <% end -%>
+  </div>
+</div>

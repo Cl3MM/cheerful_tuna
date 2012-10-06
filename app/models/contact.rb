@@ -2,9 +2,11 @@ class Contact < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
+  acts_as_taggable
+  versioned #:dependent => :tracking
+
   WWW_PATERN  = /\b[http:\/\/]?([a-z0-9\._%-]+\.[a-z]{2,4})\b/i
 
-  versioned #:dependent => :tracking
   has_many :emails, :inverse_of => :contact, :dependent => :destroy
   belongs_to :user
 
@@ -13,13 +15,10 @@ class Contact < ActiveRecord::Base
   attr_accessible :address, :category, :cell, :company, :country, :fax,
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
     :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
-    :member_id
+    :member_id, :tag_list
 
   before_save :clean_up_attributes, :check_company_and_country, :validate_emails
 
-  def validate_emails
-    return false if self.emails.first.address.blank?
-  end
   validates_presence_of :company, :country
   validates :company, uniqueness: {scope: [:country, :last_name, :address], message: " already exists with similar country, last name and address."}
 
@@ -109,4 +108,25 @@ class Contact < ActiveRecord::Base
   def check_company_and_country
     return false if self.company.blank? or self.country.blank?
   end
+
+  def validate_emails
+    valid = true
+    if self.emails
+      #valid = false if self.emails.first.address.blank?
+      self.emails.each_with_index do |mail, index|
+        valid = false if mail.address.blank?
+        unless mail.address.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i)
+          valid = false
+        end
+      end
+    else
+      valid = false
+    end
+
+    unless valid
+      self.errors.add(:base, "Email is invalid. Please check the format that should look similar to: xxxx.xxxx@xxx.xxx.xxx ")
+    end
+    return valid
+  end
+
 end

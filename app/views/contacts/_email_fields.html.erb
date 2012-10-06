@@ -1,7 +1,7 @@
 <div class="control-group <%= @email_error %>">
   <%= f.label raw("<abbr title=\"required\">*</abbr> Email address"), class: "control-label" %>
   <div class="controls">
-    <%= f.text_field :address, :value => (params[:contact][:emails_attributes]['0'][:address] rescue "" ) %>
+    <%= f.text_field :address %>
     <span class="help-inline">
       <% if @email_error %>
         can't be blank
