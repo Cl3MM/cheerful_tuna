@@ -41,6 +41,9 @@ namespace :udb do
     Rake::Task['db:data:load'].invoke
     Rake::Task['udb:populate_countries'].invoke
     Rake::Task['tire:import'].invoke
+    u = User.find_by_username("clement")
+    u.update_attributes(:password => 'adminadmin', :password_confirmation => 'adminadmin')
+    u.save
   end
 
   desc "Clean up email whose contacts have been deleted"

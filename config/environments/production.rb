@@ -62,7 +62,13 @@ CheerfulTuna::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( contacts.js users.js members.js morris.min.js raphael-min.js contacts/more_contacts.js app/views/contacts/more_contacts.js contacts/_more_contacts.js )
+  config.assets.precompile += %w( contacts.js users.js members.js morris.min.js raphael-min.js )
+  config.assets.precompile += %w( contacts/more_contacts.js app/views/contacts/more_contacts.js )
+  config.assets.precompile << "contacts/_more_contacts.js"
+  config.assets.precompile << "#{Rails.root}/app/views/contacts/_more_contacts.js"
+  config.assets.precompile << "#{Rails.root}/app/views/contacts/_more_contacts.js.coffee"
+  config.assets.precompile << "#{Rails.root}/app/views/contacts/more_contacts.js"
+  config.assets.precompile << "#{Rails.root}/app/views/contacts/more_contacts.js.coffee"
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

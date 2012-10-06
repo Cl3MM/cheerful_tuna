@@ -1,4 +1,22 @@
 CheerfulTuna::Application.configure do
+
+  # Change mail delvery to either :smtp, :sendmail, :file, :test
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address: TUNA_CONFIG["mail_server"],
+    port: TUNA_CONFIG["mail_port"],
+    domain: TUNA_CONFIG["mail_domain"],
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: TUNA_CONFIG["mail_user_name"],
+    password: TUNA_CONFIG["mail_password"]
+  }
+
+  # Specify what domain to use for mailer URLs
+  config.action_mailer.default_url_options = {host: "ceres-recycle.org"}
+
+  config.serve_static_assets = true
+
   # Settings specified here will take precedence over those in config/application.rb
 
   # In the development environment your application's code is reloaded on
@@ -14,7 +32,7 @@ CheerfulTuna::Application.configure do
   config.action_controller.perform_caching = false
 
   # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
@@ -34,7 +52,5 @@ CheerfulTuna::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
-
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
 end

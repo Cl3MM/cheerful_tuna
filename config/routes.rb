@@ -14,10 +14,13 @@ CheerfulTuna::Application.routes.draw do
   #end
 
   #resources :countries
+  get "tags/:tag", to: "contacts#tag_cloud", as: :tag
+  match 'contacts/tag_cloud' => 'contacts#tag_cloud', as: :tag_cloud
+
   resources :email_listings
 
   match 'contacts/statistics' => 'contacts#statistics', as: :stats_contacts
-  match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: ["post", "get"]#, constraints: {id: /\d/}
+  match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: :post
   match 'contacts/duplicate/:id' => 'contacts#duplicate', as: :duplicate
   resources :contacts
   resources :contacts do
@@ -30,6 +33,7 @@ CheerfulTuna::Application.routes.draw do
   #match "users/monthly_chart/:date", :to => "users#generate_chart", :via => "post", as: :generate_chart
 
   resources :members
+  match 'certificate/:checksum' => 'members#generate_certificate', as: :generate_certificate, via: [:post, :get]
   #match "members/create_user_name/:company", :to => "members#create_user_name_from_company", :via => "post", as: :create_user_name
 
   root :to => 'contacts#index'

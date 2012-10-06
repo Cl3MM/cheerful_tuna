@@ -134,18 +134,15 @@ namespace :senators do
   # The desc is only a human readable comment displayed in the tasks list.
   desc "Search for trailers for films of the day"
   task :import => :environment do
-    #ActiveRecord::Base.connection.increment_open_transactions
-    #ActiveRecord::Base.connection.begin_db_transaction
-    #at_exit do
-      #ActiveRecord::Base.connection.rollback_db_transaction
-      #ActiveRecord::Base.connection.decrement_open_transactions
-    #end
     senators = YAML::load( File.read(YAML_SENATORS_FILE) )
     puts senators.senators.map{|sen| [sen.first_name, sen.last_name, sen.email, sen.region, sen.departement ].join(";") unless sen.email.nil?}.compact.to_yaml
     senators.senators.each do |senator|
+  #attr_accessible :address, :category, :cell, :company, :country, :fax,
+    #:first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
+    #:position, :postal_code, :phone, :emails_attributes, :versions_attributes,
+    #:member_id
       c = Contact.new do |contact|
         contact.first_name = senator.first_name
-        contact.user_id = 1
         contact.country = "France"
         contact.company = "Sénat"
         contact.last_name = senator.last_name
@@ -156,6 +153,11 @@ namespace :senators do
       c.save!
       puts "#{c.first_name} #{c.last_name} : #{c.emails.first.address if c.emails.first}"
     end
-    puts Contact.where('category LIKE ?', "Sénateur%").map{|c| [c.first_name, c.last_name].join(' | ')}.to_yaml
   end
+  #ActiveRecord::Base.connection.increment_open_transactions
+  #ActiveRecord::Base.connection.begin_db_transaction
+  #at_exit do
+    #ActiveRecord::Base.connection.rollback_db_transaction
+    #ActiveRecord::Base.connection.decrement_open_transactions
+  #end
 end

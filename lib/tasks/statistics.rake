@@ -95,4 +95,13 @@ namespace :stats do
       date = Time.now
     end
   end
+
+  desc "Send test emails"
+  task :send_test_emails => :environment do
+    list = [ {name: "Clement Roullet", email: "clement.roullet@gmail.com"}, {name: "Clement Roullet", email: "clement.roullet@ceres-recycle.org" }]
+    list.each do |contact|
+      puts "Sending email to Mr #{contact[:name]} <#{contact[:email]}>"
+      MemberMailer.generic_send(contact[:name], contact[:email]).deliver
+    end
+  end
 end
