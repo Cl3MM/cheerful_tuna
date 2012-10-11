@@ -11,6 +11,7 @@
     <%= form_tag contacts_path, method: :get, :class=>"well form-inline", style: "clear:none;" do %>
       <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
       <%= submit_tag "Search", name: nil, :class=>"btn" %>
+      <span  class="help-inline">You can use *, OR, AND operators to refine your query</span>
       <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
     <% end -%>
   </div>
