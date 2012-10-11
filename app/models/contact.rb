@@ -18,7 +18,7 @@ class Contact < ActiveRecord::Base
     :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
     :member_id, :tag_list
 
-  attr_reader :to_label, :to_select2
+  attr_reader :to_label, :to_select2, :full_name
 
   def to_select2
     { id: self.id, text: self.to_label }
@@ -89,9 +89,12 @@ class Contact < ActiveRecord::Base
   end
 
   def to_label
-    name = [self.first_name, self.last_name].delete_if{|x| x.blank? }
-    render = " (#{name.map(&:capitalize).join(" ") })" if name.size > 0
-    "#{self.company}#{render if name.size > 0}"
+    "#{self.company}#{ " (" + self.full_name + ")" unless self.full_name.blank? }"
+  end
+
+  def full_name
+    full_name = [(self.first_name.capitalize rescue nil), (self.last_name.upcase rescue nil)].delete_if{|x| x.gsub(/ +/, "").blank?}.compact.join(" ")
+    full_name.blank? ? "Undefined" : full_name
   end
 
   protected

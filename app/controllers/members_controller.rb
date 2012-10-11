@@ -39,7 +39,7 @@ class MembersController < ApplicationController
   # GET /members/1.json
   def show
     @member = Member.find(params[:id])
-
+    @contacts = @member.contacts
     respond_to do |format|
       format.html do # show.html.erb
         if params[:qr_code].present?
