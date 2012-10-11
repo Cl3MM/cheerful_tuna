@@ -8,6 +8,7 @@ class Contact < ActiveRecord::Base
   WWW_PATERN  = /\b[http:\/\/]?([a-z0-9\._%-]+\.[a-z]{2,4})\b/i
 
   has_many :emails, :inverse_of => :contact, :dependent => :destroy
+  has_and_belongs_to_many :members
   belongs_to :user
 
   accepts_nested_attributes_for :emails, allow_destroy: true#, :reject_if => proc {|a| a["address"].blank?}
@@ -16,6 +17,12 @@ class Contact < ActiveRecord::Base
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
     :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
     :member_id, :tag_list
+
+  attr_reader :to_label, :to_select2
+
+  def to_select2
+    { id: self.id, text: self.to_label }
+  end
 
   before_save :clean_up_attributes, :check_company_and_country, :validate_emails
 
@@ -47,10 +54,13 @@ class Contact < ActiveRecord::Base
   end
 
   def self.search(params)
+    Rails.logger.debug "Params dans Search: #{params}"
     tire.search(page: params[:page], per_page: 50) do
       if params[:query].present?
+        Rails.logger.debug "Query #{params[:query]} <=" + "*"* 100
         query { string params[:query] }
       else
+        Rails.logger.debug "Query ALL <=" + "*"* 100
         query { all }
       end
       #filter :range, published_at: {lte: Time.zone.now}
@@ -76,6 +86,12 @@ class Contact < ActiveRecord::Base
     copy_attributes[:company] = self.company + " (COPY)"
     new_contact = Contact.new(copy_attributes)
     return new_contact
+  end
+
+  def to_label
+    name = [self.first_name, self.last_name].delete_if{|x| x.blank? }
+    render = " (#{name.map(&:capitalize).join(" ") })" if name.size > 0
+    "#{self.company}#{render if name.size > 0}"
   end
 
   protected

@@ -44,13 +44,16 @@ class Member < ActiveRecord::Base
   #end
   # Setup accessible (or protected) attributes for your model
 
-  attr_accessible :email, :user_name#, :password, :password_confirmation, :remember_me
+  has_and_belongs_to_many :contacts
+
+  attr_accessible :email, :user_name, :contact_ids#, :password, :password_confirmation, :remember_me
   attr_accessible :activity, :address, :billing_address,
     :billing_city, :billing_country, :billing_postal_code, :category,
     :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
-    :logo_file, :membership_file, :start_date, :is_approved
+    :logo_file, :membership_file, :start_date, :is_approved#, :civility
 
-  #has_many :contacts, :inverse_of => :contact
+  accepts_nested_attributes_for :contacts
+
   #accepts_nested_attributes_for :contacts
 
   validates_presence_of :company, :country, :email, :user_name, :web_profile_url
@@ -58,6 +61,8 @@ class Member < ActiveRecord::Base
   validates :email, uniqueness: true
   validates :category, :inclusion => { :in => %w[Free A B C D],
                                    :message => "%{value} is not a valid category" }
+  #validates :civility, :inclusion => { :in => %w[Mr Mrs Ms],
+                                   #:message => "%{value} is not a valid category" }
   #def self.generate_username str
     #names = Member.all.map(&:user_name).to_set
     #username = MyTools.friendly_user_name str
@@ -71,7 +76,16 @@ class Member < ActiveRecord::Base
   mount_uploader :logo_file, MemberFilesUploader
   mount_uploader :membership_file, MemberFilesUploader
 
-  after_save :qr_encode, on: :create
+  after_save :qr_encode, on: [:create, :update]
+
+  def self.find_encrypted_member checksum
+    Member.all.each do |member|
+      if checksum == Digest::MD5.hexdigest(member.company)
+        return member
+      end
+    end
+    false
+  end
 
   def qr_code_name
     hash_data_path = "qr_code://#{self.class.to_s.underscore}/#{self.company}/#{self.created_at}"
@@ -98,8 +112,6 @@ class Member < ActiveRecord::Base
 
     cmd = "qrencode -m #{margin} -o #{outfile} -s #{scale} '#{url}'"
     stdin, stdout, stderr = Open3.popen3(cmd)
-    Rails.logger.debug("[QRencode]stdout: #{stdout.readlines}")
-    Rails.logger.debug("[QRencode]stderr: #{stderr.readlines}")
   end
 
 end

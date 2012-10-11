@@ -1,7 +1,17 @@
 class MembersController < ApplicationController
 
   #before_filter :redirect_member!
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, except: :generate_certificate
+
+  def generate_certificate
+    if params[:checksum].present?
+      @member = Member.find_encrypted_member params[:checksum]
+      pdf = CertificatePdf.new(@member)
+      send_data pdf.render, filename: (@member ? "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf" : "CERES_Corrupted_certificate.pdf"),
+        #disposition: "inline",
+        type: "application/pdf"
+    end
+  end
 
   def create_user_name_from_company
     c = Member.generate_username params[:company] if params[:company].present?
@@ -70,6 +80,14 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
+
+    if params[:member].has_key? :contact_ids
+      Rails.logger.debug "*" * 100
+      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
+      params[:member][:contact_ids] = params[:member][:contact_ids].first.split(",")
+      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
+      Rails.logger.debug "*" * 100
+    end
     @member = Member.new(params[:member])
     respond_to do |format|
       # TODO: send email with credentials
@@ -87,8 +105,15 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
-    @member = Member.find(params[:id])
 
+    @member = Member.find(params[:id])
+    if params[:member].has_key? :contact_ids
+      Rails.logger.debug "*" * 100
+      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
+      params[:member][:contact_ids] = params[:member][:contact_ids].first.split(",")
+      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
+      Rails.logger.debug "*" * 100
+    end
     respond_to do |format|
       if @member.update_attributes(params[:member])
         format.html { redirect_to @member, notice: 'Member was successfully updated.' }

@@ -6,18 +6,22 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    #@contacts = Contact.order(:company).page(params[:page]).per(15) #search(params)#.page(params[:page]).per(5)
-    if params[:tag]
-      @contacts = Contact.tagged_with(params[:tag]).page(params[:page]).per_page(50)
+    if params[:member_query].present?
+      @contacts = Contact.where("first_name LIKE ? OR last_name LIKE ? OR company LIKE ?", "%#{params[:member_query]}%", "%#{params[:member_query]}%", "%#{params[:member_query]}%")
+      #.page(params[:page]).per_page(50)
+    elsif params[:tag]
+      @contacts = Contact.search(params).tagged_with(params[:tag]).page(params[:page]).per_page(50)
     else
       @contacts = Contact.search(params)
     end
+
     @q = params[:query].present?
     @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @contacts }
+      format.json { render json: @contacts.map{ |c| {id: c.id, text: c.to_label} } }
+      # format.json { render json: @contacts.map{ |c| {id: c.id, text: {company: c.company, first_name: c.first_name, last_name: c.last_name }  } } }
     end
   end
 
@@ -48,7 +52,7 @@ class ContactsController < ApplicationController
     @contacts_by_countries = Contact.group(:country).count.sort_by{|k,v| v}.map{|name, val| {label: name, value: val} if val > 10}.compact
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html
     end
   end
 
