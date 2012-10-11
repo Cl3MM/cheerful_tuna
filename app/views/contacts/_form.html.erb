@@ -15,7 +15,8 @@
   <%= f.input :address %>
   <%= f.input :postal_code %>
   <%= f.input :category %>
-  <%= f.input :tag_list, label: "Tags (separated by commas)" %>
+  <%= f.input :tag_list, label: "Tags (separated by commas)",
+    input_html: { data: { tags: {tokenSeparators: [","], tags: @contact.tag_list}} } %>
   <%= f.input :country, :prompt => "Select a country", :required => true %>
   <%= f.input :first_name %>
   <%= f.input :last_name %>

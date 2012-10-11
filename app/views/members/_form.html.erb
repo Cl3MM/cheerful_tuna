@@ -2,6 +2,7 @@
   <%= render "shared/error_messages", target: @member %>
   <fieldset>
   <%= f.input :company, :autofocus => true %>
+  <%= f.input :country, prompt: "Select a country", required: true %>
   <%= f.input :email, required: true %>
   <%= f.input :user_name, :required => true %>
   <%= f.input :web_profile_url, required: true %>
@@ -9,10 +10,21 @@
   <%#<%= f.input :password, :required => true %>
   <%#<%= f.input :password_confirmation, :required => true %>
   <hr />
+  <%#= f.association :contacts %>
+  <div class="control-group select required">
+    <label class="select required control-label" for="member_category">
+      <abbr title="required">*</abbr> Contacts</label>
+    <div class="controls">
+      <input value='<%= raw @member.contacts.map(&:to_select2).to_json %>' multiple="multiple" type="hidden" id="member_contact_ids" name="member[contact_ids][]" />
+    </div>
+  </div>
+<!--
+      <input multiple="multiple" type="hidden" class="bigdrop multiple" id="member_contact_ids" style="width: 600px; display: none;" name="member[contact_ids][]">
+      <input value='<%= raw @member.contacts.map(&:id).compact.join(",") %>' multiple="multiple" type="hidden" id="member_contact_ids" name="member[contact_ids][]" />
+   -->
   <%= f.input :address %>
   <%= f.input :city %>
   <%= f.input :postal_code %>
-  <%= f.input :country, prompt: "Select a country", required: true %>
   <%= f.input :activity %>
   <%= f.input :vat_number %>
   <%= f.input :start_date %>
@@ -28,5 +40,5 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 members_path, :class => 'btn' %>
   </div>
-</fieldset>
+  </fieldset>
 <% end %>
