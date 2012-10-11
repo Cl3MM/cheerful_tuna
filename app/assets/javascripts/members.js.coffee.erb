@@ -17,3 +17,47 @@
 #        $('#member_user_name').val data
 #      , "json"
 #    false
+###
+
+    initSelection: (element, callback) ->
+      data = []
+      console.log('data')
+      console.log $(element.val())
+      $(element.val().split(',')).each ->
+        data.push({id: this, text: this})
+      console.log data
+      callback data
+
+
+###
+
+
+jQuery ->
+  $('#member_category').select2()
+
+  $('#member_country').select2()
+
+  $('#member_contact_ids').select2
+#    initSelection: (element, callback) ->
+#      bob = $('#member_contact_ids').val()
+#      console.log bob
+#      callback $.parseJSON(bob)
+    placeholder: "Select contact(s)"
+    allowClear: true
+    minimumInputLength: 3
+    multiple: true
+    ajax:
+      url: "/contacts.json"
+      dataType: 'json'
+      quietMillis: 100
+      data: (term, page) ->
+        member_query: term
+        page: page
+      results: (data, page) ->
+        #console.log('result '+  data)
+        results: data
+    formatResult: (contact) ->
+      contact.text
+    formatSelection: (data) ->
+      data.text
+  $('#member_contact_ids').select2("data", $.parseJSON($('#member_contact_ids').val()))

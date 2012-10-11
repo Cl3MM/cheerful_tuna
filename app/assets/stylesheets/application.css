@@ -10,4 +10,9 @@
  *
  *= require_self
  *= require_tree .
+ *= require select2
  */
+
+div[id*='country'] {
+  width: 224px;
+}
