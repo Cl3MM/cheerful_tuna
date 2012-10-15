@@ -3,7 +3,6 @@
   <head>
     <title>Cheerful Tuna</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%= javascript_include_tag "application", controller_name %>
     <% if controller.class.name == "PagesController" %>
       <%#= javascript_include_tag 'mercury.js' %>
       <%#= stylesheet_link_tag 'mercury_overrides.css' %>
@@ -14,6 +13,7 @@
   </head>
   <body>
     <%= render :partial => 'layouts/navbar' %>
+    <% if flash.any? %>
     <div class="container">
       <% flash.each do |name, msg| %>
         <div class="row">
@@ -25,11 +25,20 @@
           </div>
         </div>
       <% end %>
-      <div class="row">
-        <div class="span10 offset1">
-          <%= yield %>
+    </div>
+    <% end %>
+    <% if controller_name == "members" and controller.action_name == "show" %>
+      <%= yield %>
+    <% else %>
+      <div class="container">
+        <div class="row">
+          <div class="span10 offset1">
+            <%= yield %>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
+    <%= render :partial => 'layouts/footer' %>
+    <%= javascript_include_tag "application", controller_name %>
   </body>
 </html>

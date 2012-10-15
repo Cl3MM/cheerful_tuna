@@ -78,6 +78,16 @@ class Member < ActiveRecord::Base
 
   after_save :qr_encode, on: [:create, :update]
 
+  attr_reader :end_date, :category_price
+  def end_date
+   (self.start_date + 1.year).prev_month.end_of_month
+  end
+
+  def category_price
+    prices = {"A" => "5000€", "B" => "2000€", "C" => "1000€", "D" => "600€", "FREE" => "Free" }
+    prices[self.category.upcase]
+  end
+
   def self.find_encrypted_member checksum
     Member.all.each do |member|
       if checksum == Digest::MD5.hexdigest(member.company)

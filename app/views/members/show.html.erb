@@ -1,53 +1,59 @@
-<%- model_class = @member.class -%>
-<div class="page-header">
-  <h1>
-    <%= @member.company %>
-  </h1>
-</div>
-  <%= link_to raw('<i class="icon-download"></i> download logo'), @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
-  <%= link_to raw('<i class="icon-download"></i> membership form (pdf)'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
-  <%= link_to raw('<i class="icon-download"></i> Certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-inverse" %>
-  <%= link_to raw('<i class="icon-download"></i> Generate QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
-  <%= image_tag @member.qr_code_asset_url, class: "pull-right no_margin" unless @member.qr_code_asset_url.nil? %>
-<dl class="dl-horizontal">
-  <dt><strong><%= model_class.human_attribute_name(:company) %>:</strong></dt>
-  <dd><%= @member.company %></dd>
-  <dt><strong>Contacts:</strong></dt>
-  <dd><%= raw @contacts.any? ? @contacts.map{ |c| "#{link_to(h(c.full_name), c)}" }.join(", ") : "-" %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:address) %>:</strong></dt>
-  <dd><%= @member.address %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:city) %>:</strong></dt>
-  <dd><%= @member.city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:postal_code) %>:</strong></dt>
-  <dd><%= @member.postal_code %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:country) %>:</strong></dt>
-  <dd><%= @member.country %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:activity) %>:</strong></dt>
-  <dd><%= @member.activity %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:category) %>:</strong></dt>
-  <dd><%= @member.category %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:vat_number) %>:</strong></dt>
-  <dd><%= @member.vat_number %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:billing_address) %>:</strong></dt>
-  <dd><%= @member.billing_address %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:billing_city) %>:</strong></dt>
-  <dd><%= @member.billing_city %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:billing_postal_code) %>:</strong></dt>
-  <dd><%= @member.billing_postal_code %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:billing_country) %>:</strong></dt>
-  <dd><%= @member.billing_country %></dd>
-</dl>
-<div style="clear:both;">
-</div>
-<div class="form-actions">
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-              members_path, :class => 'btn'  %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_member_path(@member), :class => 'btn' %>
-  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              member_path(@member),
-              :method => 'delete',
-              :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-              #:data => { :confirm => 'Text' }
-              :class => 'btn btn-danger' %>
-</div>
+<div class="container">
+  <div class="row">
+    <div class="span2 offset1">
+      <div class="well" style="max-width: 340px; padding: 8px 0; margin-top: 24px;">
+        <ul class="nav nav-list" id="sidebar">
+          <li class="nav-header">Member's Menu</li>
+          <li><a href="#company"><i class="icon-chevron-right pull-right"></i> Company</a></li>
+          <li><a href="#contacts"><i class="icon-chevron-right pull-right"></i> Contacts</a></li>
+          <li><a href="#membership"><i class="icon-chevron-right pull-right"></i> Membership</a></li>
+          <li class="divider"></li>
+          <li><a href="#files"><i class="icon-chevron-right pull-right"></i> Files</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="span8">
+      <div class="page-header">
+        <h1><%= @member.company.upcase %></h1>
+      </div>
+      <div class="btn-group pagination-centered">
+        <%= link_to t('.back', :default => t("helpers.links.back")),
+          members_path, :class => 'btn'  %>
+        <%= link_to t('.edit', :default => t("helpers.links.edit")),
+          edit_member_path(@member), :class => 'btn' %>
+        <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+          member_path(@member),
+          :method => 'delete',
+          :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
+          #:data => { :confirm => 'Text' }
+          :class => 'btn btn-danger' %>
+
+        <%= link_to raw('<i class="icon-download"></i> Logo'), @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
+          <%= link_to raw('<i class="icon-download"></i> Membership Form'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
+          <%= link_to raw('<i class="icon-download"></i> Certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-inverse" %>
+          <%= link_to raw('<i class="icon-qrcode"></i> QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
+      </div>
+       <hr />
+      <div id="company">
+        <h3>Company details</h3>
+        <%= display_address @member %>
+      </div>
+       <hr />
+      <div id="contacts">
+        <h3>Associated contacts</h3>
+        <%= contact_details @member %>
+      </div>
+       <hr />
+      <div id="membership">
+        <h3>Membership details</h3>
+        <%= membership_details @member %>
+      </div>
+       <hr />
+      <div id="files">
+        <h3>Files</h3>
+        <%= image_tag @member.qr_code_asset_url, class: "pull-left no_margin" unless @member.qr_code_asset_url.nil? %>
+        <div class="clearfix">&nbsp;</div>
+      </div>
+      </div>
+    </div>
+  </div>
