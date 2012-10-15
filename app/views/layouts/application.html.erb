@@ -12,6 +12,7 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+  <div id="wrap">
     <%= render :partial => 'layouts/navbar' %>
     <% if flash.any? %>
     <div class="container">
@@ -38,6 +39,7 @@
         </div>
       </div>
     <% end %>
+  </div>
     <%= render :partial => 'layouts/footer' %>
     <%= javascript_include_tag "application", controller_name %>
   </body>
