@@ -9,6 +9,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+TUNA_CONFIG = YAML.load(File.read(File.expand_path('../tuna.yml', __FILE__)))
+TUNA_CONFIG.merge! TUNA_CONFIG.fetch(Rails.env, {})
+TUNA_CONFIG.symbolize_keys!
+
+#YAML.load_file("#{Rails.root}/config/tuna.yml")[Rails.env]
+
 module CheerfulTuna
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

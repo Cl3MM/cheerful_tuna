@@ -3,17 +3,17 @@ CheerfulTuna::Application.configure do
   # Change mail delvery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: TUNA_CONFIG["mail_server"],
-    port: TUNA_CONFIG["mail_port"],
-    domain: TUNA_CONFIG["mail_domain"],
+    address: TUNA_CONFIG[:mail_server],
+    port: TUNA_CONFIG[:mail_port],
+    domain: TUNA_CONFIG[:mail_domain],
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: TUNA_CONFIG["mail_user_name"],
-    password: TUNA_CONFIG["mail_password"]
+    user_name: TUNA_CONFIG[:mail_user_name],
+    password: TUNA_CONFIG[:mail_password]
   }
 
   # Specify what domain to use for mailer URLs
-  config.action_mailer.default_url_options = {host: "ceres-recycle.org"}
+  config.action_mailer.default_url_options = {host: TUNA_CONFIG[:mail_domain]}
 
   # Settings specified here will take precedence over those in config/application.rb
 
