@@ -1,47 +1,28 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
-#jQuery ->
-
-#  $('#member_company').on 'focusout', (event) ->
-#    <%#$('#member_user_name').val $(this).val()%>
-#    company = $(this).val()
-#    if company == ""
-#      $(this).focus()
-#    else
-#      company = company.replace(/\./g, " ")
-      #console.log(company)
-#      url = '/members/create_user_name/' + company
-#      $.post url, (data) ->
-#        #console.log(data)
-#        $('#member_user_name').val data
-#      , "json"
-#    false
-###
-
-    initSelection: (element, callback) ->
-      data = []
-      console.log('data')
-      console.log $(element.val())
-      $(element.val().split(',')).each ->
-        data.push({id: this, text: this})
-      console.log data
-      callback data
-
-
-###
-
-
 jQuery ->
+  #$('#sidebar').scrollspy()
+  ###
+  $('#sidebar').affix
+    offset:
+      top: () ->
+        console.log $(window).width()
+        $(window).width() <= 980 ? 290 : 210
+      bottom: 270
+  ###
+  $('.habtm_tooltip').tooltip()
+
   $('#member_category').select2()
 
   $('#member_country').select2()
 
+  $('#member_billing_country').select2()
+
+  $('#member_start_date').datepicker
+    dateFormat: 'yy-mm-dd'
+
   $('#member_contact_ids').select2
-#    initSelection: (element, callback) ->
-#      bob = $('#member_contact_ids').val()
-#      console.log bob
-#      callback $.parseJSON(bob)
     placeholder: "Select contact(s)"
     allowClear: true
     minimumInputLength: 3
@@ -61,3 +42,21 @@ jQuery ->
     formatSelection: (data) ->
       data.text
   $('#member_contact_ids').select2("data", $.parseJSON($('#member_contact_ids').val()))
+
+
+###
+  $('#member_company').on 'focusout', (event) ->
+    <%#$('#member_user_name').val $(this).val()%>
+    company = $(this).val()
+    if company == ""
+      $(this).focus()
+    else
+      company = company.replace(/\./g, " ")
+     #console.log(company)
+      url = '/members/create_user_name/' + company
+      $.post url, (data) ->
+        #console.log(data)
+        $('#member_user_name').val data
+      , "json"
+    false
+###

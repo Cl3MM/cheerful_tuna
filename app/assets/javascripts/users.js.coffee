@@ -63,6 +63,5 @@ jQuery ->
     event.preventDefault()
 
   contacts_by_user_donut = Morris.Donut
-   element: "contacts_by_user"
-   data: $("#contacts_by_user").data('stats')
-
+    element: "contacts_by_user"
+    data: $("#contacts_by_user").data('stats')
