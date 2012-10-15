@@ -39,7 +39,6 @@ jQuery ->
     $(this).attr "href", "#"
 
   if $("#contacts_by_countries").length > 0
-    alert "Youhououhh !!!"
     contacts_by_countries = Morris.Donut
       element: "contacts_by_countries"
       data: $("#contacts_by_countries").data('stats')
