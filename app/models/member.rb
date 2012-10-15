@@ -3,6 +3,7 @@ class Member < ActiveRecord::Base
 
   include MyTools
 
+  acts_as_taggable_on :brand, :activity
 #  validate :validate_contact_uniqness
   #def validate_contact_uniqness
     ##Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
@@ -47,16 +48,16 @@ class Member < ActiveRecord::Base
   has_and_belongs_to_many :contacts
 
   attr_accessible :email, :user_name, :contact_ids#, :password, :password_confirmation, :remember_me
-  attr_accessible :activity, :address, :billing_address,
+  attr_accessible :address, :billing_address,
     :billing_city, :billing_country, :billing_postal_code, :category,
     :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
-    :logo_file, :membership_file, :start_date, :is_approved#, :civility
+    :logo_file, :membership_file, :start_date, :is_approved, :brand_list, :activity_list #, :civility
 
   accepts_nested_attributes_for :contacts
 
   #accepts_nested_attributes_for :contacts
 
-  validates_presence_of :company, :country, :email, :user_name, :web_profile_url
+  validates_presence_of :company, :country, :email, :web_profile_url, :start_date, :category, :address, :city, :postal_code, :activity
   validates :user_name, uniqueness: true
   validates :email, uniqueness: true
   validates :category, :inclusion => { :in => %w[Free A B C D],
@@ -77,6 +78,7 @@ class Member < ActiveRecord::Base
   mount_uploader :membership_file, MemberFilesUploader
 
   after_save :qr_encode, on: [:create, :update]
+  before_save :clean_data
 
   attr_reader :end_date, :category_price
   def end_date
@@ -122,6 +124,17 @@ class Member < ActiveRecord::Base
 
     cmd = "qrencode -m #{margin} -o #{outfile} -s #{scale} '#{url}'"
     stdin, stdout, stderr = Open3.popen3(cmd)
+  end
+
+  private
+
+  def clean_data
+    # trim whitespace from beginning and end of string attributes
+    attribute_names.each do |name|
+      if send(name).respond_to?(:strip)
+        send("#{name}=", send(name).strip)
+      end
+    end
   end
 
 end

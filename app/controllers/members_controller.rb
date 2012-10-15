@@ -27,7 +27,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.all
+    @members = Member.page(params[:page]).per_page(50)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -80,7 +80,6 @@ class MembersController < ApplicationController
   # POST /members
   # POST /members.json
   def create
-
     if params[:member].has_key? :contact_ids
       Rails.logger.debug "*" * 100
       Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
