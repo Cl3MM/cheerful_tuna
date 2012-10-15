@@ -43,7 +43,7 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platform => :ruby
-
+  gem 'jquery-ui-rails'
   gem 'uglifier', '>= 1.0.3'
 end
 
