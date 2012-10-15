@@ -36,8 +36,9 @@ HTML
 <dl class="dl-horizontal">
   <dt>Start date:</dt><dd class="link_color">#{prettify @member.start_date}</dd>
   <dt>End date:</dt><dd class="link_color">#{prettify @member.end_date}</dd>
-  <dt>Category:</dt><dd>#{member.category} - #{h(member.category_price)}</dd>
-  <dt>Activity:</dt><dd>#{(member.activity.blank? ? link_to("Please set the Activity", edit_member_path(member)) : h(member.activity)) }</dd>
+  <dt>Category:</dt><dd>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</dd>
+  <dt>Activity:</dt><dd>#{(member.activity_list.empty? ? link_to("Please set the Activities", edit_member_path(member)) : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
+  <dt>Brands</dt><dd>#{(member.brand_list.empty? ? link_to("Please set the Brands", edit_member_path(member)) : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
   <dt>Web:</dt><dd>#{member.web_profile_url}</dd>
   <dt>Username:</dt><dd>#{member.user_name}</dd>
 </dl>

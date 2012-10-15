@@ -27,7 +27,7 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.page(params[:page]).per_page(50)
+    @members = Member.order("company ASC").page(params[:page]).per_page(20)
 
     respond_to do |format|
       format.html # index.html.erb

@@ -5,17 +5,16 @@
       <legend><abbr title="required">*</abbr> Membership details</legend>
       <%= f.input :company, :autofocus => true %>
       <%#= f.input :email, required: true %>
-      <%#= f.input :user_name, :required => true %>
-      <%= f.input :web_profile_url, required: true %>
+      <%= f.input :user_name, required: true, disabled: true %>
+      <%= f.input :web_profile_url, label: "Web Profile URL", required: true %>
       <%= f.input :start_date, required: true, as: :string %>
       <%= f.input :category, collection: %w[Free A B C D], required: true %>
       <%= f.input :vat_number %>
-      <%= f.input :activity_list, label: "Member's activities(s) (commas separated)",
-        input_html: { data: { tags: {tokenSeparators: [","], tags: @member.activity_list}} } %>
     </div>
 
     <div class="span4 offset1">
       <legend>Member's contacts details</legend>
+      <p class="muted">Please start to type the contact name, and select from the list.</p>
       <div class="control-group select required">
         <label class="select required control-label" for="member_category">
           <abbr title="required">*</abbr> Contacts</label>
@@ -23,12 +22,15 @@
           <input value='<%= raw @member.contacts.map(&:to_select2).to_json %>' multiple="multiple" type="hidden" id="member_contact_ids" name="member[contact_ids][]" />
         </div>
       </div>
-      <legend>Member's brands</legend>
-      <%= f.input :brand_list, label: "Member's Brand(s) (separated by commas)",
+      <legend>Member's Brands &amp; Activities</legend>
+      <p class="muted">Please enter brand and activity names. Press the comma key to separate tags.</p>
+      <%= f.input :activity_list, label: "Member's activities(s)",
+        input_html: { data: { tags: {tokenSeparators: [","], tags: @member.activity_list}} } %>
+      <%= f.input :brand_list, label: "Member's Brand(s)",
         input_html: { data: { tags: {tokenSeparators: [","], tags: @member.brand_list}} } %>
       <legend>Member's files</legend>
-      <%= f.input :membership_file %>
-        <%= f.input :logo_file %>
+      <%= f.input :membership_file, disabled: true %>
+      <%= f.input :logo_file, disabled: true %>
   </div>
 </div>
 <div class="row">

@@ -57,7 +57,7 @@ class Member < ActiveRecord::Base
 
   #accepts_nested_attributes_for :contacts
 
-  validates_presence_of :company, :country, :email, :web_profile_url, :start_date, :category, :address, :city, :postal_code, :activity
+  validates_presence_of :company, :country, :web_profile_url, :start_date, :category, :address, :city, :postal_code, :activity_list
   validates :user_name, uniqueness: true
   validates :email, uniqueness: true
   validates :category, :inclusion => { :in => %w[Free A B C D],
@@ -126,7 +126,7 @@ class Member < ActiveRecord::Base
     stdin, stdout, stderr = Open3.popen3(cmd)
   end
 
-  private
+  protected
 
   def clean_data
     # trim whitespace from beginning and end of string attributes
