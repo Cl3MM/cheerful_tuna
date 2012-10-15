@@ -16,4 +16,5 @@
 //= require morris.min
 //= require twitter/bootstrap
 //= require select2
-//= require jquery.ui.datepicker
+//= require bootstrap-datepicker
+// =  // require jquery.ui.datepicker

@@ -10,13 +10,14 @@
  *
  *= require_self
  *= require_tree .
- *= require jquery.ui.datepicker
  *= require select2
  */
 
 div[id*='country'] {
   width: 224px;
 }
+
+/*
 
 html, body {
   height: 100%;
@@ -29,11 +30,13 @@ html, body {
 #main {
   overflow:auto;
   padding-bottom:100px; /* this needs to be bigger than footer height*/
+/*
 }
 
 .footer {
   position: relative;
   margin-top: -100px; /* negative value of footer height */
+/*
   height: 100px;
   clear:both;
   padding-top:20px;
@@ -41,7 +44,6 @@ html, body {
 
 /* Footer
 -------------------------------------------------- */
-
 .footer {
   padding: 60px 0;
   margin-top: 50px;
