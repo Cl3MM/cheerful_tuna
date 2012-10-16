@@ -51,9 +51,10 @@ class MembersController < ApplicationController
       format.pdf do # show.html.erb
         if params[:certif].present?
           specimen = params[:specimen].present? ? true : nil
+          #disposition = params[:disposition].present? ? "inline" : false
           pdf = CertificatePdf.new(@member, specimen)
           send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf",
-            #disposition: "inline",
+            #disposition: disposition,
             type: "application/pdf"
         end
       end

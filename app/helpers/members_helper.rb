@@ -1,9 +1,13 @@
 #encoding: utf-8
 module MembersHelper
-  def prettify date
-    date.strftime("%B %d, %Y")
+  def format_date date, short = false
+    date.strftime("#{short ? "%a" : "%B"} #{date.day.ordinalize}, %Y")
   end
 
+  def link_to_company member
+    opts = {class: "a-tooltip", title: "#{h(member.company.capitalize)}"} if member.company.size > 25
+    link_to(member.company.truncate(25), member_path(member), opts)
+  end
   def tooltip contact
     html = ["Company: #{h(contact.company.upcase)}"]
     html << "Email: #{contact.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join(", ")}"
@@ -34,8 +38,8 @@ HTML
   def membership_details member
     html = <<HTML
 <dl class="dl-horizontal">
-  <dt>Start date:</dt><dd class="link_color">#{prettify @member.start_date}</dd>
-  <dt>End date:</dt><dd class="link_color">#{prettify @member.end_date}</dd>
+  <dt>Start date:</dt><dd class="link_color">#{format_date @member.start_date}</dd>
+  <dt>End date:</dt><dd class="link_color">#{format_date @member.end_date}</dd>
   <dt>Category:</dt><dd>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</dd>
   <dt>Activity:</dt><dd>#{(member.activity_list.empty? ? link_to("Please set the Activities", edit_member_path(member)) : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
   <dt>Brands</dt><dd>#{(member.brand_list.empty? ? link_to("Please set the Brands", edit_member_path(member)) : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
