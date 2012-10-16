@@ -23,3 +23,4 @@ pickle-email-*.html
 Guardfile
 /spec/*
 tags
+/db/schema.rb
