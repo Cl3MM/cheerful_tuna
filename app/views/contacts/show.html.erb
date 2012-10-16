@@ -41,8 +41,7 @@
 </div>
 <div class="form-actions">
   <%= image_tag (@contact.is_active ? "glyphicons/glyphicons_198_ok.png" : "glyphicons/glyphicons_199_ban.png") %>&nbsp;
-  <%= link_to t('.back', :default => t("helpers.links.back")),
-                contacts_path, class: "btn" %>
+  <%= link_to "Back", :back, class: "btn" %>
   <%= link_to t('.edit', :default => t("helpers.links.edit")),
               edit_contact_path(@contact), class: @class %>
   <%= link_to "Bounce", contact_path(@contact, bounce: true), class: "#{@class} btn-primary"  %>
