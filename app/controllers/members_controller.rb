@@ -81,11 +81,7 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     if params[:member].has_key? :contact_ids
-      Rails.logger.debug "*" * 100
-      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
       params[:member][:contact_ids] = params[:member][:contact_ids].first.split(",")
-      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
-      Rails.logger.debug "*" * 100
     end
     @member = Member.new(params[:member])
     respond_to do |format|
@@ -104,14 +100,12 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
+    #Rails.logger.debug "*" * 100
+    #Rails.logger.debug "Params: #{params[:start_date]}"
 
     @member = Member.find(params[:id])
     if params[:member].has_key? :contact_ids
-      Rails.logger.debug "*" * 100
-      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
       params[:member][:contact_ids] = params[:member][:contact_ids].first.split(",")
-      Rails.logger.debug "Params: #{params[:member][:contact_ids]}"
-      Rails.logger.debug "*" * 100
     end
     respond_to do |format|
       if @member.update_attributes(params[:member])
