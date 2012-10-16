@@ -4,6 +4,19 @@ module MembersHelper
     date.strftime("#{short ? "%a" : "%B"} #{date.day.ordinalize}, %Y")
   end
 
+  # create a select collection
+  def select_per_page opts={}
+    opts = { html_input: {class: "span2", id: "super_select"},
+             selected: false, select_options: %w"5 10 20 50 100 250"
+    }.merge(opts)
+    attr = opts[:html_input].reduce([]){ |o, (k, v)| o << "#{k}=#{v}" }.join(" ") if opts[:html_input].present?
+    html = ["<select #{attr if attr}>"]
+    html<< opts[:select_options].map do |val|
+      "<option value=\"#{val}\" #{" selected=\"selected\"" if val == opts[:selected] }>#{val}</option>"
+    end
+    html << ["</select>"]
+    raw html.join()
+  end
   def link_to_company member
     opts = {class: "a-tooltip", title: "#{h(member.company.capitalize)}"} if member.company.size > 25
     link_to(member.company.truncate(25), member_path(member), opts)

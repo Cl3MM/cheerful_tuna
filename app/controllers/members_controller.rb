@@ -27,7 +27,8 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @members = Member.order("company ASC").page(params[:page]).per_page(20)
+    @per_page = params[:per_page] || '20'
+    @members = Member.order("company ASC").page(params[:page]).per_page((@per_page.to_i rescue 20))
 
     respond_to do |format|
       format.html # index.html.erb

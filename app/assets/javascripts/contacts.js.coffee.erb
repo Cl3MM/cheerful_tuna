@@ -1,4 +1,8 @@
 jQuery ->
+
+  $('#per_page').on 'change', (e) ->
+    $(this).closest('form').trigger('submit')
+
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).parent().prev().val(true)
     $(this).closest('.control-group').hide()

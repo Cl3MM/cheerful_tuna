@@ -22,8 +22,12 @@ CheerfulTuna::Application.routes.draw do
   match 'contacts/statistics' => 'contacts#statistics', as: :stats_contacts
   match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: :post
   match 'contacts/duplicate/:id' => 'contacts#duplicate', as: :duplicate
+
   resources :contacts
   resources :contacts do
+    get 'page/:page', :action => :index, :on => :collection
+  end
+  resources :members do
     get 'page/:page', :action => :index, :on => :collection
   end
   match 'users/statistics' => 'users#statistics', as: :stats_users

@@ -6,15 +6,17 @@
   </h1>
 </div>
 
-<div class="row">
-  <div class="span10">
-    <%= form_tag contacts_path, method: :get, :class=>"well form-inline", style: "clear:none;" do %>
-      <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
-      <%= submit_tag "Search", name: nil, :class=>"btn" %>
-      <span  class="help-inline">You can use *, OR, AND operators to refine your query</span>
-      <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
-    <% end -%>
-  </div>
+<div class="well">
+  <%= form_tag contacts_path, method: :get, :class=>"form-inline inline" do %>
+    <%= select_per_page({selected: @per_page, select_options: %w(50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <span  class="help-inline" style="margin-right: 2em;">per page</span>
+  <% end -%>
+  <%= form_tag contacts_path, method: :get, :class=>"form-inline inline", style: "clear:none;" do %>
+    <%= text_field_tag :query, params[:query], :class=>"input-medium" %>
+    <%= submit_tag "Search", name: nil, :class=>"btn" %>
+    <span  class="help-inline">You can use *, OR, AND operators to refine your query</span>
+  <% end -%>
+  <%= link_to raw('<i class="icon-plus-sign"></i> New contact'), new_contact_path, :class => 'btn btn-primary pull-right' %>
 </div>
 <div class="row">
   <div class="span10">

@@ -54,13 +54,12 @@ class Contact < ActiveRecord::Base
   end
 
   def self.search(params)
-    Rails.logger.debug "Params dans Search: #{params}"
-    tire.search(page: params[:page], per_page: 50) do
+    per_page = (params[:per_page].present? ? (params[:per_page].to_i rescue 50) : 50 )
+    tire.search(page: params[:page], per_page: per_page) do
+      Rails.logger.debug "Params: #{params}"
       if params[:query].present?
-        Rails.logger.debug "Query #{params[:query]} <=" + "*"* 100
         query { string params[:query] }
       else
-        Rails.logger.debug "Query ALL <=" + "*"* 100
         query { all }
       end
       #filter :range, published_at: {lte: Time.zone.now}

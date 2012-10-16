@@ -11,6 +11,8 @@ $('#sidebar').affix
     bottom: 270
 ###
 jQuery ->
+  $('#per_page').on 'change', (e) ->
+    $(this).closest('form').trigger('submit')
 
   $('.habtm_tooltip').tooltip()
   $('.btn-tooltip').tooltip()

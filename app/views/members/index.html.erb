@@ -1,11 +1,18 @@
 <%- model_class = Member.new.class -%>
 <div class="page-header">
   <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
-    <%= link_to 'New member', new_member_path, class: 'btn btn-primary pull-right btn-tooltip', title: "Create a new Member" %>
   </h1>
 </div>
+<div class="well">
+  <%= form_tag members_path, method: :get, :class=>"form-inline inline" do %>
+    <span  class="help-inline">Show </span>
+    <%= select_per_page({selected: @per_page, html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <%= submit_tag "Members per page", name: nil, :class=>"btn" %>
+  <% end -%>
+  <%= link_to 'New member', new_member_path, class: 'btn btn-primary pull-right btn-tooltip', title: "Create a new Member" %>
+</div>
 <div class="pagination pagination-centered">
-  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%= will_paginate(@contacts, :renderer => BootstrapPagination::Rails) %>
 </div>
 <table class="table table-striped">
   <thead>
@@ -26,20 +33,20 @@
         <td><%= member.city.capitalize.truncate(15) %></td>
         <td><%= member.country.upcase.truncate(15) %></td>
         <td><%= member.activity_list.map{|act| act.capitalize}.join(", ").truncate(20) %></td>
-        <td><%= member.category.capitalize.truncate(20) %></td>
+        <td><%= member.category_price.capitalize.truncate(20) %></td>
         <td><%= format_date(member.start_date, true) %></td>
         <td>
           <div class="btn-group pull-right">
           <%= link_to raw('<i class="icon-file"></i>'), member_path(member, format: "pdf", certif: true),
-            class: "btn btn-info btn-small btn-tooltip", title: "Generate PDF Certificate" %>
+            class: "btn btn-info btn-mini btn-tooltip", title: "Generate PDF Certificate" %>
           <%= link_to raw('<i class="icon-edit"></i> Edit'),
-                      edit_member_path(member), :class => 'btn  btn-small btn-tooltip', title: "Edit member" %>
+                      edit_member_path(member), :class => 'btn  btn-mini btn-tooltip', title: "Edit member" %>
         <% if current_user.is_admin? %>
           <%= link_to "Delete",
                       member_path(member),
                       :method => :delete,
                       :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')),
-                      :class => 'btn btn-small btn-danger btn-tooltip', title: "Delete member"%>
+                      :class => 'btn btn-mini btn-danger btn-tooltip', title: "Delete member"%>
         <% end %>
           </div>
         </td>

@@ -6,11 +6,12 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
+    @per_page = params[:per_page] || '20'
     if params[:member_query].present?
       @contacts = Contact.where("first_name LIKE ? OR last_name LIKE ? OR company LIKE ?", "%#{params[:member_query]}%", "%#{params[:member_query]}%", "%#{params[:member_query]}%")
       #.page(params[:page]).per_page(50)
     elsif params[:tag]
-      @contacts = Contact.search(params).tagged_with(params[:tag]).page(params[:page]).per_page(50)
+      @contacts = Contact.search(params).tagged_with(params[:tag]).page(params[:page]).per_page((@per_page.to_i rescue 20))
     else
       @contacts = Contact.search(params)
     end

@@ -11,4 +11,18 @@ module ContactsHelper
       "-"
     end
   end
+  # create a select collection
+  def select_per_page opts={}
+    opts = { html_input: {class: "span2", id: "super_select"},
+             selected: false, select_options: %w"5 10 20 50 100 250"
+    }.merge(opts)
+    attr = opts[:html_input].reduce([]){ |o, (k, v)| o << "#{k}=#{v}" }.join(" ") if opts[:html_input].present?
+    html = ["<select #{attr if attr}>"]
+    html<< opts[:select_options].map do |val|
+      "<option value=\"#{val}\" #{" selected=\"selected\"" if val == opts[:selected] }>#{val}</option>"
+    end
+    html << ["</select>"]
+    raw html.join()
+  end
+
 end
