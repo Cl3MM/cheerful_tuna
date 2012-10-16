@@ -4,83 +4,27 @@ class Member < ActiveRecord::Base
   include MyTools
 
   acts_as_taggable_on :brand, :activity
-#  validate :validate_contact_uniqness
-  #def validate_contact_uniqness
-    ##Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
-    #errors[:base] << "C'est la merde"
-    #errors.add(:emails, "Tututu")
-  #end
-
-  ## Include default devise modules. Others available are:
-  ## :token_authenticatable,
-  ## :lockable, :timeoutable and :omniauthable
-
-  #devise :database_authenticatable, :timeoutable, :lockable, :confirmable,
-         #:recoverable, :rememberable, :trackable, :validatable ,
-          #authentication_keys: [ :user_name ], case_insensitive_keys: [ :user_name ], strip_whitespace_keys: [ :user_name ],
-            #timeout_in: 15.minutes, lock_strategy: :failed_attempts, unlock_keys: [ :user_name ], unlock_strategy: :email,
-            #allow_unconfirmed_access_for: 0, maximum_attempts: 5, reconfirmable: false  # :registerable,
-
-  #def attempt_set_password(params)
-    ##raise "c'est la merde :("
-    #p = {}
-    #p[:password] = params[:password]
-    #p[:password_confirmation] = params[:password_confirmation]
-    #update_attributes(p)
-  #end
-
-  #def only_if_unconfirmed
-    #pending_any_confirmation {yield}
-  #end
-  #def password_required?
-    ## Password is required if it is being set, but not for new records
-    #if !persisted?
-      #false
-    #else
-      #!password.nil? || !password_confirmation.nil?
-    #end
-  #end
-  #def has_no_password?
-    #self.encrypted_password.blank?
-  #end
-  # Setup accessible (or protected) attributes for your model
 
   has_and_belongs_to_many :contacts
 
-  attr_accessible :email, :user_name, :contact_ids#, :password, :password_confirmation, :remember_me
+  attr_accessible :user_name, :contact_ids#, :password, :password_confirmation, :remember_me
   attr_accessible :address, :billing_address,
     :billing_city, :billing_country, :billing_postal_code, :category,
     :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
     :logo_file, :membership_file, :start_date, :is_approved, :brand_list, :activity_list #, :civility
 
   accepts_nested_attributes_for :contacts
-
-  #accepts_nested_attributes_for :contacts
+  attr_reader :end_date, :category_price
 
   validates_presence_of :company, :country, :web_profile_url, :start_date, :category, :address, :city, :postal_code, :activity_list
-  validates :user_name, uniqueness: true
-  validates :email, uniqueness: true
   validates :category, :inclusion => { :in => %w[Free A B C D],
                                    :message => "%{value} is not a valid category" }
-  #validates :civility, :inclusion => { :in => %w[Mr Mrs Ms],
-                                   #:message => "%{value} is not a valid category" }
-  #def self.generate_username str
-    #names = Member.all.map(&:user_name).to_set
-    #username = MyTools.friendly_user_name str
-    #Rails.logger.debug "username:#{username}"
-    #Rails.logger.debug "names:#{names.to_a.to_s}"
-    #while names.include? username
-      #username = "#{MyTools.friendly_user_name(str)}_#{MyTools.generate_random_string 4}"
-    #end
-    #username
-  #end
   mount_uploader :logo_file, MemberFilesUploader
   mount_uploader :membership_file, MemberFilesUploader
 
   after_save :qr_encode, on: [:create, :update]
   before_save :clean_data
 
-  attr_reader :end_date, :category_price
   def end_date
    (self.start_date + 1.year).prev_month.end_of_month
   end
@@ -138,6 +82,21 @@ class Member < ActiveRecord::Base
   end
 
 end
+
+
+  #validates :civility, :inclusion => { :in => %w[Mr Mrs Ms],
+                                   #:message => "%{value} is not a valid category" }
+  #def self.generate_username str
+    #names = Member.all.map(&:user_name).to_set
+    #username = MyTools.friendly_user_name str
+    #Rails.logger.debug "username:#{username}"
+    #Rails.logger.debug "names:#{names.to_a.to_s}"
+    #while names.include? username
+      #username = "#{MyTools.friendly_user_name(str)}_#{MyTools.generate_random_string 4}"
+    #end
+    #username
+  #end
+
     #require 'rqrcode'
     #require 'RMagick'
     #path = "#{Rails.root}/app/public/assets/uploads/#{self.class.to_s.underscore}/qr_code/#{id}/"
@@ -165,3 +124,44 @@ end
     #img.write(outfile)
     #img.filename
   #end
+#  validate :validate_contact_uniqness
+  #def validate_contact_uniqness
+    ##Hash[Contact.all.map{|c| [c.id,[c.company,c.country, c.address, c.website]]}]
+    #errors[:base] << "C'est la merde"
+    #errors.add(:emails, "Tututu")
+  #end
+
+  ## Include default devise modules. Others available are:
+  ## :token_authenticatable,
+  ## :lockable, :timeoutable and :omniauthable
+
+  #devise :database_authenticatable, :timeoutable, :lockable, :confirmable,
+         #:recoverable, :rememberable, :trackable, :validatable ,
+          #authentication_keys: [ :user_name ], case_insensitive_keys: [ :user_name ], strip_whitespace_keys: [ :user_name ],
+            #timeout_in: 15.minutes, lock_strategy: :failed_attempts, unlock_keys: [ :user_name ], unlock_strategy: :email,
+            #allow_unconfirmed_access_for: 0, maximum_attempts: 5, reconfirmable: false  # :registerable,
+
+  #def attempt_set_password(params)
+    ##raise "c'est la merde :("
+    #p = {}
+    #p[:password] = params[:password]
+    #p[:password_confirmation] = params[:password_confirmation]
+    #update_attributes(p)
+  #end
+
+  #def only_if_unconfirmed
+    #pending_any_confirmation {yield}
+  #end
+  #def password_required?
+    ## Password is required if it is being set, but not for new records
+    #if !persisted?
+      #false
+    #else
+      #!password.nil? || !password_confirmation.nil?
+    #end
+  #end
+  #def has_no_password?
+    #self.encrypted_password.blank?
+  #end
+  # Setup accessible (or protected) attributes for your model
+
