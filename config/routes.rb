@@ -20,6 +20,7 @@ CheerfulTuna::Application.routes.draw do
   resources :email_listings
 
   match 'contacts/statistics' => 'contacts#statistics', as: :stats_contacts
+  match 'contacts/activation/:id' => 'contacts#activation', as: :contact_activation, via: :get
   match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: :post
   match 'contacts/duplicate/:id' => 'contacts#duplicate', as: :duplicate
 

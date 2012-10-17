@@ -1,5 +1,8 @@
 jQuery ->
 
+  $('.btn-tooltip').tooltip()
+  $('.a-tooltip').tooltip()
+
   $('#per_page').on 'change', (e) ->
     $(this).closest('form').trigger('submit')
 

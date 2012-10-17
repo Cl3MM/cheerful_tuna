@@ -56,12 +56,18 @@
           </td>
           <td class="center"><%= display_website contact.website %></td>
           <td><%= contact.category.truncate(16) %></td>
-          <td><%= contact.country.truncate(16) %></td>
+          <td><%= contact.country.upcase.truncate(15) %></td>
           <td class="actions">
             <div class="btn-group pull-right">
               <%= link_to raw('<i class="icon-edit"></i>'),
                 edit_contact_path(contact), :class => 'btn btn-mini', :title => 'edit contact' %>
               <%= link_to raw('<i class="icon-download"></i>'), contact_path(contact, format: "pdf"), :class => "btn btn-info btn-mini" %>
+
+              <% if contact.is_active %>
+                <%= link_to raw('<i class="icon-lock"></i>'), contact_activation_path(contact, deactivate: true), class: "btn btn-warning btn-mini btn-tooltip", title: "Deactivate contact"  %>
+              <% else %>
+                <%= link_to raw('<i class="icon-ok"></i>'), contact_activation_path(contact, activate: true), class: "btn btn-warning btn-mini btn-tooltip", title: "Activate contact" %>
+              <% end %>
               <%= link_to raw('<i class="icon-share"></i>'), duplicate_path(contact),
                 class: 'btn btn-mini btn-info', title: "Duplicate this entry" %>
               <% if current_user.is_admin? %>

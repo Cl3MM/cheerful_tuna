@@ -1,33 +1,48 @@
 <%= simple_form_for @contact, :html => { :class => 'form-horizontal' } do |f| %>
   <%#= f.error_notification %>
-  <%= render "shared/error_messages", target: @contact %>
+<%= render "shared/error_messages", target: @contact %>
+<div class="row">
+  <div class="span4">
 
-  <%= f.input :company, :required => true, :autofocus => true %>
-  <%= f.fields_for :emails do |m| %>
-    <%= render 'email_fields', f: m %>
+    <legend><abbr title="required">*</abbr> Member address details</legend>
+    <%= f.input :company, :required => true, :autofocus => true %>
+    <%= f.fields_for :emails do |m| %>
+      <%= render 'email_fields', f: m %>
   <% end %>
-  <div class="control-group">
-    <div class="controls">
-      <%= link_to_add_fields "Add another email address", f, :emails %>
+    <div class="control-group">
+      <div class="controls">
+        <%= link_to_add_fields "Add another email address", f, :emails %>
+      </div>
+    </div>
+    <legend>Member's contacts details</legend>
+    <%= f.input :civility, collection: %w(Undef Mr Ms Mrs Dr Pr), prompt: "Chose a civility" %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :position %>
+    <%= f.input :phone %>
+    <%= f.input :fax %>
+    <%= f.input :cell %>
+  </div>
+
+  <div class="span4 offset1">
+    <legend>Member's contacts details</legend>
+    <%= f.input :address, prompt: "Type an address" %>
+
+    <%= f.input :postal_code, prompt: "Enter the postal code" %>
+    <%= f.input :country, :prompt => "Select a country", :required => true, prompt: "Chose a country" %>
+    <%= f.input :city, prompt: "Chose a city" %>
+      <%= f.input :is_ceres_member, :label => "CERES member?" %>
+
+    <legend>Member's contacts details</legend>
+    <%= f.input :website, :label => "Website" %>
+    <%= f.input :category %>
+    <%= f.input :tag_list, label: "Tags (separated by commas)",
+      input_html: { data: { tags: {tokenSeparators: [","], tags: @contact.tag_list}} } %>
+    <%= f.input :infos, :as => :text, :input_html => {:rows => 5} %>
     </div>
   </div>
-  <%= f.input :website, :label => "Website" %>
-  <%= f.input :address %>
-  <%= f.input :postal_code %>
-  <%= f.input :category %>
-  <%= f.input :tag_list, label: "Tags (separated by commas)",
-    input_html: { data: { tags: {tokenSeparators: [","], tags: @contact.tag_list}} } %>
-  <%= f.input :country, :prompt => "Select a country", :required => true %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :is_ceres_member, :label => "CERES member?" %>
-  <%= f.input :position %>
-  <%= f.input :phone %>
-  <%= f.input :fax %>
-  <%= f.input :cell %>
-  <%= f.input :infos, :as => :text, :input_html => {:rows => 5} %>
-  <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to "Cancel", :back, :class => 'btn' %>
-  </div>
+<div class="form-actions">
+<%= f.button :submit, :class => 'btn-primary' %>
+<%= link_to "Cancel", :back, :class => 'btn' %>
+</div>
 <% end %>

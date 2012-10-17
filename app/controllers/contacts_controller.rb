@@ -3,6 +3,14 @@ class ContactsController < ApplicationController
   #before_filter :redirect_member!
   before_filter :authenticate_user!
 
+  def activation
+    @contact = Contact.find(params[:id])
+    @contact.update_attribute(:is_active, false) if params[:deactivate].present?
+    @contact.update_attribute(:is_active, true) if params[:activate].present?
+    @class = @contact.is_active ? "btn" : "btn disabled"
+    redirect_to :back
+  end
+
   # GET /contacts
   # GET /contacts.json
   def index

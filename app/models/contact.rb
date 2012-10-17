@@ -16,7 +16,7 @@ class Contact < ActiveRecord::Base
   attr_accessible :address, :category, :cell, :company, :country, :fax,
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
     :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
-    :member_id, :tag_list
+    :member_id, :tag_list, :city, :civility
 
   attr_reader :to_label, :to_select2, :full_name
 
@@ -28,6 +28,8 @@ class Contact < ActiveRecord::Base
 
   validates_presence_of :company, :country
   validates :company, uniqueness: {scope: [:country, :last_name, :address], message: " already exists with similar country, last name and address."}
+
+  validates :civility, inclusion: { in: %w[Undef Mr Mrs Ms Dr], message: "%{value} is not a valid category" }
 
   scope :active_contacts, where(is_active: true)
   scope :inactive_contacts, where(is_active: false)
@@ -43,6 +45,7 @@ class Contact < ActiveRecord::Base
   mapping do
     indexes :id, type: 'integer'
     indexes :address, type: 'string'
+    indexes :city, type: 'string'
     indexes :first_name, type: 'string'
     indexes :last_name, type: 'string'
     indexes :company, type: 'multi_field', fields: {
