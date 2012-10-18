@@ -56,6 +56,14 @@ class Contact < ActiveRecord::Base
     indexes :email_addresses
   end
 
+  def previous_contact
+    Contact.where(["company < ?", self.company]).order("company DESC").first
+  end
+
+  def next_contact
+    Contact.where(["company > ?", self.company]).order("company ASC").first
+  end
+
   def self.search(params)
     per_page = (params[:per_page].present? ? (params[:per_page].to_i rescue 50) : 50 )
     tire.search(page: params[:page], per_page: per_page) do

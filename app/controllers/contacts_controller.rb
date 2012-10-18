@@ -72,6 +72,8 @@ class ContactsController < ApplicationController
     @contact.update_attribute(:is_active, false) if params[:deactivate].present?
     @contact.update_attribute(:is_active, true) if params[:activate].present?
     @class = @contact.is_active ? "btn" : "btn disabled"
+    @next_contact = @contact.next_contact
+    @previous_contact = @contact.previous_contact
 
     respond_to do |format|
       format.html # show.html.erb

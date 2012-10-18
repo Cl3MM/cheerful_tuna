@@ -2,61 +2,82 @@
 <div class="page-header">
   <h1>Company: <%= @contact.company %></h1>
 </div>
-<dl class="dl-horizontal">
-  <dt><strong>Status:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='status_inactive'" %>> <i class="<%= @contact.is_active ? "icon-ok-circle" : "icon-ban-circle" %>"></i> <%= @contact.is_active ? "Active" : "Inactive" %> contact</dd>
-  <dt><strong>Category:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.category %></dd>
-  <dt><strong>Address:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.address %></dd>
-  <dt><strong>Postal Code:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.postal_code %></dd>
-  <dt><strong>Country:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.country %></dd>
-  <dt><strong>First Name:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.first_name %></dd>
-  <dt><strong>Last Name:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.last_name %></dd>
-  <dt><strong>Tags:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display raw(@contact.tag_list.map { |t| link_to t, h(tag_path(t))}.join(", ") ) %></dd>
-  <dt><strong>Other Info:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.infos %></dd>
-  <dt><strong>Member of CERES:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= @contact.is_ceres_member ? "YES" : "NO" %></dd>
-  <dt><strong>Job Position:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.position %></dd>
-  <dt><strong>Phone:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.phone %></dd>
-  <dt><strong>Fax:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.fax %></dd>
-  <dt><strong>Cell:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.cell %></dd>
-  <dt><strong>Website:</strong></dt>
-  <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= display_website @contact.website %></dd>
-  <dt><strong>Email:</strong></dt>
-  <%= raw @contact.email_addresses.map{|a| "<dd#{@contact.is_active ? "" : " class='inactive'"}>#{h(a)}</dd>"}.join %>
-</dl>
+<div class="row">
+  <div class="span10">
+    <dl class="dl-horizontal">
+      <dt><strong>Status:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='status_inactive'" %>> <i class="<%= @contact.is_active ? "icon-ok" : "icon-lock" %>"></i> <%= @contact.is_active ? "Active" : "Inactive" %> contact</dd>
+      <dt><strong>Category:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.category %></dd>
+      <dt><strong>Address:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.address %></dd>
+      <dt><strong>Postal Code:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.postal_code %></dd>
+      <dt><strong>Country:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.country %></dd>
+      <dt><strong>First Name:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.first_name %></dd>
+      <dt><strong>Last Name:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.last_name %></dd>
+      <dt><strong>Tags:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display raw(@contact.tag_list.map { |t| link_to t, h(tag_path(t))}.join(", ") ) %></dd>
+      <dt><strong>Other Info:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.infos %></dd>
+      <dt><strong>Member of CERES:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= @contact.is_ceres_member ? "YES" : "NO" %></dd>
+      <dt><strong>Job Position:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.position %></dd>
+      <dt><strong>Phone:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.phone %></dd>
+      <dt><strong>Fax:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.fax %></dd>
+      <dt><strong>Cell:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.cell %></dd>
+      <dt><strong>Website:</strong></dt>
+      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= display_website @contact.website %></dd>
+      <dt><strong>Email:</strong></dt>
+      <%= raw @contact.email_addresses.map{|a| "<dd#{@contact.is_active ? "" : " class='inactive'"}>#{h(a)}</dd>"}.join %>
+    </dl>
 
-<div style="clear:both;">
+  </div>
 </div>
-<div class="form-actions">
-  <%= image_tag (@contact.is_active ? "glyphicons/glyphicons_198_ok.png" : "glyphicons/glyphicons_199_ban.png") %>&nbsp;
-  <%= link_to "Back", :back, class: "btn" %>
-  <%= link_to t('.edit', :default => t("helpers.links.edit")),
-              edit_contact_path(@contact), class: @class %>
-  <%= link_to "Bounce", contact_path(@contact, bounce: true), class: "#{@class} btn-primary"  %>
-  <% if @contact.is_active %>
-    <%= link_to "Deactivate", contact_path(@contact, deactivate: true), class: "btn btn-warning"  %>
+
+<div class="row form-actions">
+  <div class="span1">
+    <ul class="pager">
+      <li class="previous <%= (@previous_contact.nil? ? "disabled" : "" ) %>">
+      <%= link_to( raw("«&nbsp;Prev"), (@previous_contact.nil? ? "#" : contact_path(@previous_contact)), class: "#{@previous_contact.nil? ? "" : "btn-tooltip"}", title: "Display previous contact" ) %>
+      </li>
+    </ul>
+  </div>
+  <div class="span7 pagination-centered " style="margin-top: 1.2em !important;">
+  <%= image_tag (@contact.is_active ? "glyphicons/glyphicons_204_unlock.png" : "glyphicons/glyphicons_203_lock.png"), class: "inline", style: "margin-top: 6px;" %>
+    <div class="btn-group inline">
+  <%= link_to "Back", :back, class: "btn btn-tooltip", title: "Return to previous page" %>
+  <%= link_to "Edit", edit_contact_path(@contact), class: "#{@class} btn-tooltip", title: "Edit contact details" %>
+  <%#= link_to "Bounce", contact_path(@contact, bounce: true), class: "#{@class} btn-primary"  %>
+    <% if @contact.is_active %>
+      <%= link_to raw('<i class="icon-ok"></i> Deactivate'), contact_path(@contact, deactivate: true), class: "btn btn-warning btn-tooltip", title: "Deactivate this contact"  %>
   <% else %>
-    <%= link_to "Activate", contact_path(@contact, activate: true), class: "btn btn-warning"  %>
+      <%= link_to raw('<i class="icon-lock"></i> Activate'), contact_path(@contact, activate: true), class: "btn btn-warning btn-tooltip", title: "Activate this contact"  %>
   <% end %>
-  <%#= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
-  <%= link_to "Duplicate", duplicate_path, class: "#{@class} btn-primary" %>
-  <% if current_user.is_admin? %>
-    <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-              contact_path(@contact),
-              :method => 'delete',
-              :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
-              class: "#{@class} btn-danger" %>
-  <% end -%>
+    <%#= link_to raw('<i class="icon-download"></i> Export as PDF'), contact_path(@contact, format: "pdf"), :class => "btn btn-info" %>
+    <%= link_to "Duplicate", duplicate_path, class: "#{@class} btn-primary btn-tooltip", title: "Create a copy of this contact" %>
+    <% if current_user.is_admin? %>
+      <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+        contact_path(@contact),
+        :method => 'delete',
+        :data => {:confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?'))},
+        class: "#{@class} btn-danger" %>
+    <% end -%>
+  </div>
+  </div>
+  <div class="span1">
+    <ul class="pager">
+      <li class="next">
+      <%= link_to(raw("Next »"), (@next_contact.nil? ? "#" : contact_path(@next_contact)), class: "#{@next_contact.nil? ? "" : "btn-tooltip"}", title: "Display next contact" ) %>
+      </li>
+    </ul>
+
+  </div>
 </div>
