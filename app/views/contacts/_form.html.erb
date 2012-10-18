@@ -4,7 +4,7 @@
 <div class="row">
   <div class="span4">
 
-    <legend><abbr title="required">*</abbr> Member address details</legend>
+    <legend><abbr title="required">*</abbr> Contact company details</legend>
     <%= f.input :company, :required => true, :autofocus => true %>
     <%= f.fields_for :emails do |m| %>
       <%= render 'email_fields', f: m %>
@@ -14,8 +14,9 @@
         <%= link_to_add_fields "Add another email address", f, :emails %>
       </div>
     </div>
-    <legend>Member's contacts details</legend>
-    <%= f.input :civility, collection: %w(Undef Mr Ms Mrs Dr Pr), prompt: "Chose a civility" %>
+    <%= f.input :is_ceres_member, :label => "CERES member?" %>
+    <legend>Contact personal details</legend>
+    <%= f.input :civility, collection: %w(Undef Mr Ms Mrs Dr Pr), prompt: "Chose a civility", selected: "Undef" %>
     <%= f.input :first_name %>
     <%= f.input :last_name %>
     <%= f.input :position %>
@@ -25,15 +26,14 @@
   </div>
 
   <div class="span4 offset1">
-    <legend>Member's contacts details</legend>
+    <legend>Contact address details</legend>
     <%= f.input :address, prompt: "Type an address" %>
 
     <%= f.input :postal_code, prompt: "Enter the postal code" %>
-    <%= f.input :country, :prompt => "Select a country", :required => true, prompt: "Chose a country" %>
     <%= f.input :city, prompt: "Chose a city" %>
-      <%= f.input :is_ceres_member, :label => "CERES member?" %>
+    <%= f.input :country, :prompt => "Select a country", :required => true, prompt: "Chose a country" %>
 
-    <legend>Member's contacts details</legend>
+    <legend>Contacts other information</legend>
     <%= f.input :website, :label => "Website" %>
     <%= f.input :category %>
     <%= f.input :tag_list, label: "Tags (separated by commas)",
