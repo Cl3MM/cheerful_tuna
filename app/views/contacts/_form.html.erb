@@ -37,7 +37,7 @@
     <%= f.input :website, :label => "Website" %>
     <%= f.input :category %>
     <%= f.input :tag_list, label: "Tags (separated by commas)",
-      input_html: { data: { tags: {tokenSeparators: [","], tags: @contact.tag_list}} } %>
+      input_html: { data: { tags: {tokenSeparators: [","], tags: Contact.tag_counts.map(&:name)}} } %>
     <%= f.input :infos, :as => :text, :input_html => {:rows => 5} %>
     </div>
   </div>
