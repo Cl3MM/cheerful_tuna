@@ -22,8 +22,16 @@ class Member < ActiveRecord::Base
   mount_uploader :logo_file, MemberFilesUploader
   mount_uploader :membership_file, MemberFilesUploader
 
+  before_create { generate_token(:auth_token) }
   after_save :qr_encode, on: [:create, :update]
   before_save :clean_data
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+      #send("#{column}=", SecureRandom.urlsafe_base64)
+    end while Member.exists?(column => self[column])
+  end
 
   def end_date
    (self.start_date + 1.year).prev_month.end_of_month
@@ -91,6 +99,14 @@ class Member < ActiveRecord::Base
     username
   end
 
+  def self.update_auth_tokens
+    Member.all.map do |m|
+      token = SecureRandom.urlsafe_base64
+      m.update_attribute(:auth_token, token)
+      m.save
+      m.auth_token
+    end
+  end
   protected
 
   def clean_data

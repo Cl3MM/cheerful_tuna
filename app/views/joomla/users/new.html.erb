@@ -18,6 +18,16 @@
           <%= password_field_tag :password %>
         </div>
       </div>
+
+      <div class="control-group">
+        <div class="controls">
+          <label class="checkbox">
+            <%= check_box_tag :remember_me, 1, params[:remember_me] %>
+            <%= label_tag :remember_me %>
+          </label>
+        </div>
+      </div>
+
       <div class="form-actions">
         <%= submit_tag "Log In" %>
       </div>

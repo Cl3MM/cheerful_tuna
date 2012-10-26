@@ -16,7 +16,11 @@ class Joomla::UsersController < ApplicationController
     Rails.logger.debug "User: #{user}"
     if user && user.authenticate(params[:password])
       @member = user.find_tuna_member
-      session[:member_id] = @member.id unless @member.nil?
+      if params[:remember_me]
+        cookies.permanent[:auth_token] = @member.auth_token
+      else
+        cookies[:auth_token] = @member.auth_token
+      end unless @member.nil?
       Rails.logger.debug "Tuna member company: #{user.find_tuna_member().company}"
       redirect_to joomla_profile_path, notice: "Logged in!"
     else
@@ -26,7 +30,7 @@ class Joomla::UsersController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    cookies.delete(:auth_token)
     redirect_to joomla_login_path, notice: "Logged out!"
   end
 end
