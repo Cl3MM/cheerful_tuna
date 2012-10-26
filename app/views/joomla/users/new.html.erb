@@ -1,21 +1,27 @@
-<div class="page-header">
-  <h1>CERES Member area</h1>
-</div>
-<%= form_tag joomla_users_path, class: 'form-horizontal' do %>
-  <p class="lead">Please fill in the following form with your CERES credentials</p>
-  <div class="control-group select required">
-  <%= label_tag :username, nil, class: "select required control-label" %>
-  <div class="controls">
-    <%= text_field_tag :username, params[:username] %>
+<div class="container">
+  <div class="row-fluid">
+    <div class="span">
+      <div class="page-header">
+        <h1>CERES Member area</h1>
+      </div>
+      <%= form_tag joomla_users_path, class: 'form-horizontal' do %>
+        <p class="lead">Please fill in the following form with your CERES credentials</p>
+      <div class="control-group select required">
+        <%= label_tag :username, nil, class: "select required control-label" %>
+        <div class="controls">
+          <%= text_field_tag :username, params[:username] %>
+        </div>
+      </div>
+      <div class="control-group select required">
+        <%= label_tag :password, nil, class: "select required control-label" %>
+        <div class="controls">
+          <%= password_field_tag :password %>
+        </div>
+      </div>
+      <div class="form-actions">
+        <%= submit_tag "Log In" %>
+      </div>
+    <% end %>
+    </div>
   </div>
 </div>
-<div class="control-group select required">
-  <%= label_tag :password, nil, class: "select required control-label" %>
-  <div class="controls">
-    <%= password_field_tag :password %>
-  </div>
-</div>
-<div class="form-actions">
-  <%= submit_tag "Log In" %>
-</div>
-<% end %>
