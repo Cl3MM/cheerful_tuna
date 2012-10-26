@@ -7,7 +7,15 @@ CheerfulTuna::Application.routes.draw do
   devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
   #match "members/profile" => "profiles#index", via: "get"
-
+    #constraints :subdomain => "admin" do
+    #end
+  namespace :joomla do
+    get 'profile', to: 'users#index'
+    get 'login', to: 'users#new'
+    get 'logout', to: 'users#destroy'
+    resources :users, except: [:update, :show, :edit]
+  end
+  match "joomla" => "joomla::users#new"
   #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
   #as :member do
     #match 'members/confirmation' => 'members/confirmations#update', :via => :put, :as => :update_member_confirmation

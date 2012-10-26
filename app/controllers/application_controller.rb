@@ -1,6 +1,15 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  def current_member
+    @current_member ||= Member.find_by_id(session[:member_id]) if session[:member_id]
+  end
+  helper_method :current_member
+
+  def authorize_member
+    redirect_to joomla_login_url, alert: "Not authorized" if current_member.nil?
+  end
+
   def redirect_user!
     if current_user #and not current_member
       flash[:error] = "Sorry, this section is for Members only !"

@@ -5,7 +5,7 @@
       <legend><abbr title="required">*</abbr> Membership details</legend>
       <%= f.input :company, :autofocus => true %>
       <%#= f.input :email, required: true %>
-      <%= f.input :user_name, required: true, disabled: true %>
+      <%= f.input :user_name, required: true %>
       <%= f.input :web_profile_url, label: "Web Profile URL", required: true %>
       <%= f.input :start_date, required: true, as: :string %>
       <%= f.input :category, collection: %w[Free A B C D], required: true %>
