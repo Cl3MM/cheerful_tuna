@@ -1,8 +1,22 @@
+<% if flash.any? %>
+  <div class="container">
+  <% flash.each do |name, msg| %>
+    <div class="row">
+    <div class="span10 offset1">
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <%= raw(msg) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<% end %>
 <div class="well">
     <span class="pull-right">Welcome <%= current_member.user_name %>: <%= link_to "Logout", joomla_logout_path %></span>
 </div>
 <div class="row">
-  <div class="span8">
+  <div class="span3">
     <div class="btn-group pagination-centered form-actions">
       <%#= link_to "Back", :back, :class => 'btn'  %>
       <%#= link_to t('.edit', :default => t("helpers.links.edit")), joomla_edit_path(@member), :class => 'btn' %>

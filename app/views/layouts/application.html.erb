@@ -12,8 +12,10 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-  <%#= controller_name %>
-    <%= render :partial => 'layouts/navbar' unless controller_path.match(/joomla/) %>
+  <% if controller_path.match(/joomla/) %>
+    <%= yield %>
+  <% else %>
+    <%= render :partial => 'layouts/navbar' %>
     <% if flash.any? %>
     <div class="container">
       <% flash.each do |name, msg| %>
@@ -39,7 +41,8 @@
         </div>
       </div>
     <% end %>
-    <%= render :partial => 'layouts/footer'  unless controller_path.match(/joomla/) %>
+    <%= render :partial => 'layouts/footer' %>
+  <% end %>
     <%= javascript_include_tag "application", controller_name %>
   </body>
 </html>
