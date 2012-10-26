@@ -1,5 +1,51 @@
-<div class="page-header">
-	<h1>Welcome to your profile !</h1>
+<div class="well">
+    <span class="pull-right">Welcome <%= current_member.user_name %>: <%= link_to "Logout", joomla_logout_path %></span>
 </div>
-<%= current_member.company %>
-<%= controller_path %>
+<div class="row">
+  <div class="span8">
+    <div class="btn-group pagination-centered form-actions">
+      <%#= link_to "Back", :back, :class => 'btn'  %>
+      <%#= link_to t('.edit', :default => t("helpers.links.edit")), joomla_edit_path(@member), :class => 'btn' %>
+      <%#= link_to raw('<i class="icon-download"></i> Membership Form'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
+      <%= link_to raw('<i class="icon-file"></i> Generate my certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-inverse" %>
+      <%#= link_to raw('<i class="icon-qrcode"></i> QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
+    </div>
+    <div id="company">
+      <h3>Company details</h3>
+      <%= display_address @member %>
+    </div>
+    <hr />
+    <div id="membership">
+      <h3>Membership details</h3>
+      <%= membership_details @member %>
+    </div>
+    <hr />
+    <div id="contacts">
+      <h3>Associated contacts</h3>
+      <% if @member.contacts.any? %>
+        <%= contact_details @member %>
+      <% else %>
+          <p>No associated contacts</p>
+      <% end %>
+    </div>
+    <hr />
+    <div id="files">
+      <h3>Files</h3>
+      <%= image_tag @member.qr_code_asset_url, class: "pull-left no_margin" unless @member.qr_code_asset_url.nil? %>
+    </div>
+  </div>
+
+  <div class="span2">
+    <div class="well" style="max-width: 340px;">
+      <ul class="nav nav-list" id="sidebar">
+        <li class="nav-header">Member's Menu</li>
+        <li><a href="#company"><i class="icon-chevron-right pull-right"></i> Company</a></li>
+        <li><a href="#membership"><i class="icon-chevron-right pull-right"></i> Membership</a></li>
+        <li><a href="#contacts"><i class="icon-chevron-right pull-right"></i> Contacts</a></li>
+        <li class="divider"></li>
+        <li><a href="#files"><i class="icon-chevron-right pull-right"></i> Files</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="spacer">&nbsp;</div>

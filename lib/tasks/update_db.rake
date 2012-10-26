@@ -76,4 +76,15 @@ namespace :udb do
       end
     end
   end
+  desc "Generate member's username"
+  task :generate_member_username => :environment do
+    Rails.logger.debug "Rake task Generate_member_username called\n" + "*" * 80 + "\n"
+    member_usernames = Member.all.map do |c|
+      user_name = c.generate_username
+      Rails.logger.debug "Member: {id: #{c.id}, company: #{c.company}}: #{user_name}"
+      puts "Member: {id: #{c.id}, company: #{c.company}}: #{user_name}"
+      user_name
+    end
+    File.open("#{Rails.root}/tmp/usernames.txt",'w') {|f| f.puts(member_usernames.join("\n"))}
+  end
 end

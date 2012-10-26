@@ -70,6 +70,27 @@ class Member < ActiveRecord::Base
     stdin, stdout, stderr = Open3.popen3(cmd)
   end
 
+  def generate_username
+    names = Member.all.map(&:user_name).to_set
+    username = MyTools.friendly_user_name self.company
+    Rails.logger.debug "username:#{username}"
+    Rails.logger.debug "names:#{names.to_a.to_s}"
+    while names.include? username
+      username = "#{MyTools.friendly_user_name(company)}_#{MyTools.generate_random_string 4}"
+    end
+    username
+  end
+  def self.generate_username str
+    names = Member.all.map(&:user_name).to_set
+    username = MyTools.friendly_user_name str
+    Rails.logger.debug "username:#{username}"
+    Rails.logger.debug "names:#{names.to_a.to_s}"
+    while names.include? username
+      username = "#{MyTools.friendly_user_name(str)}_#{MyTools.generate_random_string 4}"
+    end
+    username
+  end
+
   protected
 
   def clean_data

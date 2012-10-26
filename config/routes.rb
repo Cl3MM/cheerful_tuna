@@ -1,19 +1,16 @@
 CheerfulTuna::Application.routes.draw do
 
-  #get "stat/index"
-  #get "stat/user"
-  #get "stat/contact"
-
   devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
   #match "members/profile" => "profiles#index", via: "get"
     #constraints :subdomain => "admin" do
     #end
+  #match "joomla/edit" => "joomla/users#edit", via: [:get]
   namespace :joomla do
     get 'profile', to: 'users#index'
     get 'login', to: 'users#new'
     get 'logout', to: 'users#destroy'
-    resources :users, except: [:update, :show, :edit]
+    resources :users, except: [:show, :edit]
   end
   match "joomla" => "joomla::users#new"
   #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
@@ -32,10 +29,10 @@ CheerfulTuna::Application.routes.draw do
   match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: :post
   match 'contacts/duplicate/:id' => 'contacts#duplicate', as: :duplicate
 
-  resources :contacts
   resources :contacts do
     get 'page/:page', :action => :index, :on => :collection
   end
+  resources :contacts
   resources :members do
     get 'page/:page', :action => :index, :on => :collection
   end
