@@ -1,18 +1,17 @@
+<div class="container" style="margin-top: -50px !important;">
 <% if flash.any? %>
-  <div class="container">
   <% flash.each do |name, msg| %>
     <div class="row-fluid">
-    <div class="span12">
-      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-        <a class="close" data-dismiss="alert">×</a>
-        <%= raw(msg) %>
+      <div class="span12">
+        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+          <a class="close" data-dismiss="alert">×</a>
+          <%= raw(msg) %>
+        </div>
       </div>
     </div>
-  </div>
+  <% end %>
 <% end %>
-</div>
-<% end %>
-<div class="container">
+
   <div class="row-fluid">
     <div class="span12">
       <div class="well">
@@ -31,12 +30,12 @@
       </div>
       <div id="company">
         <h3>Company details</h3>
-        <%= display_address @member %>
+        <%= display_joomla_address @member %>
       </div>
       <hr />
       <div id="membership">
         <h3>Membership details</h3>
-        <%= membership_details @member %>
+        <%= joomla_membership_details @member %>
       </div>
       <hr />
       <div id="contacts">

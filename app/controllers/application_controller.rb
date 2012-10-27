@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def current_member
 #    @current_member ||= Member.find_by_id(session[:member_id]) if session[:member_id]
-    @current_member ||= Member.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
+    @current_member ||= Member.find_by_auth_token(cookies[:auth_token]) if cookies[:auth_token]
   end
   helper_method :current_member
 
