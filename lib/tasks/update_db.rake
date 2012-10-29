@@ -66,8 +66,8 @@ namespace :udb do
       end
     end
   end
-  desc "Clean up database"
 
+  desc "Clean up database"
   task :clean => :environment do
     Contact.all.each do |c|
       c.skip_version do
@@ -76,6 +76,7 @@ namespace :udb do
       end
     end
   end
+
   desc "Generate member's username"
   task :generate_member_username => :environment do
     Rails.logger.debug "Rake task Generate_member_username called\n" + "*" * 80 + "\n"
@@ -83,8 +84,16 @@ namespace :udb do
       user_name = c.generate_username
       Rails.logger.debug "Member: {id: #{c.id}, company: #{c.company}}: #{user_name}"
       puts "Member: {id: #{c.id}, company: #{c.company}}: #{user_name}"
-      user_name
+      [user_name, SecureRandom.urlsafe_base64[0..14], (c.contacts.first.emails.first.address rescue "")]
     end
-    File.open("#{Rails.root}/tmp/usernames.txt",'w') {|f| f.puts(member_usernames.join("\n"))}
+    File.open("#{Rails.root}/tmp/usernames.txt",'w') {|f| f.puts(member_usernames.sort.map{|x| x.join(";")}.join("\n"))}
   end
+
+  #desc "Generate member's Password"
+  #task :generate_member_passwords => :environment do
+    #Rails.logger.debug "Rake task Generate_member_password called\n" + "*" * 80 + "\n"
+    #usernames = File.open("#{Rails.root}/tmp/usernames.txt", 'rb') { |f| f.read }
+    #puts usernames
+    #File.open("#{Rails.root}/tmp/members.txt",'w') {|f| f.puts(member_usernames.join("\n"))}
+  #end
 end
