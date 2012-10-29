@@ -84,9 +84,9 @@ namespace :udb do
       user_name = c.generate_username
       Rails.logger.debug "Member: {id: #{c.id}, company: #{c.company}}: #{user_name}"
       puts "Member: {id: #{c.id}, company: #{c.company}}: #{user_name}"
-      [user_name, SecureRandom.urlsafe_base64[0..14], (c.contacts.first.emails.first.address rescue "")]
+      [c.company, user_name, SecureRandom.urlsafe_base64[0..14], (c.contacts.first.emails.first.address rescue "")]
     end
-    File.open("#{Rails.root}/tmp/usernames.txt",'w') {|f| f.puts(member_usernames.sort.map{|x| x.join(";")}.join("\n"))}
+    File.open("#{Rails.root}/tmp/usernames.csv",'w') {|f| f.puts(member_usernames.sort.map{|x| x.join(";")}.join("\n"))}
   end
 
   #desc "Generate member's Password"
