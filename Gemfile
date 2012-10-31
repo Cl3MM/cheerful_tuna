@@ -27,6 +27,7 @@ gem "carrierwave"
 gem 'rqrcode', git: 'http://github.com/whomwah/rqrcode'
 gem 'roadie'
 gem 'acts-as-taggable-on'
+gem 'geocoder'
 
 #gem 'rack-mini-profiler'
 

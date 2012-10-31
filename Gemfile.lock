@@ -103,6 +103,7 @@ GEM
       multipart-post (~> 1.1)
     ffi (1.1.5)
     g (1.7.1)
+    geocoder (1.1.4)
     google-spreadsheet-ruby (0.3.0)
       google_drive (>= 0.3.0)
     google_drive (0.3.2)
@@ -333,6 +334,7 @@ DEPENDENCIES
   database_cleaner
   devise
   factory_girl_rails
+  geocoder
   guard-rspec
   guard-spork
   irbtools

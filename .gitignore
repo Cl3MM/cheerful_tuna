@@ -20,6 +20,5 @@ pickle-email-*.html
 /public/*
 /app/assets/images/Signature_JP_white_bg.jpg
 /config/tuna.yml
-Guardfile
 tags
 /db/schema.rb
