@@ -14,12 +14,25 @@
   <% end %>
 
   <%= f.input :name, required: true, class: "input-large" %>
-  <div class="control-group">
-    <label class="control-label">Country</label>
+
+  <%= f.input :countries, label: "Countries",
+    input_html: { data: { tags: {tokenSeparators: [","], tags: COUNTRIES}},
+                  multiple: true, style: "width:70%;height:300px;"} %>
+  <%#= f.input :operator, :collection => ["NONE", "AND", "OR"], as: :radio_buttons %>
+  <!-- Tag selector options (ALL, ANY, EXCEPT -->
+  <div class="control-group radio_buttons optional">
+    <label class="control-label"></label>
     <div class="controls">
-      <%= country_select("country", "name", @countries, {},  {multiple: true, style: "width:70%;height:300px;"})  %>
+      <% ["ANY", "ALL", "EXCEPT" ].each do |option| %>
+        <%= f.radio_button :tag_selector, option, style: "margin-bottom: 2px;" %>
+        <%= f.label :tag_selector, option.humanize, class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
+    <% end %>
+    <span class="help-inline">of the matching tags below</span>
     </div>
   </div>
+  <%= f.input :tags, label: "Select Tags",
+    input_html: { data: { tags: {tokenSeparators: [","], tags: Contact.tag_counts.map(&:name)}},
+                  multiple: true, style: "width:70%;height:300px;"} %>
 
   <%= f.input :per_line, :collection => (1..10).map{|m| m * 10 }+[250,500] %>
 
