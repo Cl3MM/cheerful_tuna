@@ -21,7 +21,6 @@ class Joomla::UsersController < ApplicationController
       else
         cookies[:auth_token] = @member.auth_token
       end unless @member.nil?
-      Rails.logger.debug "Tuna member company: #{user.find_tuna_member().company}"
       redirect_to joomla_profile_path, notice: "Logged in!"
     else
       flash.now.alert = "Email or password is invalid"
