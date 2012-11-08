@@ -2,9 +2,23 @@
 <div class="nav-collapse">
   <ul class="nav">
     <%#"#{image_tag 'glyphicons/glyphicons_043_group.png'} %>
-    <li><%= link_to raw("<i class=\"icon-user\"></i> Contacts"), contacts_path %></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <i class="icon-tags">&nbsp;</i>
+          Contacts 
+          <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li><%= link_to "All contacts", contacts_path %></li>
+        <li><%= link_to "Tag cloud", tag_cloud_path, tabindex: "-1" %></li>
+        <li><%= link_to "Advanced search", contacts_path %></li>
+      </ul>
+    </li>
+
     <li><%= link_to raw('<i class="icon-globe"></i> Members'), members_path %></li>
-    <li><%= link_to raw('<i class="icon-envelope"></i> Mailings'), email_listings_path %></li>
+    <% if current_user.is_admin? %>
+      <li><%= link_to raw('<i class="icon-envelope"></i> Mailings'), email_listings_path %></li>
+    <% end -%>
     <li class="divider-vertical"></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -14,11 +28,12 @@
       </a>
       <ul class="dropdown-menu">
         <li><%= link_to "Contacts", stats_contacts_path, tabindex: "-1" %></li>
-        <li><%= link_to "Tag cloud", tag_cloud_path, tabindex: "-1" %></li>
         <li><%= link_to "Users", stats_users_path, tabindex: "-1" %></li>
+       <!--
         <li class="muted"><%= link_to "Members", "#", tabindex: "-1", class: "muted" %></li>
         <li class="divider"></li>
         <li><%= link_to "Mailings", "#", tabindex: "-1" %></li>
+       -->
       </ul>
     </li>
   </ul>
