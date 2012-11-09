@@ -1,0 +1,54 @@
+<%- model_class = Member.new.class -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
+  <%= link_to 'New Delivery request', new_delivery_request_path, class: "btn btn-primary pull-right" %>
+  </h1>
+</div>
+<div class="well">
+  <%= form_tag delivery_requests_path, method: :get, :class=>"form-inline inline" do %>
+    <span  class="help-inline">Show </span>
+    <%= select_per_page({selected: @per_page, html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <%= submit_tag "Deliveries per page", name: nil, :class=>"btn" %>
+  <% end -%>
+</div>
+<div class="pagination pagination-centered">
+  <%= will_paginate(@delivery_requests, :renderer => BootstrapPagination::Rails) %>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th>City</th>
+      <th>Country</th>
+      <th>Modules count</th>
+      <th class="actions">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @delivery_requests.each do |drq| %>
+      <tr>
+        <td><%= link_to drq.name.capitalize.truncate(25), drq %></td>
+        <td><%= drq.email.truncate(25) %></td>
+        <td><%= drq.city.truncate(25) %></td>
+        <td><%= drq.country.truncate(22) %></td>
+        <td><%= drq.module_count %></td>
+        <td>
+          <div class="btn-group pull-right">
+            <%= link_to raw('<i class="icon-edit"></i> Edit'), edit_delivery_request_path(drq),
+              class: 'btn  btn-mini btn-tooltip', title: "Edit member" %>
+        <% if current_user.is_admin? %>
+          <%= link_to "Delete",
+            delivery_request, method: :delete, data: { confirm: 'Are you sure?' },
+            class: 'btn btn-mini btn-danger btn-tooltip', title: "Delete member"%>
+        <% end %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pagination pagination-centered">
+  <%= will_paginate @delivery_requests, :renderer => BootstrapPagination::Rails %>
+</div>

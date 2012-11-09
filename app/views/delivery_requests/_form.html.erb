@@ -1,0 +1,56 @@
+<%= simple_form_for(@delivery_request, :html => { :class => 'form-horizontal', :multipart => true }) do |f| %>
+  <%#= f.error_notification %>
+<%= render "shared/error_messages", target: @delivery_request %>
+<div class="form-inputs">
+  <legend><abbr title="required">*</abbr> Contact information</legend>
+  <%= f.input :name, label: "Contact name:", required: true, autofocus: true %>
+  <%= f.input :email, required: true %>
+  <%= f.input :company %>
+  <%= f.input :telephone %>
+  <%= f.input :address, required: true %>
+  <%= f.input :postal_code, required: true %>
+  <%= f.input :city, required: true %>
+  <%= f.input :country, required: true %>
+</div>
+<div class="form-inputs">
+  <legend>Modules information</legend>
+  <%= f.input :serial_numbers, label: "Serial numbers" %>
+  <%= f.input :manufacturers %>
+  <%= f.input :reason_of_disposal, collection: @delivery_request.options_for_reason_of_disposal, required: true %>
+  <%= f.input :modules_condition, collection: @delivery_request.options_for_modules_condition, required: true %>
+</div>
+    <legend>Technology</legend>
+    <p class="muted">Please indicate the number of modules for each technology</p>
+<div class="row">
+  <div class="span3">
+      <%= f.input :crystalline_silicon, label: "Crystalline Silicon", input_html: {class: "input-mini"} %>
+      <%= f.input :amorphous_micromorph_silicon, label: "Amorphous / Micromorph Silicon", input_html: {class: "input-mini"} %>
+      <%= f.input :laminates_flexible_modules, label: "Laminates / Flexible Modules", input_html: {class: "input-mini"} %>
+  </div>
+  <div class="span2">
+      <%= f.input :concentration_PV, label: "Concentration PV", input_html: {class: "input-mini"} %>
+      <%= f.input :CIGS, label: "CI(G)S", input_html: {class: "input-mini"} %>
+      <%= f.input :CdTe, label: "CdTe", input_html: {class: "input-mini"} %>
+  </div>
+</div>
+
+  <legend>Modules quantity</legend>
+  <%= f.input :pallets_number, input_html: {class: "input-mini"}, label: "Number of pallets" %>
+<div class="row">
+  <div class="span2">
+  <p class="muted", style="padding-left: 60px;">Modules size</p>
+    <%= f.input :length, input_html: {class: "input-mini"} %>
+    <%= f.input :witdh, input_html: {class: "input-mini"} %>
+  </div>
+  <div class="span2">
+    <p class="muted">&nbsp;</p>
+    <%= f.input :height, input_html: {class: "input-mini"} %>
+    <%= f.input :weight, input_html: {class: "input-mini"} %>
+  </div>
+</div>
+<%= f.input :comments, input_html: { class: "input-xlarge", rows: 5 } %>
+
+<div class="form-actions">
+  <%= f.button :submit, "Send Delivery request", class: "btn-primary" %>
+</div>
+<% end %>
