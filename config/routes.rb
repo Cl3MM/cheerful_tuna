@@ -1,5 +1,7 @@
 CheerfulTuna::Application.routes.draw do
 
+  resources :delivery_requests
+
   devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
 
   #match "members/profile" => "profiles#index", via: "get"
@@ -24,6 +26,7 @@ CheerfulTuna::Application.routes.draw do
 
   resources :email_listings
 
+  match 'contacts/search' => 'contacts#search', via: :get
   match 'contacts/statistics' => 'contacts#statistics', as: :stats_contacts
   match 'contacts/activation/:id' => 'contacts#activation', as: :contact_activation, via: :get
   match 'contacts/more_contacts/:id' => 'contacts#more_contacts', as: :more_contacts, via: :post

@@ -96,4 +96,12 @@ namespace :udb do
     #puts usernames
     #File.open("#{Rails.root}/tmp/members.txt",'w') {|f| f.puts(member_usernames.join("\n"))}
   #end
+
+  desc "Geolocate contacts"
+  task :geolocate => :environment do
+    Contact.where('id BETWEEN ? and ?', 1, 10).each do |contact|
+      puts contact.full_address
+    end
+  end
+
 end
