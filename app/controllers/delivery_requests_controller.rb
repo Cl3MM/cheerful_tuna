@@ -42,6 +42,9 @@ class DeliveryRequestsController < ApplicationController
   # POST /delivery_requests
   # POST /delivery_requests.json
   def create
+    params[:delivery_request][:user_ip] = request.remote_ip
+    params[:delivery_request][:user_agent] = request.env['HTTP_USER_AGENT']
+    params[:delivery_request][:referer] = request.env['HTTP_REFERER']
     @delivery_request = DeliveryRequest.new(params[:delivery_request])
 
     respond_to do |format|
