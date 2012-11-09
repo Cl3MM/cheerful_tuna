@@ -28,6 +28,7 @@ gem 'rqrcode', git: 'http://github.com/whomwah/rqrcode'
 gem 'roadie'
 gem 'acts-as-taggable-on'
 gem 'geocoder'
+gem "recaptcha", :require => "recaptcha/rails"
 
 #gem 'rack-mini-profiler'
 

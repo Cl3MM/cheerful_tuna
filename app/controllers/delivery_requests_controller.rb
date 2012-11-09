@@ -48,7 +48,9 @@ class DeliveryRequestsController < ApplicationController
     @delivery_request = DeliveryRequest.new(params[:delivery_request])
 
     respond_to do |format|
-      if @delivery_request.save
+      if verify_recaptcha(model: @delivery_request, message: "Sorry, there was an error reading your Captch, please try again!") && @delivery_request.save
+        flash.clear
+#      if @delivery_request.save
         format.html { redirect_to @delivery_request, notice: 'Delivery request was successfully created.' }
         format.json { render json: @delivery_request, status: :created, location: @delivery_request }
       else
