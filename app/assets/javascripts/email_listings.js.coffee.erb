@@ -1,0 +1,16 @@
+jQuery ->
+  $('#email_btn').live 'click', (event) ->
+    $(this).parent().next().toggle()
+    emails = $(this).parent().next().val()
+    console.log emails
+    window.prompt "Copy to clipboard: Ctrl+C, Enter", emails
+    event.preventDefault()
+
+#  $('#country_name').select2(placeholder: "Select country")
+
+  $('#email_listing_countries').select2($('#email_listing_countries').data('tags'))
+
+  $('#email_listing_per_line').select2(placeholder: "Select a price category")
+  $('#email_listing_tags').select2($('#email_listing_tags').data('tags'))
+
+#  $('#member_contact_ids').select2("data", $.parseJSON($('#member_contact_ids').val()))
