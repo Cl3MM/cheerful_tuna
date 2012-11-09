@@ -1,5 +1,6 @@
 class JoomlaUser < ActiveRecord::Base
-  establish_connection "joomla_ceres_#{Rails.env}"
+  establish_connection "joomla_ceres_#{Rails.env.downcase == "test" ? "development" : Rails.env}"
+  #establish_connection "joomla_ceres_development"
   self.table_name = 'CERES_users'
 
   attr_accessible :activation, :block, :email, :lastResetTime, :lastvisitDate, :name, :params, :password, :registerDate, :resetCount, :sendEmail, :username, :usertype

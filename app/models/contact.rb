@@ -102,11 +102,45 @@ class Contact < ActiveRecord::Base
     "#{self.company}#{ " (" + self.full_name + ")" unless self.full_name.blank? }"
   end
 
+  def self.geolocate
+    Contact.where('id BETWEEN ? and ?', 1, 10).each do |contact|
+      puts "#{contact.id}:\n - old addr: #{contact.full_address}"
+      geo_result = Geocoder.search(contact.full_address)
+      if geo_result
+        street_number = (geo_result.first.address_components_of_type(:street_number).first["long_name"] rescue nil)
+        route = (geo_result.first.address_components_of_type(:route).first["long_name"] rescue nil)
+        attrs = { city: geo_result.first.city,
+                  postal_code: geo_result.first.postal_code,
+                  country: geo_result.first.country,
+                  address: ((street_number.nil? or route.nil?) ? contact.address : "#{street_number} #{route}")
+        }
+        ap attrs
+        attrs = attrs.reduce({}) do |res, (k,s)|
+          res[k] = s if s
+          res
+        end
+        contact.update_attributes(attrs)
+      end
+      puts "- new addr: #{contact.full_address}"
+    end
+  end
+
   def full_name
     full_name = [(self.first_name.capitalize rescue nil), (self.last_name.upcase rescue nil)].delete_if{|x| x.gsub(/ +/, "").blank?}.compact.join(" ")
     full_name.blank? ? "Undefined" : full_name
   end
 
+  def full_address
+    puts "address :#{self.address}"
+    puts "city :#{self.city}"
+    puts "postal_code? :#{self.postal_code}"
+    puts "country :#{self.country}"
+    if (self.address.blank? or self.city.blank? or self.postal_code.blank? or self.country.blank?)
+      return self.address
+    else
+      return "**************** PRETTY ADDRESS: #{self.address}, #{self.postal_code} #{self.city}, #{self.country}"
+    end
+  end
   protected
 
   def clean_up_attributes

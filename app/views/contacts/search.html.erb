@@ -1,0 +1,24 @@
+<h1>Advanced search</h1>
+
+<%= form_tag contacts_search_path, {class: 'form-horizontal' } do |f| %>
+  <legend>Keywords</legend>
+    <div class="control-group string required">
+      <label class="string required control-label" for="member_company"><abbr title="required">*</abbr> Company</label>
+      <div class="controls">
+        <input autofocus="autofocus" class="string required" id="member_company" name="member[company]" size="50" type="text">
+      </div>
+    </div>
+    <div class="control-group string required">
+      <label class="string required control-label" for="member_company"><abbr title="required">*</abbr> Company</label>
+      <div class="controls">
+        <input autofocus="autofocus" class="string required" id="member_company" name="member[company]" size="50" type="text">
+      </div>
+    </div>
+    <div class="control-group select required">
+      <label class="select required control-label" for="member_category">
+        <abbr title="required">*</abbr> Contacts</label>
+      <div class="controls">
+        <input value='<%= {1=>"company", 2=>"address", 3=>"country"} %>' multiple="multiple" type="hidden" id="member_contact_ids" name="member[contact_ids][]" />
+      </div>
+    </div>
+  <% end %>

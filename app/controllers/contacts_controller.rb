@@ -11,6 +11,11 @@ class ContactsController < ApplicationController
     redirect_to :back
   end
 
+  def search
+    respond_to do |format|
+      format.html
+    end
+  end
   # GET /contacts
   # GET /contacts.json
   def index

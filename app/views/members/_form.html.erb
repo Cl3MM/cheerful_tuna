@@ -26,6 +26,7 @@
       <p class="muted">Please enter brand and activity names. Press the comma key to separate tags.</p>
       <%= f.input :activity_list, label: "Member's activities(s)",
         input_html: { data: { tags: {tokenSeparators: [","], tags: Member.activity_counts.map(&:name)}} } %>
+
       <%= f.input :brand_list, label: "Member's Brand(s)",
         input_html: { data: { tags: {tokenSeparators: [","], tags: @member.brand_list}} } %>
       <legend>Member's files</legend>
