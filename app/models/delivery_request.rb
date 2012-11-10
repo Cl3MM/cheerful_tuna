@@ -13,13 +13,14 @@ class DeliveryRequest < ActiveRecord::Base
   validates :city, presence: true
   validates :country, presence: true
   validates :reason_of_disposal, presence: true
-  validates :module_count, presence: true
+  validates :module_count, presence: true, numericality: { :greater_than => 0 }
   validates :modules_condition, presence: true
   validates :country, presence: true
-  validates :length, presence: true
-  validates :width, presence: true
-  validates :height, presence: true
-  validates :weight, presence: true
+  validates :length, presence: true, numericality: { :greater_than => 0 }
+  validates :width, presence: true, numericality: { :greater_than => 0 }
+  validates :height, presence: true, numericality: { :greater_than => 0 }
+  validates :weight, presence: true, numericality: { :greater_than => 0 }
+  validates :pallets_number, presence: true, numericality: { :greater_than => 0 }
 
   def options_for_reason_of_disposal
     [
