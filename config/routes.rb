@@ -3,7 +3,7 @@ CheerfulTuna::Application.routes.draw do
   resources :html_snippets do
     member { post :mercury_update }
   end
-  resources :html_snippets
+#  resources :html_snippets
 
     namespace :mercury do
       resources :images
