@@ -1,6 +1,6 @@
 class HtmlSnippetsController < ApplicationController
 
-  before_filter :authorize_admin
+  before_filter :authorize_admin!
 
   def mercury_update
     #    Rails.logger.debug "*" * 100
