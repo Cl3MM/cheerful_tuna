@@ -3,12 +3,12 @@
   <head>
     <title>Cheerful Tuna</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <%# if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
+    <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
       <%= stylesheet_link_tag controller_name %>
-    <%# end %>
-    <%# if controller.action_name.match(/edit|new/) %>
-      <%#= stylesheet_link_tag controller_name %>
-    <%# end %>
+    <% end %>
+    <% if controller.action_name.match(/edit|new/) %>
+      <%= stylesheet_link_tag controller_name %>
+    <% end %>
     <%# if controller_path.match(/editor/) %>
       <%#= javascript_include_tag 'mercury.js' %>
       <%#= stylesheet_link_tag 'mercury_overrides.css' %>
@@ -18,11 +18,9 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
-  <%= controller_path %>
-  <br />
-  <%= controller.action_name %>
-  <br />
-  <%= controller_name %>
+  <%#= controller_path %>
+  <%#= controller.action_name %>
+  <%#= controller_name %>
   <% if controller_path.match(/joomla/) %>
     <%= yield %>
   <% else %>
