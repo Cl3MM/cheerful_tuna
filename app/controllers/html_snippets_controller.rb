@@ -1,16 +1,16 @@
 class HtmlSnippetsController < ApplicationController
+
+  before_filter :authorize_admin
+
   def mercury_update
-    Rails.logger.debug "*" * 100
-    Rails.logger.debug "Params content: #{params[:content]}"
+    #    Rails.logger.debug "*" * 100
+    #    Rails.logger.debug "Params content: #{params[:content]}"
     if params[:content].keys.any?
       params[:content].keys.each do |name|
         snip = HtmlSnippet.find_by_name(name)
         if snip
-          Rails.logger.debug "Found snip: #{snip.name}"
           snip.snippets = params[:content][name][:value]
           snip.save!  if snip.snippets_changed?
-        else
-          Rails.logger.debug "Snip not found :("
         end
       end
       render text: ""

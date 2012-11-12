@@ -1,4 +1,7 @@
 class DeliveryRequestsController < ApplicationController
+
+  before_filter :authorize_admin, except: [:new, :create]
+
   # GET /delivery_requests
   # GET /delivery_requests.json
   def index

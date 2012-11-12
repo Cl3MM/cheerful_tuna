@@ -1,5 +1,7 @@
 #encoding: utf-8
 class EmailListingsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /email_listings
   # GET /email_listings.json
   def index
