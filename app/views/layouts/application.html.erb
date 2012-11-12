@@ -21,7 +21,8 @@
   <%#= controller_path %>
   <%#= controller.action_name %>
   <%#= controller_name %>
-  <% if controller_path.match(/joomla/) %>
+  <%#= request.fullpath %>
+  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/)%>
     <%= yield %>
   <% else %>
     <%= render :partial => 'layouts/navbar' %>
@@ -39,7 +40,7 @@
       <% end %>
     </div>
     <% end %>
-    <% if controller_name == "members" and controller.action_name == "show" %>
+    <% if "#{controller_name}::#{controller.action_name}".match(/members::show/) %>
       <%= yield %>
     <% else %>
       <div class="container">

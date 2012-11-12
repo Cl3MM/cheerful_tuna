@@ -2,15 +2,8 @@
   <%#= f.error_notification %>
 <%= render "shared/error_messages", target: @delivery_request %>
 <div class="form-inputs mercury-display-pane-container">
-  <legend><abbr title="required">*</abbr> Contact information
-    <% if current_user.is_admin? %>
-      <span class="pull-right"><%= link_to "Edit template", "/editor" + request.path, 
-        class: "btn btn-primary",
-        id: "edit_link",
-        data: {url: mercury_update_html_snippet_path(HtmlSnippet.find_by_name("delivery_request_help"))} %></span>
-    </legend>
-    <% end %>
-  <div class="row">
+  <legend><abbr title="required">*</abbr> Contact information </legend>
+  <div class="row-fluid">
     <div class="span5">
       <%= f.input :name, label: "Contact name:", required: true, autofocus: true %>
       <%= f.input :email, required: true %>
@@ -37,7 +30,7 @@
 <legend>Technology</legend>
 <p class="muted">Please indicate the number of modules for each technology</p>
     <label class="control-label"></label>
-      <div class="row">
+      <div class="row-fluid">
         <div class="span3">
           <% @technos.first.each do |tech| %>
             <%= f.radio_button :technology,  tech, style: "margin-bottom: 2px;" %>
@@ -55,7 +48,7 @@
   </div>
 
   <legend>Modules quantity</legend>
-  <div class="row">
+  <div class="row-fluid">
     <div class="span3">
       <%= f.input :module_count, input_html: {class: "input-mini"}, label: "Number of modules" %>
     </div>
@@ -63,7 +56,7 @@
       <%= f.input :pallets_number, input_html: {class: "input-mini"}, label: "Number of pallets" %>
     </div>
   </div>
-<div class="row">
+<div class="row-fluid">
   <div class="span2">
   <p class="muted", style="padding-left: 60px;">Modules size</p>
     <%= f.input :length, input_html: {class: "input-mini"} %>
@@ -76,7 +69,7 @@
   </div>
 </div>
 <%= f.input :comments, input_html: { class: "input-xlarge", rows: 5 } %>
-<div class="row">
+<div class="row-fluid">
   <div class="span7">
     <label class="control-label" style="margin-right:20px;">Stop SPAM</label>
       <%= raw recaptcha_tags(ssl: true, display: {theme:  "clean"} ) %>
