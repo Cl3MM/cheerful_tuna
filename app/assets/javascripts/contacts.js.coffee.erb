@@ -50,5 +50,6 @@ jQuery ->
       element: "contacts_by_countries"
       data: $("#contacts_by_countries").data('stats')
 
-  $('#contact_tag_list').select2($('#contact_tag_list').data('tags'))
-  $('#contact_country').select2()
+  if $('#contact_tag_list').length > 0
+    $('#contact_tag_list').select2($('#contact_tag_list').data('tags')) 
+    $('#contact_country').select2()

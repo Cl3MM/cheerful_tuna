@@ -1,4 +1,15 @@
 CheerfulTuna::Application.routes.draw do
+  #match 'html_snippets/:id/' => 'contacts#activation', as: :contact_activation, via: :get
+  resources :html_snippets do
+    member { post :mercury_update }
+  end
+  resources :html_snippets
+
+    namespace :mercury do
+      resources :images
+    end
+
+  mount Mercury::Engine => '/'
 
   resources :delivery_requests
 

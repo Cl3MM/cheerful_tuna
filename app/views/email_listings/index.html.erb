@@ -12,18 +12,15 @@
       <th>Mailing name</th>
       <th>Email per line</th>
       <th>Countries</th>
-      <th>Tags</th>
       <th class="pull-right">Actions</th>
     </tr>
   </thead>
   <tbody>
-
     <% @email_listings.each do |email_listing| %>
       <tr>
         <td><%= link_to email_listing.name, email_listing %></td>
         <td><%= email_listing.per_line %></td>
-        <td><%= email_listing.countries.gsub(",", ', ') rescue "" %></td>
-        <td><%= email_listing.tag_count.map(&:name).join(', ') rescue "" %></td>
+        <td><%= email_listing.countries.split(';').join(', ') %></td>
         <td class="actions">
           <div class="btn-group pull-right">
             <%= link_to raw('<i class="icon-edit"></i>'), edit_email_listing_path(email_listing), :class => 'btn btn-mini', :title => 'edit contact' %>

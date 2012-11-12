@@ -65,6 +65,7 @@ GEM
       ffi (~> 1.0, >= 1.0.6)
     choice (0.1.6)
     clipboard (1.0.1)
+    cocaine (0.2.1)
     coderay (1.0.8)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
@@ -171,6 +172,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    mercury-rails (0.8.0)
+      coffee-rails
+      rails (~> 3.2)
     method_locator (0.0.4)
     method_source (0.8)
     methodfinder (1.2.5)
@@ -189,6 +193,11 @@ GEM
     ori (0.1.0)
     orm_adapter (0.4.0)
     paint (0.8.5)
+    paperclip (2.7.0)
+      activerecord (>= 2.3.0)
+      activesupport (>= 2.3.2)
+      cocaine (>= 0.0.2)
+      mime-types
     pdf-reader (1.2.0)
       Ascii85 (~> 1.0.0)
       hashery (~> 2.0)
@@ -341,8 +350,10 @@ DEPENDENCIES
   irbtools
   jquery-rails
   jquery-ui-rails
+  mercury-rails
   mysql2
   nokogiri
+  paperclip
   prawn
   rails
   rb-inotify (~> 0.8.8)

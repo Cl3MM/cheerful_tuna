@@ -26,6 +26,7 @@ class DeliveryRequestsController < ApplicationController
   # GET /delivery_requests/new
   # GET /delivery_requests/new.json
   def new
+    @technos = DLV_RQST_TECHNOS.keys.each_slice(3).to_a
     @delivery_request = DeliveryRequest.new
 
     respond_to do |format|

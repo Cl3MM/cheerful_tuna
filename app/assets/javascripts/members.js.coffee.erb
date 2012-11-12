@@ -18,66 +18,67 @@ jQuery ->
   $('.btn-tooltip').tooltip()
   $('.a-tooltip').tooltip()
 
-  $('#member_category').select2(placeholder: "Select a price category")
+  if ($('form[id^=edit_member]').length > 0) or ($('form[id^=new_member]').length > 0) # Only load the following if in a new or edit form
+    $('#member_category').select2(placeholder: "Select a price category")
 
-  $('#member_country').select2(placeholder: "Select country")
+    $('#member_country').select2(placeholder: "Select country")
 
-  $('#member_billing_country').select2(placeholder: "Select a country")
+    $('#member_billing_country').select2(placeholder: "Select a country")
 
-  $('#member_start_date').datepicker
+    $('#member_start_date').datepicker
     format: 'yyyy-mm-dd'
 
-  $('#member_brand_list').select2($('#member_brand_list').data('tags'))
-  $('#member_activity_list').select2($('#member_activity_list').data('tags'))
+    $('#member_brand_list').select2($('#member_brand_list').data('tags'))
+    $('#member_activity_list').select2($('#member_activity_list').data('tags'))
 
-  $('#member_contact_ids').select2
-    placeholder: "Select contact(s)"
-    allowClear: true
-    minimumInputLength: 3
-    multiple: true
-    ajax:
-      url: "/contacts.json"
-      dataType: 'json'
-      quietMillis: 100
-      data: (term, page) ->
-        member_query: term
-        page: page
-      results: (data, page) ->
-        #console.log('result '+  data)
-        results: data
-    formatResult: (contact) ->
-      contact.text
-    formatSelection: (data) ->
-      data.text
+    $('#member_contact_ids').select2
+      placeholder: "Select contact(s)"
+      allowClear: true
+      minimumInputLength: 3
+      multiple: true
+      ajax:
+        url: "/contacts.json"
+        dataType: 'json'
+        quietMillis: 100
+        data: (term, page) ->
+          member_query: term
+          page: page
+        results: (data, page) ->
+          #console.log('result '+  data)
+          results: data
+      formatResult: (contact) ->
+        contact.text
+      formatSelection: (data) ->
+        data.text
 
-  $('#member_contact_ids').select2("data", $.parseJSON($('#member_contact_ids').val()))
+    $('#member_contact_ids').select2("data", $.parseJSON($('#member_contact_ids').val()))
 
-  if $('#enable_billing').length > 0
-    activate_billing = (state) ->
-      if state == "disable"
-        disabled = true
-        color = '#ccc'
-      else
-        disabled = false
-        color = ''
-      billing_inputs = $('#billing_part').find('input')
-      $('#billing_part').css('color', color)
-      $('#member_billing_country').select2(state)
-      billing_inputs.each ->
-        this.disabled = disabled
-        true
-    activate_billing("disable")
+    if $('#enable_billing').length > 0
+      activate_billing = (state) ->
+        if state == "disable"
+          disabled = true
+          color = '#ccc'
+        else
+          disabled = false
+          color = ''
+        billing_inputs = $('#billing_part').find('input')
+        $('#billing_part').css('color', color)
+        $('#member_billing_country').select2(state)
+        billing_inputs.each ->
+          this.disabled = disabled
+          true
+      activate_billing("disable")
 
-    $('#enable_billing').on 'click', (event) ->
-      if $(this).is(':checked')
-        console.log 'checked'
-        state = "enable"
-        texti = "uncheck all"
-      else
-        console.log 'unchecked'
-        state = "disable"
-        texti = "check all"
-      activate_billing(state)
+      $('#enable_billing').on 'click', (event) ->
+        if $(this).is(':checked')
+          console.log 'checked'
+          state = "enable"
+          texti = "uncheck all"
+        else
+          console.log 'unchecked'
+          state = "disable"
+          texti = "check all"
+        activate_billing(state)
 
   ###
   $('#member_company').on 'focusout', (event) ->

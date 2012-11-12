@@ -9,7 +9,7 @@ class EmailListing < ActiveRecord::Base
   validates :name, uniqueness: true, presence: true
 
   def countries_to_a
-    countries.split(",")
+    countries.split(";")
   end
 
   def find_emails

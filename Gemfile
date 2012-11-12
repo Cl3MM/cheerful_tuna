@@ -29,6 +29,7 @@ gem 'roadie'
 gem 'acts-as-taggable-on'
 gem 'geocoder'
 gem "recaptcha", :require => "recaptcha/rails"
+gem "mercury-rails"
 
 #gem 'rack-mini-profiler'
 
@@ -76,3 +77,4 @@ group :test do
   gem 'rb-inotify', '~> 0.8.8'
   gem "database_cleaner"
 end
+gem 'paperclip'

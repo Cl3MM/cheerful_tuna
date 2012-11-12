@@ -3,7 +3,13 @@
   <head>
     <title>Cheerful Tuna</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <% if controller.class.name == "PagesController" %>
+    <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
+      <%= stylesheet_link_tag controller_name %>
+    <% end %>
+    <% if controller.action_name.match(/edit|new/) %>
+      <%= stylesheet_link_tag controller_name %>
+    <% end %>
+    <% if controller_path.match(/editor/) %>
       <%#= javascript_include_tag 'mercury.js' %>
       <%#= stylesheet_link_tag 'mercury_overrides.css' %>
     <% end -%>
@@ -44,5 +50,7 @@
     <%= render :partial => 'layouts/footer' %>
   <% end %>
     <%= javascript_include_tag "application", controller_name %>
+    <%= javascript_include_tag "raphael-min", "morris.min" if controller.action_name.match(/statistics/) %>
+    <%= javascript_include_tag "select2", "bootstrap-datepicker" if controller.action_name.match(/edit|new/) %>
   </body>
 </html>

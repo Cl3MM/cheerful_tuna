@@ -1,3 +1,8 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+#jQuery ->
+  #Mercury.on 'ready', (event) ->
+    #link = $('#mercury_iframe').contents().find('#edit_link')
+    #Mercury.saveURL = link.data('save-url')
+    #link.hide()
+
+  #Mercury.on'saved', (event) ->
+    #window.location = window.location.href.replace(/\/editor\//i, '/')

@@ -50,7 +50,7 @@ class EmailListingsController < ApplicationController
   # POST /email_listings.json
   def create
     params[:email_listing][:tags] = params[:email_listing][:tags].sort.first if params[:email_listing][:tags].present?
-    params[:email_listing][:countries] = params[:email_listing][:countries].sort.join(",") if params[:email_listing][:countries].present?
+    params[:email_listing][:countries] = params[:email_listing][:countries].sort.join(";") if params[:email_listing][:countries].present?
     @email_listing = EmailListing.new(params[:email_listing])
     #  @email_listing.update_attribute(:countries, countries)
 
@@ -59,7 +59,7 @@ class EmailListingsController < ApplicationController
         format.html { redirect_to @email_listing, notice: 'Email listing was successfully created.' }
         #format.json { render json: @email_listing, status: :created, location: @email_listing }
       else
-        @countries = params[:email_listing][:countries].split(',') rescue []
+        @countries = params[:email_listing][:countries].split(';') rescue []
         format.html { render action: "new" }
         #format.json { render json: @email_listing.errors, status: :unprocessable_entity }
       end
@@ -70,7 +70,7 @@ class EmailListingsController < ApplicationController
   # PUT /email_listings/1.json
   def update
     params[:email_listing][:tags] = params[:email_listing][:tags].sort.first if params[:email_listing][:tags].present?
-    params[:email_listing][:countries] = params[:email_listing][:countries].sort.join(",") if params[:email_listing][:countries].present?
+    params[:email_listing][:countries] = params[:email_listing][:countries].sort.join(";") if params[:email_listing][:countries].present?
 
     @email_listing = EmailListing.find(params[:id])
 
@@ -79,7 +79,7 @@ class EmailListingsController < ApplicationController
         format.html { redirect_to @email_listing, notice: 'Email listing was successfully updated.' }
         #format.json { head :no_content }
       else
-        @countries = @email_listing.countries.split(',')
+        @countries = @email_listing.countries_to_a
         format.html { render action: "edit" }
         #format.json { render json: @email_listing.errors, status: :unprocessable_entity }
       end

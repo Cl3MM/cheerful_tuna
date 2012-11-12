@@ -1,16 +1,30 @@
 <%= simple_form_for(@delivery_request, :html => { :class => 'form-horizontal', :multipart => true }) do |f| %>
   <%#= f.error_notification %>
 <%= render "shared/error_messages", target: @delivery_request %>
-<div class="form-inputs">
-  <legend><abbr title="required">*</abbr> Contact information</legend>
-  <%= f.input :name, label: "Contact name:", required: true, autofocus: true %>
-  <%= f.input :email, required: true %>
-  <%= f.input :company %>
-  <%= f.input :telephone %>
-  <%= f.input :address, required: true %>
-  <%= f.input :postal_code, required: true %>
-  <%= f.input :city, required: true %>
-  <%= f.input :country, required: true %>
+<div class="form-inputs mercury-display-pane-container">
+  <legend><abbr title="required">*</abbr> Contact information
+    <% if current_user.is_admin? %>
+      <span class="pull-right"><%= link_to "Edit template", "/editor" + request.path, 
+        class: "btn btn-primary",
+        id: "edit_link",
+        data: {url: mercury_update_html_snippet_path(HtmlSnippet.find_by_name("delivery_request_help"))} %></span>
+    </legend>
+    <% end %>
+  <div class="row">
+    <div class="span5">
+      <%= f.input :name, label: "Contact name:", required: true, autofocus: true %>
+      <%= f.input :email, required: true %>
+      <%= f.input :company %>
+      <%= f.input :telephone %>
+      <%= f.input :address, required: true %>
+      <%= f.input :postal_code, required: true %>
+      <%= f.input :city, required: true %>
+      <%= f.input :country, required: true %>
+    </div>
+    <div class="span3 mercury-form" id="delivery_request_help" data-mercury="full">
+      <%= raw(HtmlSnippet.find_by_name("delivery_request_help").snippets) %>
+    </div>
+  </div>
 </div>
 <div class="form-inputs">
   <legend>Modules information</legend>
@@ -25,24 +39,18 @@
     <label class="control-label"></label>
       <div class="row">
         <div class="span3">
-        <%= f.radio_button :CIGS,  "crystalline_silicon", style: "margin-bottom: 2px;" %>
-        <%= f.label :CIGS, "crystalline_silicon" , class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
-        <br/>
-        <%= f.radio_button :CIGS, "amorphous_micromorph_silicon", style: "margin-bottom: 2px;" %>
-        <%= f.label :CIGS, "amorphous_micromorph_silicon", class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
-        <br/>
-        <%= f.radio_button :CIGS, "laminates_flexible_modules", style: "margin-bottom: 2px;" %>
-        <%= f.label :CIGS, "laminates_flexible_modules", class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
-      </div>
-      <div class="span3">
-        <%= f.radio_button :CIGS, "CIGS", style: "margin-bottom: 2px;" %>
-        <%= f.label :CIGS, "CIGS", class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
-        <br/>
-        <%= f.radio_button :CIGS, "concentration_PV", style: "margin-bottom: 2px;" %>
-        <%= f.label :CIGS, "concentration_PV", class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
-        <br/>
-        <%= f.radio_button :CIGS, "CdTe", style: "margin-bottom: 2px;" %>
-        <%= f.label :CIGS, "CdTe", class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
+          <% @technos.first.each do |tech| %>
+            <%= f.radio_button :technology,  tech, style: "margin-bottom: 2px;" %>
+            <%= f.label :technology, "#{DLV_RQST_TECHNOS[tech]}" , class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
+            <br/>
+          <% end %>
+        </div>
+        <div class="span3">
+          <% @technos.last.each do |tech| %>
+            <%= f.radio_button :technology,  tech, style: "margin-bottom: 2px;" %>
+            <%= f.label :technology, "#{DLV_RQST_TECHNOS[tech]}" , class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
+            <br/>
+          <% end %>
       </div>
   </div>
 
@@ -69,8 +77,9 @@
 </div>
 <%= f.input :comments, input_html: { class: "input-xlarge", rows: 5 } %>
 <div class="row">
-  <div class="span4 offset1">
-    <%= raw recaptcha_tags %>
+  <div class="span7">
+    <label class="control-label" style="margin-right:20px;">Stop SPAM</label>
+      <%= raw recaptcha_tags(ssl: true, display: {theme:  "clean"} ) %>
   </div>
 </div>
 <div class="form-actions">

@@ -16,7 +16,7 @@
   <%= f.input :name, required: true, class: "input-large" %>
 
   <%= f.input :countries, label: "Countries",
-    input_html: { data: { tags: {tokenSeparators: [","], tags: COUNTRIES}},
+    input_html: { data: { tags: {tokenSeparators: [";"], tags: COUNTRIES}},
                   multiple: true, style: "width:70%;height:300px;"} %>
   <%#= f.input :operator, :collection => ["NONE", "AND", "OR"], as: :radio_buttons %>
   <!-- Tag selector options (ALL, ANY, EXCEPT -->

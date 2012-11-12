@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require raphael-min
-//= require morris.min
 //= require twitter/bootstrap
-//= require select2
+// require raphael-min
+// require morris.min
+// require select2
 //= require bootstrap-datepicker
 // =  // require jquery.ui.datepicker
