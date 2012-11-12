@@ -3,16 +3,16 @@
   <head>
     <title>Cheerful Tuna</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
+    <%# if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
       <%= stylesheet_link_tag controller_name %>
-    <% end %>
-    <% if controller.action_name.match(/edit|new/) %>
-      <%= stylesheet_link_tag controller_name %>
-    <% end %>
-    <% if controller_path.match(/editor/) %>
+    <%# end %>
+    <%# if controller.action_name.match(/edit|new/) %>
+      <%#= stylesheet_link_tag controller_name %>
+    <%# end %>
+    <%# if controller_path.match(/editor/) %>
       <%#= javascript_include_tag 'mercury.js' %>
       <%#= stylesheet_link_tag 'mercury_overrides.css' %>
-    <% end -%>
+    <%# end -%>
     <%= yield(:head) %>
     <%= csrf_meta_tags %>
     <%= csrf_meta_tag %>
