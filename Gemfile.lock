@@ -74,6 +74,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.4.0)
+    commonjs (0.2.6)
     country_select (1.0.1)
     css_parser (1.2.6)
       addressable
@@ -159,6 +160,11 @@ GEM
     json (1.7.5)
     jwt (0.1.5)
       multi_json (>= 1.0)
+    less (2.2.2)
+      commonjs (~> 0.2.6)
+    less-rails (2.2.3)
+      actionpack (>= 3.1)
+      less (~> 2.2.0)
     libv8 (3.3.10.4)
     libwebsocket (0.1.5)
       addressable
@@ -353,6 +359,7 @@ DEPENDENCIES
   irbtools
   jquery-rails
   jquery-ui-rails
+  less-rails
   mercury-rails
   mysql2
   nokogiri
