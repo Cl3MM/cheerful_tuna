@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authorize_admin!
+    redirect_to login_url, alert: "Not authorized" unless current_user.is_admin?
+  end
+
   #def redirect_member!
     #if current_member and not current_user
       #flash[:error] = "Sorry, this section is closed to members"
