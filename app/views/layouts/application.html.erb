@@ -18,6 +18,11 @@
     <%= csrf_meta_tag %>
   </head>
   <body>
+  <%= controller_path %>
+  <br />
+  <%= controller.action_name %>
+  <br />
+  <%= controller_name %>
   <% if controller_path.match(/joomla/) %>
     <%= yield %>
   <% else %>
