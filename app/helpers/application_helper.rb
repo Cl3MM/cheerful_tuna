@@ -19,10 +19,4 @@ module ApplicationHelper
       #raw '<a class="brand" href="#">COUCOU</a>' unless current_user and current_member
     end
   end
-
-  private
-
-  def authorize_admin
-    redirect_to login_url, alert: "Not authorized" unless current_user.is_admin?
-  end
 end
