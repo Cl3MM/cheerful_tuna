@@ -62,9 +62,10 @@ CheerfulTuna::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( contacts.js users.js members.js morris.min.js raphael-min.js mercury.js select2.js )
+  config.assets.precompile += %w( morris.min.js raphael-min.js mercury.js select2.js bootstrap-datepicker.js )
+  config.assets.precompile += %w( contacts.js users.js members.js email_listings.js delivery_requests.css )
   config.assets.precompile += %w( contacts.css members.css email_listings.css delivery_requests.css )
-  config.assets.precompile += %w( contacts/more_contacts.js app/views/contacts/more_contacts.js bootstrap-datepicker.js )
+#  config.assets.precompile += %w( contacts/more_contacts.js app/views/contacts/more_contacts.js )
 #  config.assets.precompile << "contacts/_more_contacts.js"
 #  config.assets.precompile << "#{Rails.root}/app/views/contacts/_more_contacts.js"
 #  config.assets.precompile << "#{Rails.root}/app/views/contacts/_more_contacts.js.coffee"

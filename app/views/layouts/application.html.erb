@@ -52,7 +52,7 @@
     <% end %>
     <%= render :partial => 'layouts/footer' %>
   <% end %>
-    <%= javascript_include_tag "application", controller_name %>
+  <%= javascript_include_tag "application", controller_name %>
     <%= javascript_include_tag "raphael-min", "morris.min" if controller.action_name.match(/statistics/) %>
     <%= javascript_include_tag "select2", "bootstrap-datepicker" if controller.action_name.match(/edit|new/) %>
   </body>
