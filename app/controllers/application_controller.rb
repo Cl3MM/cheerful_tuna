@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin!
-    redirect_to login_url, alert: "Not authorized" unless current_user.is_admin?
+    redirect_to login_url, alert: "Not authorized" unless current_user and current_user.is_admin?
   end
 
   #def redirect_member!
