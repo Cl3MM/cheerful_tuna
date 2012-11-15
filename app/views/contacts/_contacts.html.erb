@@ -1,7 +1,6 @@
 <div class="pagination pagination-centered">
-  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%= paginate @contacts %>
 </div>
-<%#= paginate @contacts %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -45,5 +44,5 @@
 </table>
 
 <div class="pagination pagination-centered">
-  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%= paginate @contacts %>
 </div>

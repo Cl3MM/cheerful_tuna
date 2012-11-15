@@ -32,6 +32,9 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.is_a?(Member)
       members_profile_path
+    elsif resource.is_a? User
+      session[:ppage] = 25
+      super
     else
       super
     end

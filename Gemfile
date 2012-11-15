@@ -8,9 +8,9 @@ gem 'rails'
 
 gem 'sqlite3'
 gem 'thin'
-#gem 'kaminari'
-gem 'will_paginate', '> 3.0'
-gem 'will_paginate-bootstrap'
+gem 'kaminari'
+#gem 'will_paginate', '> 3.0'
+#gem 'will_paginate-bootstrap'
 gem 'simple_form'
 gem 'roo'
 gem 'nokogiri'
@@ -22,14 +22,15 @@ gem 'vestal_versions', git:'git://github.com/milkfarm/vestal_versions.git'
 gem 'tire'
 gem 'yaml_db'
 gem 'prawn'
-gem "rmagick"
-gem "carrierwave"
+gem 'rmagick'
+gem 'carrierwave'
 gem 'rqrcode', git: 'http://github.com/whomwah/rqrcode'
 gem 'roadie'
 gem 'acts-as-taggable-on'
 gem 'geocoder'
-gem "recaptcha", :require => "recaptcha/rails"
-gem "mercury-rails"
+gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'mercury-rails'
+gem 'paperclip'
 
 #gem 'rack-mini-profiler'
 
@@ -40,8 +41,8 @@ gem "mercury-rails"
 # Gems used only for assets and not required
 # in production environments by default.
 gem 'coffee-rails', '~> 3.2.1'
-gem "less-rails"
-gem "select2-rails"
+gem 'less-rails'
+gem 'select2-rails'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'twitter-bootstrap-rails'
@@ -69,14 +70,15 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem "rspec-rails", :group => [:test, :development]
+gem 'rspec-rails', :group => [:test, :development]
 group :test do
-  gem "factory_girl_rails"
-  gem "capybara"
-  gem "guard-rspec"
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'capybara'
+  gem 'guard-rspec'
   gem 'spork', '~> 1.0rc'
-  gem "guard-spork"
+  gem 'guard-spork'
   gem 'rb-inotify', '~> 0.8.8'
-  gem "database_cleaner"
+  gem 'database_cleaner'
+  gem 'launchy'
 end
-gem 'paperclip'

@@ -27,8 +27,10 @@ class MembersController < ApplicationController
   # GET /members
   # GET /members.json
   def index
-    @per_page = params[:per_page] || '20'
-    @members = Member.order("company ASC").page(params[:page]).per_page((@per_page.to_i rescue 20))
+    session[:ppage] = (params[:per_page].to_i rescue 25) if (params[:per_page] && (not params[:per_page.blank?] ) )
+    @per_page = session[:ppage].to_s
+    params.delete :per_page
+    @members = Member.order("company ASC").page(params[:page]).per(session[:ppage]) #.per_page((@per_page.to_i rescue 20))
 
     respond_to do |format|
       format.html # index.html.erb

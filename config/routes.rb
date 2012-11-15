@@ -24,7 +24,7 @@ CheerfulTuna::Application.routes.draw do
     resources :users, except: [:show, :edit]
   end
   scope "/joomla" do
-    get 'delivery_request', to: 'delivery_requests#new'
+    get 'delivery_request', to: 'delivery_requests#new', as: :new_delivery_request
   end
   resources :delivery_requests, except: [:new, :update, :edit]
 

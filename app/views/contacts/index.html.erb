@@ -8,7 +8,7 @@
 
 <div class="well">
   <%= form_tag contacts_path, method: :get, :class=>"form-inline inline" do %>
-    <%= select_per_page({selected: @per_page, select_options: %w(50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <%= select_per_page({selected: @per_page, select_options: %w(5 10 25 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
     <span  class="help-inline" style="margin-right: 2em;">per page</span>
   <% end -%>
   <%= form_tag contacts_path, method: :get, :class=>"form-inline inline", style: "clear:none;" do %>
@@ -32,10 +32,11 @@
     <strong>Search results: <%= "#{pluralize(@contacts.total, 'result')}" %> matching the patern</strong>
   </div>
   <% end %>
+
+  <p style="text-align:center;"><%= raw page_entries_info(@contacts, entry_name: 'Contacts') %></p>
   <div class="pagination pagination-centered">
-    <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+    <%= paginate @contacts %>
   </div>
-  <%#= paginate @contacts %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -82,9 +83,9 @@
       <% end %>
     </tbody>
   </table>
-
   <div class="pagination pagination-centered">
-    <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%= paginate @contacts %>
+    <%#= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
   </div>
 <% end -%>
   </div>

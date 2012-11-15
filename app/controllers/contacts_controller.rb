@@ -19,18 +19,21 @@ class ContactsController < ApplicationController
   # GET /contacts
   # GET /contacts.json
   def index
-    @per_page = params[:per_page] || '20'
+    session[:ppage] = (params[:per_page].to_i rescue 25) if (params[:per_page] && (not params[:per_page.blank?] ) )
+    @per_page = session[:ppage].to_s
+    params[:ppage] = session[:ppage]
+
     if params[:member_query].present?
       @contacts = Contact.where("first_name LIKE ? OR last_name LIKE ? OR company LIKE ?", "%#{params[:member_query]}%", "%#{params[:member_query]}%", "%#{params[:member_query]}%")
-      #.page(params[:page]).per_page(50)
     elsif params[:tag]
-      @contacts = Contact.search(params).tagged_with(params[:tag]).page(params[:page]).per_page((@per_page.to_i rescue 20))
+      @contacts = Contact.search(params).tagged_with(params[:tag]).page(params[:page]).per(session[:ppage])
     else
       @contacts = Contact.search(params)
     end
+    params.delete :ppage
+    params.delete :per_page
 
     @q = params[:query].present?
-    @users = User.all
 
     respond_to do |format|
       format.html # index.html.erb

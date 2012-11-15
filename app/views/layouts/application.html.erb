@@ -6,22 +6,23 @@
     <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
       <%= stylesheet_link_tag controller_name %>
     <% end %>
-    <% if controller.action_name.match(/edit|new/) %>
+    <% if controller.action_name.match(/edit|new|create|update/) %>
       <%= stylesheet_link_tag controller_name %>
     <% end %>
-    <%# if controller_path.match(/editor/) %>
-      <%#= javascript_include_tag 'mercury.js' %>
-      <%#= stylesheet_link_tag 'mercury_overrides.css' %>
-    <%# end -%>
     <%= yield(:head) %>
     <%= csrf_meta_tags %>
     <%= csrf_meta_tag %>
   </head>
   <body>
-  <%#= controller_path %>
-  <%#= controller.action_name %>
-  <%#= controller_name %>
-  <%#= request.fullpath %>
+<!--
+  <%= controller_path %>
+  <br />
+  <%= controller.action_name %>
+  <br />
+  <%= controller_name %>
+  <br />
+  <%= request.fullpath %>
+-->
   <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/)%>
     <%= yield %>
   <% else %>
@@ -55,6 +56,6 @@
   <% end %>
   <%= javascript_include_tag "application", controller_name %>
     <%= javascript_include_tag "raphael-min", "morris.min" if controller.action_name.match(/statistics/) %>
-    <%= javascript_include_tag "select2", "bootstrap-datepicker" if controller.action_name.match(/edit|new/) %>
+    <%= javascript_include_tag "select2", "bootstrap-datepicker" if controller.action_name.match(/edit|new|create|update/) %>
   </body>
 </html>

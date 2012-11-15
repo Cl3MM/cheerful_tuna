@@ -2,7 +2,7 @@
 class Member < ActiveRecord::Base
 
   include MyTools
-
+  paginates_per 25
   acts_as_taggable_on :brand, :activity
 
   has_and_belongs_to_many :contacts
@@ -16,7 +16,8 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :contacts
   attr_reader :end_date, :category_price
 
-  validates_presence_of :user_name, :company, :country, :web_profile_url, :start_date, :category, :address, :city, :postal_code, :activity_list
+  validates_presence_of :user_name, :company, :country, :web_profile_url, 
+    :start_date, :category, :address, :city, :postal_code, :activity_list
   validates :category, :inclusion => { :in => %w[Free A B C D],
                                    :message => "%{value} is not a valid category" }
   mount_uploader :logo_file, MemberFilesUploader

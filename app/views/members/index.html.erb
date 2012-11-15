@@ -11,8 +11,9 @@
   <% end -%>
   <%= link_to 'New member', new_member_path, class: 'btn btn-primary pull-right btn-tooltip', title: "Create a new Member" %>
 </div>
+<p style="text-align:center;"><%= raw page_entries_info @members %></p>
 <div class="pagination pagination-centered">
-  <%= will_paginate(@contacts, :renderer => BootstrapPagination::Rails) %>
+  <%= paginate @members %>
 </div>
 <table class="table table-striped">
   <thead>
@@ -55,5 +56,5 @@
 </table>
 
 <div class="pagination pagination-centered">
-  <%= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+  <%= paginate @members %>
 </div>

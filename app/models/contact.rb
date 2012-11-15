@@ -2,6 +2,8 @@ class Contact < ActiveRecord::Base
   include Tire::Model::Search
   include Tire::Model::Callbacks
 
+  paginates_per 25
+
   acts_as_taggable
   versioned #:dependent => :tracking
 
@@ -65,7 +67,7 @@ class Contact < ActiveRecord::Base
   end
 
   def self.search(params)
-    per_page = (params[:per_page].present? ? (params[:per_page].to_i rescue 50) : 50 )
+    per_page = (params[:ppage].present? ? (params[:ppage].to_i rescue 50) : 50 )
     tire.search(page: params[:page], per_page: per_page) do
       Rails.logger.debug "Params: #{params}"
       if params[:query].present?

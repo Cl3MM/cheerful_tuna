@@ -5,9 +5,12 @@ class DeliveryRequestsController < ApplicationController
   # GET /delivery_requests
   # GET /delivery_requests.json
   def index
-    @per_page = params[:per_page] || '20'
+    session[:ppage] = (params[:per_page].to_i rescue 25) if (params[:per_page] && (not params[:per_page.blank?] ) )
+    @per_page = session[:ppage].to_s
+    params[:ppage] = session[:ppage]
+    params.delete :per_page
 
-    @delivery_requests = DeliveryRequest.order("company ASC").page(params[:page]).per_page((@per_page.to_i rescue 20))
+    @delivery_requests = DeliveryRequest.order("company ASC").page(params[:page]).per(session[:ppage])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -57,6 +60,7 @@ class DeliveryRequestsController < ApplicationController
         format.html { redirect_to @delivery_request, notice: 'Delivery request was successfully created.' }
         format.json { render json: @delivery_request, status: :created, location: @delivery_request }
       else
+        @technos = DLV_RQST_TECHNOS.keys.each_slice(3).to_a
         flash.delete(:recaptcha_error)
         format.html { render action: "new" }
         format.json { render json: @delivery_request.errors, status: :unprocessable_entity }
