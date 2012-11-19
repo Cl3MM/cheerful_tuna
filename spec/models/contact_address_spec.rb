@@ -1,6 +1,6 @@
 describe Contact do
   it "creates contact" do
-    @contact  = create(:contact_with_emails)
+    @contact  = create(:contact)
     puts "contact: {id: #{@contact.id}, name: #{@contact.full_name}}"
     puts "contact emails: #{@contact.email_addresses}"
     puts "Email size: #{@contact.emails.size}"

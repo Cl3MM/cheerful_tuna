@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe ContactsController do
-
   login_admin
 
   def valid_attributes
@@ -9,31 +8,40 @@ describe ContactsController do
   end
 
   def valid_session
-    {}
+    {ppage: 25}
   end
 
   before(:each) do
-    create(:user)
+    Contact.create_search_index
+    10.times { create :contact }
+    Contact.import_index
   end
-  describe "GET index", :focus do
+
+  after(:each) do
+    Contact.delete_search_index
+  end
+
+  describe "GET index" do
     it "assigns all contacts as @contacts" do
-      contact = Contact.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:contacts).should eq([contact])
+      #contact = Contact.create! valid_attributes
+      get :index
+      assigns(:contacts).class.should eq(Contact.search({}).class)
+      assigns(:contacts).size.should eq(Contact.search({}).size)
+      #assigns(:contacts).should eq(Contact.search({}.class))
     end
   end
 
   describe "GET show" do
     it "assigns the requested contact as @contact" do
       contact = Contact.create! valid_attributes
-      get :show, {:id => contact.to_param}, valid_session
+      get :show, {:id => contact.to_param}
       assigns(:contact).should eq(contact)
     end
   end
 
   describe "GET new" do
     it "assigns a new contact as @contact" do
-      get :new, {}, valid_session
+      get :new
       assigns(:contact).should be_a_new(Contact)
     end
   end
@@ -41,7 +49,7 @@ describe ContactsController do
   describe "GET edit" do
     it "assigns the requested contact as @contact" do
       contact = Contact.create! valid_attributes
-      get :edit, {:id => contact.to_param}, valid_session
+      get :edit, {:id => contact.to_param}
       assigns(:contact).should eq(contact)
     end
   end
@@ -50,19 +58,19 @@ describe ContactsController do
     describe "with valid params" do
       it "creates a new Contact" do
         expect {
-          post :create, {:contact => valid_attributes}, valid_session
+          post :create, {:contact => valid_attributes}
         }.to change(Contact, :count).by(1)
       end
 
       it "assigns a newly created contact as @contact" do
-        post :create, {:contact => valid_attributes}, valid_session
+        post :create, {:contact => valid_attributes}
         assigns(:contact).should be_a(Contact)
         assigns(:contact).should be_persisted
       end
 
       it "redirects to the created contact" do
-        post :create, {:contact => valid_attributes}, valid_session
-        response.should redirect_to(Contacts)
+        post :create, {:contact => valid_attributes}
+        response.should redirect_to(Contact.last)
       end
     end
 
@@ -70,14 +78,14 @@ describe ContactsController do
       it "assigns a newly created but unsaved contact as @contact" do
         # Trigger the behavior that occurs when invalid params are submitted
         Contact.any_instance.stub(:save).and_return(false)
-        post :create, {:contact => {}}, valid_session
+        post :create, {:contact => {  }}
         assigns(:contact).should be_a_new(Contact)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Contact.any_instance.stub(:save).and_return(false)
-        post :create, {:contact => {}}, valid_session
+        post :create, {:contact => {  }}, valid_session
         response.should render_template("new")
       end
     end
@@ -91,8 +99,8 @@ describe ContactsController do
         # specifies that the Contact created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Contact.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => contact.to_param, :contact => {'these' => 'params'}}, valid_session
+        Contact.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        put :update, {:id => contact.to_param, :contact => { "these" => "params" }}, valid_session
       end
 
       it "assigns the requested contact as @contact" do
@@ -113,7 +121,7 @@ describe ContactsController do
         contact = Contact.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Contact.any_instance.stub(:save).and_return(false)
-        put :update, {:id => contact.to_param, :contact => {}}, valid_session
+        put :update, {:id => contact.to_param, :contact => {  }}, valid_session
         assigns(:contact).should eq(contact)
       end
 
@@ -121,7 +129,7 @@ describe ContactsController do
         contact = Contact.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Contact.any_instance.stub(:save).and_return(false)
-        put :update, {:id => contact.to_param, :contact => {}}, valid_session
+        put :update, {:id => contact.to_param, :contact => {  }}, valid_session
         response.should render_template("edit")
       end
     end

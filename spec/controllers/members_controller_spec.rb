@@ -9,13 +9,16 @@ describe MembersController do
   end
 
   def valid_session
-    {}
+  end
+
+  before(:each) do
+#    10.times { create :member }
   end
 
   describe "GET index" do
     it "assigns all members as @members" do
       member = Member.create! valid_attributes
-      get :index, {}, valid_session
+      get :index
       assigns(:members).should eq([member])
     end
   end
@@ -23,14 +26,14 @@ describe MembersController do
   describe "GET show" do
     it "assigns the requested member as @member" do
       member = Member.create! valid_attributes
-      get :show, {:id => member.to_param}, valid_session
+      get :show, {:id => member.to_param}
       assigns(:member).should eq(member)
     end
   end
 
   describe "GET new" do
     it "assigns a new member as @member" do
-      get :new, {}, valid_session
+      get :new, {}
       assigns(:member).should be_a_new(Member)
     end
   end
@@ -38,7 +41,7 @@ describe MembersController do
   describe "GET edit" do
     it "assigns the requested member as @member" do
       member = Member.create! valid_attributes
-      get :edit, {:id => member.to_param}, valid_session
+      get :edit, {:id => member.to_param}
       assigns(:member).should eq(member)
     end
   end
@@ -47,18 +50,18 @@ describe MembersController do
     describe "with valid params" do
       it "creates a new Member" do
         expect {
-          post :create, {:member => valid_attributes}, valid_session
+          post :create, {:member => valid_attributes}
         }.to change(Member, :count).by(1)
       end
 
       it "assigns a newly created member as @member" do
-        post :create, {:member => valid_attributes}, valid_session
+        post :create, {:member => valid_attributes}
         assigns(:member).should be_a(Member)
         assigns(:member).should be_persisted
       end
 
       it "redirects to the created member" do
-        post :create, {:member => valid_attributes}, valid_session
+        post :create, {:member => valid_attributes}
         response.should redirect_to(Member.last)
       end
     end
@@ -67,14 +70,14 @@ describe MembersController do
       it "assigns a newly created but unsaved member as @member" do
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        post :create, {:member => {}}, valid_session
+        post :create, {:member => {  }}
         assigns(:member).should be_a_new(Member)
       end
 
       it "re-renders the 'new' template" do
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        post :create, {:member => {}}, valid_session
+        post :create, {:member => {  }}
         response.should render_template("new")
       end
     end
@@ -88,19 +91,19 @@ describe MembersController do
         # specifies that the Member created on the previous line
         # receives the :update_attributes message with whatever params are
         # submitted in the request.
-        Member.any_instance.should_receive(:update_attributes).with({'these' => 'params'})
-        put :update, {:id => member.to_param, :member => {'these' => 'params'}}, valid_session
+        Member.any_instance.should_receive(:update_attributes).with({ "these" => "params" })
+        put :update, {:id => member.to_param, :member => { "these" => "params" }}
       end
 
       it "assigns the requested member as @member" do
         member = Member.create! valid_attributes
-        put :update, {:id => member.to_param, :member => valid_attributes}, valid_session
+        put :update, {:id => member.to_param, :member => valid_attributes}
         assigns(:member).should eq(member)
       end
 
       it "redirects to the member" do
         member = Member.create! valid_attributes
-        put :update, {:id => member.to_param, :member => valid_attributes}, valid_session
+        put :update, {:id => member.to_param, :member => valid_attributes}
         response.should redirect_to(member)
       end
     end
@@ -110,7 +113,7 @@ describe MembersController do
         member = Member.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        put :update, {:id => member.to_param, :member => {}}, valid_session
+        put :update, {:id => member.to_param, :member => {  }}
         assigns(:member).should eq(member)
       end
 
@@ -118,7 +121,7 @@ describe MembersController do
         member = Member.create! valid_attributes
         # Trigger the behavior that occurs when invalid params are submitted
         Member.any_instance.stub(:save).and_return(false)
-        put :update, {:id => member.to_param, :member => {}}, valid_session
+        put :update, {:id => member.to_param, :member => {  }}
         response.should render_template("edit")
       end
     end
@@ -128,13 +131,13 @@ describe MembersController do
     it "destroys the requested member" do
       member = Member.create! valid_attributes
       expect {
-        delete :destroy, {:id => member.to_param}, valid_session
+        delete :destroy, {:id => member.to_param}
       }.to change(Member, :count).by(-1)
     end
 
     it "redirects to the members list" do
       member = Member.create! valid_attributes
-      delete :destroy, {:id => member.to_param}, valid_session
+      delete :destroy, {:id => member.to_param}
       response.should redirect_to(members_url)
     end
   end
