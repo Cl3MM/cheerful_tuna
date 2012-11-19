@@ -88,7 +88,9 @@ HTML
     <span class="joomla_membership">Username:</span><span>#{member.user_name}</span>
   </div>
 </div>
+HTML
 
+  old_html = <<HTML
 <div class="row-fluid">
   <div class="span6">
   <dl class="dl-horizontal">
