@@ -101,8 +101,8 @@ HTML
 </div>
 
 <div class="row-fluid">
-  <div class="span5">
-  <dl class="dl-horizontal">
+  <div class="span6">
+  <dl class="dl-horizontal" style="min-width: 440px;">
     <dt>Start date:</dt><dd class="link_color">#{format_date @member.start_date}</dd>
     <dt>End date:</dt><dd class="link_color">#{format_date @member.end_date}</dd>
     <dt>Category:</dt><dd>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</dd>
