@@ -4,15 +4,16 @@ CheerfulTuna::Application.routes.draw do
     member { post :mercury_update }
   end
 
-    namespace :mercury do
-      resources :images
-    end
+  namespace :mercury do
+    resources :images
+  end
 
   mount Mercury::Engine => '/'
 
-
   devise_for :users, :path => "/users", :path_names => { :sign_in => 'login', :sign_out => 'logout' }
-
+  devise_scope :user do
+    get "login", to: "devise/sessions#new", as: :user_login
+  end
   #match "members/profile" => "profiles#index", via: "get"
     #constraints :subdomain => "admin" do
     #end
@@ -23,6 +24,8 @@ CheerfulTuna::Application.routes.draw do
     get 'logout', to: 'users#destroy'
     resources :users, except: [:show, :edit]
   end
+
+  match 'joomla/delivery_request_pdf/:id' => 'delivery_request#delivery_request_pdf', as: :delivery_request_pdf
   scope "/joomla" do
     get 'delivery_request', to: 'delivery_requests#new', as: :new_delivery_request
   end

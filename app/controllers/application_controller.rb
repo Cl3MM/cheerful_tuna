@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize_admin!
-    redirect_to login_url, alert: "Not authorized" unless current_user and current_user.is_admin?
+    redirect_to user_login_url, alert: "Not authorized. You need to sign in or sign up before continuing." unless current_user && current_user.is_admin?
   end
 
   #def redirect_member!
@@ -32,9 +32,6 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     if resource.is_a?(Member)
       members_profile_path
-    elsif resource.is_a? User
-      session[:ppage] = 25
-      super
     else
       super
     end
