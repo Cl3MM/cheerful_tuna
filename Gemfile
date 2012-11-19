@@ -72,6 +72,7 @@ gem 'jquery-rails'
 
 gem 'rspec-rails', :group => [:test, :development]
 group :test do
+  gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'capybara'

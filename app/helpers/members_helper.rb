@@ -7,7 +7,7 @@ module MembersHelper
   # create a select collection
   def select_per_page opts={}
     opts = { html_input: {class: "span2", id: "super_select"},
-             selected: false, select_options: %w"5 10 25 50 100 250 500 1000"
+             selected: false, select_options: %w"5 10 20 50 100 250"
     }.merge(opts)
     attr = opts[:html_input].reduce([]){ |o, (k, v)| o << "#{k}=#{v}" }.join(" ") if opts[:html_input].present?
     html = ["<select #{attr if attr}>"]
@@ -74,17 +74,44 @@ HTML
 HTML
   raw html
   end
+
   def joomla_membership_details member
     html = <<HTML
-<dl class="dl-horizontal">
-  <dt>Start date:</dt><dd class="link_color">#{format_date @member.start_date}</dd>
-  <dt>End date:</dt><dd class="link_color">#{format_date @member.end_date}</dd>
-  <dt>Category:</dt><dd>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</dd>
-  <dt>Activity:</dt><dd>#{(member.activity_list.empty? ? "No activity" : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
-  <dt>Brands</dt><dd>#{(member.brand_list.empty? ? "No brand" : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
-  <dt>Web:</dt><dd>#{member.web_profile_url}</dd>
-  <dt>Username:</dt><dd>#{member.user_name}</dd>
-</dl>
+<div class="row-fluid">
+  <div class="span2">
+    <div class="right">
+      <span><b>Start date:</b></span><br />
+      <b>End date:</b><br />
+      <b>Category:</b><br />
+      <b>Activity:</b><br />
+      <b>Brands:</b><br />
+      <b>Web:</b><br />
+      <b>Username:</b>
+    </div>
+  </div>
+  <div class="span4">
+    <span class="link-color">#{format_date @member.start_date}</span><br />
+    <span class="link-color">#{format_date @member.end_date}</span><br />
+    <span>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</span><br />
+    <span>#{(member.activity_list.empty? ? "No activity" : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</span><br />
+    <span>#{(member.brand_list.empty? ? "No brand" : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</span><br />
+    <span>#{member.web_profile_url}</span><br />
+    <span>#{member.user_name}</span>
+  </div>
+</div>
+
+<div class="row-fluid">
+  <div class="span5">
+  <dl class="dl-horizontal">
+    <dt>Start date:</dt><dd class="link_color">#{format_date @member.start_date}</dd>
+    <dt>End date:</dt><dd class="link_color">#{format_date @member.end_date}</dd>
+    <dt>Category:</dt><dd>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</dd>
+    <dt>Activity:</dt><dd>#{(member.activity_list.empty? ? "No activity" : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
+    <dt>Brands</dt><dd>#{(member.brand_list.empty? ? "No brand" : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</dd>
+    <dt>Web:</dt><dd>#{member.web_profile_url}</dd>
+    <dt>Username:</dt><dd>#{member.user_name}</dd>
+  </dl>
+</div>
 HTML
   raw html
   end
