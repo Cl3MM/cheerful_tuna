@@ -78,31 +78,20 @@ HTML
   def joomla_membership_details member
     html = <<HTML
 <div class="row-fluid">
-  <div class="span2">
-    <div class="right">
-      <span><b>Start date:</b></span><br />
-      <b>End date:</b><br />
-      <b>Category:</b><br />
-      <b>Activity:</b><br />
-      <b>Brands:</b><br />
-      <b>Web:</b><br />
-      <b>Username:</b>
-    </div>
-  </div>
-  <div class="span4">
-    <span class="link-color">#{format_date @member.start_date}</span><br />
-    <span class="link-color">#{format_date @member.end_date}</span><br />
-    <span>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</span><br />
-    <span>#{(member.activity_list.empty? ? "No activity" : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</span><br />
-    <span>#{(member.brand_list.empty? ? "No brand" : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</span><br />
-    <span>#{member.web_profile_url}</span><br />
-    <span>#{member.user_name}</span>
+  <div class="span6">
+    <span class="joomla_membership">Start date:</span><span class="link-color">#{format_date @member.start_date}</span><br />
+    <span class="joomla_membership">End date:</span><span class="link-color">#{format_date @member.end_date}</span><br />
+    <span class="joomla_membership">Category:</span><span>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</span><br />
+    <span class="joomla_membership">Activity:</span><span>#{(member.activity_list.empty? ? "No activity" : member.activity_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</span><br />
+    <span class="joomla_membership">Web:</span><span>#{member.web_profile_url}</span><br />
+    <span class="joomla_membership">Brands:</span><span>#{(member.brand_list.empty? ? "No brand" : member.brand_list.map{|act| "<span class=\"link_color\">#{h(act.capitalize)}</span>"}.join(", ") ) }</span><br />
+    <span class="joomla_membership">Username:</span><span>#{member.user_name}</span>
   </div>
 </div>
 
 <div class="row-fluid">
   <div class="span6">
-  <dl class="dl-horizontal" style="min-width: 440px;">
+  <dl class="dl-horizontal">
     <dt>Start date:</dt><dd class="link_color">#{format_date @member.start_date}</dd>
     <dt>End date:</dt><dd class="link_color">#{format_date @member.end_date}</dd>
     <dt>Category:</dt><dd>#{member.category} #{member.category == "Free" ? " " : "- #{member.category_price}"}</dd>
