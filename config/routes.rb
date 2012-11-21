@@ -17,19 +17,20 @@ CheerfulTuna::Application.routes.draw do
   #match "members/profile" => "profiles#index", via: "get"
     #constraints :subdomain => "admin" do
     #end
-  #match "joomla/edit" => "joomla/users#edit", via: [:get]
+
   namespace :joomla do
     get 'profile', to: 'users#index'
     get 'login', to: 'users#new'
     get 'logout', to: 'users#destroy'
     resources :users, except: [:show, :edit]
+
+    match 'delivery_request_pdf/:id' => 'delivery_requests#delivery_request_pdf', as: :delivery_request_pdf, via: :get
+    get 'delivery_request', to: 'delivery_requests#new'
+    resources :delivery_requests, only: [:create, :show]
   end
 
-  match 'joomla/delivery_request_pdf/:id' => 'delivery_request#delivery_request_pdf', as: :delivery_request_pdf
-  scope "/joomla" do
-    get 'delivery_request', to: 'delivery_requests#new', as: :new_delivery_request
-  end
-  resources :delivery_requests, except: [:new, :update, :edit]
+  #/delivery_requests
+  resources :delivery_requests
 
   match "joomla" => "joomla::users#new"
   #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
