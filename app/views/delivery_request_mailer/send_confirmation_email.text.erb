@@ -1,0 +1,27 @@
+Dear <%= @delivery_request.name.titleize %>,
+
+
+This is a confirmation email regarding the Delivery Request you made on
+http://www.ceres-recycle.org, on <%= @delivery_request.created_at.strftime("%B %d, %Y") %>. Please do not reply it.
+
+We thank you for having made it throught the form!
+
+You will be contacted under 72hrs by the following Collection Point:
+ Twitter, Inc.
+ 795 Folsom Ave, Suite 600
+ San Francisco, CA 94107
+ Phone: (123) 456-7890
+
+Who will discuss the operational details with you.
+
+Do not forget to print out your Delivery Request receipt and to present this
+receipt at the Collection Point.
+
+To obtain your Delivery Request receipt, please <%= link_to "click here", joomla_delivery_request_pdf_url(@delivery_request, format: :pdf) %>
+
+CERES thanks you for your interest,
+
+
+--
+The CERES Team
+CERES - European Center for Solar Energy Recycling / http://www.ceres-recycle.org
