@@ -1,13 +1,14 @@
 class DeliveryRequest < ActiveRecord::Base
 
-  attr_accessible :CIGS, :CdTe, :address, :amorphous_micromorph_silicon, :city,
-    :concentration_PV, :comments, :company, :country, :crystalline_silicon, :email, :height,
-    :laminates_flexible_modules, :latitude, :length, :longitude, :manufacturers, :module_count,
+  #btQkqBq5K8JKQ
+  attr_accessible :address, :city, :comments, :company, :country, :email, :height,
+    :latitude, :length, :longitude, :manufacturers, :module_count,
     :modules_condition, :name, :pallets_number, :postal_code, :reason_of_disposal, :referer, :serial_numbers,
-    :telephone, :user_agent, :user_ip, :weight, :width
+    :technology, :telephone, :user_agent, :user_ip, :weight, :width
 
   validates :name, presence: true
   validates :email, presence: true
+  validates :manufacturers, presence: true
   validates :address, presence: true
   validates :postal_code, presence: true
   validates :city, presence: true
@@ -22,20 +23,22 @@ class DeliveryRequest < ActiveRecord::Base
   validates :pallets_number, presence: true, numericality: { :greater_than => 0 }
 
   def options_for_reason_of_disposal
-    [
-      "End of use",
-      "Transport or installation damage",
-      "Material defect",
-      "Other"
-    ]
+    DISPOSAL_OPTS
   end
 
   def options_for_modules_condition
-    [
-      "Intact",
-      "In pieces or pieces removed",
-      "Broken", "Heat point", "Delaminated",
-      "Other"
-    ]
+    MODULES_CONDITION
+  end
+
+  def send_confirmation_email
+    DeliveryRequestMailer.send_confirmation_email(self).deliver
+  end
+
+  def available_technologies
+    DLV_RQST_TECHNOS
+  end
+
+  def available_technologies_formatted
+    DLV_RQST_TECHNOS.keys.each_slice(3).to_a
   end
 end
