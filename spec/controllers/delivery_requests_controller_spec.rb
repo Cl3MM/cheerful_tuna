@@ -36,13 +36,12 @@ describe DeliveryRequestsController do
     end
   end
 
-  #describe "GET edit" do
-    #it "assigns the requested delivery_request as @delivery_request" do
-      #delivery_request = create :delivery_request
-      #get :edit, {:id => delivery_request.to_param}
-      #assigns(:delivery_request).should eq(delivery_request)
-    #end
-  #end
+  describe "GET edit" do
+    it "returns a 404 error" do
+      delivery_request = create :delivery_request
+      get(:edit, {:id => delivery_request.to_param}).should_not be_routable
+    end
+  end
 
   # {
   #  :name=>"Andre Wehner", :email=>"mustafa@buckridge.biz", :address=>"26901 Lesch Fork",

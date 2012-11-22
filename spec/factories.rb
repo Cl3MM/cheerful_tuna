@@ -7,7 +7,6 @@ FactoryGirl.define do
     username { Faker::Internet.user_name }
     password { SecureRandom.urlsafe_base64[0..15] }
     email { Faker::Internet.email }
-    role "admin"
 
     factory :admin, class: User do
       role     "administrator"
@@ -18,25 +17,39 @@ FactoryGirl.define do
     end
   end
 
+#require 'faker'
+#require 'factory_girl'
+#FactoryGirl.find_definitions
+#DeliveryRequest.all.map(&:destroy)
+#18.times{FactoryGirl.create(:delivery_request)}
+
   factory :delivery_request do
     name                { Faker::Name.name }
-    email               { Faker::Internet.email }
+    email               "clement.roullet@ceres-recycle.org" #{ Faker::Internet.email }
     address             { Faker::Address.street_address}
     user_ip             { Faker::Internet.ip_v4_address }
     postal_code         { Faker::Address.zip }
     city                { Faker::Address.city }
     country             { COUNTRIES.sample }
     module_count        { rand(1..49).to_s}
-    length              "160"
-    width               "100"
-    height              "120"
-    weight              "800"
-    pallets_number      "4"
+    manufacturers       { Faker::Company.name }
+    length              { rand(80..160).to_s }
+    width               { rand(80..160).to_s }
+    height              { rand(80..160).to_s }
+    weight              { rand(80..160).to_s }
+    pallets_number      { rand(1..10).to_s }
     user_agent          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
     referer             "http:www.google.fr"
     technology          "cdte"
-    reason_of_disposal  "Other"
-    modules_condition   "Intact"
+    reason_of_disposal  { [ "End of use",
+                            "Transport or installation damage",
+                            "Material defect",
+                            "Other" ].sample
+                        }
+    modules_condition   { [ "Intact",
+                            "In pieces or pieces removed",
+                            "Broken", "Heat point", "Delaminated",
+                            "Other" ].sample }
   end
 
   factory :member do
@@ -49,7 +62,7 @@ FactoryGirl.define do
 
     sequence(:start_date) { |n| n.weeks.ago }
 
-    activity_list   "Manufacturer"
+    activity_list   { %w(Manufacturer Producer Distributor Installer).sample }
     country         { COUNTRIES.sample }
     category        { %w(A B C D Free).sample }
   end

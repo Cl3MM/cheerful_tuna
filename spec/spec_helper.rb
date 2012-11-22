@@ -40,6 +40,8 @@ Spork.prefork do
     config.after(:each) do
       DatabaseCleaner.clean
     end
+    config.include(MailerMacros)
+    config.before(:each) { reset_email }
 
     config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run :focus => true
@@ -67,4 +69,7 @@ end
 Spork.each_run do
   # This code will be run each time you run your specs.
   FactoryGirl.reload
+  Dir["#{Rails.root}/app/controllers/**/*.rb"].each do |controller|
+    load controller
+  end
 end

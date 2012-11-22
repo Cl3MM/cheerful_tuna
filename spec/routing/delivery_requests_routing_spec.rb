@@ -8,7 +8,7 @@ describe DeliveryRequestsController do
     end
 
     it "routes to #new" do
-      get("/delivery_requests/new").should route_to("delivery_requests#new")
+      get("/joomla/delivery_request").should route_to("delivery_requests#new")
     end
 
     it "routes to #show" do
@@ -16,7 +16,10 @@ describe DeliveryRequestsController do
     end
 
     it "routes to #edit" do
-      get("/delivery_requests/1/edit").should route_to("delivery_requests#edit", :id => "1")
+      create :delivery_request
+      #{ get => "/products/1/edit" }.should_not be_routable
+      #get("/delivery_requests/1/edit").should route_to("delivery_requests#edit", :id => "1")
+      get("/delivery_requests/1/edit").should_not be_routable
     end
 
     it "routes to #create" do
@@ -24,7 +27,7 @@ describe DeliveryRequestsController do
     end
 
     it "routes to #update" do
-      put("/delivery_requests/1").should route_to("delivery_requests#update", :id => "1")
+      put("/delivery_requests/1").should_not be_routable
     end
 
     it "routes to #destroy" do
