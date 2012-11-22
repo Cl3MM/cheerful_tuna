@@ -1,5 +1,5 @@
 class Email < ActiveRecord::Base
-  belongs_to :contact, :inverse_of => :emails
+  belongs_to :contact, :inverse_of => :emails, touch: true
   attr_accessible :address, :contact_id, :has_bounced
 
   validates_uniqueness_of :address
