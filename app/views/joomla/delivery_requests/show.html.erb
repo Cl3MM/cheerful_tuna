@@ -1,0 +1,48 @@
+<div class="page-header">
+  <h2>Delivery Request summary</h2>
+</div>
+<div class="row-fluid">
+  <div class="span4">
+    <div class="alert alert-info center lead">
+      CERES has been notified of your Delivery Request!
+    </div>
+    <h3>Congratulations</h3>
+    <p class="justify">
+      You will receive a confirmation email containing further instructions at: <%= mail_to "super@email.com", "super_em@il.com" %>
+    </p>
+  </div>
+  <div class="span5">
+    <div class="well well-large" >
+      <div style="max-width: 340px; margin: auto;">
+        <%= link_to raw('Download Delivery Request Form summary (PDF)&nbsp;<i class="icon-download-alt"></i>'),
+          joomla_delivery_request_pdf_path(@delivery_request, format: :pdf), class: "btn btn-large btn-block btn-success" %>
+        <%= link_to 'Create a new Delivery Request', new_joomla_delivery_request_path, class: "btn btn-large btn-block btn-info" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="span9">
+    Your request will be transmitted to the Collection Point below, who will
+    contact you under 72hrs to arrange the delivery:
+    <h3>Delivery Request summary</h3>
+    <div class="row">
+      <div class="span5">
+        <h4>Modules information</h4>
+        <span class="joomla_membership">Modules count:</span><span><%= @delivery_request.module_count %></span><br />
+        <span class="joomla_membership">Technology:</span><span><%= @delivery_request.technology %></span><br />
+        <span class="joomla_membership">Pallets:</span><span><%= @delivery_request.pallets_number %></span><br />
+        <span class="joomla_membership">Weight:</span><span><%= @delivery_request.weight %></span><br />
+      </div>
+      <div class="span3">
+        <h4>Pickup Address</h4>
+        <address>
+          <strong>Twitter, Inc.</strong><br>
+          795 Folsom Ave, Suite 600<br>
+          San Francisco, CA 94107<br>
+          <abbr title="Phone">P:</abbr> (123) 456-7890
+        </address>
+      </div>
+    </div>
+  </div>
+</div>
