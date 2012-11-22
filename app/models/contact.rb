@@ -1,6 +1,13 @@
 class Contact < ActiveRecord::Base
+
   include Tire::Model::Search
   include Tire::Model::Callbacks
+
+  Tire::Results::Collection.module_eval do
+    def to_ary
+      self.to_a
+    end
+  end if Rails.env.test?
 
   paginates_per 25
 
@@ -27,6 +34,7 @@ class Contact < ActiveRecord::Base
   end
 
   before_save :clean_up_attributes, :check_company_and_country, :validate_emails
+  after_touch() { tire.update_index }
 
   validates_presence_of :company, :country
   validates :company, uniqueness: {scope: [:country, :last_name, :address], message: " already exists with similar country, last name and address."}
@@ -44,18 +52,89 @@ class Contact < ActiveRecord::Base
         .where(created_at: date.beginning_of_month..date.end_of_month)
   }
 
-  mapping do
-    indexes :id, type: 'integer'
-    indexes :address, type: 'string'
-    indexes :city, type: 'string'
-    indexes :first_name, type: 'string'
-    indexes :last_name, type: 'string'
-    indexes :company, type: 'multi_field', fields: {
-                        company: { type: "string", index: "analyzed" },
-                        untouched: { type: "string", index: "not_analyzed" }
-                      }
-    indexes :country, type: 'string'
-    indexes :email_addresses
+  # Tire configuration for easier testing
+  index_name("#{Rails.env}-#{Rails.application.class.to_s.downcase}-contacts")
+  class << self
+
+    def search(params)
+      per_page = (params[:ppage].present? ? (params[:ppage].to_i rescue 50) : 50 )
+      tire.search(page: params[:page], per_page: per_page) do
+        Rails.logger.debug "Params: #{params}"
+        if params[:query].present?
+          query { string params[:query] }
+        else
+          query { all }
+        end
+        #filter :range, published_at: {lte: Time.zone.now}
+        sort { by "company.untouched", "asc" }# if params[:query].blank?
+      end
+    end
+
+    def geolocate
+      Contact.where('id BETWEEN ? and ?', 1, 10).each do |contact|
+        puts "#{contact.id}:\n - old addr: #{contact.full_address}"
+        geo_result = Geocoder.search(contact.full_address)
+        if geo_result
+          street_number = (geo_result.first.address_components_of_type(:street_number).first["long_name"] rescue nil)
+          route = (geo_result.first.address_components_of_type(:route).first["long_name"] rescue nil)
+          attrs = { city: geo_result.first.city,
+                    postal_code: geo_result.first.postal_code,
+                    country: geo_result.first.country,
+                    address: ((street_number.nil? or route.nil?) ? contact.address : "#{street_number} #{route}")
+          }
+          ap attrs
+          attrs = attrs.reduce({}) do |res, (k,s)|
+            res[k] = s if s
+            res
+          end
+          contact.update_attributes(attrs)
+        end
+        puts "- new addr: #{contact.full_address}"
+      end
+    end
+
+    def create_search_index
+      search_index.delete
+      Tire.index Contact.index_name do
+        create mappings: {
+            contact: {
+              properties: {
+                id:               { type: :integer },
+                name:             { type: :string  },
+                address:          { type: :string  },
+                city:             { type: :string  },
+                first_name:       { type: :string  },
+                last_name:        { type: :string  },
+                company:          {
+                  type: :multi_field,
+                  fields: {
+                    company:      { type: :string, index: :analyzed },
+                    untouched:    { type: :string, index: :not_analyzed }
+                  }
+                },
+                country:          { type: :string },
+                emails:           { type: :string }
+                #email_addresses:  { type: :string }
+              }
+            }
+          }
+      end
+    end
+
+    def import_index
+      Tire.index Contact.index_name do
+        import Contact.all
+      end
+      search_index.refresh
+    end
+
+    def delete_search_index
+      search_index.delete
+    end
+
+    def search_index
+      Tire.index(Contact.index_name)
+    end
   end
 
   def previous_contact
@@ -66,22 +145,13 @@ class Contact < ActiveRecord::Base
     Contact.where(["company > ?", self.company]).order("company ASC").first
   end
 
-  def self.search(params)
-    per_page = (params[:ppage].present? ? (params[:ppage].to_i rescue 50) : 50 )
-    tire.search(page: params[:page], per_page: per_page) do
-      Rails.logger.debug "Params: #{params}"
-      if params[:query].present?
-        query { string params[:query] }
-      else
-        query { all }
-      end
-      #filter :range, published_at: {lte: Time.zone.now}
-      sort { by "company.untouched", "asc" }# if params[:query].blank?
-    end
-  end
-
   def to_indexed_json
-    to_json(methods: [:email_addresses])
+    #to_json(methods: [:email_addresses])
+    to_json(
+      only: [:id, :address, :city, :first_name, :last_name, :company, :country, :category],
+      include: [
+        emails: { only: [ :address ] } ]
+    )
   end
 
   def email_addresses
@@ -102,29 +172,6 @@ class Contact < ActiveRecord::Base
 
   def to_label
     "#{self.company}#{ " (" + self.full_name + ")" unless self.full_name.blank? }"
-  end
-
-  def self.geolocate
-    Contact.where('id BETWEEN ? and ?', 1, 10).each do |contact|
-      puts "#{contact.id}:\n - old addr: #{contact.full_address}"
-      geo_result = Geocoder.search(contact.full_address)
-      if geo_result
-        street_number = (geo_result.first.address_components_of_type(:street_number).first["long_name"] rescue nil)
-        route = (geo_result.first.address_components_of_type(:route).first["long_name"] rescue nil)
-        attrs = { city: geo_result.first.city,
-                  postal_code: geo_result.first.postal_code,
-                  country: geo_result.first.country,
-                  address: ((street_number.nil? or route.nil?) ? contact.address : "#{street_number} #{route}")
-        }
-        ap attrs
-        attrs = attrs.reduce({}) do |res, (k,s)|
-          res[k] = s if s
-          res
-        end
-        contact.update_attributes(attrs)
-      end
-      puts "- new addr: #{contact.full_address}"
-    end
   end
 
   def full_name
@@ -195,3 +242,16 @@ class Contact < ActiveRecord::Base
   end
 
 end
+  #mapping do
+    #indexes :id, type: 'integer'
+    #indexes :address, type: 'string'
+    #indexes :city, type: 'string'
+    #indexes :first_name, type: 'string'
+    #indexes :last_name, type: 'string'
+    #indexes :company, type: 'multi_field', fields: {
+                        #company: { type: "string", index: "analyzed" },
+                        #untouched: { type: "string", index: "not_analyzed" }
+                      #}
+    #indexes :country, type: 'string'
+    #indexes :email_addresses
+  #end
