@@ -18,21 +18,23 @@ CheerfulTuna::Application.routes.draw do
     #constraints :subdomain => "admin" do
     #end
 
+  #match "joomla" => "joomla::users#new"
   namespace :joomla do
+    match "/" => "users#new"
     get 'profile', to: 'users#index'
     get 'login', to: 'users#new'
     get 'logout', to: 'users#destroy'
     resources :users, except: [:show, :edit]
 
+    #get 'delivery_request', to: 'delivery_requests#new'
     match 'delivery_request_pdf/:id' => 'delivery_requests#delivery_request_pdf', as: :delivery_request_pdf, via: :get
-    get 'delivery_request', to: 'delivery_requests#new'
-    resources :delivery_requests, only: [:create, :show]
+    match 'delivery_request_form' => 'delivery_requests#new', as: :delivery_request_form, via: :get
+    resources :delivery_requests, only: [:create, :show, :new ]
   end
 
   #/delivery_requests
   resources :delivery_requests
 
-  match "joomla" => "joomla::users#new"
   #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
   #as :member do
     #match 'members/confirmation' => 'members/confirmations#update', :via => :put, :as => :update_member_confirmation
