@@ -1,0 +1,15 @@
+<% if flash.any? %>
+<div class="container">
+  <% flash.each do |name, msg| %>
+  <div class="row-fluid">
+    <div class="span10 offset1">
+      <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+        <a class="close" data-dismiss="alert">×</a>
+        <%= raw(msg) %>
+      </div>
+    </div>
+  </div>
+<% end %>
+</div>
+<% end %>
+

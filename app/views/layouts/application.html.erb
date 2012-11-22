@@ -3,12 +3,14 @@
   <head>
     <title>Cheerful Tuna</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
-    <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) %>
+    <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) or
+         (controller.action_name.match(/edit|new|create|update/) and not controller_path.match(/joomla\/users/))
+       %>
       <%= stylesheet_link_tag controller_name %>
     <% end %>
-    <% if controller.action_name.match(/edit|new|create|update/) %>
-      <%= stylesheet_link_tag controller_name %>
-    <% end %>
+    <%# if controller.action_name.match(/edit|new|create|update/) %>
+      <%#= stylesheet_link_tag controller_name %>
+    <%# end %>
     <%= yield(:head) %>
     <%= csrf_meta_tags %>
     <%= csrf_meta_tag %>
@@ -23,24 +25,13 @@
   <br />
   <%= request.fullpath %>
 -->
-  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/)%>
+
+  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
+    <%= render 'layouts/flash', flash: flash %>
     <%= yield %>
   <% else %>
-    <%= render :partial => 'layouts/navbar' %>
-    <% if flash.any? %>
-    <div class="container">
-      <% flash.each do |name, msg| %>
-        <div class="row">
-          <div class="span10 offset1">
-            <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-              <a class="close" data-dismiss="alert">×</a>
-              <%= raw(msg) %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    </div>
-    <% end %>
+    <%= render partial: 'layouts/navbar' %>
+    <%= render 'layouts/flash', flash: flash %>
     <% if "#{controller_name}::#{controller.action_name}".match(/members::show/) %>
       <%= yield %>
     <% else %>
@@ -52,7 +43,7 @@
         </div>
       </div>
     <% end %>
-    <%= render :partial => 'layouts/footer' %>
+    <%= render 'layouts/footer' %>
   <% end %>
   <%= javascript_include_tag "application", controller_name %>
     <%= javascript_include_tag "raphael-min", "morris.min" if controller.action_name.match(/statistics/) %>
