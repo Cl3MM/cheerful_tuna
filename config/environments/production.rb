@@ -11,7 +11,7 @@ CheerfulTuna::Application.configure do
     user_name: TUNA_CONFIG[:mail_user_name],
     password: TUNA_CONFIG[:mail_password]
   }
-
+  config.roadie.enabled = true
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: TUNA_CONFIG[:mail_domain]}
 

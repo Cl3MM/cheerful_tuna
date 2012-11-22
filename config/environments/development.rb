@@ -1,7 +1,7 @@
 CheerfulTuna::Application.configure do
 
   # Change mail delvery to either :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.smtp_settings = {
     address: TUNA_CONFIG[:mail_server],
     port: TUNA_CONFIG[:mail_port],
@@ -11,7 +11,7 @@ CheerfulTuna::Application.configure do
     user_name: TUNA_CONFIG[:mail_user_name],
     password: TUNA_CONFIG[:mail_password]
   }
-
+  config.roadie.enabled = true
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: TUNA_CONFIG[:mail_domain]}
 

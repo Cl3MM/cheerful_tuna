@@ -21,7 +21,7 @@ gem 'devise'
 gem 'vestal_versions', git:'git://github.com/milkfarm/vestal_versions.git'
 gem 'tire'
 gem 'yaml_db'
-gem 'prawn'
+gem 'prawn', git: 'git://github.com/prawnpdf/prawn', branch: 'master'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'rqrcode', git: 'http://github.com/whomwah/rqrcode'
@@ -82,4 +82,9 @@ group :test do
   gem 'rb-inotify', '~> 0.8.8'
   gem 'database_cleaner'
   gem 'launchy'
+end
+
+group :test, :development do
+  gem "letter_opener"
+  gem 'pry'
 end
