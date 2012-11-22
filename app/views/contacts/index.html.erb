@@ -8,7 +8,7 @@
 
 <div class="well">
   <%= form_tag contacts_path, method: :get, :class=>"form-inline inline" do %>
-    <%= select_per_page({selected: @per_page, select_options: %w(5 10 25 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <%= select_per_page({selected: @per_page, select_options: %w(5 10 20 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
     <span  class="help-inline" style="margin-right: 2em;">per page</span>
   <% end -%>
   <%= form_tag contacts_path, method: :get, :class=>"form-inline inline", style: "clear:none;" do %>
@@ -32,8 +32,7 @@
     <strong>Search results: <%= "#{pluralize(@contacts.total, 'result')}" %> matching the patern</strong>
   </div>
   <% end %>
-
-  <p style="text-align:center;"><%= raw page_entries_info(@contacts, entry_name: 'Contacts') %></p>
+  <p style="text-align:center;"><%= raw page_entries_info @contacts, entry_name: "Contact" %></p>
   <div class="pagination pagination-centered">
     <%= paginate @contacts %>
   </div>
@@ -53,7 +52,8 @@
         <tr id="contact_table" value="<%= contact.user_id %>">
           <td><%= link_to contact.company.truncate(18), contact_path(contact) %></td>
           <td>
-            <%= h(contact.email_addresses.map{|e| e.truncate(26)}.join("\n")) %>
+            <%#= h(contact.email_addresses.map{|e| e.truncate(26)}.join("\n")) %>
+            <%= h(contact.emails.map{|e| e.address.truncate(26)}.join("\n")) %>
           </td>
           <td class="center"><%= display_website contact.website %></td>
           <td><%= contact.category.truncate(16) %></td>
@@ -83,9 +83,9 @@
       <% end %>
     </tbody>
   </table>
+
   <div class="pagination pagination-centered">
-  <%= paginate @contacts %>
-    <%#= will_paginate @contacts, :renderer => BootstrapPagination::Rails %>
+    <%= paginate @contacts %>
   </div>
 <% end -%>
   </div>
