@@ -16,7 +16,7 @@ class Member < ActiveRecord::Base
   accepts_nested_attributes_for :contacts
   attr_reader :end_date, :category_price
 
-  validates_presence_of :user_name, :company, :country, :web_profile_url, 
+  validates_presence_of :user_name, :company, :country, :web_profile_url,
     :start_date, :category, :address, :city, :postal_code, :activity_list
   validates :category, :inclusion => { :in => %w[Free A B C D],
                                    :message => "%{value} is not a valid category" }
