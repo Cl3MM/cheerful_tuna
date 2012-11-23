@@ -31,6 +31,7 @@ gem 'geocoder'
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'mercury-rails'
 gem 'paperclip'
+gem 'friendly_id', '~> 4.0.1'
 
 #gem 'rack-mini-profiler'
 
