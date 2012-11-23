@@ -76,17 +76,19 @@ class DeliveryRequestPdf < Prawn::Document
   end
   def collection
     move_down 20
+    table(
+      [[{content: "<b>To be completed by the Certified Collection Point</b>", align: :center,
+        colspan: 3, background_color: "0404B4", size: 11, text_color: "FFFFFF", inline_format: true, padding: [3,3,3,3] } ]],
+        width: 500, position: :center)
     table([
-      [{content: "<b>To be completed by the Certified Collection Point</b>", align: :center,
-        colspan: 3, height: 22, background_color: "0404B4", size: 12, text_color: "FFFFFF", inline_format: true }],
-      [{content: "<b>Collection Point ID Code</b>", inline_format: true }, 
-       "", {content: "Signature", rowspan: 6 }],
-       [{content: "Decision", rowspan: 2}, "Acceptance"],
-       ["Reject"],
-       ["Recieved by (Name)", ""],
-       ["Date of Acceptance", ""],
-       ["Internal Delivery #", ""]
-    ], width: 500, position: :center)
+      [{content: "<b>Collection Point ID Code</b>" },
+       "", {content: "<b>Signature</b>", rowspan: 6 }],
+       [{content: "<b>Decision</b>", rowspan: 2, valign: :center}, "<b>Acceptance</b>"],
+       ["<b>Reject</b>"],
+       ["<b>Recieved by (Name)</b>", ""],
+       ["<b>Date of Acceptance</b>", ""],
+       ["<b>Internal Delivery #</b>", ""]
+    ], width: 500, position: :center, cell_style: { size: 11, background_color: "D8CEF6", inline_format: true, padding: [3,3,3,3] })
 
   end
   def display_delivery
@@ -95,25 +97,25 @@ class DeliveryRequestPdf < Prawn::Document
       table(
         @delivery_attributes.map do |a|
           if a.is_a? Array # 4 columns
-            [{content: "<b>#{a.first.to_s.humanize}</b>", inline_format: true },
+            [{ content: "<b>#{a.first.to_s.humanize}</b>" },
              { content: @delivery_request[a.first].to_s.html_safe, align: :center },
-             {content: "<b>#{a.last.to_s.humanize}</b>", inline_format: true },
+             { content: "<b>#{a.last.to_s.humanize}</b>", align: :center },
              { content: @delivery_request[a.last].to_s.html_safe, align: :center }]
           elsif a.is_a? String # One title column
-            [{content: "<b>#{a}</b>", align: :center, height: 22, colspan: 4, background_color: "0404B4", size: 12, text_color: "FFFFFF", inline_format: true }]
+            [{ content: "<b>#{a}</b>", align: :center, colspan: 4, background_color: "0404B4", text_color: "FFFFFF" }]
           else # 2 columns
             a = "-" if a.blank?
             content = ( @delivery_request[a].to_s.blank? ? "-" : @delivery_request[a].to_s.html_safe.humanize )
-            [{content: "<b>#{a.to_s.humanize}</b>", inline_format: true },
-             {content: content,
-              colspan: 3, align: :center }]
+            [{ content: "<b>#{a.to_s.humanize}</b>" },
+             { content: content, colspan: 3, align: :center }]
           end
         end.tap do |a|
           # Tapping into @delivery_attributes to add more columns (date, signature...
-          a.concat( [ [{content: "<b>Date</b>",       inline_format: true }, {content: "#{@delivery_request.created_at.strftime("%B %d, %Y") }", align: :center, colspan:3 }],
-                      [{content: "<b>Signature</b>",  inline_format: true, height: 40, valign: :center }, {content: "", colspan:3 }]
+          cell = make_cell content: "<b>Signature</b>", height: 50, valign: :center
+          a.concat( [ [{ content: "<b>Date</b>" }, {content: "#{@delivery_request.created_at.strftime("%B %d, %Y") }", align: :center, colspan:3 }],
+                      [cell, {content: "", colspan:3 }]
                     ])
-        end, width: 500, position: :center)
+        end, width: 500, position: :center, cell_style: { overflow: :shrink_to_fit, size: 11, inline_format: true, padding: [3,3,3,3] })
         collection
     end
   end
