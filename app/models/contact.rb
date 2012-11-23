@@ -18,6 +18,7 @@ class Contact < ActiveRecord::Base
 
   has_many :emails, :inverse_of => :contact, :dependent => :destroy
   has_and_belongs_to_many :members
+  has_and_belongs_to_many :collection_points
   belongs_to :user
 
   accepts_nested_attributes_for :emails, allow_destroy: true#, :reject_if => proc {|a| a["address"].blank?}
