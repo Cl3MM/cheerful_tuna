@@ -24,20 +24,21 @@ FactoryGirl.define do
 #18.times{FactoryGirl.create(:delivery_request)}
 
   factory :delivery_request do
-    name                { Faker::Name.name }
-    email               "clement.roullet@ceres-recycle.org" #{ Faker::Internet.email }
-    address             { Faker::Address.street_address}
-    user_ip             { Faker::Internet.ip_v4_address }
-    postal_code         { Faker::Address.zip }
-    city                { Faker::Address.city }
-    country             { COUNTRIES.sample }
-    module_count        { rand(1..49).to_s}
-    manufacturers       { Faker::Company.name }
-    length              { rand(80..160).to_s }
-    width               { rand(80..160).to_s }
-    height              { rand(80..160).to_s }
-    weight              { rand(80..160).to_s }
-    pallets_number      { rand(1..10).to_s }
+    name                      { Faker::Name.name }
+    email                     "clement.roullet@ceres-recycle.org" #{ Faker::Internet.email }
+    address                   { Faker::Address.street_address}
+    user_ip                   { Faker::Internet.ip_v4_address }
+    postal_code               { Faker::Address.zip }
+    city                      { Faker::Address.city }
+    country                   { COUNTRIES.sample }
+    module_count              { rand(1..49).to_s}
+    manufacturers             { Faker::Company.name }
+    length                    { rand(80..160).to_s }
+    width                     { rand(80..160).to_s }
+    height                    { rand(80..160).to_s }
+    weight                    { rand(80..160).to_s }
+    pallets_number            { rand(1..10).to_s }
+    modules_production_year   { rand(1990..2012).to_s }
     user_agent          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
     referer             "http:www.google.fr"
     technology          "cdte"
