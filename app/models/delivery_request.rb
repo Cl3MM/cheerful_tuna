@@ -1,8 +1,10 @@
 class DeliveryRequest < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :url_hash, use: :slugged
 
   #btQkqBq5K8JKQ
   attr_accessible :address, :city, :comments, :company, :country, :email, :height,
-    :latitude, :length, :longitude, :manufacturers, :module_count,
+    :latitude, :length, :longitude, :manufacturers, :module_count, :modules_production_year,
     :modules_condition, :name, :pallets_number, :postal_code, :reason_of_disposal, :referer, :serial_numbers,
     :technology, :telephone, :user_agent, :user_ip, :weight, :width
 
@@ -16,6 +18,7 @@ class DeliveryRequest < ActiveRecord::Base
   validates :reason_of_disposal, presence: true
   validates :module_count, presence: true, numericality: { :greater_than => 0 }
   validates :modules_condition, presence: true
+  validates :modules_production_year, presence: true, numericality: { :greater_than => 0 }
   validates :length, presence: true, numericality: { :greater_than => 0 }
   validates :width, presence: true, numericality: { :greater_than => 0 }
   validates :height, presence: true, numericality: { :greater_than => 0 }
@@ -40,5 +43,9 @@ class DeliveryRequest < ActiveRecord::Base
 
   def available_technologies_formatted
     DLV_RQST_TECHNOS.keys.each_slice(3).to_a
+  end
+
+  def url_hash
+    "#{Digest::SHA1.hexdigest(self.id.to_s).gsub(/[0-9]/, '')}#{Digest::SHA1.hexdigest("#{self.id}#{self.created_at}")}"
   end
 end

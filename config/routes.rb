@@ -27,7 +27,7 @@ CheerfulTuna::Application.routes.draw do
     resources :users, except: [:show, :edit]
 
     #get 'delivery_request', to: 'delivery_requests#new'
-    match 'delivery_request_pdf/:id' => 'delivery_requests#delivery_request_pdf', as: :delivery_request_pdf, via: :get
+    match 'delivery_request_pdf/:id' => 'delivery_requests#delivery_request_pdf', as: :delivery_request_pdf, via: :get, format: :pdf
     match 'delivery_request_form' => 'delivery_requests#new', as: :delivery_request_form, via: :get
     resources :delivery_requests, only: [:create, :show, :new ]
   end

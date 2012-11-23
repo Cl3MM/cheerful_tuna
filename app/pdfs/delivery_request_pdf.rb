@@ -10,7 +10,7 @@ class DeliveryRequestPdf < Prawn::Document
     @version = "DRF_#{DRFVersion::VERSION}"
 
     @delivery_attributes = ["Contact Details", :name, :company, :email, :telephone,:address, [:postal_code, :city], :country,
-                            "Technical Details", :manufacturers, :technology, [:module_count, :pallets_number],
+                            "Technical Details", :manufacturers, :technology, :modules_production_year, [:module_count, :pallets_number],
                             "Packaging", [:length, :width], [:height, :weight], :reason_of_disposal, :modules_condition,
                             "Administration" ]
     @specimen = nil

@@ -24,6 +24,7 @@
   <legend>Modules information</legend>
   <%= f.input :serial_numbers, label: "Serial numbers" %>
   <%= f.input :manufacturers %>
+  <%= f.input :modules_production_year, prompt: 1995 %>
   <%= f.input :reason_of_disposal, collection: @delivery_request.options_for_reason_of_disposal, required: true %>
   <%= f.input :modules_condition, collection: @delivery_request.options_for_modules_condition, required: true %>
 </div>
