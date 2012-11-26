@@ -135,18 +135,14 @@ namespace :udb do
 
           # creating contact if exists
           contact = nil
-          if ( Contact.where( company:        hash[:name],
-                             first_name:     hash[:contact_name].split(' ').first,
-                             last_name:      hash[:contact_name].split(' ').last,
-                             address:        hash[:address],
-                             city:           hash[:city]
-                            ).any? )
-            contact = Contact.where(company:        hash[:name],
-                                    first_name:     hash[:contact_name].split(' ').first,
-                                    last_name:      hash[:contact_name].split(' ').last,
-                                    address:        hash[:address],
-                                    city:           hash[:city]
-                                   ).first
+          #if ( Contact.where( company:        hash[:name],
+                             #first_name:     hash[:contact_name].split(' ').first,
+                             #last_name:      hash[:contact_name].split(' ').last,
+                             #address:        hash[:address],
+                             #city:           hash[:city]
+                            #).any? )
+          if Email.find_by_address(hash[:contact_email]).any?
+            contact = Email.find_by_address(hash[:contact_email]).contact
             puts "Contact already exists"
           else
             puts "Contact does not exist, creating it..."
