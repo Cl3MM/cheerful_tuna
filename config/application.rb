@@ -9,12 +9,12 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
-COUNTRIES = YAML.load(File.read(File.expand_path('../tuna.yml', __FILE__)))["countries"]
-DLV_RQST_TECHNOS = YAML.load(File.read(File.expand_path('../tuna.yml', __FILE__)))["technologies"]
-DISPOSAL_OPTS = YAML.load(File.read(File.expand_path('../tuna.yml', __FILE__)))["options_for_reason_of_disposal"]
-MODULES_CONDITION = YAML.load(File.read(File.expand_path('../tuna.yml', __FILE__)))["options_for_modules_condition"]
-
-TUNA_CONFIG = YAML.load(File.read(File.expand_path('../tuna.yml', __FILE__)))
+file = File.read(File.expand_path('../tuna.yml', __FILE__))
+COUNTRIES = YAML.load(file)["countries"]
+DLV_RQST_TECHNOS = YAML.load(file)["technologies"]
+DISPOSAL_OPTS = YAML.load(file)["options_for_reason_of_disposal"]
+MODULES_CONDITION = YAML.load(file)["options_for_modules_condition"]
+TUNA_CONFIG = YAML.load(file)
 TUNA_CONFIG.merge! TUNA_CONFIG.fetch(Rails.env, {})
 TUNA_CONFIG.symbolize_keys!
 

@@ -16,7 +16,7 @@
       <legend>Member's contacts details</legend>
       <p class="muted">Please start to type the contact name, and select from the list.</p>
       <div class="control-group select required">
-        <label class="select required control-label" for="member_category">
+        <label class="select required control-label" for="member_contact_ids">
           <abbr title="required">*</abbr> Contacts</label>
         <div class="controls">
           <input value='<%= raw @member.contacts.map(&:to_select2).to_json %>' multiple="multiple" type="hidden" id="member_contact_ids" name="member[contact_ids][]" />

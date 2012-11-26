@@ -2,7 +2,11 @@ class CollectionPointsController < ApplicationController
   # GET /collection_points
   # GET /collection_points.json
   def index
-    @collection_points = CollectionPoint.all
+    session[:ppage] = (params[:per_page].to_i rescue 25) if (params[:per_page] && (not params[:per_page.blank?] ) )
+    @per_page = session[:ppage].to_s
+    params[:ppage] = session[:ppage]
+
+    @collection_points = CollectionPoint.order(:name).page(params[:page]).per(session[:ppage])
 
     respond_to do |format|
       format.html # index.html.erb

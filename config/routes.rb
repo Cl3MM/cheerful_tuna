@@ -1,5 +1,8 @@
 CheerfulTuna::Application.routes.draw do
 
+  resources :collection_points
+
+
   resources :html_snippets do
     member { post :mercury_update }
   end

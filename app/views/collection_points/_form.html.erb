@@ -1,13 +1,21 @@
 <%= simple_form_for @collection_point, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :cp_id %>
+  <%= f.input :cp_id, label: "Collection Point ID" %>
   <%= f.input :name %>
   <%= f.input :telephone %>
   <%= f.input :address %>
   <%= f.input :postal_code %>
   <%= f.input :city %>
   <%= f.input :country %>
-  <%= f.input :longitude %>
-  <%= f.input :latitude %>
+  <legend>Contacts details</legend>
+  <p class="muted">Please start to type the contact name, and select from the list.</p>
+  <div class="control-group select required">
+    <label class="select required control-label" for="collection_point_contact_ids">
+      <abbr title="required">*</abbr> Contacts</label>
+    <div class="controls">
+      <input value='<%= raw @collection_point.contacts.map(&:to_select2).to_json %>' multiple="multiple" type="hidden" id="collection_point_contact_ids" name="collection_point[contact_ids][]" />
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

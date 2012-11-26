@@ -8,22 +8,22 @@ class DeliveryRequest < ActiveRecord::Base
     :modules_condition, :name, :pallets_number, :postal_code, :reason_of_disposal, :referer, :serial_numbers,
     :technology, :telephone, :user_agent, :user_ip, :weight, :width
 
-  validates :name, presence: true
-  validates :email, presence: true
-  validates :manufacturers, presence: true
-  validates :address, presence: true
-  validates :postal_code, presence: true
-  validates :city, presence: true
-  validates :country, presence: true
-  validates :reason_of_disposal, presence: true
-  validates :module_count, presence: true, numericality: { :greater_than => 0 }
-  validates :modules_condition, presence: true
+  validates :name,                    presence: true
+  validates :email,                   presence: true
+  validates :manufacturers,           presence: true
+  validates :address,                 presence: true
+  validates :postal_code,             presence: true
+  validates :city,                    presence: true
+  validates :country,                 presence: true
+  validates :reason_of_disposal,      presence: true
+  validates :modules_condition,       presence: true
+  validates :module_count,            presence: true, numericality: { :greater_than => 0 }
   validates :modules_production_year, presence: true, numericality: { :greater_than => 0 }
-  validates :length, presence: true, numericality: { :greater_than => 0 }
-  validates :width, presence: true, numericality: { :greater_than => 0 }
-  validates :height, presence: true, numericality: { :greater_than => 0 }
-  validates :weight, presence: true, numericality: { :greater_than => 0 }
-  validates :pallets_number, presence: true, numericality: { :greater_than => 0 }
+  validates :length,                  presence: true, numericality: { :greater_than => 0 }
+  validates :width,                   presence: true, numericality: { :greater_than => 0 }
+  validates :height,                  presence: true, numericality: { :greater_than => 0 }
+  validates :weight,                  presence: true, numericality: { :greater_than => 0 }
+  validates :pallets_number,          presence: true, numericality: { :greater_than => 0 }
 
   def options_for_reason_of_disposal
     DISPOSAL_OPTS

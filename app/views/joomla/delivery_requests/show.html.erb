@@ -8,7 +8,7 @@
     </div>
     <h3>Congratulations</h3>
     <p class="justify">
-      You will receive a confirmation email containing further instructions at: <%= mail_to "super@email.com", "super_em@il.com" %>
+      You will receive a confirmation email containing further instructions at: <%= mail_to @delivery_request.email, @delivery_request.email, encode: :hexl %>
     </p>
   </div>
   <div class="span5">
@@ -23,26 +23,64 @@
 </div>
 <div class="row">
   <div class="span9">
+    <p class="lead">
+    TODO: Je peux mettre le texte ci desous seulement s'il y a
+    plus de 50 modules.</p>
+    <p class="justify">
+    Please note that the modules must be stored on pallets that should respect
+    the following guidelines:<br /> The pallets must be:
+    <ul>
+      <li>
+      Covered with plastic wrap
+      </li>
+      <li>
+      Not taller that 1.25m, including the pallet
+      </li>
+      <li>
+      Stackables
+      </li>
+    </ul>
+    </p>
+    <p class="justify">
     Your request will be transmitted to the Collection Point below, who will
     contact you under 72hrs to arrange the delivery:
+    </p>
     <h3>Delivery Request summary</h3>
     <div class="row">
       <div class="span5">
-        <h4>Modules information</h4>
-        <span class="joomla_membership">Modules count:</span><span><%= @delivery_request.module_count %></span><br />
-        <span class="joomla_membership">Technology:</span><span><%= @delivery_request.technology %></span><br />
-        <span class="joomla_membership">Production year:</span><span><%= @delivery_request.modules_production_year %></span><br />
-        <span class="joomla_membership">Pallets:</span><span><%= @delivery_request.pallets_number %></span><br />
-        <span class="joomla_membership">Weight:</span><span><%= @delivery_request.weight %></span><br />
-      </div>
-      <div class="span3">
-        <h4>Pickup Address</h4>
+        <h4>Collection Point</h4>
+
         <address>
           <strong>Twitter, Inc.</strong><br>
           795 Folsom Ave, Suite 600<br>
           San Francisco, CA 94107<br>
           <abbr title="Phone">P:</abbr> (123) 456-7890
         </address>
+        <h4>Modules information</h4>
+        <table class="table table-bordered">
+          <tbody>
+            <tr>
+              <td class="strong">Number of Modules</td>
+              <td><%= @delivery_request.module_count %></td>
+            </tr>
+            <tr>
+              <td class="strong">Technology</td>
+              <td><%= @delivery_request.available_technologies[@delivery_request.technology] %></td>
+            </tr>
+            <tr>
+              <td class="strong">Production year</td>
+              <td><%= @delivery_request.modules_production_year %></td>
+            </tr>
+            <tr>
+              <td class="strong">Number of pallets</td>
+              <td><%= @delivery_request.pallets_number %></td>
+            </tr>
+            <tr>
+              <td class="strong">Weight</td>
+              <td><%= @delivery_request.weight %></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

@@ -13,6 +13,6 @@ class CreateCollectionPoints < ActiveRecord::Migration
 
       t.timestamps
     end
-    add_index :collection_points, name
+    add_index :collection_points, :name
   end
 end
