@@ -60,6 +60,11 @@ class CollectionPointsController < ApplicationController
   # PUT /collection_points/1
   # PUT /collection_points/1.json
   def update
+    params[:collection_point][:contact_ids] = params[:collection_point][:contact_ids].first.split(",") if params[:collection_point][:contact_ids].present?
+
+    7253213682
+
+    0472613057
     @collection_point = CollectionPoint.find(params[:id])
 
     respond_to do |format|
