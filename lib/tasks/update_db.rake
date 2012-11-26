@@ -141,8 +141,8 @@ namespace :udb do
                              #address:        hash[:address],
                              #city:           hash[:city]
                             #).any? )
-          if Email.find_by_address(hash[:contact_email]).any?
-            contact = Email.find_by_address(hash[:contact_email]).contact
+          if email = Email.find_by_address(hash[:contact_email])
+            contact = email.contact
             puts "Contact already exists"
           else
             puts "Contact does not exist, creating it..."
