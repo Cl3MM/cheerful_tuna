@@ -2,19 +2,22 @@
 <div class="page-header">
   <h2><%= @collection_point.name %><small> #<%= @collection_point.cp_id %></small></h2>
 </div>
-
 <div class="row">
-  <div class="span4">
+  <div class="span3">
     <address>
       <strong><%= @collection_point.name %></strong><br>
       <%= @collection_point.address %><br>
       <%= "#{@collection_point.postal_code}, #{@collection_point.city}" %><br>
       <%= "#{@collection_point.country.upcase}" %><br>
+      <%= @collection_point.latitude %><br>
+      <%= @collection_point.longitude %><br>
       <abbr title="Phone">P:</abbr> <%= @collection_point.telephone %>
-  </address>
+    </address>
+    <legend>Contact details</legend>
   </div>
-  <div class="span6">
-<%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=10&markers=#{@collection_point.latitude}%2C#{@collection_point.longitude}" %>
+  <div class="span5">
+    <%#= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=10&markers=#{@collection_point.latitude}%2C#{@collection_point.longitude}" %>
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x130&maptype=roadmap&sensor=false&center=#{@collection_point.latitude}%2C#{@collection_point.longitude}&zoom=10&style=feature%3Aall%7Celement%3Aall%7Csaturation%3A-100&markers=color%3A0xEE127B%7C#{@collection_point.latitude}%2C#{@collection_point.longitude}", width: 450, height: 130 %>
   </div>
 </div>
 
