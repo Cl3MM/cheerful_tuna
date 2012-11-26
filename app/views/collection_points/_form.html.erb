@@ -6,6 +6,7 @@
   <%= f.input :postal_code %>
   <%= f.input :city %>
   <%= f.input :country %>
+  <%= f.input :status, collection: @collection_point.collection_points_status.keys, label_method: lambda { |obj| @collection_point.collection_points_status[obj] } , required: true %>
   <legend>Contacts details</legend>
   <p class="muted">Please start to type the contact name, and select from the list.</p>
   <div class="control-group select required">

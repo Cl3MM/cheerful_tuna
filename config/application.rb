@@ -11,12 +11,14 @@ end
 
 file = File.read(File.expand_path('../tuna.yml', __FILE__))
 COUNTRIES = YAML.load(file)["countries"]
-DLV_RQST_TECHNOS = YAML.load(file)["technologies"]
-DISPOSAL_OPTS = YAML.load(file)["options_for_reason_of_disposal"]
-MODULES_CONDITION = YAML.load(file)["options_for_modules_condition"]
-TUNA_CONFIG = YAML.load(file)
-TUNA_CONFIG.merge! TUNA_CONFIG.fetch(Rails.env, {})
-TUNA_CONFIG.symbolize_keys!
+DELIVERY_REQUESTS_TECHNOLOGIES          = YAML.load(file)["delivery_requests_technologies"]
+DELIVERY_REQUESTS_REASON_OF_DISPOSAL    = YAML.load(file)["delivery_requests_reason_of_disposal"]
+DELIVERY_REQUESTS_MODULES_CONDITION     = YAML.load(file)["delivery_requests_modules_condition"]
+DELIVERY_REQUESTS_STATUS                = YAML.load(file)["delivery_requests_status"]
+COLLECTION_POINTS_STATUS                = YAML.load(file)["collection_points_status"]
+ENVIRONMENT_CONFIG                      = YAML.load(file)
+ENVIRONMENT_CONFIG.merge! ENVIRONMENT_CONFIG.fetch(Rails.env, {})
+ENVIRONMENT_CONFIG.symbolize_keys!
 
 #YAML.load_file("#{Rails.root}/config/tuna.yml")[Rails.env]
 

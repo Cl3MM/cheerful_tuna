@@ -25,4 +25,37 @@ class CollectionPoint < ActiveRecord::Base
     "#{address}, #{postal_code} #{country.upcase}"
   end
 
+  def lat_long
+    if self.latitude.blank? or longitude.blank?
+      "Invalid Geolocation."
+    else
+      "lat: #{self.latitude} / long: #{self.longitude}"
+    end
+  end
+
+  def self.collection_points_status
+    COLLECTION_POINTS_STATUS
+  end
+
+  def collection_points_status
+    COLLECTION_POINTS_STATUS
+  end
+
+  def status_html_class
+    index = collection_points_status.keys.find_index self.status
+    size  = collection_points_status.keys.size
+    if index < (size * 0.25)
+      "text-error"
+    elsif index < (size * 0.50)
+      "text-warning"
+    elsif index < (size * 0.75)
+      "text-info"
+    else
+      "text-success"
+    end
+  end
+
+  def humanized_status
+    collection_points_status[self.status]
+  end
 end

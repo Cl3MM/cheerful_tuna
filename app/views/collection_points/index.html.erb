@@ -5,6 +5,16 @@
             :class => 'btn btn-primary pull-right' %>
   </h1>
 </div>
+<ul class="breadcrumb">
+  <% CollectionPoint.collection_points_status.each_pair do |s, v| %>
+    <% if @active == s %>
+      <li class="active"><%= "#{v}" %> <span class="divider">|</span></li>
+    <% else %>
+      <li><%= link_to "#{v}", collection_points_path(status: "#{s}")%> <span class="divider">|</span></li>
+    <% end -%>
+  <% end -%>
+  <li <%= @active == "all" ? raw("class=\"active\">All</li>") : raw(">#{link_to "All", collection_points_path}</li>") %>
+</ul>
 <div class="well">
   <%= form_tag collection_points_path, method: :get, :class=>"form-inline inline" do %>
     <%= select_per_page({selected: @per_page, select_options: %w(5 10 20 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
@@ -20,6 +30,7 @@
   <%= paginate @collection_points %>
 </div>
 
+<% if @collection_points.any? %>
 <table class="table table-striped">
   <thead>
     <tr>
@@ -56,3 +67,4 @@
 <div class="pagination pagination-centered">
   <%= paginate @collection_points %>
 </div>
+<% end %>

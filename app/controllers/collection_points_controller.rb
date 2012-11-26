@@ -6,8 +6,14 @@ class CollectionPointsController < ApplicationController
     @per_page = session[:ppage].to_s
     params[:ppage] = session[:ppage]
 
-    @collection_points = CollectionPoint.order(:name).page(params[:page]).per(session[:ppage])
-
+    if (params[:status].present? && CollectionPoint.collection_points_status.include?(params[:status]) )
+      @active = params[:status]
+      @collection_points = CollectionPoint.where(status: params[:status]).order(:name)
+    else
+      @collection_points = CollectionPoint.order(:name)
+      @active = "all"
+    end
+      @collection_points = @collection_points.page(params[:page]).per(session[:ppage])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @collection_points }

@@ -26,15 +26,15 @@ module MembersHelper
     html << "Email: #{contact.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join(", ")}"
     h html.join("<br />")
   end
-  def contact_details member
-    html = ["<dl>"]
-    html << member.contacts.map do |c|
-      "<dt>#{c.full_name}</dt>
-      <dd>#{c.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join("<br />")}</dd>"
-    end
-    html << "</dl>"
-    raw html.join()
-  end
+  #def contact_details member
+    #html = ["<dl>"]
+    #html << member.contacts.map do |c|
+      #"<dt>#{c.full_name}</dt>
+      #<dd>#{c.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join("<br />")}</dd>"
+    #end
+    #html << "</dl>"
+    #raw html.join()
+  #end
 
   def display_joomla_address member
     html = <<HTML

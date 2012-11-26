@@ -26,11 +26,15 @@ class DeliveryRequest < ActiveRecord::Base
   validates :pallets_number,          presence: true, numericality: { :greater_than => 0 }
 
   def options_for_reason_of_disposal
-    DISPOSAL_OPTS
+    DELIVERY_REQUESTS_REASON_OF_DISPOSAL
   end
 
   def options_for_modules_condition
-    MODULES_CONDITION
+    DELIVERY_REQUESTS_MODULES_CONDITION
+  end
+
+  def available_status
+    DELIVERY_REQUESTS_STATUS
   end
 
   def send_confirmation_email
@@ -38,11 +42,11 @@ class DeliveryRequest < ActiveRecord::Base
   end
 
   def available_technologies
-    DLV_RQST_TECHNOS
+    DELIVERY_REQUESTS_TECHNOLOGIES
   end
 
   def available_technologies_formatted
-    DLV_RQST_TECHNOS.keys.each_slice(3).to_a
+    DELIVERY_REQUESTS_TECHNOLOGIES.keys.each_slice(3).to_a
   end
 
   def url_hash
