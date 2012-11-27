@@ -1,15 +1,13 @@
 <%- model_class = Member.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
-  </h1>
-</div>
-<div class="well">
-  <%= form_tag members_path, method: :get, :class=>"form-inline inline" do %>
-    <span  class="help-inline">Show </span>
-    <%= select_per_page({selected: @per_page, html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
-    <%= submit_tag "Members per page", name: nil, :class=>"btn" %>
+  <h1>Members
+  <%= form_tag members_path, method: :get, :class=>"form-inline inline pull-right", style: " margin-left: 20px;" do %>
+    <%= select_per_page({selected: @per_page, select_options: %w(5 10 20 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <span  class="help-inline" style="font-size: 14px; font-weight: normal; color: #999;">per page</span>
   <% end -%>
-  <%= link_to 'New member', new_member_path, class: 'btn btn-primary pull-right btn-tooltip', title: "Create a new Member" %>
+    <%= link_to raw("<i class=\"icon-file\"></i> New member"), new_member_path, class: 'btn btn-primary pull-right btn-tooltip', title: "Create a new Member",
+            style: "margin-top: 8px;" %>
+  </h1>
 </div>
 <p style="text-align:center;"><%= raw page_entries_info @members %></p>
 <div class="pagination pagination-centered">
