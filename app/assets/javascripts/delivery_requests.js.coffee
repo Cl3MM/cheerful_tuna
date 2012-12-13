@@ -4,7 +4,8 @@ jQuery ->
     $(this).closest('form').trigger('submit')
 
   # Select2 for countries
-  $("#delivery_request_country").select2(placeholder: "Select a country")
+  if $("#delivery_request_country").length > 0
+    $("#delivery_request_country").select2(placeholder: "Select a country")
 
   # Object that display Select2
   s2_enabler =
