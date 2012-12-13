@@ -6,6 +6,7 @@
     <% if "#{controller_path}:#{controller.action_name}".match(/contacts:tag_cloud/) or
          (controller.action_name.match(/edit|new|create|update/) and not controller_path.match(/joomla\/users/))
        %>
+      <%= stylesheet_link_tag "select2" if controller.action_name.match(/edit|new|create|update/) %>
       <%= stylesheet_link_tag controller_name %>
     <% end %>
     <%# if controller.action_name.match(/edit|new|create|update/) %>
