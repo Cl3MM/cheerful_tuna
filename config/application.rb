@@ -16,6 +16,8 @@ DELIVERY_REQUESTS_REASON_OF_DISPOSAL    = YAML.load(file)["delivery_requests_rea
 DELIVERY_REQUESTS_MODULES_CONDITION     = YAML.load(file)["delivery_requests_modules_condition"]
 DELIVERY_REQUESTS_STATUS                = YAML.load(file)["delivery_requests_status"]
 COLLECTION_POINTS_STATUS                = YAML.load(file)["collection_points_status"]
+CERES_CONTACT_CONFIG                    = YAML.load(file)["ceres-contacts"]
+CERES_CONTACT_CONFIG.symbolize_keys!
 ENVIRONMENT_CONFIG                      = YAML.load(file)
 ENVIRONMENT_CONFIG.merge! ENVIRONMENT_CONFIG.fetch(Rails.env, {})
 ENVIRONMENT_CONFIG.symbolize_keys!
