@@ -25,4 +25,5 @@ module ApplicationHelper
       "Model has no contacts."
     end
   end
+
 end
