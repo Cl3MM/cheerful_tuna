@@ -1,6 +1,6 @@
 class DeliveryRequestsController < ApplicationController
 
-  before_filter :authorize_admin!, except: [:new, :create, :show]
+  before_filter :authorize_admin!
 
   def delivery_request_pdf
     @delivery_request_pdf = DeliveryRequest.find(params[:id])
@@ -22,7 +22,14 @@ class DeliveryRequestsController < ApplicationController
     params[:ppage] = session[:ppage]
     params.delete :per_page
 
-    @delivery_requests = DeliveryRequest.order("company ASC").page(params[:page]).per(session[:ppage])
+    if (params[:status].present? && DeliveryRequest.delivery_requests_status.include?(params[:status]) )
+      @active = params[:status]
+      @delivery_requests = DeliveryRequest.where(status: params[:status]).order(:created_at)
+    else
+      @delivery_requests = DeliveryRequest.order(:created_at)
+      @active = "all"
+    end
+    @delivery_requests = @delivery_requests.page(params[:page]).per(session[:ppage])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -36,7 +43,7 @@ class DeliveryRequestsController < ApplicationController
     @delivery_request = DeliveryRequest.find(params[:id])
 
     respond_to do |format|
-      format.html { render 'joomla/delivery_requests/show' }
+      format.html #{ render 'joomla/delivery_requests/show', formats: [:html] }
       #format.html # show.html.erb
       format.json { render json: @delivery_request }
     end
@@ -44,15 +51,14 @@ class DeliveryRequestsController < ApplicationController
 
   # GET /delivery_requests/new
   # GET /delivery_requests/new.json
-  #def new
-    #@technos = DLV_RQST_TECHNOS.keys.each_slice(3).to_a
-    #@delivery_request = DeliveryRequest.new
+  def new
+    @delivery_request = DeliveryRequest.new
 
-    #respond_to do |format|
-      #format.html # new.html.erb
-      #format.json { render json: @delivery_request }
-    #end
-  #end
+    respond_to do |format|
+      format.html # new.html.erb
+      format.json { render json: @delivery_request }
+    end
+  end
 
   # GET /delivery_requests/1/edit
   def edit
@@ -62,22 +68,24 @@ class DeliveryRequestsController < ApplicationController
   # POST /delivery_requests
   # POST /delivery_requests.json
   def create
-    params[:delivery_request][:user_agent] = Rails.env.test? ? "test_user_agent" : request.env['HTTP_USER_AGENT']
+    params[:delivery_request][:user_agent]  = Rails.env.test? ? "test_user_agent" : request.env['HTTP_USER_AGENT']
 
-    params[:delivery_request][:user_ip] = request.remote_ip
-    params[:delivery_request][:referer] = request.env['HTTP_REFERER']
+    params[:delivery_request][:user_ip]     = request.remote_ip
+    params[:delivery_request][:referer]     = request.env['HTTP_REFERER']
 
     @delivery_request = DeliveryRequest.new(params[:delivery_request])
+    #Rails.logger.debug '=' * 100
 
     respond_to do |format|
-      if @delivery_request.save!  && (Rails.env.test? or verify_recaptcha(model: @delivery_request, message: "Sorry, there was an error reading your Captch, please try again!"))
-#      if @delivery_request.save
-        format.html { redirect_to @delivery_request, notice: 'Delivery request was successfully created.' }
+      if (Rails.env.test? || verify_recaptcha(model: @delivery_request, message: "Sorry, there was an error reading your Captch, please try again!") ) && @delivery_request.save
+        #binding.pry
+        flash.delete(:recaptcha_error) if flash.key?(:recaptcha_error)
+        @delivery_request.send_confirmation_email
+        format.html { redirect_to joomla_delivery_request_path(@delivery_request), notice: 'Delivery request was successfully created.' }
         format.json { render json: @delivery_request, status: :created, location: @delivery_request }
       else
-        @technos = DLV_RQST_TECHNOS.keys.each_slice(3).to_a
-        flash.delete(:recaptcha_error)
-        format.html { render action: "new" }
+        flash.delete(:recaptcha_error) if flash.key?(:recaptcha_error)
+        format.html { render action: :new }
         format.json { render json: @delivery_request.errors, status: :unprocessable_entity }
       end
     end
