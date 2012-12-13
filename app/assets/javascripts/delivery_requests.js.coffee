@@ -67,7 +67,7 @@ jQuery ->
           #console.log data
           selection = find_selected_element data, e
           callback( selection )
-    elem.select2('data', [])
+    elem.select2('data', []) if data.length == 0
     elem.select2(attrs)
     elem.select2("enable")
 
@@ -131,8 +131,8 @@ jQuery ->
   $('#delivery_request_postal_code').on 'blur', (e) ->
     change 'postal_code', $(this).val()
 
-  #$('#delivery_request_collection_point.joomla').on 'open', (e) ->
-    #check_s2_enabler()
+  $('#delivery_request_collection_point.joomla').on 'open', (e) ->
+    check_s2_enabler()
 
 #  $('#delivery_request_address').attr     "value", "43 avenue Lanessan"
 #  $('#delivery_request_city').attr        "value", "Champagne au mont d'or"
