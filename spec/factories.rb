@@ -2,6 +2,13 @@
 # FactoryGirl.find_definitions
 
 FactoryGirl.define do
+
+  FAKE_REAL_ADDRESSES = {
+                          clem:   {address: "43 avenue Lanessan", postal_code: "69410", city: "Champagne au mont d'or", country: "France"},
+                          nico:   {address: "96 rue Raymond Losserand", postal_code: "75014", city: "Paris", country: "France"},
+                          sandy:  {address: "3 rue saint antoine", postal_code: "69003", city: "Lyon", country: "France"},
+                          mum:    {address: "10 rue de l'hopital", postal_code: "69240", city: "Bourg de Thizy", country: "France"}
+  }
   factory :user do
     #sequence(:username) { |n| "foo_#{n}" }
     username { Faker::Internet.user_name }
@@ -21,16 +28,23 @@ FactoryGirl.define do
 #require 'factory_girl'
 #FactoryGirl.find_definitions
 #DeliveryRequest.all.map(&:destroy)
-#18.times{FactoryGirl.create(:delivery_request)}
+#6.times{FactoryGirl.create(:delivery_request)}
 
   factory :delivery_request do
+    fake_address              = FAKE_REAL_ADDRESSES.keys.sample
+    fake_address              = FAKE_REAL_ADDRESSES[fake_address]
+
     name                      { Faker::Name.name }
     email                     "clement.roullet@ceres-recycle.org" #{ Faker::Internet.email }
-    address                   { Faker::Address.street_address}
     user_ip                   { Faker::Internet.ip_v4_address }
-    postal_code               { Faker::Address.zip }
-    city                      { Faker::Address.city }
-    country                   { COUNTRIES.sample }
+    #address                   { Faker::Address.street_address}
+    #postal_code               { Faker::Address.zip }
+    #city                      { Faker::Address.city }
+    #country                   { COUNTRIES.sample }
+    address                   { fake_address[:address] }
+    postal_code               { fake_address[:postal_code] }
+    city                      { fake_address[:city] }
+    country                   { fake_address[:country] }
     module_count              { rand(1..49).to_s}
     manufacturers             { Faker::Company.name }
     length                    { rand(80..160).to_s }
@@ -39,18 +53,11 @@ FactoryGirl.define do
     weight                    { rand(80..160).to_s }
     pallets_number            { rand(1..10).to_s }
     modules_production_year   { rand(1990..2012).to_s }
+    technology                { DeliveryRequest.delivery_requests_technologies.keys.sample }
+    reason_of_disposal        { DeliveryRequest.delivery_requests_reason_of_disposal.sample }
+    modules_condition         { DeliveryRequest.delivery_requests_modules_condition.sample }
     user_agent          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
     referer             "http:www.google.fr"
-    technology          "cdte"
-    reason_of_disposal  { [ "End of use",
-                            "Transport or installation damage",
-                            "Material defect",
-                            "Other" ].sample
-                        }
-    modules_condition   { [ "Intact",
-                            "In pieces or pieces removed",
-                            "Broken", "Heat point", "Delaminated",
-                            "Other" ].sample }
   end
 
   factory :member do
