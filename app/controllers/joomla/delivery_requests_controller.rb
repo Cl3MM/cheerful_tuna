@@ -55,7 +55,7 @@ class Joomla::DeliveryRequestsController < ApplicationController
     @delivery_request = DeliveryRequest.new(params[:delivery_request])
 
     respond_to do |format|
-      if (Rails.env.test? || verify_recaptcha(model: @delivery_request, message: "Sorry, there was an error reading your Captch, please try again!") ) && @delivery_request.save
+      if (Rails.env.test? || verify_recaptcha(model: @delivery_request, message: "Sorry, there was an error reading your Captcha, please try again!") ) && @delivery_request.save
         #binding.pry
         flash.delete(:recaptcha_error) if flash.key?(:recaptcha_error)
         @delivery_request.send_confirmation_email
