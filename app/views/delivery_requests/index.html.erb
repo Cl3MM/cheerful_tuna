@@ -1,28 +1,40 @@
 <%- model_class = DeliveryRequest.new.class -%>
 <div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %>
-  <%= link_to 'New Delivery request', new_delivery_request_path, class: "btn btn-primary pull-right" %>
+  <h1>Delivery Request
+  <%= form_tag delivery_requests_path, method: :get, :class=>"form-inline inline pull-right", style: " margin-left: 20px;" do %>
+    <%= select_per_page({selected: @per_page, select_options: %w(5 10 20 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
+    <span  class="help-inline" style="font-size: 14px; font-weight: normal; color: #999;">per page</span>
+  <% end -%>
+  <%= link_to raw("<i class=\"icon-file\"></i> New Delivery Request"),
+            new_delivery_request_path,
+            class: 'btn btn-primary pull-right',
+            style: "margin-top: 8px;" %>
   </h1>
 </div>
-<div class="well">
-  <%= form_tag delivery_requests_path, method: :get, :class=>"form-inline inline" do %>
-    <span  class="help-inline">Show </span>
-    <%= select_per_page({selected: @per_page, html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
-    <%= submit_tag "Deliveries per page", name: nil, :class=>"btn" %>
+<ul class="breadcrumb">
+  <% DeliveryRequest.delivery_requests_status.each_pair do |s, v| %>
+    <% if @active == s %>
+      <li class="active"><%= "#{v}" %> <span class="divider">|</span></li>
+    <% else %>
+      <li><%= link_to "#{v}", delivery_requests_path(status: "#{s}")%> <span class="divider">|</span></li>
+    <% end -%>
   <% end -%>
-</div>
+  <li <%= @active == "all" ? raw("class=\"active\">All</li>") : raw(">#{link_to "All", delivery_requests_path}</li>") %>
+</ul>
 <p style="text-align:center;"><%= raw page_entries_info(@delivery_requests) %></p>
 <div class="pagination pagination-centered">
   <%= paginate @delivery_requests %>
 </div>
+<% if @delivery_requests.any? %>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
+      <th>Status</th>
       <th>Email</th>
       <th>City</th>
       <th>Country</th>
-      <th>Modules count</th>
+      <th>Modules #</th>
       <th class="actions">Action</th>
     </tr>
   </thead>
@@ -30,10 +42,12 @@
     <% @delivery_requests.each do |drq| %>
       <tr>
         <td><%= link_to drq.name.capitalize.truncate(25), drq %></td>
+        <td><%= drq.status %></td>
         <td><%= drq.email.truncate(25) %></td>
         <td><%= drq.city.truncate(25) %></td>
         <td><%= drq.country.truncate(22) %></td>
         <td><%= drq.module_count %></td>
+        <td><%= drq.pallets_number %></td>
         <td>
           <div class="btn-group pull-right">
             <%#= link_to raw('<i class="icon-edit"></i>'), edit_delivery_request_path(drq),
@@ -52,3 +66,4 @@
 <div class="pagination pagination-centered">
   <%= paginate @delivery_requests %>
 </div>
+<% end %>

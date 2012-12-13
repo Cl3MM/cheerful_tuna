@@ -1,6 +1,13 @@
 class Joomla::DeliveryRequestsController < ApplicationController
 
-  before_filter :authorize_admin!, except: [ :new, :create, :show, :delivery_request_pdf ]
+  before_filter :authorize_admin!, except: [ :new, :create, :show, :delivery_request_pdf, :nearbys ]
+
+  def nearbys
+    Rails.logger.debug "=" * 100
+    Rails.logger.debug params
+
+    render json: DeliveryRequest.collection_points_nearbys(params)
+  end
 
   def delivery_request_pdf
     @delivery_request = DeliveryRequest.find(params[:id])

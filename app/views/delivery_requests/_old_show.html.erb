@@ -65,7 +65,7 @@
             </tr>
             <tr>
               <td class="strong">Technology</td>
-              <td><%= @delivery_request.humanized_delivery_requests_technologies %></td>
+              <td><%= @delivery_request.delivery_requests_technologies[@delivery_request.technology] %></td>
             </tr>
             <tr>
               <td class="strong">Production year</td>

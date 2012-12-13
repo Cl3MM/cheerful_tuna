@@ -1,4 +1,5 @@
 class CollectionPointsController < ApplicationController
+  before_filter :authorize_admin!
   # GET /collection_points
   # GET /collection_points.json
   def index

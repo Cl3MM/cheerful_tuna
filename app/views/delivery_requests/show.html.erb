@@ -1,24 +1,107 @@
+<%= link_to "End User display",
+  joomla_delivery_request_url(@delivery_request, subdomain: 'request'),
+  target: "_blank" %>
 <div class="page-header">
-  <h1>Delivery Request summary</h1>
+  <h2>Delivery Request summary
+    <small>
+      <span class="pull-right" style="line-height: 50px; ">
+        Status: 
+        <span class="<%= @delivery_request.status_html_class %>">
+          <%= @delivery_request.humanized_status %>
+        </span>
+      </span>
+    </small>
+  </h2>
 </div>
-<p class="lead">Your delivery request has been transmitted. You will receive a copy of your receipt at <%= "email@example.com #{true}" %>.</p>
-<p>The Collection Point below will contact you under 72hrs to arrange the delivery:</p>
+
+<div class="row">
+  <div class="span3">
+<h3>Contact details</h3>
 <address>
-  <strong>Twitter, Inc.</strong><br>
-  795 Folsom Ave, Suite 600<br>
-  San Francisco, CA 94107<br>
-  <abbr title="Phone">P:</abbr> (123) 456-7890
+  <strong>Name: </strong><%= @delivery_request.name %><br>
+  <strong>Email: </strong><%= mail_to @delivery_request.email.html_safe, @delivery_request.email.html_safe, encode: :hex %><br>
+  <% unless @delivery_request.company.blank? %>
+    <strong>Company: </strong><%= @delivery_request.company %><br>
+  <% end %>
+  <strong>Address:</strong><br />
+  <%= @delivery_request.address %><br>
+  <%= "#{@delivery_request.postal_code}, #{@delivery_request.city}" %><br>
+  <%= "#{@delivery_request.country.upcase}" %><br>
+  <% unless @delivery_request.telephone.blank? %>
+  <abbr title="Phone">P:</abbr> <%= @delivery_request.telephone %>
+<% end %>
 </address>
-<br />
-<div class="well" style="max-width: 400px; margin: 0 auto 10px;">
-  <%= link_to 'Download Delivery Request Receipt', delivery_request_pdf_path(@delivery_request), class: "btn btn-large btn-block btn-success" %>
-  <%= link_to 'Create a new Delivery Request', new_delivery_request_path, class: "btn btn-large btn-block btn-info" %>
+<% unless @delivery_request.comments.blank? %>
+  <h3>Comments</h3>
+  <%= h(raw(@delivery_request.comments)) %>
+<% end %>
+  </div>
+  <div class="span5">
+    <br />
+    <%#= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=10&markers=#{@delivery_request.latitude}%2C#{@delivery_request.longitude}" %>
+    <%= image_tag "http://maps.google.com/maps/api/staticmap?size=470x130&maptype=roadmap&sensor=false&center=#{@delivery_request.latitude}%2C#{@delivery_request.longitude}&zoom=10&style=feature%3Aall%7Celement%3Aall%7Csaturation%3A-100&markers=color%3A0xEE127B%7C#{@delivery_request.latitude}%2C#{@delivery_request.longitude}", width: 470, height: 130 %>
+<h3>Modules information</h3>
+<table class="table table-bordered">
+  <tbody>
+  <tr>
+    <td class="strong">Number of Modules</td>
+    <td><%= @delivery_request.module_count %></td>
+  </tr>
+  <tr>
+    <td class="strong">Technology</td>
+    <td><%= @delivery_request.humanized_delivery_requests_technologies %></td>
+  </tr>
+  <tr>
+    <td class="strong">Production year</td>
+    <td><%= @delivery_request.modules_production_year %></td>
+  </tr>
+  <tr>
+    <td class="strong">Number of pallets</td>
+    <td><%= @delivery_request.pallets_number %></td>
+  </tr>
+  <tr>
+    <td class="strong">Condition</td>
+    <td><%= @delivery_request.modules_condition %></td>
+  </tr>
+  <tr>
+    <td class="strong">Reason of disposal</td>
+    <td><%= @delivery_request.reason_of_disposal %></td>
+  </tr>
+  <tr>
+    <td class="strong">Number of pallets</td>
+    <td><%= @delivery_request.pallets_number %></td>
+  </tr>
+  <tr>
+    <td class="strong">Weight</td>
+    <td><%= @delivery_request.weight %></td>
+  </tr>
+  <tr>
+    <td class="strong">Height</td>
+    <td><%= @delivery_request.height %></td>
+  </tr>
+  <tr>
+    <td class="strong">Width</td>
+    <td><%= @delivery_request.width %></td>
+  </tr>
+  <tr>
+    <td class="strong">Length</td>
+    <td><%= @delivery_request.length %></td>
+  </tr>
+  </tbody>
+</table>
+  </div>
 </div>
-<p>Here is a summary of your delivery request</p>
-Delivery address:
-<address>
-  <strong>Twitter, Inc.</strong><br>
-  795 Folsom Ave, Suite 600<br>
-  San Francisco, CA 94107<br>
-  <abbr title="Phone">P:</abbr> (123) 456-7890
-</address>
+
+<div class="form-actions">
+  <div class="btn-group">
+  <%= link_to "Back",
+              :back, :class => 'btn'  %>
+  <%= link_to "Edit",
+              edit_delivery_request_path(@delivery_request), :class => 'btn' %>
+  <%= link_to "Destroy",
+              delivery_request_path(@delivery_request),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+  </div>
+</div>

@@ -4,7 +4,7 @@
     <%= select_per_page({selected: @per_page, select_options: %w(5 10 20 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})  %>
     <span  class="help-inline" style="font-size: 14px; font-weight: normal; color: #999;">per page</span>
   <% end -%>
-<%= link_to raw("<i class=\"icon-file\"></i> Create a new Collection Point"),
+<%= link_to raw("<i class=\"icon-file\"></i> New Collection Point"),
             new_collection_point_path,
             class: 'btn btn-primary pull-right',
             style: "margin-top: 8px;" %>
