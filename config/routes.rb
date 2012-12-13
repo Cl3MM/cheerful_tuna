@@ -2,7 +2,6 @@ CheerfulTuna::Application.routes.draw do
 
   resources :collection_points
 
-
   resources :html_snippets do
     member { post :mercury_update }
   end
@@ -24,18 +23,29 @@ CheerfulTuna::Application.routes.draw do
   #match "joomla" => "joomla::users#new"
   namespace :joomla do
     match "/" => "users#new"
-    get 'profile', to: 'users#index'
-    get 'login', to: 'users#new'
-    get 'logout', to: 'users#destroy'
+    get 'profile',  to: 'users#index'
+    get 'login',    to: 'users#new'
+    get 'logout',   to: 'users#destroy'
     resources :users, except: [:show, :edit]
-
     #get 'delivery_request', to: 'delivery_requests#new'
-    match 'delivery_request_pdf/:id' => 'delivery_requests#delivery_request_pdf', as: :delivery_request_pdf, via: :get, format: :pdf
-    match 'delivery_request_form' => 'delivery_requests#new', as: :delivery_request_form, via: :get
-    resources :delivery_requests, only: [:create, :show, :new ]
+    match 'delivery_request_pdf/:id'  => 'delivery_requests#delivery_request_pdf',  as: :delivery_request_pdf,      via: :get,  format: :pdf
+    match "delivery_request/nearbys"  => "delivery_requests#nearbys",               as: :delivery_request_nearbys,  via: :post, format: :json
+    #resources :delivery_requests, only: [:create, :show, :new ]
   end
 
+#   joomla_delivery_request_pdf GET    /joomla/delivery_request_pdf/:id(.:format)  joomla/delivery_requests#delivery_request_pdf {:format=>:pdf}
+   #joomla_delivery_request_form GET    /joomla/delivery_request_form(.:format)     joomla/delivery_requests#new
+#joomla_delivery_request_nearbys POST   /joomla/delivery_request/nearbys(.:format)  joomla/delivery_requests#nearbys {:format=>:json}
+       #joomla_delivery_requests POST   /joomla/delivery_requests(.:format)         joomla/delivery_requests#create
+    #new_joomla_delivery_request GET    /joomla/delivery_requests/new(.:format)     joomla/delivery_requests#new
+        #joomla_delivery_request GET    /joomla/delivery_requests/:id(.:format)     joomla/delivery_requests#show
+                                       #/                                           joomla::delivery_requests#new {:subdomain=>"request"}
   #/delivery_requests
+  constraints subdomain: 'request' do
+    match '/new', to: 'joomla/delivery_requests#new',     via: :get,  as: :new_joomla_delivery_request
+    match '/',    to: 'joomla/delivery_requests#create',  via: :post, as: :joomla_delivery_requests
+    match '/:id', to: 'joomla/delivery_requests#show',    via: :get,  as: :joomla_delivery_request
+  end
   resources :delivery_requests
 
   #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
@@ -72,7 +82,7 @@ CheerfulTuna::Application.routes.draw do
   match 'certificate/:checksum' => 'members#generate_certificate', as: :generate_certificate, via: [:post]
   #match "members/create_user_name/:company", :to => "members#create_user_name_from_company", :via => "post", as: :create_user_name
 
-  root :to => 'contacts#index'
+  root to: 'contacts#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
