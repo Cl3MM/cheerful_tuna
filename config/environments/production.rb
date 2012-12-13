@@ -65,6 +65,7 @@ CheerfulTuna::Application.configure do
   config.assets.precompile += %w( morris.min.js raphael-min.js mercury.js select2.js bootstrap-datepicker.js jquery-1.7.js )
   config.assets.precompile += %w( contacts.js users.js members.js email_listings.js delivery_requests.js collection_points.js )
   config.assets.precompile += %w( contacts.css members.css email_listings.css delivery_requests.css collection_points.css )
+  config.assets.precompile += %w( select2.css )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
