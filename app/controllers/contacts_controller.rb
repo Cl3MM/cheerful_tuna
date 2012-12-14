@@ -132,10 +132,6 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     flash.clear
-    Rails.logger.debug "*" * 100
-    Rails.logger.debug "Params: #{params}"
-    @remote = params[:remote].present? ? params[:remote] : nil
-    Rails.logger.debug "Remote: #{@remote}"
     begin
       @contact = Contact.new(params[:contact])
       @contact.update_attribute(:user_id, current_user.id)
@@ -161,8 +157,6 @@ EOL
       #flash[:error] +=  e.message
     end
     respond_to do |format|
-      Rails.logger.debug "=" * 100
-      Rails.logger.debug "Params[format]: #{params[:format]}" if params[:format].present?
       if @contact.save
         format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
