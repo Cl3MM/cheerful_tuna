@@ -17,11 +17,32 @@
       <p class="muted">Please start to type the contact name, and select from the list.</p>
       <div class="control-group select required">
         <label class="select required control-label" for="member_contact_ids">
-          <abbr title="required">*</abbr> Contacts</label>
+          <abbr title="required">*</abbr> Select contacts</label>
         <div class="controls">
           <input value='<%= raw @member.contacts.map(&:to_select2).to_json %>' multiple="multiple" type="hidden" id="member_contact_ids" name="member[contact_ids][]" />
         </div>
       </div>
+      <div class="control-group select required">
+        <label class="select required control-label" for="member_contact_ids"> </label>
+        <div class="controls">
+          <p class="muted">Or create a new one</p>
+          <%= link_to raw('<i class="icon-plus-sign"></i> New Contact'), new_contact_path(format: [:js]) , method: :get, remote: true, id: "more_contacts", class: "btn btn-primary" %>
+        </div>
+      </div>
+
+      <div id="contact_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="ContactModalLabel">Create a new Contact</h3>
+        </div>
+        <div class="modal-body">
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button class="btn btn-primary">Create Contact</button>
+        </div>
+      </div>
+
       <legend>Member's Brands &amp; Activities</legend>
       <p class="muted">Please enter brand and activity names. Press the comma key to separate tags.</p>
       <%= f.input :activity_list, label: "Member's activities(s)",

@@ -80,6 +80,34 @@ jQuery ->
           texti = "check all"
         activate_billing(state)
 
+  notok = (data) ->
+    alert "Something went wrong, please retry"
+
+  ok = (data) ->
+    $('form#new_contact').empty()
+    $('form#new_contact').html(data)
+    $('#contact_modal .btn.btn-primary').hide() if $('form#new_contact .alert.alert-success').length > 0
+
+    $('form#new_contact').attr "action", "/contacts"
+    $('form#new_contact .form-actions').empty()
+    $('form#new_contact .form-actions').hide()
+    $('form .span4.offset1').removeClass "offset1"
+
+  $('#contact_modal .btn.btn-primary').click (e) ->
+    <%#=j hidden_field_tag "remote", "true" %>
+    $('form#new_contact').append('<input id="remote" name="remote" type="hidden" value="true">')
+    $('form#new_contact').attr "data-remote", "true"
+
+    $.ajax(
+      type:     $("form#new_contact").attr("method"),
+      dataType: 'HTML'
+      url:      $("form#new_contact").attr("action") + '.js',
+      data:     $("form#new_contact").serialize(),
+      success:  ok,
+      error:    notok
+    )
+    $('form#new_contact .form-actions').hide()
+    false
   ###
   $('#member_company').on 'focusout', (event) ->
     <%#$('#member_user_name').val $(this).val()%>
