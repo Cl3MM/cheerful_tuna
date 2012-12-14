@@ -105,11 +105,14 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   # GET /contacts/new.json
   def new
+    Rails.logger.debug "*" * 100
+    Rails.logger.debug "Params: #{params}"
     @contact = Contact.new
     @contact.emails.new
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @contact }
+      format.json { render json:    @contact }
+      format.js   { render partial: "new" }
     end
   end
 

@@ -35,3 +35,11 @@ jQuery ->
 
     $('#collection_point_contact_ids').select2("data", $.parseJSON($('#collection_point_contact_ids').val()))
 
+  $('#ContactModal .btn.btn-primary').click (e) ->
+    $('#ContactModal').modal 'hide'
+    $('form').submit()
+
+  $('#ContactModal').on 'show', (e) ->
+    $('#create_contact_form').html("<%#=j render partial: 'contacts/new', formats: [:html] %>")
+    console.log "yeahhh"
+

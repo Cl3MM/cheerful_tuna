@@ -13,10 +13,30 @@
     <label class="select required control-label" for="collection_point_contact_ids">
       <abbr title="required">*</abbr> Contacts</label>
     <div class="controls">
-      <input value='<%= raw @collection_point.contacts.map(&:to_select2).to_json %>' multiple="multiple" type="hidden" id="collection_point_contact_ids" name="collection_point[contact_ids][]" />
+      <%= f.association :contact do %>
+        <%= f.hidden_field :contact_ids, as: :hidden, value: @collection_point.contacts.map(&:to_select2).to_json,
+            class: "edit", multiple: :true %>
+      <% end %>
+      <!-- Button to trigger modal -->
+      <%#= link_to "Create a new Contact", "#ContactModal", class: "btn btn-primary", data: { toggle: "modal"}  %>
+      <%= link_to "Create a new Contact...", new_contact_path(format: [:js]) , method: :get, remote: true, id: "more_contacts",
+        class: "btn btn-primary" %>
     </div>
   </div>
 
+  <!-- Modal -->
+  <div id="ContactModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="ContactModalLabel">Create a new Contact</h3>
+    </div>
+    <div class="modal-body" id="create_contact_form">
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Create Contact</button>
+    </div>
+  </div>
   <div class="form-actions">
     <%= f.button :submit, :class => 'btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
