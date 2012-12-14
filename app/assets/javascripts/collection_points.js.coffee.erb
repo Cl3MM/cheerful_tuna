@@ -46,7 +46,7 @@ jQuery ->
     $('form#new_contact').attr "action", "/contacts"
     $('form#new_contact .form-actions').empty()
     $('form#new_contact .form-actions').hide()
-    $('form .span4.offset1').removeClass "offset1"
+    $('form#new_contact .span4.offset1').removeClass "offset1"
 
   $('#contact_modal .btn.btn-primary').click (e) ->
     <%#=j hidden_field_tag "remote", "true" %>
