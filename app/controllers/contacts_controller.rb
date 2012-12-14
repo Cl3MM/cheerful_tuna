@@ -105,15 +105,14 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   # GET /contacts/new.json
   def new
-    Rails.logger.debug "*" * 100
-    Rails.logger.debug "Params: #{params}"
     @contact = Contact.new
     @contact.emails.new
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json:    @contact }
-      format.js   { render partial: "new" }
+      format.js   { render template: 'contacts/ajax_form' }
     end
+      # { render partial: "new" }
   end
 
   # GET /contacts/1/edit
@@ -133,6 +132,10 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     flash.clear
+    Rails.logger.debug "*" * 100
+    Rails.logger.debug "Params: #{params}"
+    @remote = params[:remote].present? ? params[:remote] : nil
+    Rails.logger.debug "Remote: #{@remote}"
     begin
       @contact = Contact.new(params[:contact])
       @contact.update_attribute(:user_id, current_user.id)
@@ -158,13 +161,18 @@ EOL
       #flash[:error] +=  e.message
     end
     respond_to do |format|
+      Rails.logger.debug "=" * 100
+      Rails.logger.debug "Params[format]: #{params[:format]}" if params[:format].present?
       if @contact.save
         format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
+        format.js   { render template: 'contacts/new' }
       else
         @email_error = "error" if @contact.errors.full_messages.map{|m| m if(m =~ /email/i)}.size > 0
         format.html { render action: "new" }
         format.json { render json: @contact.errors, status: :unprocessable_entity }
+        format.js   { render template: 'contacts/_form' }
+        #format.js   { render template: 'contacts/new' }
       end
     end
   end

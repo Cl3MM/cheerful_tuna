@@ -35,11 +35,31 @@ jQuery ->
 
     $('#collection_point_contact_ids').select2("data", $.parseJSON($('#collection_point_contact_ids').val()))
 
-  $('#ContactModal .btn.btn-primary').click (e) ->
-    $('#ContactModal').modal 'hide'
-    $('form').submit()
-
-  $('#ContactModal').on 'show', (e) ->
-    $('#create_contact_form').html("<%#=j render partial: 'contacts/new', formats: [:html] %>")
+  $('#contact_modal').on 'show', (e) ->
+    $('form#new_contact .form-actions').hide()
     console.log "yeahhh"
 
+  bob = (data) ->
+    console.log "data:"
+    console.log data
+    console.log $.parseJSON(data)
+    $('#contact_modal .modal-body').empty()
+    $('#contact_modal .modal-body').html(data)
+
+  $('#contact_modal .btn.btn-primary').click (e) ->
+    <%#=j hidden_field_tag "remote", "true" %>
+    $('form#new_contact').append('<input id="remote" name="remote" type="hidden" value="true">')
+    $('form#new_contact').attr "data-remote", "true"
+
+    console.log "method:"
+    console.log $("form#new_contact").attr("method")
+    console.log "action:"
+    console.log $("form#new_contact").attr("action") + '.js'
+
+    $.ajax(
+      type:     $("form#new_contact").attr("method"),
+      url:      $("form#new_contact").attr("action") + '.js',
+      data:     $("form#new_contact").serialize(),
+      success:  bob
+    )
+    false
