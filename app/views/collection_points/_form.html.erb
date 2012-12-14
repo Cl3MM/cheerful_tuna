@@ -18,9 +18,7 @@
             class: "edit", multiple: :true %>
       <% end %>
       <!-- Button to trigger modal -->
-      <%= link_to "Create a new Contact", "#", class: "btn btn-primary", data: { target: "#contact_modal", toggle: "modal", remote: new_contact_path(format: [:js]) } %>
-      <%#= link_to "Create a new Contact...", new_contact_path(format: [:js]) , method: :get, remote: true, id: "more_contacts",
-        class: "btn btn-primary" %>
+      <%= link_to raw('<i class="icon-plus-sign"></i> New Contact'), new_contact_path(format: [:js]) , method: :get, remote: true, id: "more_contacts", class: "btn btn-primary" %>
     </div>
   </div>
 

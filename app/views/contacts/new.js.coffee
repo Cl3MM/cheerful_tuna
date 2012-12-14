@@ -1,18 +1,7 @@
-$('#ContactModal').modal 'hide'
-
-###
-<% unless @contact %>
-alert "Something went wrong, please reload the page!"
-<% else %>
-  <% unless @remote.nil? %>
-$('#contact_ajax_form').html('<%=j render template: "contacts/ajax_form", formats: [:html] %>')
-$('form#new_contact').append('<%= hidden_field_tag "remote", "true" %>')
-  <% else %>
-$('#contact_ajax_form').html('<%=j render template: "contacts/ajax_form", formats: [:html] %>')
-$('form#new_contact').append('<%= hidden_field_tag "remote", "true" %>')
-  <% end %>
+$('#contact_modal .modal-body').html('<%=j render template: "contacts/ajax_form", formats: [:html] %>')
 $('form#new_contact').attr "data-remote", "true"
+$('form#new_contact .form-actions').empty()
 $('form#new_contact .form-actions').hide()
-$('#ContactModal').modal 'show'
-<% end %>
-###
+$('form .span4.offset1').removeClass "offset1"
+$('#contact_modal').modal 'show'
+$('#contact_modal .btn.btn-primary').show()

@@ -35,31 +35,31 @@ jQuery ->
 
     $('#collection_point_contact_ids').select2("data", $.parseJSON($('#collection_point_contact_ids').val()))
 
-  $('#contact_modal').on 'show', (e) ->
-    $('form#new_contact .form-actions').hide()
-    console.log "yeahhh"
+  notok = (data) ->
+    alert "Something went wrong, please retry"
 
-  bob = (data) ->
-    console.log "data:"
-    console.log data
-    console.log $.parseJSON(data)
-    $('#contact_modal .modal-body').empty()
-    $('#contact_modal .modal-body').html(data)
+  ok = (data) ->
+    $('form#new_contact').empty()
+    $('form#new_contact').html(data)
+    $('#contact_modal .btn.btn-primary').hide() if $('form#new_contact .alert.alert-success').length > 0
+
+    $('form#new_contact').attr "action", "/contacts"
+    $('form#new_contact .form-actions').empty()
+    $('form#new_contact .form-actions').hide()
+    $('form .span4.offset1').removeClass "offset1"
 
   $('#contact_modal .btn.btn-primary').click (e) ->
     <%#=j hidden_field_tag "remote", "true" %>
     $('form#new_contact').append('<input id="remote" name="remote" type="hidden" value="true">')
     $('form#new_contact').attr "data-remote", "true"
 
-    console.log "method:"
-    console.log $("form#new_contact").attr("method")
-    console.log "action:"
-    console.log $("form#new_contact").attr("action") + '.js'
-
     $.ajax(
       type:     $("form#new_contact").attr("method"),
+      dataType: 'HTML'
       url:      $("form#new_contact").attr("action") + '.js',
       data:     $("form#new_contact").serialize(),
-      success:  bob
+      success:  ok,
+      error:    notok
     )
+    $('form#new_contact .form-actions').hide()
     false

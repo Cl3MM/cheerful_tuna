@@ -110,7 +110,7 @@ class ContactsController < ApplicationController
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json:    @contact }
-      format.js   { render template: 'contacts/ajax_form' }
+      format.js   { render template: 'contacts/new' }
     end
       # { render partial: "new" }
   end
@@ -166,7 +166,7 @@ EOL
       if @contact.save
         format.html { redirect_to contacts_path, notice: 'Contact was successfully created.' }
         format.json { render json: @contact, status: :created, location: @contact }
-        format.js   { render template: 'contacts/new' }
+        format.js   { render template: 'contacts/ajax_new_contact_success' }
       else
         @email_error = "error" if @contact.errors.full_messages.map{|m| m if(m =~ /email/i)}.size > 0
         format.html { render action: "new" }
