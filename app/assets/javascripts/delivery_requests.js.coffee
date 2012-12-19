@@ -46,7 +46,7 @@ jQuery ->
   # Display Ajax result to the Select2 element
   generic_success = (elem, data) ->
     attrs =
-      width: "120%",
+      width: "300px",
       placeholder: "Please select a Collection Point"
       data: { results: data },
       formatSelection: formatCollectionPointResults,
@@ -56,7 +56,7 @@ jQuery ->
     if data.length == 0
       formatNoMatches(false)
       attrs =
-        width: "120%",
+        width: "300px",
         placeholder: "Sorry, there is no Collection Point in your area.",
         formatNoMatches: formatNoMatches,
         data: []
@@ -87,7 +87,7 @@ jQuery ->
 
   unless $('#delivery_request_collection_point_id.joomla').length == 0
     window.s2_element.select2({
-      width: "120%",
+      width: "300px",
       placeholder: "Please fill in your address in the above fields",
       query: (data) ->
         false
@@ -103,7 +103,7 @@ jQuery ->
       postal_code:  $('#delivery_request_postal_code').attr "value"
       country:      $('#delivery_request_country').attr     "value"
     window.s2_element.select2({
-      width: "120%",
+      width: "300px",
       placeholder: "Please fill in your address in the above fields",
       data: { returns: [] }
     })
