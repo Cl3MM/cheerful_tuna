@@ -16,7 +16,11 @@
     <%= csrf_meta_tags %>
     <%= csrf_meta_tag %>
   </head>
-  <body>
+  <body
+  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
+    style="width: 735px !important;" id="joomla_request_new"
+  <% end %>
+  >
 <!--
   <%= controller_path %>
   <br />
