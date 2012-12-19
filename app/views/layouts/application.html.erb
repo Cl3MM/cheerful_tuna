@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html
+  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
+    style="width: 715px !important;"
+  <% end %>
+>
   <head>
     <title>Cheerful Tuna</title>
     <%= stylesheet_link_tag    "application", :media => "all" %>
@@ -18,7 +22,7 @@
   </head>
   <body
   <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
-    style="width: 735px !important;" id="joomla_request_new"
+    style="width: 715px !important;" id="joomla_request_new"
   <% end %>
   >
 <!--
