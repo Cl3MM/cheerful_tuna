@@ -1,6 +1,4 @@
 <%= simple_form_for(@delivery_request, url: { action: "create", controller: "joomla/delivery_requests" }, html: { class: 'form-horizontal', multipart: true }) do |f| %>
-<%#%>
-  <%#= f.error_notification %>
 <%= render "shared/error_messages", target: @delivery_request %>
 <div class="form-inputs mercury-display-pane-container">
   <legend><abbr title="required">*</abbr> Contact information </legend>
