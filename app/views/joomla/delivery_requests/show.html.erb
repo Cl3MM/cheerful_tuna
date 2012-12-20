@@ -23,9 +23,10 @@
 </div>
 <div class="row">
   <div class="span9">
-    <p class="lead">
+ <!--   <p class="lead">
     TODO: Je peux mettre le texte ci desous seulement s'il y a
     plus de 50 modules.</p>
+-->
     <p class="justify">
     Please note that the modules must be stored on pallets that should respect
     the following guidelines:<br /> The pallets must be:
@@ -49,13 +50,21 @@
     <div class="row">
       <div class="span5">
         <h4>Collection Point</h4>
-
+        <% unless @delivery_request.collection_point.nil? %>
+          You will be contacted under 72hrs by the following Collection Point:
+        <br />
+        <br />
         <address>
-          <strong>Twitter, Inc.</strong><br>
-          795 Folsom Ave, Suite 600<br>
-          San Francisco, CA 94107<br>
-          <abbr title="Phone">P:</abbr> (123) 456-7890
+          <strong><%= @delivery_request.collection_point.name %></strong><br>
+          <%= @delivery_request.collection_point.address %><br>
+          <%= "#{@delivery_request.collection_point.postal_code}, #{@delivery_request.collection_point.city}" %><br>
+          <%= @delivery_request.collection_point.country %>
         </address>
+        <br />
+        Who will discuss the operational details with you.
+      <% else %>
+          Sorry, no Collection Point were found in your area. CERES will come back to you under 72hrs to check for an adequate solution
+      <% end %>
         <h4>Modules information</h4>
         <table class="table table-bordered">
           <tbody>

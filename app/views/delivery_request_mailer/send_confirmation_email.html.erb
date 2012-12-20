@@ -547,17 +547,21 @@
                                       This is a confirmation email regarding the Delivery Request you made on <strong><%= @delivery_request.created_at.strftime("%B %d, %Y") %></strong> on <%= link_to "CERES website", "http://www.ceres-recycle.org" %>. Please do not reply it.
                                       <br />
                                       <br />
-                                      You will be contacted under 72hrs by the following Collection Point:
-                                      <br />
-                                      <br />
-                                      <address>
-                                        <strong>Twitter, Inc.</strong><br>
-                                        795 Folsom Ave, Suite 600<br>
-                                        San Francisco, CA 94107<br>
-                                        Phone: (123) 456-7890
-                                      </address>
-                                      <br />
-                                      Who will discuss the operational details with you.
+                                      <% unless @delivery_request.collection_point.nil? %>
+                                        You will be contacted under 72hrs by the following Collection Point:
+                                        <br />
+                                        <br />
+                                        <address>
+                                          <strong><%= @delivery_request.collection_point.name %></strong><br>
+                                          <%= @delivery_request.collection_point.address %><br>
+                                          <%= "#{@delivery_request.collection_point.postal_code}, #{@delivery_request.collection_point.city}" %><br>
+                                          <%= @delivery_request.collection_point.country %>
+                                        </address>
+                                        <br />
+                                        Who will discuss the operational details with you.
+                                      <% else %>
+                                        Sorry, no Collection Point were found in your area. CERES will come back to you under 72hrs to check for an adequate solution
+                                      <% end %>
                                       <br />
                                       <br />
                                       Do not forget to print out your Delivery Request receipt and to present this receipt at the Collection Point.
@@ -569,12 +573,13 @@
                                       CERES thanks you for your interest,
                                       <br />
                                       <br />
-                                      --
+                                      <!--
                                       <br />
                                       The CERES Team
                                       <br />
                                       CERES - European Center for Solar Energy Recycling / http://www.ceres-recycle.org your interest,
                                       <br />
+    -->
                                     </div>
                                   </td>
                                 </tr>
