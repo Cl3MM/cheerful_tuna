@@ -89,6 +89,21 @@ namespace :udb do
     File.open("#{Rails.root}/tmp/usernames.csv",'w') {|f| f.puts(member_usernames.sort.map{|x| x.join(";")}.join("\n"))}
   end
 
+  desc "Add Collection Point tag to members"
+  task :member_collection_point_tag => :environment do
+    Member.all.each do |m|
+      member = m.dup
+      member.contacts.each do |c|
+        contact = c.dup
+        unless contact.tag_list.include? "member"
+          puts "Contact found: ID##{contact.id}\t| Company: #{contact.company} | Tag list: #{contact.tag_list.join(', ')}"
+          contact.tag_list = "member"
+          contact.save
+        end
+      end
+    end
+  end
+
   #desc "Geolocate Collection Point"
   #task geolocate_collection_point: :environment do
     #CollectionPoint.

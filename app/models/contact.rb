@@ -140,12 +140,47 @@ class Contact < ActiveRecord::Base
     end
   end
 
-  def previous_contact
-    Contact.where(["company < ?", self.company]).order("company DESC").first
+  #def previous
+    #Post.where(["id < ?", id]).last
+  #end
+
+  #def previous_contact
+    #Contact.where(["company < ?", self.company]).order("company DESC").first
+  #end
+
+  #def next_contact
+    #Contact.where(["company > ?", self.company]).order("company ASC").first
+  #end
+
+  def method_missing(meth, *args, &block)
+    if meth.to_s =~ /^(previous|next)_?(\w*)$/
+      action, attribute = $1, $2
+      return run_previous_method(attribute, *args, &block)  if action =~ /previous/
+      return run_next_method(attribute, *args, &block)      if action =~ /next/
+      nil
+    else
+      super
+    end
   end
 
-  def next_contact
-    Contact.where(["company > ?", self.company]).order("company ASC").first
+  # run_next_method:
+  #     define_method for next, next_company, next_name...
+  def run_next_method(attrs, *args, &block)
+    puts "Attrs: #{attrs}"
+    puts "Attrs: #{attrs}"
+    if (not attrs.blank?) && (self.attribute_names.include?(attrs) )
+      return Contact.where( [ "#{attrs} > ?", self[attrs] ] ).first
+    else
+      return Contact.where(["id > ?", self.id]).first
+    end
+  end
+
+  def run_previous_method(attrs, *args, &block)
+    if (not attrs.blank?) && (self.attribute_names.include?(attrs) )
+      return Contact.where( [ "#{attrs} < ?", self[attrs] ] ).last
+    else
+      return Contact.where(["id < ?", self.id]).last
+    end
   end
 
   def to_indexed_json

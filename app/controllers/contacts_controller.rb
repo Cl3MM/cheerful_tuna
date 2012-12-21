@@ -56,7 +56,8 @@ class ContactsController < ApplicationController
 
   def tag_cloud
     if params[:tag]
-      @contacts = Contact.tagged_with(params[:tag]).page(params[:page]).per_page(50)
+      #@contacts = Contact.tagged_with(params[:tag]).page(params[:page]).per_page(50)
+      @contacts = Contact.tagged_with(params[:tag]).page(params[:page]).per(session[:ppage])
       @tag = params[:tag]
     end
     respond_to do |format|
@@ -80,8 +81,8 @@ class ContactsController < ApplicationController
     @contact.update_attribute(:is_active, false) if params[:deactivate].present?
     @contact.update_attribute(:is_active, true) if params[:activate].present?
     @class = @contact.is_active ? "btn" : "btn disabled"
-    @next_contact = @contact.next_contact
-    @previous_contact = @contact.previous_contact
+    @next_contact = @contact.next_company
+    @previous_contact = @contact.previous
 
     respond_to do |format|
       format.html # show.html.erb
