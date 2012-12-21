@@ -24,6 +24,23 @@ FactoryGirl.define do
     end
   end
 
+  factory :articles do
+    sequence(:title)    { |n| "Super title ##{n}" }
+    content             { Faker::Lorem.paragraphs }
+  end
+
+  factory :email_listing do
+    name { Faker::Name.name }
+  end
+
+  factory :collection_points do
+    name          { Faker::Name.name}
+    sequence(:cp_id)         { |n| "FR00#{n}" }
+    address       { Faker::Address.street_address}
+    postal_code   { Faker::Address.zip }
+    city          { Faker::Address.city }
+    country       { COUNTRIES.sample }
+  end
 #require 'faker'
 #require 'factory_girl'
 #FactoryGirl.find_definitions
@@ -31,20 +48,15 @@ FactoryGirl.define do
 #6.times{FactoryGirl.create(:delivery_request)}
 
   factory :delivery_request do
-    fake_address              = FAKE_REAL_ADDRESSES.keys.sample
-    fake_address              = FAKE_REAL_ADDRESSES[fake_address]
+    fake_address              = FAKE_REAL_ADDRESSES[FAKE_REAL_ADDRESSES.keys.sample]
 
     name                      { Faker::Name.name }
-    email                     "clement.roullet@ceres-recycle.org" #{ Faker::Internet.email }
+    email                     { Faker::Internet.email }
     user_ip                   { Faker::Internet.ip_v4_address }
-    #address                   { Faker::Address.street_address}
-    #postal_code               { Faker::Address.zip }
-    #city                      { Faker::Address.city }
-    #country                   { COUNTRIES.sample }
-    address                   { fake_address[:address] }
-    postal_code               { fake_address[:postal_code] }
-    city                      { fake_address[:city] }
-    country                   { fake_address[:country] }
+    address                   { Faker::Address.street_address}
+    postal_code               { Faker::Address.zip }
+    city                      { Faker::Address.city }
+    country                   { COUNTRIES.sample }
     module_count              { rand(1..49).to_s}
     manufacturers             { Faker::Company.name }
     length                    { rand(80..160).to_s }
@@ -58,6 +70,14 @@ FactoryGirl.define do
     modules_condition         { DeliveryRequest.delivery_requests_modules_condition.sample }
     user_agent          "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11"
     referer             "http:www.google.fr"
+
+    factory :delivery_request_real, class: DeliveryRequest do
+      email                     "clement.roullet@ceres-recycle.org" #{ Faker::Internet.email }
+      address                 { fake_address[:address] }
+      postal_code             { fake_address[:postal_code] }
+      city                    { fake_address[:city] }
+      country                 { fake_address[:country] }
+    end
   end
 
   factory :member do

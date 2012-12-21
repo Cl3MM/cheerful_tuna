@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'awesome_print'
 
-describe "Joomla::DeliveryRequests", focus: true do
+describe "Joomla::DeliveryRequests" do
   before(:each) do
     @html_snippet = create :html_snippet
   end
@@ -9,9 +9,13 @@ describe "Joomla::DeliveryRequests", focus: true do
   describe "create new delivery request form" do
 
     it "with valid parameters" do
-      dlvrq = build(:delivery_request)
+      Capybara.current_driver = :mechanize
+
+      dlvrq = build(:delivery_request_real)
       dlv_count = DeliveryRequest.count
-      visit new_joomla_delivery_request_path
+
+      #visit new_joomla_delivery_request_path
+      visit "http://request.lvh.me:3000/new"
 
       fill_in "Contact name",       with: dlvrq.name
       fill_in "Email",              with: dlvrq.email

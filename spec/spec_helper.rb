@@ -6,6 +6,8 @@ require 'rspec/autorun'
 require 'capybara/rspec'
 require 'rubygems'
 require 'spork'
+require 'capybara/poltergeist'
+Capybara.javascript_driver = :poltergeist
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -63,6 +65,7 @@ Spork.prefork do
     # Testing Devise
     config.include Devise::TestHelpers, :type => :controller
     config.extend ControllerMacros, :type => :controller
+    #config.include Warden::Test::Helpers
   end
 end
 
