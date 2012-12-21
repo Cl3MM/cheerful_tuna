@@ -49,7 +49,10 @@ group :assets do
   gem 'twitter-bootstrap-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   gem 'execjs'
-  gem 'therubyracer', :platform => :ruby
+  ## fix for TheRubyRacer installation
+  #gem 'libv8', '3.11.8.3'
+  #gem 'therubyracer', :platform => :ruby
+  gem 'therubyracer', '0.10.2', :platforms => :ruby
   gem 'jquery-ui-rails'
   gem 'uglifier', '>= 1.0.3'
 end
@@ -71,21 +74,30 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
-gem 'rspec-rails', :group => [:test, :development]
+group :development do
+  gem "better_errors"
+end
+
+group :test, :development do
+  gem 'rspec-rails' #, :group => [:test, :development]
+  gem "letter_opener"
+  gem 'pry'
+end
+
 group :test do
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'capybara'
+  gem 'capybara', '~> 1.1.0'
+  gem 'poltergeist'
   gem 'guard-rspec'
   gem 'spork', '~> 1.0rc'
   gem 'guard-spork'
   gem 'rb-inotify', '~> 0.8.8'
   gem 'database_cleaner'
   gem 'launchy'
+  #gem 'vcr'
+  #gem 'fakeweb'
+  gem 'capybara-mechanize'
 end
 
-group :test, :development do
-  gem "letter_opener"
-  gem 'pry'
-end
