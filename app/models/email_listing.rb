@@ -13,14 +13,10 @@ class EmailListing < ActiveRecord::Base
   end
 
   def emails
-    contacts.map(&:email_addresses)
-  end
-  def contacts
     contacts = Contact.active_contacts
     contacts = contacts.where('contacts.country in (?)', self.countries_to_a) unless self.countries.blank?
     contacts = contacts.tagged_with(self.tags.split(",")) unless self.tags.blank?
-    contacts = contacts.joins(:emails).select('emails.address').order('emails.address ASC')
-    contacts.nil? ? [] : contacts
+    contacts.nil? ? [] : contacts.joins(:emails).select('emails.address').order('emails.address ASC')
   end
 
   protected

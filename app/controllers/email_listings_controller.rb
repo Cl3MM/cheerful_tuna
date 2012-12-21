@@ -20,7 +20,7 @@ class EmailListingsController < ApplicationController
     unless current_user.is_admin?
       @emails = []
     else
-      @emails = @email_listing.contacts
+      @emails = @email_listing.emails
     end
     @listing = (@emails.nil? ? [] : @emails.map(&:address).compact.each_slice(@email_listing.per_line).to_a)
 
