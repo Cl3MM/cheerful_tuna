@@ -89,12 +89,19 @@ namespace :udb do
     File.open("#{Rails.root}/tmp/usernames.csv",'w') {|f| f.puts(member_usernames.sort.map{|x| x.join(";")}.join("\n"))}
   end
 
+  desc "Set :civility to 'Undef' for Contact whose civility is nil"
+  task :set_contact_civility => :environment do
+    Contact.where('civility is NULL').each do |contact|
+        puts "Contact found: ID##{contact.id}\t| Company: #{contact.company}"
+        contact.update_attribute(:civility, "Undef")
+    end
+  end
+
   desc "Add Collection Point tag to members"
   task :member_collection_point_tag => :environment do
     Member.all.each do |m|
-      member = m.dup
-      member.contacts.each do |c|
-        contact = c.dup
+      member = m.clone
+      member.contacts.each do |contact|
         unless contact.tag_list.include? "member"
           puts "Contact found: ID##{contact.id}\t| Company: #{contact.company} | Tag list: #{contact.tag_list.join(', ')}"
           contact.tag_list = "member"
