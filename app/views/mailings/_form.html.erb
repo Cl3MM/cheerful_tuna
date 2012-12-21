@@ -1,0 +1,12 @@
+<%= simple_form_for @mailing, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :subject %>
+  <%= f.input :template %>
+  <%= f.input :status %>
+  <%= f.input :html_version %>
+  <%= f.input :sendt_at %>
+  <div class="form-actions">
+    <%= f.button :submit, :class => 'btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                mailings_path, :class => 'btn' %>
+  </div>
+<% end %>

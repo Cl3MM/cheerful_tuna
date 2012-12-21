@@ -21,7 +21,8 @@ class CollectionPoint < ActiveRecord::Base
   validates :address,     presence: true
 
   after_validation :geocode,
-    if: lambda{ |obj| obj.address_changed? }
+    if: lambda{ |obj| obj.address_changed? },
+    unless: Rails.env.test?
 
   def collection_point_to_select2 distance
       #self.nearest_to_json(distance),

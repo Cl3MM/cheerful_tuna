@@ -29,7 +29,8 @@ class DeliveryRequest < ActiveRecord::Base
   validates :pallets_number,          presence: true, numericality: { :greater_than => 0 }
 
   after_validation :geocode,
-    if: lambda{ |obj| obj.address_changed? }
+    if: lambda{ |obj| obj.address_changed? }#,
+    #unless: Rails.env.test?
 
   def full_address
     "#{address}, #{postal_code} #{city}, #{country.upcase}"

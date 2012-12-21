@@ -12,7 +12,10 @@ class EmailListing < ActiveRecord::Base
     countries.split(";")
   end
 
-  def find_emails
+  def emails
+    contacts.map(&:email_addresses)
+  end
+  def contacts
     contacts = Contact.active_contacts
     contacts = contacts.where('contacts.country in (?)', self.countries_to_a) unless self.countries.blank?
     contacts = contacts.tagged_with(self.tags.split(",")) unless self.tags.blank?

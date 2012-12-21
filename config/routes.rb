@@ -1,5 +1,11 @@
 CheerfulTuna::Application.routes.draw do
 
+  resources :mailings
+
+
+  resources :articles
+
+
   resources :collection_points
 
   resources :html_snippets do
