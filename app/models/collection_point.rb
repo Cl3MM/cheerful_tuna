@@ -24,6 +24,18 @@ class CollectionPoint < ActiveRecord::Base
     if: lambda{ |obj| obj.address_changed? },
     unless: Rails.env.test?
 
+  def create_collection_point_tag_on_contacts
+    contacts.each do |contact|
+      member_tags = contact.tag_list
+      unless member_tags.include? "collection point"
+        puts "Creating Tag"
+        member_tags << "collection point"
+        contact.tag_list = member_tags.join(",")
+        contact.save
+      end
+    end
+  end
+
   def collection_point_to_select2 distance
       #self.nearest_to_json(distance),
       {

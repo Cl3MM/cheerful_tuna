@@ -17,11 +17,35 @@ class Member < ActiveRecord::Base
   attr_reader :end_date, :category_price
 
   validates_presence_of :user_name, :company, :country, :web_profile_url,
-    :start_date, :category, :address, :city, :postal_code, :activity_list
+    :start_date, :category, :address, :city, :postal_code, :activity_list, :contact_ids
   validates :category, :inclusion => { :in => %w[Free A B C D],
                                    :message => "%{value} is not a valid category" }
+  validates :company, uniqueness: {scope: [:country, :address], message: " already exists with similar country and address."}
   mount_uploader :logo_file, MemberFilesUploader
   mount_uploader :membership_file, MemberFilesUploader
+
+  #before_save :validate_contact_presence
+
+  def validate_contact_presence
+    valid = true
+    unless self.contact_ids?
+      valid = false
+      #valid = false if self.emails.first.address.blank?
+      #self.emails.each_with_index do |mail, index|
+        #valid = false if mail.address.blank?
+        #unless mail.address.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i)
+          #valid = false
+        #end
+      #end
+    #else
+      #valid = false
+    end
+
+    unless valid
+      self.errors.add(:base, "You must select at least one contact")
+    end
+    return valid
+  end
 
   before_create { generate_token(:auth_token) }
   after_save :qr_encode, on: [:create, :update]
@@ -32,6 +56,18 @@ class Member < ActiveRecord::Base
       self[column] = SecureRandom.urlsafe_base64
       #send("#{column}=", SecureRandom.urlsafe_base64)
     end while Member.exists?(column => self[column])
+  end
+
+  def create_member_tag_on_contacts
+    contacts.each do |contact|
+      member_tags = contact.tag_list
+      unless member_tags.include? "member"
+        puts "Creating Tag"
+        member_tags << "member"
+        contact.tag_list = member_tags.join(",")
+        contact.save
+      end
+    end
   end
 
   def end_date

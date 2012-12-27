@@ -55,6 +55,7 @@ class CollectionPointsController < ApplicationController
 
     respond_to do |format|
       if @collection_point.save
+        @collection_point.delay.create_collection_point_tag_on_contacts
         format.html { redirect_to @collection_point, notice: 'Collection point was successfully created.' }
         format.json { render json: @collection_point, status: :created, location: @collection_point }
       else
@@ -69,13 +70,11 @@ class CollectionPointsController < ApplicationController
   def update
     params[:collection_point][:contact_ids] = params[:collection_point][:contact_ids].first.split(",") if params[:collection_point][:contact_ids].present?
 
-    7253213682
-
-    0472613057
     @collection_point = CollectionPoint.find(params[:id])
 
     respond_to do |format|
       if @collection_point.update_attributes(params[:collection_point])
+        @collection_point.delay.create_collection_point_tag_on_contacts
         format.html { redirect_to @collection_point, notice: 'Collection point was successfully updated.' }
         format.json { head :no_content }
       else

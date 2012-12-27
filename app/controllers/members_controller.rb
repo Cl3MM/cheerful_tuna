@@ -92,6 +92,7 @@ class MembersController < ApplicationController
       # TODO: send email with credentials
       #RegistrationMailer.welcome(user, generated_password).deliver
       if @member.save
+        @member.delay.create_member_tag_on_contacts
         format.html { redirect_to @member, notice: 'Member was successfully created.' }
         format.json { render json: @member, status: :created, location: @member }
       else
@@ -113,6 +114,7 @@ class MembersController < ApplicationController
     end
     respond_to do |format|
       if @member.update_attributes(params[:member])
+        @member.delay.create_member_tag_on_contacts
         format.html { redirect_to @member, notice: 'Member was successfully updated.' }
         format.json { head :no_content }
       else
