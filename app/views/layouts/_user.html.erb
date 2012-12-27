@@ -24,8 +24,8 @@
         </a>
         <ul class="dropdown-menu">
           <li><%= link_to "Emails lists", email_listings_path, tabindex: "-1" %></li>
-          <li><%= link_to "Emails content", "#", tabindex: "-1" %></li>
-          <li><%= link_to "Send emails", "#", tabindex: "-1" %></li>
+          <li><%= link_to "Emails content", mailings_path, tabindex: "-1" %></li>
+          <li><%= link_to "Articles", articles_path, tabindex: "-1" %></li>
         </ul>
       </li>
       <li class="dropdown">
@@ -69,12 +69,9 @@
         <% end -%>
         <b class="caret"></b>
       </a>
-
-      <%#=link_to content_tag('b', '', :class => 'caret') + "BOB",
-        current_user, :class => "dropdown-toggle", "data-toggle" => "dropdown"
-        <li class="divider"></li>
-      %>
       <ul class="dropdown-menu role="menu" aria-labelledby="dropdownMenu"">
+        <li><%= link_to "Scheduled tasks", sidekiq_web_path %></li>
+        <li class="divider"></li>
         <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
       </ul>
     </li>
