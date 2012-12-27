@@ -97,7 +97,41 @@ namespace :udb do
     end
   end
 
-  desc "Add Collection Point tag to members"
+  desc "Generate the list of contacts for every members"
+  task :generate_member_contact_list => :environment do
+    members, emails = [], []
+    Member.all.each do |m|
+      member, contacts = m.clone, []
+      member.contacts.each do |contact|
+        emails.concat(contact.email_addresses)
+        contact.email_addresses.each do |mail|
+          contacts << "#{contact.full_name} <#{mail}>"
+        end
+      end
+      members << { company: member.company, contacts: contacts }
+    end
+    File.open("#{Rails.root}/tmp/members_contacts.yml",'w') {|f| f.write members.to_yaml}
+    File.open("#{Rails.root}/tmp/members_contacts_emails.yml",'w') {|f| f.write emails.to_yaml}
+    File.open("#{Rails.root}/tmp/members_contacts_emails.txt",'w') {|f| f.write emails.flatten.uniq.sort.join("\n")}
+
+    ap members
+  end
+
+  desc "Add 'collection point' tag to CollectionPoint's contacts"
+  task :collection_point_tagger => :environment do
+    CollectionPoint.all.each do |cp|
+      collection_point = cp.clone
+      collection_point.contacts.each do |contact|
+        unless contact.tag_list.include? "collection point"
+          puts "Contact found: ID##{contact.id}\t| Company: #{contact.company} | Tag list: #{contact.tag_list.join(', ')}"
+          contact.tag_list = "collection point"
+          contact.save
+        end
+      end
+    end
+  end
+
+  desc "Add member tag to Members's contacts"
   task :member_collection_point_tag => :environment do
     Member.all.each do |m|
       member = m.clone
@@ -149,7 +183,7 @@ namespace :udb do
         h
       end
       #ap hash
-      if CollectionPoint.where(hash.except(:contact_name, :contact_email, :contact_telephone)).empty? 
+      if CollectionPoint.where(hash.except(:contact_name, :contact_email, :contact_telephone)).empty?
         puts "Creating Collection Point #{hash[:name]}"
         if hash[:contact_name]
           puts "Contact key found, creating or finding one"

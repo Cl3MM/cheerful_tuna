@@ -119,7 +119,6 @@ namespace :senators do
       end
     end
 
-
     def dump_yml
       File.open(@yaml_senators_file,'w') {|f| f.write self.to_yaml}
     end
