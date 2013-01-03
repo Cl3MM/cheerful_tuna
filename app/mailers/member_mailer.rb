@@ -6,6 +6,10 @@ class MemberMailer < ActionMailer::Base
   #
   #   en.member_mailer.generic_send.subject
   #
+  def newswire name, email
+    mail to: "#{name} <#{email}>", subject: "CERES - Italian regulations update"
+  end
+
   def generic_send name, email
     Rails.logger.debug "*"*10 + " Sending email !!!!" + "*"*10
     @name = name

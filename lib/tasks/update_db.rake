@@ -97,24 +97,33 @@ namespace :udb do
     end
   end
 
+  desc "Send 01/01/2013 CERES Newswire"
+  task :newswire => :environment do
+    Member.all.each do |member|
+      @contacts = member.contacts
+      @contacts.each do |contact|
+        contact.email_addresses.each do |email|
+          MemberMailer.newswire(contact.full_name, email).deliver()
+        end
+      end
+    end
+  end
+
   desc "Generate the list of contacts for every members"
   task :generate_member_contact_list => :environment do
     members, emails = [], []
     Member.all.each do |m|
-      member, contacts = m.clone, []
+      member = m.clone
+      contacts = [member.company]
       member.contacts.each do |contact|
         emails.concat(contact.email_addresses)
-        contact.email_addresses.each do |mail|
-          contacts << "#{contact.full_name} <#{mail}>"
-        end
+        contacts << "#{contact.full_name};#{contact.email_addresses.join(";")}"
       end
-      members << { company: member.company, contacts: contacts }
+      members << contacts if contacts.any?
     end
-    File.open("#{Rails.root}/tmp/members_contacts.yml",'w') {|f| f.write members.to_yaml}
-    File.open("#{Rails.root}/tmp/members_contacts_emails.yml",'w') {|f| f.write emails.to_yaml}
-    File.open("#{Rails.root}/tmp/members_contacts_emails.txt",'w') {|f| f.write emails.flatten.uniq.sort.join("\n")}
+    File.open("#{Rails.root}/tmp/members_contacts.csv",'w') {|f| f.write members.compact.map{ |c| c.join(";")}.join("\n")}
 
-    ap members
+    ap members.compact
   end
 
   desc "Add 'collection point' tag to CollectionPoint's contacts"

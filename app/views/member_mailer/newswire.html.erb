@@ -1,0 +1,646 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Facebook sharing information tags -->
+    <meta property="og:title" content="CERES" />
+    <title>CERES Recyle</title>
+    <style type="text/css">
+      /* Client-specific Styles */
+      #outlook a{padding:0;} /* Force Outlook to provide a "view in browser" button. */
+      body{width:100% !important;} .ReadMsgBody{width:100%;} .ExternalClass{width:100%;} /* Force Hotmail to display emails at full width */
+      body{-webkit-text-size-adjust:none;} /* Prevent Webkit platforms from changing default text sizes. */
+      /* Reset Styles */
+      body{margin:0; padding:0;}
+      img{border:0; height:auto; line-height:100%; outline:none; text-decoration:none;}
+      table td{border-collapse:collapse;}
+      #backgroundTable{height:100% !important; margin:0; padding:0; width:100% !important;}
+      /* Template Styles */
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: COMMON PAGE ELEMENTS /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Page
+      * @section background color
+      * @tip Set the background color for your email. You may want to choose one that matches your company's branding.
+      * @theme page
+      */
+      body, #backgroundTable{
+        /*@editable*/ background-color:#FAFAFA;
+      }
+      /**
+      * @tab Page
+      * @section email border
+      * @tip Set the border for your email.
+      */
+      #templateContainer{
+        /*@editable*/ border: 1px solid #DDDDDD;
+      }
+      /**
+      * @tab Page
+      * @section heading 1
+      * @tip Set the styling for all first-level headings in your emails. These should be the largest of your headings.
+      * @style heading 1
+      */
+      h1, .h1{
+        /*@editable*/ color:#08298A;
+        display:block;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:30px;
+        /*@editable*/ font-weight:bold;
+        /*@editable*/ line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        /*@editable*/ text-align:justify;
+      }
+      /**
+      * @tab Page
+      * @section heading 2
+      * @tip Set the styling for all second-level headings in your emails.
+      * @style heading 2
+      */
+      h2, .h2{
+        /*@editable*/ color:#0174DF;
+        display:block;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:26px;
+        /*@editable*/ font-weight:bold;
+        /*@editable*/ line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        /*@editable*/ text-align:justify;
+      }
+      /**
+      * @tab Page
+      * @section heading 3
+      * @tip Set the styling for all third-level headings in your emails.
+      * @style heading 3
+      */
+      h3, .h3{
+        /*@editable*/ color:#2E9AFE;
+        display:block;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:22px;
+        /*@editable*/ font-weight:bold;
+        /*@editable*/ line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        /*@editable*/ text-align:justify;
+      }
+      /**
+      * @tab Page
+      * @section heading 4
+      * @tip Set the styling for all fourth-level headings in your emails. These should be the smallest of your headings.
+      * @style heading 4
+      */
+      h4, .h4{
+        /*@editable*/ color:#088A08;
+        display:block;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:22px;
+        /*@editable*/ font-weight:bold;
+        /*@editable*/ line-height:100%;
+        margin-top:0;
+        margin-right:0;
+        margin-bottom:10px;
+        margin-left:0;
+        /*@editable*/ text-align:center;
+      }
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: PREHEADER /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Header
+      * @section preheader style
+      * @tip Set the background color for your email's preheader area.
+      * @theme page
+      */
+      #templatePreheader{
+        /*@editable*/ background-color:#FAFAFA;
+      }
+      /**
+      * @tab Header
+      * @section preheader text
+      * @tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
+      */
+      .preheaderContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:10px;
+        /*@editable*/ line-height:100%;
+        /*@editable*/ text-align:left;
+      }
+      /**
+      * @tab Header
+      * @section preheader link
+      * @tip Set the styling for your email's preheader links. Choose a color that helps them stand out from your text.
+      */
+      .preheaderContent div a, .preheaderContent div a:link, .preheaderContent div a:visited, /* Yahoo! Mail Override */ .preheaderContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: HEADER /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Header
+      * @section header style
+      * @tip Set the background color and border for your email's header area.
+      * @theme header
+      */
+      #templateHeader{
+        /*@editable*/ background-color:#FFFFFF;
+        /*@editable*/ border-bottom:0;
+      }
+      /**
+      * @tab Header
+      * @section header text
+      * @tip Set the styling for your email's header text. Choose a size and color that is easy to read.
+      */
+      .headerContent{
+        /*@editable*/ color:#202020;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:34px;
+        /*@editable*/ font-weight:bold;
+        /*@editable*/ line-height:100%;
+        /*@editable*/ padding:0;
+        /*@editable*/ text-align:center;
+        /*@editable*/ vertical-align:middle;
+      }
+      /**
+      * @tab Header
+      * @section header link
+      * @tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
+      */
+      .headerContent a:link, .headerContent a:visited, /* Yahoo! Mail Override */ .headerContent a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      #headerImage{
+        height:auto;
+        max-width:600px !important;
+      }
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: MAIN BODY /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Body
+      * @section body style
+      * @tip Set the background color for your email's body area.
+      */
+      #templateContainer, .bodyContent{
+        /*@editable*/ background-color:#FFFFFF;
+      }
+      /**
+      * @tab Body
+      * @section body text
+      * @tip Set the styling for your email's main content text. Choose a size and color that is easy to read.
+      * @theme main
+      */
+      .bodyContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:14px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:justify;
+      }
+      .join-ceres div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:20px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:center;
+      }
+      /**
+      * @tab Body
+      * @section body link
+      * @tip Set the styling for your email's main content links. Choose a color that helps them stand out from your text.
+      */
+      .bodyContent div h3 a, .bodyContent div h3 a:link, .bodyContent div h3 a:visited, /* Yahoo! Mail Override */ .bodyContent div h3 a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight: bolder;
+        /*@editable*/ text-decoration: none;
+      }
+      .bodyContent div a, .bodyContent div a:link, .bodyContent div a:visited, /* Yahoo! Mail Override */ .bodyContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .bodyContent img{
+        display:inline;
+        height:auto;
+      }
+      .join-ceres div a:link, .join-ceres div a:visited, /* Yahoo! Mail Override */ .join-ceres div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color: #336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:none;
+      }
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: MIDDLE COLUMNS; LEFT, RIGHT /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Middle Columns
+      * @section left column text
+      * @tip Set the styling for your email's left column text. Choose a size and color that is easy to read.
+      */
+      .leftMidColumnContent{
+        /*@editable*/ background-color:#FFFFFF;
+      }
+      /**
+      * @tab Middle Columns
+      * @section left column text
+      * @tip Set the styling for your email's left column text. Choose a size and color that is easy to read.
+      */
+      .leftMidColumnContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:14px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:left;
+      }
+      /**
+      * @tab Middle Columns
+      * @section left column link
+      * @tip Set the styling for your email's left column links. Choose a color that helps them stand out from your text.
+      */
+      .leftMidColumnContent div a:link, .leftMidColumnContent div a:visited, /* Yahoo! Mail Override */ .leftMidColumnContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .leftMidColumnContent img{
+        display:inline;
+        height:auto;
+      }
+      /**
+      * @tab Middle Columns
+      * @section right column text
+      * @tip Set the styling for your email's right column text. Choose a size and color that is easy to read.
+      */
+      .rightMidColumnContent{
+        /*@editable*/ background-color:#FFFFFF;
+      }
+      /**
+      * @tab Middle Columns
+      * @section right column text
+      * @tip Set the styling for your email's right column text. Choose a size and color that is easy to read.
+      */
+      .rightMidColumnContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:14px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:left;
+      }
+      /**
+      * @tab Middle Columns
+      * @section right column link
+      * @tip Set the styling for your email's right column links. Choose a color that helps them stand out from your text.
+      */
+      .rightMidColumnContent div a:link, .rightMidColumnContent div a:visited, /* Yahoo! Mail Override */ .rightMidColumnContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .rightMidColumnContent img{
+        display:inline;
+        height:auto;
+      }
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: LOWER COLUMNS; LEFT, CENTER, RIGHT /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Lower Columns
+      * @section left column text
+      * @tip Set the styling for your email's left column text. Choose a size and color that is easy to read.
+      */
+      .leftLowerColumnContent{
+        /*@editable*/ background-color:#FFFFFF;
+      }
+      /**
+      * @tab Lower Columns
+      * @section left column text
+      * @tip Set the styling for your email's left column text. Choose a size and color that is easy to read.
+      */
+      .leftLowerColumnContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:14px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:left;
+      }
+      /**
+      * @tab Lower Columns
+      * @section left column link
+      * @tip Set the styling for your email's left column links. Choose a color that helps them stand out from your text.
+      */
+      .leftLowerColumnContent div a:link, .leftLowerColumnContent div a:visited, /* Yahoo! Mail Override */ .leftLowerColumnContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .leftLowerColumnContent img{
+        display:inline;
+        height:auto;
+      }
+      /**
+      * @tab Lower Columns
+      * @section center column text
+      * @tip Set the styling for your email's center column text. Choose a size and color that is easy to read.
+      */
+      .centerLowerColumnContent{
+        /*@editable*/ background-color:#FFFFFF;
+      }
+      /**
+      * @tab Lower Columns
+      * @section center column text
+      * @tip Set the styling for your email's center column text. Choose a size and color that is easy to read.
+      */
+      .centerLowerColumnContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:14px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:left;
+      }
+      /**
+      * @tab Lower Columns
+      * @section center column link
+      * @tip Set the styling for your email's center column links. Choose a color that helps them stand out from your text.
+      */
+      .centerLowerColumnContent div a:link, .centerLowerColumnContent div a:visited, /* Yahoo! Mail Override */ .centerLowerColumnContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .centerLowerColumnContent img{
+        display:inline;
+        height:auto;
+      }
+      /**
+      * @tab Lower Columns
+      * @section right column text
+      * @tip Set the styling for your email's right column text. Choose a size and color that is easy to read.
+      */
+      .rightLowerColumnContent{
+        /*@editable*/ background-color:#FFFFFF;
+      }
+      /**
+      * @tab Lower Columns
+      * @section right column text
+      * @tip Set the styling for your email's right column text. Choose a size and color that is easy to read.
+      */
+      .rightLowerColumnContent div{
+        /*@editable*/ color:#505050;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:14px;
+        /*@editable*/ line-height:150%;
+        /*@editable*/ text-align:left;
+      }
+      /**
+      * @tab Lower Columns
+      * @section right column link
+      * @tip Set the styling for your email's right column links. Choose a color that helps them stand out from your text.
+      */
+      .rightLowerColumnContent div a:link, .rightLowerColumnContent div a:visited, /* Yahoo! Mail Override */ .rightLowerColumnContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .rightLowerColumnContent img{
+        display:inline;
+        height:auto;
+      }
+      /* /\/\/\/\/\/\/\/\/\/\ STANDARD STYLING: FOOTER /\/\/\/\/\/\/\/\/\/\ */
+      /**
+      * @tab Footer
+      * @section footer style
+      * @tip Set the background color and top border for your email's footer area.
+      * @theme footer
+      */
+      #templateFooter{
+        /*@editable*/ background-color:#FFFFFF;
+        /*@editable*/ border-top:0;
+      }
+      /**
+      * @tab Footer
+      * @section footer text
+      * @tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
+      * @theme footer
+      */
+      .footerContent div{
+        /*@editable*/ color:#707070;
+        /*@editable*/ font-family:Arial;
+        /*@editable*/ font-size:12px;
+        /*@editable*/ line-height:125%;
+        /*@editable*/ text-align:center;
+      }
+      /**
+      * @tab Footer
+      * @section footer link
+      * @tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
+      */
+      .footerContent div a:link, .footerContent div a:visited, /* Yahoo! Mail Override */ .footerContent div a .yshortcuts /* Yahoo! Mail Override */{
+        /*@editable*/ color:#336699;
+        /*@editable*/ font-weight:normal;
+        /*@editable*/ text-decoration:underline;
+      }
+      .footerContent img{
+        display:inline;
+      }
+      /**
+      * @tab Footer
+      * @section social bar style
+      * @tip Set the background color and border for your email's footer social bar.
+      * @theme footer
+      */
+      #social{
+        /*@editable*/ background-color:#FAFAFA;
+        /*@editable*/ border:0;
+      }
+      /**
+      * @tab Footer
+      * @section social bar style
+      * @tip Set the background color and border for your email's footer social bar.
+      */
+      #social div{
+        /*@editable*/ text-align:center;
+      }
+      /**
+      * @tab Footer
+      * @section utility bar style
+      * @tip Set the background color and border for your email's footer utility bar.
+      * @theme footer
+      */
+      #utility{
+        /*@editable*/ background-color:#FFFFFF;
+        /*@editable*/ border:0;
+      }
+      /**
+      * @tab Footer
+      * @section utility bar style
+      * @tip Set the background color and border for your email's footer utility bar.
+      */
+      #utility div{
+        /*@editable*/ text-align:center;
+      }
+      #monkeyRewards img{
+        max-width:190px;
+      }
+    </style>
+  </head>
+  <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+    <center>
+      <table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="backgroundTable">
+        <tr>
+          <td align="center" valign="top">
+            <!-- // Begin Template Preheader \\ -->
+            <table border="0" cellpadding="10" cellspacing="0" width="600" id="templatePreheader">
+              <tr>
+                <td valign="top" class="preheaderContent">
+                  <!-- // Begin Module: Standard Preheader \ -->
+                  <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                    <tr>
+                      <td valign="top" width="175">
+                        <div mc:edit="std_preheader_content">
+                          CERES
+                        </div>
+                      </td>
+                      <td valign="top" width="400">
+                        <div mc:edit="std_preheader_links" style="text-align: right;">
+                          Is this email not displaying correctly? <a href="http://www.ceres-recycle.org/documents/mailings/2013/January/italy_updated_regulations.html#utm_source=email&utm_medium=email&utm_campaign=CERES_Italy_January_2013" target="_blank">View it in your browser</a>.
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Module: Standard Preheader \ -->
+                </td>
+              </tr>
+            </table>
+            <!-- // End Template Preheader \\ -->
+            <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateContainer">
+              <tr>
+                <td align="center" valign="top">
+                  <!-- // Begin Template Header \\ -->
+                  <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
+                    <tr>
+                      <td class="headerContent">
+                        <!-- // Begin Module: Standard Header Image \\ -->
+                        <img src="http://www.ceres-recycle.org/images/illustrations/ceres/banners/CERES_newswire.png" style="width:600px;max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" />
+                        <!-- // End Module: Standard Header Image \\ -->
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Template Header \\ -->
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <!-- // Begin Template Body \\ -->
+                  <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateBody">
+                    <tr>
+                      <td valign="top">
+                        <table border="0" cellpadding="0" cellspacing="0" width="600">
+                          <tr>
+                            <td valign="top" class="bodyContent">
+                              <!-- // Begin Module: Standard Content \\ -->
+                              <table border="0" cellpadding="20" cellspacing="0" width="100%">
+                                <tr>
+                                  <td valign="top">
+                                    <div mc:edit="std_content00">
+                                      <h1 class="h1">Italian regulations update</h1>
+                                      <br/>
+                                      <h3 class="h3">Conto Energia IV and V deadline for take-back systems moved to March 31st, 2013</h3>
+                                      <br/>
+                                      The inter-ministerial Decree of May 5th, 2011 (Conto Energia IV) and July 5th, 2012 (Conto Energia V) provides that, for plants that entered service after June 30th, 2012, the PV modules manufacturer must register with a take-back system that ensures the recycling at the end of life.
+                                      <br/>
+                                      <br/>
+                                      According to the Application Rules provided by the GSE, take-back systems must meet the required performance to qualify for the disposal of end-of-life PV modules.
+                                      <br/>
+                                      <br/>
+                                      The GSE has now publicly released the <a href="http://www.gse.it/it/salastampa/GSE_Documenti/Disciplinare%20Requisti%20per%20i%20Consorzi%20FTV.pdf" rel="nofollow">Technical Regulations for the definition and verification of the technical requirements of systems / consortia for the recovery and recycling of photovoltaic modules at the end of life (December 2012 version)</a>, which gives more precision to the requirements for take-back systems.
+                                      <br/>
+                                      <br/>
+                                      The Application Rules stated that with effect from 1 January 1st 2013, FIT would only be available for modules with a certificate of membership to a take-back system meeting the required specifications.
+                                      <br/>
+                                      <br/>
+                                      The GSE had provided for a transitional period, whose deadline had previously been set for December 31st, 2012, during which the take-back systems could produce a statement of &quot;partial compliance&quot;. <strong>To provide adequate time to comply with the new requirements, the deadline has now been extended to March 31st, 2013.</strong>
+                                      <br/>
+                                      <br/>
+                                      CERES and its Italian partner want to seize this opportunity to reaffirm our commitment to our members and confirm our assessment that the offer provided meets the GSE's requirements.
+                                      <br />
+                                    </div>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td>
+                                    <div mc:edit="std_content01">
+                                      <h3 class="h3" style="text-align: center;">For more information, visit <a href="http://www.ceres-recycle.org/#utm_source=email&utm_medium=email&utm_campaign=CERES_Italy_January_2013" target="_blank">ceres-recycle.org</a></h3>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                              <!-- // End Module: Standard Content \\ -->
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Template Body \\ -->
+                </td>
+              </tr>
+              <tr>
+                <td align="center" valign="top">
+                  <!-- // Begin Template Footer \\ -->
+                  <table border="0" cellpadding="10" cellspacing="0" width="600" id="templateFooter">
+                    <tr>
+                      <td valign="top" class="footerContent">
+                        <!-- // Begin Module: Standard Footer \\ -->
+                        <table border="0" cellpadding="10" cellspacing="0" width="100%">
+                          <tr>
+                            <td colspan="2" valign="middle" id="social">
+                              <div mc:edit="std_social">
+                                &nbsp;<a target="_blank" href="https://twitter.com/#!/CeresRecycle">follow on Twitter</a> | <a target="_blank" href="https://www.facebook.com/pages/CERES-Recycle/255457807817105">friend on Facebook</a> | <a href="mailto:?Subject=CERES - Photovoltaic modules recycling scheme&body=Hello, I'm sure you will take interest in CERES, the European Center for Solar Energy Recycling: http://www.ceres-recycle.org/">forward to a friend</a>&nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td valign="top">
+                              <div mc:edit="std_footer">
+                                <em>Copyright &copy; CERES, All rights reserved.</em>&nbsp;&nbsp;|&nbsp;&nbsp;
+                                <strong>Contact us:</strong>
+                                <a href="mailto:contact@ceres-recycle.org">contact@ceres-recycle.org</a>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td colspan="2" valign="middle" id="utility">
+                              <div mc:edit="std_utility">
+                                &nbsp;<a target="_blank" href="http://www.ceres-recycle.org/unsubscribe#utm_source=email&utm_medium=email&utm_campaign=CERES_Facts_5_july_2012">unsubscribe from this list</a>&nbsp;
+                              </div>
+                            </td>
+                          </tr>
+                        </table>
+                        <!-- // End Module: Standard Footer \\ -->
+                      </td>
+                    </tr>
+                  </table>
+                  <!-- // End Template Footer \\ -->
+                </td>
+              </tr>
+            </table>
+            <br />
+          </td>
+        </tr>
+      </table>
+    </center>
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-25717248-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+       var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+       })();
+     </script>
+  </body>
+</html>
