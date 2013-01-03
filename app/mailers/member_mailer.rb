@@ -1,5 +1,5 @@
 class MemberMailer < ActionMailer::Base
-  default from: "contact@ceres-recycle.org"
+  default from: "contact@ceres-recycle.org", bcc: "contact@ceres-recycle.org"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
