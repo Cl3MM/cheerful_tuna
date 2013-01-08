@@ -1,4 +1,6 @@
 class MailingsController < ApplicationController
+  before_filter :authenticate_user!
+
   # GET /mailings
   # GET /mailings.json
   def index
@@ -40,10 +42,16 @@ class MailingsController < ApplicationController
   # POST /mailings
   # POST /mailings.json
   def create
+    Rails.logger.debug "*" * 100
+    params[:mailing][:article_ids]  = params[:mailing][:article_ids].first.split(",") if params[:mailing].has_key? :article_ids
+    params[:mailing][:tags]         = params[:mailing][:tags].sort.first              if params[:mailing][:tags].present?
+    params[:mailing][:countries]    = params[:mailing][:countries].sort.join(";")     if params[:mailing][:countries].present?
     @mailing = Mailing.new(params[:mailing])
 
     respond_to do |format|
       if @mailing.save
+        #MailingMailer.send_mailing({id: @mailing.id, to: "clement.roullet@gmail.com"}).deliver
+        MailingsActionsWorker.perform_async("create", id: @mailing.id)
         format.html { redirect_to @mailing, notice: 'Mailing was successfully created.' }
         format.json { render json: @mailing, status: :created, location: @mailing }
       else
@@ -56,10 +64,14 @@ class MailingsController < ApplicationController
   # PUT /mailings/1
   # PUT /mailings/1.json
   def update
+    params[:mailing][:article_ids]  = params[:mailing][:article_ids].first.split(",") if params[:mailing].has_key? :article_ids
+    params[:mailing][:tags]         = params[:mailing][:tags].sort.first              if params[:mailing][:tags].present?
+    params[:mailing][:countries]    = params[:mailing][:countries].sort.join(";")     if params[:mailing][:countries].present?
     @mailing = Mailing.find(params[:id])
 
     respond_to do |format|
       if @mailing.update_attributes(params[:mailing])
+        MailingsActionsWorker.perform_async("update", id: @mailing.id)
         format.html { redirect_to @mailing, notice: 'Mailing was successfully updated.' }
         format.json { head :no_content }
       else
