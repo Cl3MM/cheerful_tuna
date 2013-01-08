@@ -6,7 +6,11 @@ class ChangeDeliveryRequestTechnologyType < ActiveRecord::Migration
     remove_column :delivery_requests, :concentration_PV
     remove_column :delivery_requests, :CIGS
     remove_column :delivery_requests, :CdTe
-    add_column :delivery_requests, :technology, :string, limit: 100, null: false
+    if Rails.env.test?
+      add_column :delivery_requests, :technology, :string, limit: 100
+    else
+      add_column :delivery_requests, :technology, :string, limit: 100, null: false
+    end
   end
 
   def down
