@@ -16,7 +16,6 @@ class Contact < ActiveRecord::Base
   acts_as_taggable
   versioned #:dependent => :tracking
 
-
   # Associations
   has_many :emails, :inverse_of => :contact, :dependent => :destroy
   has_and_belongs_to_many :members
@@ -29,7 +28,7 @@ class Contact < ActiveRecord::Base
   attr_accessible :address, :category, :cell, :company, :country, :fax,
     :first_name, :infos, :is_active, :is_ceres_member, :last_name, :website,
     :position, :postal_code, :phone, :emails_attributes, :versions_attributes,
-    :member_id, :tag_list, :city, :civility
+    :tag_list, :city, :civility
 
   attr_reader :to_label, :to_select2, :full_name
 
@@ -58,6 +57,16 @@ class Contact < ActiveRecord::Base
   ## Tire configuration for easier testing
   index_name("#{Rails.env}-#{Rails.application.class.to_s.downcase}-contacts")
   class << self
+
+    # TODO:
+    # Faire un scope qu'on peut chainer avec un autre scope sur les Pays
+    #
+    def email_addresses_tagged_for_mailing tags, countries = nil
+      contacts = self.active_contacts
+      contacts = contacts.where('contacts.country in (?)', countries) unless countries.nil? || countries.empty?
+      contacts = contacts.tagged_with(tags.split(",")) unless tags.blank?
+      contacts.nil? ? [] : contacts.joins(:emails).select('emails.address').order('emails.address ASC').map(&:address).sort.uniq
+    end
 
     def search(params)
       per_page = (params[:ppage].present? ? (params[:ppage].to_i rescue 50) : 50 )
@@ -139,18 +148,6 @@ class Contact < ActiveRecord::Base
       Tire.index(Contact.index_name)
     end
   end
-
-  #def previous
-    #Post.where(["id < ?", id]).last
-  #end
-
-  #def previous_contact
-    #Contact.where(["company < ?", self.company]).order("company DESC").first
-  #end
-
-  #def next_contact
-    #Contact.where(["company > ?", self.company]).order("company ASC").first
-  #end
 
   def method_missing(meth, *args, &block)
     if meth.to_s =~ /^(previous|next)_?(\w*)$/
