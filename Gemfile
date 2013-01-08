@@ -7,7 +7,8 @@ gem 'rails'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'thin'
+ gem 'thin'
+# gem 'puma'
 gem 'kaminari'
 #gem 'will_paginate', '> 3.0'
 #gem 'will_paginate-bootstrap'
@@ -32,7 +33,10 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'mercury-rails'
 gem 'paperclip'
 gem 'friendly_id', '~> 4.0.1'
-
+gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem "redis", "~> 3.0.1"
 #gem 'rack-mini-profiler'
 
 #gem 'thinking-sphinx', '2.0.10'
