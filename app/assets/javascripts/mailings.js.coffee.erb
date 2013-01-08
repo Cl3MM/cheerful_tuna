@@ -1,0 +1,104 @@
+//=require jquery-ui
+//=require jquery-ui-slider-access
+//=require jquery-timepicker-addon
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+#
+###
+  $('#mailing_cc').select2
+    placeholder: "Select contact(s)"
+    allowClear: true
+    minimumInputLength: 3
+    multiple: true
+    ajax:
+      url: "/contacts.json"
+      dataType: 'json'
+      quietMillis: 100
+      data: (term, page) ->
+        member_query: term
+        page: page
+      results: (data, page) ->
+        console.log( data)
+        results: data
+    formatResult: (contact) ->
+      contact.text
+    formatSelection: (data) ->
+      data.text
+
+  $('#mailing_contact_ids').select2("data", $.parseJSON($('#member_contact_ids').val()))
+###
+
+#  $('#mailing_to').select2($('#mailing_to').data('tags'))
+#  $('#mailing_cc').select2($('#mailing_cc').data('tags'))
+#  $('#mailing_bcc').select2($('#mailing_bcc').data('tags'))
+
+jQuery ->
+  $('#mailing_send_at').datetimepicker
+    dateFormat: 'yy-mm-dd',
+    timeFormat: 'HH:mm',
+
+  $('#mailing_countries').select2($('#mailing_countries').data('tags')) if $('#mailing_countries').length > 0
+  $('#mailing_tags').select2($('#mailing_tags').data('tags')) if $('#mailing_tags').length > 0
+
+  select2_attributes =
+    placeholder: "Select contact(s)"
+    allowClear: true
+    minimumInputLength: 3
+    multiple: true
+    ajax:
+      url: "/contacts.json"
+      dataType: 'json'
+      quietMillis: 100
+      data: (term, page) ->
+        member_query: term
+        page: page
+      results: (data, page) ->
+        console.log( data)
+        results: data
+    formatResult: (contact) ->
+      contact.text
+    formatSelection: (data) ->
+      data.text
+
+
+  #$("#mailing_to").select2(select2_attributes)
+  #$("#mailing_to").select2("data", $.parseJSON($("#mailing_to").val()))
+  #$("#mailing_cc").select2(select2_attributes)
+  #$("#mailing_cc").select2("data", $.parseJSON($("#mailing_cc").val()))
+  #$("#mailing_bcc").select2(select2_attributes)
+  #$("#mailing_bcc").select2("data", $.parseJSON($("#mailing_bcc").val()))
+  inputs = ["to", "cc", "bcc"]
+#  for tag in inputs
+#    do (tag) ->
+#      $("#mailing_#{ tag }").select2(select2_attributes)
+#      $("#mailing_#{ tag }").select2("data", $.parseJSON($("#mailing_#{ tag }").val()))
+#      return true
+
+  $('#mailing_article_ids').select2
+    placeholder: "Select Article(s)"
+    width: "70%"
+    allowClear: true
+    minimumInputLength: 3
+    multiple: true
+    ajax:
+      url: "/articles.json"
+      dataType: 'json'
+      quietMillis: 100
+      data: (term, page) ->
+        member_query: term
+        page: page
+      results: (data, page) ->
+        #console.log('result '+  data)
+        results: data
+    formatResult: (contact) ->
+      contact.text
+    formatSelection: (data) ->
+      data.text
+
+  $('#mailing_article_ids').select2("data", $.parseJSON($('#mailing_article_ids').val()))
+
+
+#  $('#mailing_send_at').datepicker
+#    format: 'yyyy-mm-dd'
+
