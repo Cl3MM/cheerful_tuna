@@ -24,16 +24,31 @@ FactoryGirl.define do
     end
   end
 
-  factory :articles do
+  factory :article do
     sequence(:title)    { |n| "Super title ##{n}" }
     content             { Faker::Lorem.paragraphs }
+  end
+
+  factory :mailing do
+    ignore do
+      single_email false
+    end
+
+    sequence(:subject)  { |n| "Awesome subject ##{n}" }
+    template            "default"
+
+    after(:build) do |mailing, evaluator|
+      rand(1..6).times do
+        mailing.articles << build(:article)
+      end
+    end
   end
 
   factory :email_listing do
     name { Faker::Name.name }
   end
 
-  factory :collection_points do
+  factory :collection_point do
     name          { Faker::Name.name}
     sequence(:cp_id)         { |n| "FR00#{n}" }
     address       { Faker::Address.street_address}
@@ -81,6 +96,10 @@ FactoryGirl.define do
   end
 
   factory :member do
+    ignore do
+      single_email false
+    end
+
     user_name       { Faker::Internet.user_name }
     company         { Faker::Company.name }
     web_profile_url { Faker::Internet.url }
@@ -93,6 +112,13 @@ FactoryGirl.define do
     activity_list   { %w(Manufacturer Producer Distributor Installer).sample }
     country         { COUNTRIES.sample }
     category        { %w(A B C D Free).sample }
+
+    after(:build) do |member, evaluator|
+      rand(1..2).times do
+        member.contacts << build(:contact) unless evaluator.single_email
+        member.contacts << build(:contact, single_email: true) if evaluator.single_email
+      end
+    end
   end
 
   factory :email do
@@ -102,6 +128,10 @@ FactoryGirl.define do
   end
 
   factory :contact do
+    ignore do
+      single_email false
+    end
+
     address     { "#{Faker::Address.street_address} #{Faker::Address.street_suffix}" }
     first_name  { Faker::Name.first_name }
     company     { Faker::Company.name }
@@ -109,12 +139,16 @@ FactoryGirl.define do
     last_name   { Faker::Name.last_name}
     country     { COUNTRIES.sample }
 
-    after(:build) do |contact|
-      rand(1..6).times do
+    after(:build) do |contact, evaluator|
+      if evaluator.single_email
         contact.emails << build(:email, contact: contact)
+      else
+        rand(1..6).times do
+          contact.emails << build(:email, contact: contact)
+        end
       end
     end
-    #factory :contact_with_emails do
+
       #after(:create) do |contact, evaluator|
         #create_list(:email, rand(1..4), contact: contact, contact_id: contact.id)
       #end

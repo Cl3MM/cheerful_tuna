@@ -15,6 +15,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 Spork.prefork do
   RSpec.configure do |config|
     config.include Capybara::DSL
+    config.include CapybaraSelect2Helper
     # ## Mock Framework
     #
     # If you prefer to use mocha, flexmock or RR, uncomment the appropriate line:
