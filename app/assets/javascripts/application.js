@@ -16,5 +16,5 @@
 // require raphael-min
 // require morris.min
 // require select2
-//= require bootstrap-datepicker
+// = require bootstrap-datepicker
 // =  // require jquery.ui.datepicker
