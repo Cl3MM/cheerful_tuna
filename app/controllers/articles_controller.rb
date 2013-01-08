@@ -5,11 +5,17 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    Rails.logger.debug "*" * 100
+    if params[:member_query].present?
+      Rails.logger.debug "member query: #{params[:member_query]}"
+      @articles = Article.where("title LIKE ?", "%#{params[:member_query]}%")
+    else
+      @articles = Article.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @articles }
+      format.json { render json: @articles.map(&:to_select2) }
     end
   end
 
