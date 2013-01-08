@@ -1,4 +1,13 @@
+require 'sidekiq/web'
+
 CheerfulTuna::Application.routes.draw do
+  resources :email_templates
+
+
+  constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.is_admin? }
+  constraints constraint do
+    mount Sidekiq::Web => '/sidekiq'
+  end
 
   resources :mailings
 
