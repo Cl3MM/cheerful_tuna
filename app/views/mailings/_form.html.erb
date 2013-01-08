@@ -1,12 +1,90 @@
 <%= simple_form_for @mailing, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= render "shared/error_messages", target: @mailing %>
+
+  <legend>Mailing recipients</legend>
+
+  <%= f.input :tags, label: "Select Tags...",
+    input_html: { data: { tags: {tokenSeparators: [","], tags: Contact.tag_counts.map(&:name)}},
+                  multiple: true, style: "width:70%;height:300px;"} %>
+
+  <%= f.input :countries, label: "...and/or Countries",
+    input_html: { data: { tags: {tokenSeparators: [";"], tags: COUNTRIES}},
+                  multiple: true, style: "width:70%;height:300px;"} %>
+
+<% if false %>
+  <%#<legend>Mailing's contacts details</legend>%>
+  <p class="muted">Please start to type the contact name, and select from the list.</p>
+  <div class="control-group select required">
+    <label class="select required control-label" for="mailing_to">
+      <abbr title="required">*</abbr> Select contacts</label>
+    <div class="controls">
+      <input multiple="multiple" type="hidden" id="mailing_to" name="mailing[to][]" />
+    </div>
+  </div>
+  <div class="control-group select required">
+    <label class="select required control-label" for="mailing_to"> </label>
+    <div class="controls">
+      <p class="muted">Or create a new one</p>
+      <%= link_to raw('<i class="icon-plus-sign"></i> New Contact'), new_contact_path(format: [:js]) , method: :get, remote: true, id: "more_contacts", class: "btn btn-primary" %>
+    </div>
+  </div>
+
+  <div id="contact_modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+      <h3 id="ContactModalLabel">Create a new Contact</h3>
+    </div>
+    <div class="modal-body">
+    </div>
+    <div class="modal-footer">
+      <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+      <button class="btn btn-primary">Create Contact</button>
+    </div>
+  </div>
+
+  <p class="muted">Please start to type the contact name, and select from the list.</p>
+  <div class="control-group select required">
+    <label class="select required control-label" for="mailing_cc">
+      <abbr title="required">*</abbr> Select contacts</label>
+    <div class="controls">
+      <input multiple="multiple" type="hidden" id="mailing_cc" name="mailing[cc][]" />
+    </div>
+  </div>
+
+  <p class="muted">Please start to type the contact name, and select from the list.</p>
+  <div class="control-group select required">
+    <label class="select required control-label" for="mailing_bcc">
+      <abbr title="required">*</abbr> Bcc</label>
+    <div class="controls">
+      <input multiple="multiple" type="hidden" id="mailing_bcc" name="mailing[bcc][]" />
+    </div>
+  </div>
+<% end %>
+
+
+  <legend>Mailing content</legend>
   <%= f.input :subject %>
-  <%= f.input :template %>
-  <%= f.input :status %>
-  <%= f.input :html_version %>
-  <%= f.input :sendt_at %>
+  <%= f.association :email_template %>
+  <!--
+  <div class="control-group select required">
+    <label class="select required control-label" for="mailing_article_ids">
+      <abbr title="required">*</abbr> Select articles</label>
+    <div class="controls">
+      <%#<input value='<%= raw @mailing.articles_to_select2_hidden_input %%>' multiple="multiple" type="hidden" id="mailing_article_ids" name="mailing[article_ids][]" />%>
+    </div>
+  </div>
+-->
+  <%= f.input :article_ids, label: "Select article(s)", input_html: { value: @mailing.articles_to_select2_hidden_input, multiple: true } %>
+
+  <%#= f.input :status %>
+  <%#= f.input :html_version %>
+  <%= f.input :send_at, as: :string %>
   <div class="form-actions">
-    <%= f.button :submit, :class => 'btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                mailings_path, :class => 'btn' %>
+    <div class="btn-group">
+      <%= f.button :submit, :class => 'btn-primary' %>
+      <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                  mailings_path, :class => 'btn' %>
+    </div>
   </div>
 <% end %>
