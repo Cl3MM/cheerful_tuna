@@ -2,7 +2,7 @@
 class EmailListing < ActiveRecord::Base
   attr_accessible :name, :per_line, :countries, :tags, :operator, :tag_selector
 
-  after_validation :check_countries_and_tags
+  before_validation :check_countries_and_tags
 
   #before_update :check_name
 
@@ -13,10 +13,7 @@ class EmailListing < ActiveRecord::Base
   end
 
   def emails
-    contacts = Contact.active_contacts
-    contacts = contacts.where('contacts.country in (?)', self.countries_to_a) unless self.countries.blank?
-    contacts = contacts.tagged_with(self.tags.split(",")) unless self.tags.blank?
-    contacts.nil? ? [] : contacts.joins(:emails).select('emails.address').order('emails.address ASC')
+    Contact.email_addresses_tagged_for_mailing self.tags, self.countries_to_a
   end
 
   protected
