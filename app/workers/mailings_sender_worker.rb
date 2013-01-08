@@ -1,6 +1,6 @@
 class MailingsSenderWorker
   include Sidekiq::Worker
-  sidekiq_options queue: :mailings_sender
+  sidekiq_options queue: :emails
 
   def perform method_name, options = {}
     options.symbolize_keys! if options
