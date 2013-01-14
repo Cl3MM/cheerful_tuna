@@ -51,7 +51,7 @@ class MailingsController < ApplicationController
     respond_to do |format|
       if @mailing.save
         #MailingMailer.send_mailing({id: @mailing.id, to: "clement.roullet@gmail.com"}).deliver
-        MailingsActionsWorker.perform_async("create", id: @mailing.id)
+        MailingsDispatcherWorker.perform_async("create", id: @mailing.id)
         format.html { redirect_to @mailing, notice: 'Mailing was successfully created.' }
         format.json { render json: @mailing, status: :created, location: @mailing }
       else
@@ -71,7 +71,7 @@ class MailingsController < ApplicationController
 
     respond_to do |format|
       if @mailing.update_attributes(params[:mailing])
-        MailingsActionsWorker.perform_async("update", id: @mailing.id)
+        MailingsDispatcherWorker.perform_async("update", id: @mailing.id)
         format.html { redirect_to @mailing, notice: 'Mailing was successfully updated.' }
         format.json { head :no_content }
       else

@@ -101,6 +101,10 @@ class Mailing < ActiveRecord::Base
     @_recipients ||= Contact.email_addresses_tagged_for_mailing(self.tags, self.countries)
   end
 
+  def recipients_count
+   @_count ||= recipients.count
+  end
+
   def render_template
     @_template ||= ERB.new(self.email_template.content).result(binding)
   end
@@ -135,6 +139,19 @@ class Mailing < ActiveRecord::Base
     queue.map(&:delete)
   end
 
+  def self.status
+    ENVIRONMENT_CONFIG[:mailings_status].symbolize_keys!
+  end
+
+  def status_humanized
+    Mailing.status[self.status]
+  end
+
+  def update_status new_status
+    new_symb_status = new_status.to_sym
+    self.status = new_symb_status if Mailing.status.keys.include? new_symb_status
+  end
+
  ###############################################################
 #                                                               #
 #                                                               #
@@ -142,6 +159,7 @@ class Mailing < ActiveRecord::Base
 #                                                               #
 #                                                               #
  ###############################################################
+
   protected
 
   def check_countries_and_tags
@@ -163,10 +181,13 @@ class Mailing < ActiveRecord::Base
     end.change(sec: 0)
   end
 
+  def redis_env
+    @_env ||= "#{Rails.env}-#{Rails.application.class.to_s.downcase}"
+  end
+
   # helper method to generate redis keys
   def redis_key(str)
-    env = "#{Rails.env}-#{Rails.application.class.to_s.downcase}"
-    "#{env}:mailing:#{self.id}:#{str}"
+    "#{self.redis_env}:mailing:#{self.id}:#{str}"
   end
 
   def delay_template!
