@@ -1,23 +1,4 @@
 GIT
-  remote: git://github.com/milkfarm/vestal_versions.git
-  revision: a82dcd6dff2fd507f4a269eabd2814786c9aa42a
-  specs:
-    vestal_versions (1.2.2)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-
-GIT
-  remote: git://github.com/prawnpdf/prawn
-  revision: 3d1b3cb614a8e517a929a172053c2dd709e2e76b
-  branch: master
-  specs:
-    prawn (1.0.0.rc1)
-      afm
-      pdf-reader (>= 0.9.0, < 2.0)
-      ruby-rc4
-      ttfunk (~> 1.0.3)
-
-GIT
   remote: http://github.com/whomwah/rqrcode
   revision: de2fb26d152130d0436985b9e528c429f8ef0f25
   specs:
@@ -268,6 +249,9 @@ GEM
       http_parser.rb (~> 0.5.3)
       multi_json (~> 1.0)
     polyglot (0.3.3)
+    prawn (0.12.0)
+      pdf-reader (>= 0.9.0)
+      ttfunk (~> 1.0.2)
     pry (0.9.10)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -411,6 +395,8 @@ GEM
       unf_ext
     unf_ext (0.0.5)
     unicode-display_width (0.1.1)
+    vestal_versions (1.0.2)
+      activerecord (>= 2.1.0)
     warden (1.2.1)
       rack (>= 1.0)
     webrobots (0.0.13)
@@ -455,7 +441,7 @@ DEPENDENCIES
   nokogiri
   paperclip
   poltergeist
-  prawn!
+  prawn
   pry
   puma
   rails (~> 3.2.11)
@@ -479,5 +465,5 @@ DEPENDENCIES
   tire
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
-  vestal_versions!
+  vestal_versions
   yaml_db

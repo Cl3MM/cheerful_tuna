@@ -4,5 +4,5 @@ Sidekiq.configure_server do |config|
 end
 
 Sidekiq.configure_client do |config|
-  config.redis = { :url => "redis://#{ENVIRONMENT_CONFIG[:redis_socket]}", :namespace => "#{Rails.env}-#{Rails.application.class.to_s.downcase}" }
+  config.redis = { url: "redis://#{ENVIRONMENT_CONFIG[:redis_socket]}", namespace: "#{Rails.env}-#{Rails.application.class.to_s.downcase}" }
 end
