@@ -1,14 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', '~> 3.2.11'
 #, '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
- gem 'thin'
-# gem 'puma'
+#gem 'sqlite3'
+#gem 'thin'
+gem 'puma'
 gem 'kaminari'
 #gem 'will_paginate', '> 3.0'
 #gem 'will_paginate-bootstrap'
@@ -80,6 +80,7 @@ gem 'jquery-rails'
 
 group :development do
   gem "better_errors"
+  gem "binding_of_caller"
 end
 
 group :test, :development do
