@@ -1,4 +1,12 @@
 GIT
+  remote: git://github.com/laserlemon/vestal_versions
+  revision: c7aa512666b22e1a47b4fb36bb1679cb847a532e
+  specs:
+    vestal_versions (1.2.3)
+      activerecord (~> 3.0)
+      activesupport (~> 3.0)
+
+GIT
   remote: http://github.com/whomwah/rqrcode
   revision: de2fb26d152130d0436985b9e528c429f8ef0f25
   specs:
@@ -395,8 +403,6 @@ GEM
       unf_ext
     unf_ext (0.0.5)
     unicode-display_width (0.1.1)
-    vestal_versions (1.0.2)
-      activerecord (>= 2.1.0)
     warden (1.2.1)
       rack (>= 1.0)
     webrobots (0.0.13)
@@ -465,5 +471,5 @@ DEPENDENCIES
   tire
   twitter-bootstrap-rails
   uglifier (>= 1.0.3)
-  vestal_versions
+  vestal_versions!
   yaml_db
