@@ -21,4 +21,7 @@ pickle-email-*.html
 /app/assets/images/Signature_JP_white_bg.jpg
 /config/tuna.yml
 tags
+TAGS
 /db/schema.rb
+/config/sidekiq.yml
+/config/puma.rb
