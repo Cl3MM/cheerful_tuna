@@ -1,0 +1,73 @@
+
+#!/bin/sh
+
+DESC=Puma
+NAME=puma
+APP_PATH=/var/www/cheerful_tuna
+PUMA_PATH=${APP_PATH}/tmp/${NAME}
+PID_FILE=${PUMA_PATH}/${NAME}.pid
+STATE_FILE=${PUMA_PATH}/${NAME}.state
+SOCK_FILE=${PUMA_PATH}/${NAME}.sock
+CONFIG_FILE=${APP_PATH}/config/puma.rb
+RACKUP_FILE=${APP_PATH}/cheerful_tuna.ru
+LOG_FILE=${APP_PATH}/log/${NAME}.log
+#CONTROL_URL="tcp://127.0.0.1:9293"
+
+export PATH=/home/admin/.rbenv/shims:$PATH
+export PATH=/home/admin/.rbenv/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/sbin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/sbin:$PATH
+export PATH=/bin:$PATH
+export PATH=/home/admin/.rbenv/bin/rbenv:$PATH
+export RBENV_ROOT=/home/admin/.rbenv
+
+cd ${APP_PATH}
+
+#rbenv init -
+
+start() {
+  /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; nohup bundle exec puma --verbose -C ${CONFIG_FILE} ${RACKUP_FILE} >> ${LOG_FILE} 2>&1" || true
+  # --control ${CONTROL_URL}
+}
+status() {
+  /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} status"
+}
+restart() {
+  #/usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} restart"
+  stop
+  start
+}
+stop() {
+  /usr/bin/env kill -s INT `cat ${PID_FILE}`
+  /bin/rm ${PUMA_PATH}/* -f
+  #/usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} stop"
+  #/var/www/cheerful_tuna/tmp/pids/sidekiq.pid 60 >> /var/www/cheerful_tuna/log/sidekiq.log 2>&1" || true
+}
+
+case "$1" in
+  start)
+    echo "Starting $DESC: "
+    start
+    ;;
+  status)
+    echo "Geting status for $DESC: "
+    status
+    ;;
+  restart)
+    echo "Restarting $DESC: "
+    restart
+    ;;
+  stop)
+    echo "Stoping $DESC: "
+    stop
+    ;;
+  *)
+    echo "Usage: $NAME {start|stop}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,46 @@
+#!/bin/sh
+
+APP_PATH=/var/www/cheerful_tuna
+PID_FILE=${APP_PATH}/tmp/pids/sidekiq.pid
+CONFIG_FILE=${APP_PATH}/config/sidekiq.yml
+DESC=Sidekiq
+NAME=sidekiq
+
+export PATH=/home/admin/.rbenv/shims:$PATH
+export PATH=/home/admin/.rbenv/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/usr/sbin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/sbin:$PATH
+export PATH=/bin:$PATH
+export PATH=/home/admin/.rbenv/bin/rbenv:$PATH
+export RBENV_ROOT=/home/admin/.rbenv
+
+cd ${APP_PATH}
+
+#rbenv init -
+
+start() {
+  /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; nohup bundle exec sidekiq -C ${CONFIG_FILE} -v -e production -P ${PID_FILE} >> /var/www/cheerful_tuna/log/sidekiq.log 2>&1" || true
+}
+stop() {
+  /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec sidekiqctl stop /var/www/cheerful_tuna/tmp/pids/sidekiq.pid 60 >> /var/www/cheerful_tuna/log/sidekiq.log 2>&1" || true
+}
+
+case "$1" in
+  start)
+    echo "Starting $DESC: "
+    start
+    ;;
+  stop)
+    echo "Stoping $DESC: "
+    stop
+    ;;
+  *)
+    echo "Usage: $NAME {start|stop}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
