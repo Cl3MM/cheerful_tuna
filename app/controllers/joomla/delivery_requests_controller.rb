@@ -16,8 +16,7 @@ class Joomla::DeliveryRequestsController < ApplicationController
       format.pdf do # show.html.erb
         pdf = DeliveryRequestPdf.new(@delivery_request)
         send_data pdf.render, filename: "Delivery_Request_Form_summary.pdf",
-          type: "application/pdf",
-          disposition: "inline"
+          type: "application/pdf"#, disposition: "inline"
       end
     end
   end
