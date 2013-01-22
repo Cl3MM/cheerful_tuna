@@ -7,9 +7,10 @@ gem 'rails', '~> 3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 #gem 'sqlite3'
-#gem 'thin'
+gem 'thin'
 #gem 'will_paginate-bootstrap'
-gem 'puma'
+#gem 'puma', git: "git://github.com/puma/puma.git"
+#gem "puma", "~> 1.6.3"
 gem 'kaminari'
 gem 'simple_form'
 gem 'roo'
