@@ -88,7 +88,7 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
     image background, width: 500, at: [100,650]
     signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
-    image signature, width: 105, at: [300,190]
+    image signature, width: 105, at: [300,230]
   end
 
   def body
@@ -105,17 +105,17 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
         options: {size: 18, :leading => 5, shift: 10, align: :center }
       },
       {
-        font:  @fonts[:MPB], height: 315,
+        font:  @fonts[:MPB], height: 365,
         text: "is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.",
         options: {size: 21, :leading => 0, shift: 18}
       },
       {
-        font:  @fonts[:MPSB], height: 85,
+        font:  @fonts[:MPSB], height: 115,
         text: "Jean-Pierre Palier",
         options: {size: 11, :leading => 5, shift: 10, align: :center }
       },
       {
-        font:  @fonts[:MPSB], height: 70,
+        font:  @fonts[:MPSB], height: 100,
         text: "President",
         options: {size: 11, :leading => 5, shift: 10, align: :center }
       }
@@ -156,25 +156,21 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
   end
 
   def display_company
-    #if @member.company =~ /ZHEJIANG TIANMING SOLAR/
-      #font @fonts[:MPB]
-      #bounding_text 590, "Zhejiang Tianming\nSolar Technology\nCo. Ltd.", size: 46, align: :center, leading: 0, shift: 20, height: 50, overflow: :expand
-      #font @fonts[:MPR]
-      #bounding_text 425, "311215, Xiaoshan, Hangzhou,\nZhejiang, CHINA", size: 28, align: :center, leading: 5#, overflow: :expand
-    #else
     font @fonts[:MPB]
 
-    bounding_box([105,580], width: 490, height: 100) do
-      text @member.company.html_safe.titleize, size: 52, align: :center, valign: :center, overflow: :shrink_to_fit
+    bounding_box([115,590], width: 470, height: 90) do
+      text @member.company.html_safe.titleize, size: 56, align: :center, valign: :center, overflow: :shrink_to_fit
     end
     font @fonts[:MPR]
-    bounding_box([105,470], width: 490, height: 110) do
+    bounding_box([115,490], width: 470, height: 100) do
       text "#{@member.address.html_safe}\n#{@member.postal_code.html_safe}, #{@member.city.html_safe.titleize}\n#{@member.country.html_safe.capitalize}",
       size: 28, align: :center, valign: :center, overflow: :shrink_to_fit, leading: 5
     end
-    #end
 
-    bounding_text 210, "Certificate Expiry Date: #{@member.end_date_to_human}", size: 16, align: :center, leading: 0, shift:100
+    bounding_box([115,270], width: 470, height: 30) do
+      text "Certificate Expiry Date: #{@member.end_date_to_human}", size: 16, align: :center,
+            valign: :center, overflow: :shrink_to_fit, leading: 5
+    end
 
     if File.exists? @member.qr_code_path
       qr_code = @member.qr_code_path

@@ -8,7 +8,7 @@ class Member < ActiveRecord::Base
   has_and_belongs_to_many :contacts
 
   attr_accessible :user_name, :contact_ids#, :password, :password_confirmation, :remember_me
-  attr_accessible :address, :billing_address,
+  attr_accessible :address, :billing_address, :address_continued,
     :billing_city, :billing_country, :billing_postal_code, :category,
     :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
     :logo_file, :membership_file, :start_date, :is_approved, :brand_list, :activity_list #, :civility
