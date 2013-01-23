@@ -24,31 +24,8 @@ class Member < ActiveRecord::Base
   mount_uploader :logo_file, MemberFilesUploader
   mount_uploader :membership_file, MemberFilesUploader
 
-  #before_save :validate_contact_presence
-
-  def validate_contact_presence
-    valid = true
-    unless self.contact_ids?
-      valid = false
-      #valid = false if self.emails.first.address.blank?
-      #self.emails.each_with_index do |mail, index|
-        #valid = false if mail.address.blank?
-        #unless mail.address.match(/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/i)
-          #valid = false
-        #end
-      #end
-    #else
-      #valid = false
-    end
-
-    unless valid
-      self.errors.add(:base, "You must select at least one contact")
-    end
-    return valid
-  end
-
   before_create { generate_token(:auth_token) }
-  after_save :qr_encode, on: [:create, :update]
+  after_save :qr_encode_delayed, on: [:create, :update]
   before_save :clean_data
 
   def generate_token(column)
@@ -70,7 +47,18 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def end_date_to_human
+    day   = end_date.strftime('%d').to_i.ordinalize
+    month = end_date.strftime('%B')
+    year  = end_date.strftime('%Y')
+    "#{month} #{day}, #{year}"
+  end
+
   def end_date
+    self.start_date.strftime("%Y").to_i < 2013 ? old_end_date : self.start_date.end_of_year
+  end
+
+  def old_end_date
    (self.start_date + 1.year).prev_month.end_of_month
   end
 
@@ -88,31 +76,36 @@ class Member < ActiveRecord::Base
     false
   end
 
+  def qr_code_dir
+    "#{Rails.root}/#{ENVIRONMENT_CONFIG[:members]["qr_code_dir"]}" # create dir from config
+  end
+
   def qr_code_name
     hash_data_path = "qr_code://#{self.class.to_s.underscore}/#{self.company}/#{self.created_at}"
     "#{hash_hash(hash_data_path)}.png"
   end
 
   def qr_code_asset_url
-    f = "#{Rails.root}/public/assets/uploads/#{qr_code_name}"
-    asset = "uploads/#{qr_code_name}"
-    File.exist?(f) ? asset : nil
+    asset_path = qr_code_dir.split("/").drop_while { |dir| not dir =~ /assets/ } [1..-1].join("/")
+    asset = asset_path.nil? ? "invalid" : "#{asset_path}/#{qr_code_name}"
+    File.exist?("#{Rails.root}/public/assets/#{asset}") ? asset : nil
   end
 
   def qr_code_path
-    f = "#{Rails.root}/public/assets/uploads/#{qr_code_name}"
-    File.exist?(f) ? f : nil
+    "#{qr_code_dir}/#{qr_code_name}"
   end
 
   def qr_encode url = "http://www.ceres-recycle.org/", scale = 3, margin = 0
     require 'open3'
-    path = "#{Rails.root}/public/assets/uploads/"
-    outfile = path + qr_code_name
     url = self.web_profile_url
-    FileUtils.mkpath(path) unless File.directory?(path)
+    FileUtils.mkpath(qr_code_dir) unless File.directory?(qr_code_dir)
 
-    cmd = "qrencode -m #{margin} -o #{outfile} -s #{scale} '#{url}'"
+    cmd = "qrencode -m #{margin} -o #{qr_code_path} -s #{scale} '#{url}'"
     stdin, stdout, stderr = Open3.popen3(cmd)
+  end
+
+  def qr_encode_delayed
+    self.delay.qr_encode
   end
 
   def generate_username

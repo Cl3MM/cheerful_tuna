@@ -81,6 +81,52 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     fill_color "000000"
   end
 
+  def images
+    head = "#{Rails.root}/app/assets/images/CERES_480px.jpg"
+    image head, :width => 145, at: [280,845]
+    background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_6.jpg"
+    #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
+    image background, width: 500, at: [100,650]
+    signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
+    image signature, width: 105, at: [300,190]
+  end
+
+  def body
+    opts = [
+      {
+        font:  @fonts[:MPB], height: 695,
+        text: "CERTIFICATE",
+        options: {size: 50, :leading => 5, align: :center }
+      },
+      {
+        #font:  @fonts[:MPR], height: 596,
+        font:  @fonts[:MPR], height: 630,
+        text: "We hereby certify that based upon the current commitment",
+        options: {size: 18, :leading => 5, shift: 10, align: :center }
+      },
+      {
+        font:  @fonts[:MPB], height: 315,
+        text: "is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.",
+        options: {size: 21, :leading => 0, shift: 18}
+      },
+      {
+        font:  @fonts[:MPSB], height: 85,
+        text: "Jean-Pierre Palier",
+        options: {size: 11, :leading => 5, shift: 10, align: :center }
+      },
+      {
+        font:  @fonts[:MPSB], height: 70,
+        text: "President",
+        options: {size: 11, :leading => 5, shift: 10, align: :center }
+      }
+    ]
+
+    opts.each do |item|
+      font item[:font]
+      bounding_text item[:height], item[:text], item[:options]
+    end
+  end
+
   # Stroke a shifted box around text at a given height in the page
   def bounding_text page_height = 0, txt = "I'm here. "*10, options = {}.symbolize_keys!
     options = { size: 12,
@@ -90,6 +136,7 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
                 shift: 0,
                 width: 594,
                 overflow: :shrink_to_fit,
+                valign: :center,
                 shift_left: 105
     }.merge(options)
 
@@ -108,72 +155,28 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
       :overflow => options[:overflow]
   end
 
-  def images
-    head = "#{Rails.root}/app/assets/images/CERES_480px.jpg"
-    image head, :width => 145, at: [280,845]
-    background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_6.jpg"
-    #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
-    image background, width: 500, at: [100,650]
-    signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
-    image signature, width: 105, at: [300,220]
-  end
-
-  def body
-    opts = [
-      {
-        font:  @fonts[:MPB], height: 685,
-        text: "CERTIFICATE",
-        options: {size: 50, :leading => 5, align: :center }
-      },
-      {
-        #font:  @fonts[:MPR], height: 596,
-        font:  @fonts[:MPR], height: 620,
-        text: "We hereby certify that based upon the current commitment",
-        options: {size: 18, :leading => 5, shift: 10, align: :center }
-      },
-      {
-        font:  @fonts[:MPB], height: 343,
-        text: "is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.",
-        options: {size: 21, :leading => 0, shift: 18}
-      },
-      {
-        font:  @fonts[:MPSB], height: 117,
-        text: "Jean-Pierre Palier",
-        options: {size: 11, :leading => 5, shift: 10, align: :center }
-      },
-      {
-        font:  @fonts[:MPSB], height: 103,
-        text: "President",
-        options: {size: 11, :leading => 5, shift: 10, align: :center }
-      }
-    ]
-
-    opts.each do |item|
-      font item[:font]
-      bounding_text item[:height], item[:text], item[:options]
-    end
-  end
-
   def display_company
-    if @member.company =~ /ZHEJIANG TIANMING SOLAR/
-      font @fonts[:MPB]
-      bounding_text 590, "Zhejiang Tianming\nSolar Technology\nCo. Ltd.", size: 46, align: :center, leading: 0, shift: 20, height: 50, overflow: :expand
-      font @fonts[:MPR]
-      bounding_text 425, "311215, Xiaoshan, Hangzhou,\nZhejiang, CHINA", size: 28, align: :center, leading: 5#, overflow: :expand
-    else
-      font @fonts[:MPB]
-      bounding_text 540, @member.company.html_safe.titleize, size: 52, align: :center, leading: 0, shift: 20, height: 50
-      font @fonts[:MPR]
-      bounding_text 468, "#{@member.postal_code.html_safe}, #{@member.city.html_safe.titleize}\n#{@member.country.html_safe.capitalize}", size: 28, align: :center, leading: 5
+    #if @member.company =~ /ZHEJIANG TIANMING SOLAR/
+      #font @fonts[:MPB]
+      #bounding_text 590, "Zhejiang Tianming\nSolar Technology\nCo. Ltd.", size: 46, align: :center, leading: 0, shift: 20, height: 50, overflow: :expand
+      #font @fonts[:MPR]
+      #bounding_text 425, "311215, Xiaoshan, Hangzhou,\nZhejiang, CHINA", size: 28, align: :center, leading: 5#, overflow: :expand
+    #else
+    font @fonts[:MPB]
+
+    bounding_box([105,580], width: 490, height: 100) do
+      text @member.company.html_safe.titleize, size: 52, align: :center, valign: :center, overflow: :shrink_to_fit
     end
+    font @fonts[:MPR]
+    bounding_box([105,470], width: 490, height: 110) do
+      text "#{@member.address.html_safe}\n#{@member.postal_code.html_safe}, #{@member.city.html_safe.titleize}\n#{@member.country.html_safe.capitalize}",
+      size: 28, align: :center, valign: :center, overflow: :shrink_to_fit, leading: 5
+    end
+    #end
 
-    end_date = (@member.start_date + 1.year).prev_month.end_of_month
-    day   = end_date.strftime('%d').to_i.ordinalize
-    month = end_date.strftime('%B')
-    year  = end_date.strftime('%Y')
-    bounding_text 243, "Certificate Expiry Date: #{month} #{day}, #{year}", size: 16, align: :center, leading: 0, shift:100
+    bounding_text 210, "Certificate Expiry Date: #{@member.end_date_to_human}", size: 16, align: :center, leading: 0, shift:100
 
-    unless @member.qr_code_path.nil?
+    if File.exists? @member.qr_code_path
       qr_code = @member.qr_code_path
       image qr_code, at: [525,78], :width => 50
     end

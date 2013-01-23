@@ -46,8 +46,7 @@ class MembersController < ApplicationController
     respond_to do |format|
       format.html do # show.html.erb
         if params[:qr_code].present?
-          #@member.qr_encode(url = "#{@member.company}_#{@member.address}_#{@member.id}", scale = 4)
-          @member.qr_encode(url = "http://www.ceres-recycle.org/member-list/members/nice-sun-pv-co-ltd", scale = 3)
+          @member.qr_encode
           flash[:notice] = "QRCode create: #{@member.qr_code_asset_url}"
         end
       end
@@ -57,7 +56,7 @@ class MembersController < ApplicationController
           #disposition = params[:disposition].present? ? "inline" : false
           pdf = CertificatePdf.new(@member, specimen)
           send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf",
-            #disposition: disposition,
+            disposition: "inline",
             type: "application/pdf"
         end
       end
@@ -105,8 +104,8 @@ class MembersController < ApplicationController
   # PUT /members/1
   # PUT /members/1.json
   def update
-    #Rails.logger.debug "*" * 100
-    #Rails.logger.debug "Params: #{params[:start_date]}"
+    Rails.logger.debug "*" * 100
+    Rails.logger.debug "Params: #{params}"
 
     @member = Member.find(params[:id])
     if params[:member].has_key? :contact_ids
