@@ -14,7 +14,7 @@ class CollectionPointsController < ApplicationController
       @collection_points = CollectionPoint.order(:name)
       @active = "all"
     end
-      @collection_points = @collection_points.page(params[:page]).per(session[:ppage])
+    @collection_points = @collection_points.page(params[:page]).per(session[:ppage])
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @collection_points }
