@@ -1,5 +1,7 @@
 CheerfulTuna::Application.configure do
 
+  ActsAsTaggableOn.force_lowercase = true
+
   # Change mail delvery to either :smtp, :sendmail, :file, :test
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
@@ -47,6 +49,8 @@ CheerfulTuna::Application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
+
+  config.logger = Logger.new( Rails.root.join("log", Rails.env + ".log"), 10, 3*1024*1024 )
 
   # See everything in the log (default is :info)
   # config.log_level = :debug
