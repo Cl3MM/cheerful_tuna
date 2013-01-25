@@ -3,30 +3,49 @@ class Member < ActiveRecord::Base
 
   include MyTools
   paginates_per 25
-  acts_as_taggable_on :brand, :activity
+  acts_as_taggable_on           :brand, :activity
+  mount_uploader                :logo_file, MemberFilesUploader
+  mount_uploader                :membership_file, MemberFilesUploader
 
-  has_and_belongs_to_many :contacts
+  has_and_belongs_to_many       :contacts
+  accepts_nested_attributes_for :contacts
 
   attr_accessible :user_name, :contact_ids#, :password, :password_confirmation, :remember_me
-  attr_accessible :address, :billing_address, :address_continued,
-    :billing_city, :billing_country, :billing_postal_code, :category,
-    :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
-    :logo_file, :membership_file, :start_date, :is_approved, :brand_list, :activity_list #, :civility
+  attr_accessible :address, :billing_address, :address_continued, :activity_list,
+                  :billing_city, :billing_country, :billing_postal_code, :category,
+                  :city, :company, :country, :postal_code, :vat_number, :web_profile_url,
+                  :logo_file, :membership_file, :start_date, :is_approved, :brand_list #, :civility
 
-  accepts_nested_attributes_for :contacts
   attr_reader :end_date, :category_price
 
   validates_presence_of :user_name, :company, :country, :web_profile_url,
-    :start_date, :category, :address, :city, :postal_code, :activity_list, :contact_ids
-  validates :category, :inclusion => { :in => %w[Free A B C D],
-                                   :message => "%{value} is not a valid category" }
-  validates :company, uniqueness: {scope: [:country, :address], message: " already exists with similar country and address."}
-  mount_uploader :logo_file, MemberFilesUploader
-  mount_uploader :membership_file, MemberFilesUploader
+                        :start_date, :category, :address, :city, :postal_code,
+                        :activity_list, :contact_ids
+  validates             :category, inclusion: { in: %w[Free A B C D],
+                                                message: "%{value} is not a valid category" }
+  validates             :company, uniqueness: { scope: [:country, :address],
+                                                message: " already exists with similar country and address." }
 
-  before_create { generate_token(:auth_token) }
-  after_save :qr_encode_delayed, on: [:create, :update]
-  before_save :clean_data
+  before_create   { generate_token(:auth_token) }
+  after_save      :qr_encode_delayed, on: [:create, :update]
+  before_save     :clean_data
+
+  scope :past_due_date, where( 'DATE(start_date) <= ?', Date.today - 1.year )
+
+  def self.member_status
+    MEMBERS_STATUS
+  end
+
+  def find_with_status status
+    if Member.member_status.include? status
+      if status == "due_date"
+        Member.all
+      end
+    else
+      Member.all
+    end
+    Member.all
+  end
 
   def generate_token(column)
     begin
@@ -47,6 +66,10 @@ class Member < ActiveRecord::Base
     end
   end
 
+  def suspend
+    self.status = :suspended
+  end
+
   def end_date_to_human
     day   = end_date.strftime('%d').to_i.ordinalize
     month = end_date.strftime('%B')
@@ -55,7 +78,7 @@ class Member < ActiveRecord::Base
   end
 
   def end_date
-    self.start_date.strftime("%Y").to_i < 2013 ? old_end_date : self.start_date.end_of_year
+    self.start_date.strftime("%Y").to_i < 2013 ? self.old_end_date : self.start_date.end_of_year
   end
 
   def old_end_date
@@ -150,7 +173,6 @@ class Member < ActiveRecord::Base
 
 end
 
-
   #validates :civility, :inclusion => { :in => %w[Mr Mrs Ms],
                                    #:message => "%{value} is not a valid category" }
   #def self.generate_username str
@@ -231,4 +253,3 @@ end
     #self.encrypted_password.blank?
   #end
   # Setup accessible (or protected) attributes for your model
-
