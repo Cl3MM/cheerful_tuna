@@ -85,6 +85,8 @@ GEM
       ffi (~> 1.0, >= 1.0.6)
     choice (0.1.6)
     clipboard (1.0.1)
+    clockwork (0.4.1)
+      tzinfo
     cocaine (0.4.2)
     coderay (1.0.8)
     coffee-rails (3.2.2)
@@ -368,7 +370,7 @@ GEM
     slop (3.4.3)
     spoon (0.0.1)
     spork (1.0.0rc3)
-    spreadsheet (0.7.6)
+    spreadsheet (0.7.7)
       ruby-ole (>= 1.0)
     sprockets (2.2.2)
       hike (~> 1.2)
@@ -426,6 +428,7 @@ DEPENDENCIES
   capybara (~> 1.1.0)
   capybara-mechanize
   carrierwave
+  clockwork
   coffee-rails (~> 3.2.1)
   country_select
   database_cleaner

@@ -38,6 +38,8 @@ gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
 gem "redis", "~> 3.0.1"
+#gem 'whenever', require: false
+gem 'clockwork'
 #gem 'rack-mini-profiler'
 
 #gem 'thinking-sphinx', '2.0.10'
