@@ -10,17 +10,27 @@ if defined?(Bundler)
 end
 
 file = File.read(File.expand_path('../tuna.yml', __FILE__))
-COUNTRIES = YAML.load(file)["countries"]
-DELIVERY_REQUESTS_TECHNOLOGIES          = YAML.load(file)["delivery_requests_technologies"]
-DELIVERY_REQUESTS_REASON_OF_DISPOSAL    = YAML.load(file)["delivery_requests_reason_of_disposal"]
-DELIVERY_REQUESTS_MODULES_CONDITION     = YAML.load(file)["delivery_requests_modules_condition"]
-DELIVERY_REQUESTS_STATUS                = YAML.load(file)["delivery_requests_status"]
-COLLECTION_POINTS_STATUS                = YAML.load(file)["collection_points_status"]
-CERES_CONTACT_CONFIG                    = YAML.load(file)["ceres_contacts"]
-CERES_CONTACT_CONFIG.symbolize_keys!
 ENVIRONMENT_CONFIG                      = YAML.load(file)
 ENVIRONMENT_CONFIG.merge! ENVIRONMENT_CONFIG.fetch(Rails.env, {})
 ENVIRONMENT_CONFIG.symbolize_keys!
+
+COUNTRIES                               = ENVIRONMENT_CONFIG[:countries]
+DELIVERY_REQUESTS_REASON_OF_DISPOSAL    = ENVIRONMENT_CONFIG[:delivery_requests_reason_of_disposal]
+DELIVERY_REQUESTS_MODULES_CONDITION     = ENVIRONMENT_CONFIG[:delivery_requests_modules_condition]
+DELIVERY_REQUESTS_TECHNOLOGIES          = ENVIRONMENT_CONFIG[:delivery_requests_technologies].symbolize_keys!
+DELIVERY_REQUESTS_STATUS                = ENVIRONMENT_CONFIG[:delivery_requests_status].symbolize_keys!
+COLLECTION_POINTS_STATUS                = ENVIRONMENT_CONFIG[:collection_points_status].symbolize_keys!
+CERES_CONTACT_CONFIG                    = ENVIRONMENT_CONFIG[:ceres_contacts].symbolize_keys!
+MEMBERS_STATUS                          = ENVIRONMENT_CONFIG[:members]["status"].symbolize_keys!
+
+#COUNTRIES = YAML.load(file)["countries"]
+#DELIVERY_REQUESTS_TECHNOLOGIES          = YAML.load(file)["delivery_requests_technologies"]
+#DELIVERY_REQUESTS_REASON_OF_DISPOSAL    = YAML.load(file)["delivery_requests_reason_of_disposal"]
+#DELIVERY_REQUESTS_MODULES_CONDITION     = YAML.load(file)["delivery_requests_modules_condition"]
+#DELIVERY_REQUESTS_STATUS                = YAML.load(file)["delivery_requests_status"]
+#COLLECTION_POINTS_STATUS                = YAML.load(file)["collection_points_status"]
+#CERES_CONTACT_CONFIG                    = YAML.load(file)["ceres_contacts"]
+#CERES_CONTACT_CONFIG.symbolize_keys!
 
 #YAML.load_file("#{Rails.root}/config/tuna.yml")[Rails.env]
 
