@@ -9,10 +9,18 @@
             style: "margin-top: 8px;" %>
   </h1>
 </div>
-<p style="text-align:center;"><%= raw page_entries_info @members %></p>
-<div class="pagination pagination-centered">
-  <%= paginate @members %>
-</div>
+
+<ul class="breadcrumb">
+  <% Member.member_status.each_pair do |s, v| %>
+    <% if @active == s %>
+      <li class="active"><%= "#{v}" %> <span class="divider">|</span></li>
+    <% else %>
+      <li><%= link_to "#{v}", collection_points_path(status: "#{s}")%> <span class="divider">|</span></li>
+    <% end -%>
+  <% end -%>
+  <li <%= @active == "all" ? raw("class=\"active\">All</li>") : raw(">#{link_to "All", collection_points_path}</li>") %>
+</ul>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -56,3 +64,5 @@
 <div class="pagination pagination-centered">
   <%= paginate @members %>
 </div>
+
+<p style="text-align:center;"><%= raw page_entries_info @members %></p>
