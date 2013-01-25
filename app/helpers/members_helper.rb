@@ -1,7 +1,7 @@
 #encoding: utf-8
 module MembersHelper
   def format_date date, short = false
-    date.strftime("#{short ? "%a" : "%B"} #{date.day.ordinalize}, %Y")
+    date.strftime("#{short ? "%b" : "%B"} #{date.day.ordinalize}, %Y")
   end
 
   # create a select collection
