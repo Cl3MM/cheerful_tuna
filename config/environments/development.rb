@@ -12,6 +12,8 @@ CheerfulTuna::Application.configure do
     password: ENVIRONMENT_CONFIG[:mail_password]
   }
   config.roadie.enabled = true
+  config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"), 3, 1*1024*1024 )
+
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: ENVIRONMENT_CONFIG[:mail_domain]}
 
