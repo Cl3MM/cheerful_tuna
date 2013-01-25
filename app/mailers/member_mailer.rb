@@ -15,4 +15,9 @@ class MemberMailer < ActionMailer::Base
     @name = name
     mail to: email, subject: "Mailing Test" if email and name
   end
+
+  def notify_membership_expiry name, emails
+    @name = name
+    mail to: emails, subject: "CERES - Your CERES has expired"
+  end
 end
