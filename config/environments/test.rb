@@ -1,15 +1,16 @@
 CheerfulTuna::Application.configure do
   config.action_mailer.delivery_method = :letter_opener
   config.action_mailer.smtp_settings = {
-    address: ENVIRONMENT_CONFIG[:mail_server],
-    port: ENVIRONMENT_CONFIG[:mail_port],
-    domain: ENVIRONMENT_CONFIG[:mail_domain],
-    authentication: "plain",
+    address:              ENVIRONMENT_CONFIG[:mail_server],
+    port:                 ENVIRONMENT_CONFIG[:mail_port],
+    domain:               ENVIRONMENT_CONFIG[:mail_domain],
+    authentication:       "plain",
     enable_starttls_auto: true,
-    user_name: ENVIRONMENT_CONFIG[:mail_user_name],
-    password: ENVIRONMENT_CONFIG[:mail_password]
+    user_name:            ENVIRONMENT_CONFIG[:mail_user_name],
+    password:             ENVIRONMENT_CONFIG[:mail_password]
   }
   config.roadie.enabled = true
+  config.logger = Logger.new(Rails.root.join("log", Rails.env + ".log"),3, 1*1024*1024 )
 
   # Specify what domain to use for mailer URLs
   config.action_mailer.default_url_options = {host: ENVIRONMENT_CONFIG[:mail_domain]}
