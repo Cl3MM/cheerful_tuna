@@ -30,7 +30,16 @@ class MembersController < ApplicationController
     session[:ppage] = (params[:per_page].to_i rescue 25) if (params[:per_page] && (not params[:per_page.blank?] ) )
     @per_page = session[:ppage].to_s
     params.delete :per_page
-    @members = Member.order("company ASC").page(params[:page]).per(session[:ppage]) #.per_page((@per_page.to_i rescue 20))
+
+    if (params[:status].present? && Member.member_status.include?(params[:status]) )
+      @active = params[:status]
+      @members = Member.find_with_status(params[:status])
+    else
+      @members = Member.order("company ASC")
+      @active = "all"
+    end
+
+    @members = @members.page(params[:page]).per(session[:ppage]) #.per_page((@per_page.to_i rescue 20))
 
     respond_to do |format|
       format.html # index.html.erb
