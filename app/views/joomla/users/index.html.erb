@@ -1,17 +1,5 @@
+<%= render 'layouts/flash', flash: flash %>
 <div class="container">
-<% if flash.any? %>
-  <% flash.each do |name, msg| %>
-    <div class="row-fluid">
-      <div class="span12">
-        <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-          <a class="close" data-dismiss="alert">×</a>
-          <%= raw(msg) %>
-        </div>
-      </div>
-    </div>
-  <% end %>
-<% end %>
-
   <div class="row-fluid">
     <div class="span12">
       <div class="well">
@@ -22,13 +10,9 @@
   <div class="row-fluid">
     <div class="span12">
       <div class="well">
-      <div style="max-width: 400px; margin: 0 auto 10px;">
-        <%= link_to raw('<i class="icon-file"></i> Generate my certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-large btn-block btn-info" %>
-        <%#= link_to "Back", :back, :class => 'btn'  %>
-        <%#= link_to t('.edit', :default => t("helpers.links.edit")), joomla_edit_path(@member), :class => 'btn' %>
-        <%#= link_to raw('<i class="icon-download"></i> Membership Form'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
-        <%#= link_to raw('<i class="icon-qrcode"></i> QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
-      </div>
+        <div style="max-width: 400px; margin: 0 auto 10px;">
+          <%= link_to raw('<i class="icon-file"></i> Generate my certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-large btn-block btn-info" %>
+        </div>
       </div>
       <div id="company">
         <h3>Company details</h3>
@@ -54,20 +38,5 @@
         <%= image_tag @member.qr_code_asset_url, class: "pull-left no_margin" unless @member.qr_code_asset_url.nil? %>
       </div>
     </div>
-<!--
-    <div class="span2">
-      <div class="well well-small" style="max-width: 240px; margin-top:20px;">
-        <ul class="nav nav-list" id="sidebar">
-          <li class="nav-header">Member's Menu</li>
-          <li><a href="#company"><i class="icon-chevron-right pull-right"></i> Company</a></li>
-          <li><a href="#membership"><i class="icon-chevron-right pull-right"></i> Membership</a></li>
-          <li><a href="#contacts"><i class="icon-chevron-right pull-right"></i> Contacts</a></li>
-          <li class="divider"></li>
-          <li><a href="#files"><i class="icon-chevron-right pull-right"></i> Files</a></li>
-        </ul>
-      </div>
-    </div>
--->
   </div>
 </div>
-<div class="spacer">&nbsp;</div>

@@ -14,30 +14,21 @@
       <%= stylesheet_link_tag "select2" if controller.action_name.match(/edit|new|create|update/) %>
       <%= stylesheet_link_tag controller_name %>
     <% end %>
-    <%# if controller.action_name.match(/edit|new|create|update/) %>
-      <%#= stylesheet_link_tag controller_name %>
-    <%# end %>
     <%= yield(:head) %>
     <%= csrf_meta_tags %>
     <%= csrf_meta_tag %>
   </head>
-  <body
-  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
-    style="width: 715px !important;" id="joomla_request_new"
+  <body <%= raw('style="width: 715px !important;" id="joomla_request_new"') if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %> >
+  <% if false %>
+    <%= controller_path %>
+    <br />
+    <%= controller.action_name %>
+    <br />
+    <%= controller_name %>
+    <br />
+    <%= request.fullpath %>
   <% end %>
-  >
-<!--
-  <%= controller_path %>
-  <br />
-  <%= controller.action_name %>
-  <br />
-  <%= controller_name %>
-  <br />
-  <%= request.fullpath %>
--->
-
   <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
-    <%= render 'layouts/flash', flash: flash %>
     <%= yield %>
   <% else %>
     <%= render partial: 'layouts/navbar' %>
