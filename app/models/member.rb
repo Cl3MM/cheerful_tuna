@@ -85,7 +85,7 @@ class Member < ActiveRecord::Base
 
   def update_status! status
     if status.respond_to?(:to_sym) && Member.member_status.include?(status.to_sym)
-      update_attributes :status, status.to_sym
+      update_attribute :status, status.to_sym
     end
   end
 
