@@ -1,20 +1,15 @@
 require 'sidekiq/web'
 
 CheerfulTuna::Application.routes.draw do
-  resources :email_templates
-
 
   constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.is_admin? }
   constraints constraint do
     mount Sidekiq::Web => '/sidekiq'
   end
 
+  resources :email_templates
   resources :mailings
-
-
   resources :articles
-
-
   resources :collection_points
 
   resources :html_snippets do
@@ -48,14 +43,6 @@ CheerfulTuna::Application.routes.draw do
     #resources :delivery_requests, only: [:create, :show, :new ]
   end
 
-#   joomla_delivery_request_pdf GET    /joomla/delivery_request_pdf/:id(.:format)  joomla/delivery_requests#delivery_request_pdf {:format=>:pdf}
-   #joomla_delivery_request_form GET    /joomla/delivery_request_form(.:format)     joomla/delivery_requests#new
-#joomla_delivery_request_nearbys POST   /joomla/delivery_request/nearbys(.:format)  joomla/delivery_requests#nearbys {:format=>:json}
-       #joomla_delivery_requests POST   /joomla/delivery_requests(.:format)         joomla/delivery_requests#create
-    #new_joomla_delivery_request GET    /joomla/delivery_requests/new(.:format)     joomla/delivery_requests#new
-        #joomla_delivery_request GET    /joomla/delivery_requests/:id(.:format)     joomla/delivery_requests#show
-                                       #/                                           joomla::delivery_requests#new {:subdomain=>"request"}
-  #/delivery_requests
   constraints subdomain: 'request' do
     match '/new', to: 'joomla/delivery_requests#new',     via: :get,  as: :new_joomla_delivery_request
     match '/',    to: 'joomla/delivery_requests#create',  via: :post, as: :joomla_delivery_requests
@@ -63,12 +50,6 @@ CheerfulTuna::Application.routes.draw do
   end
   resources :delivery_requests
 
-  #devise_for :members, :path => "/members", :path_names => { :sign_in => 'login', :sign_out => 'logout' }, :controllers => { :confirmations => "members/confirmations" }
-  #as :member do
-    #match 'members/confirmation' => 'members/confirmations#update', :via => :put, :as => :update_member_confirmation
-  #end
-
-  #resources :countries
   get "tags/:tag", to: "contacts#tag_cloud", as: :tag
 
   resources :email_listings
@@ -85,6 +66,7 @@ CheerfulTuna::Application.routes.draw do
   end
   #resources :contacts
   resources :members do
+    resources :subscriptions
     get 'page/:page', :action => :index, :on => :collection
   end
   match 'users/statistics' => 'users#statistics', as: :stats_users

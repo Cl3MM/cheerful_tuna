@@ -23,17 +23,6 @@ COLLECTION_POINTS_STATUS                = ENVIRONMENT_CONFIG[:collection_points_
 CERES_CONTACT_CONFIG                    = ENVIRONMENT_CONFIG[:ceres_contacts].symbolize_keys!
 MEMBERS_STATUS                          = ENVIRONMENT_CONFIG[:members]["status"].symbolize_keys!
 
-#COUNTRIES = YAML.load(file)["countries"]
-#DELIVERY_REQUESTS_TECHNOLOGIES          = YAML.load(file)["delivery_requests_technologies"]
-#DELIVERY_REQUESTS_REASON_OF_DISPOSAL    = YAML.load(file)["delivery_requests_reason_of_disposal"]
-#DELIVERY_REQUESTS_MODULES_CONDITION     = YAML.load(file)["delivery_requests_modules_condition"]
-#DELIVERY_REQUESTS_STATUS                = YAML.load(file)["delivery_requests_status"]
-#COLLECTION_POINTS_STATUS                = YAML.load(file)["collection_points_status"]
-#CERES_CONTACT_CONFIG                    = YAML.load(file)["ceres_contacts"]
-#CERES_CONTACT_CONFIG.symbolize_keys!
-
-#YAML.load_file("#{Rails.root}/config/tuna.yml")[Rails.env]
-
 module CheerfulTuna
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -42,7 +31,8 @@ module CheerfulTuna
 
     # Custom directories with classes and modules you want to be autoloadable.
     # config.autoload_paths += %W(#{config.root}/extras)
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths +=  %W(#{config.root}/lib)
+    config.autoload_paths +=      %W(#{config.root}/app/concerns)
 
     # Only load the plugins named here, in the order given (default is alphabetical).
     # :all can be used as a placeholder for all plugins not explicitly named.

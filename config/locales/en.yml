@@ -3,6 +3,20 @@
 
 en:
   hello: "Hello world"
+  members:
+    form:
+      add_subscription:   Add Subscription
+      membership_details: Membership details
+      subscriptions:
+        membership_details: Membership details
+        no_subscriptions:   This member don't have any subscription yet.
+  subscriptions:
+    ends:     Ends
+    paid:     Paid
+    starts:   Starts
+    unpaid:   Unpaid
+    current:  Current
+    costs:    Price
   distance:
     centi:
       one: "cm"

@@ -1,7 +1,7 @@
 CheerfulTuna::Application.configure do
 
-  # Change mail delvery to either :smtp, :sendmail, :file, :test
-  config.action_mailer.delivery_method = :letter_opener
+  # Change mail delvery to either :smtp, :sendmail, :file, :test, :smtp
+  config.action_mailer.delivery_method = :file
   config.action_mailer.smtp_settings = {
     address: ENVIRONMENT_CONFIG[:mail_server],
     port: ENVIRONMENT_CONFIG[:mail_port],
