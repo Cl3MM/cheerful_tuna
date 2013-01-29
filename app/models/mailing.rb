@@ -53,7 +53,7 @@ class Mailing < ActiveRecord::Base
 
     args = {
       mailing_id: id,
-      at:         ( send_at && (send_at < (Time.now + 10.seconds)) ? Time.now + 10.seconds : send_at ),
+      at:         ( send_at && (send_at < (Time.current + 10.seconds)) ? Time.current + 10.seconds : send_at ),
       to:         options[:to].join(';'),
     }
     args[:cc]     = options[:cc].join(';')  if options[:cc].any?
@@ -175,7 +175,7 @@ class Mailing < ActiveRecord::Base
   # and set send_at seconds to 00
   def update_send_at
     self.send_at = if (self.send_at + 10.seconds).past?
-      Time.now + 1.minute
+      Time.current + 1.minute
     else
       self.send_at
     end.change(sec: 0)
