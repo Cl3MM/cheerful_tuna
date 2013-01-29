@@ -1,0 +1,86 @@
+!!!
+%html{:style => "font-size: 100%;"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+      %title CERES Membership 2013
+  %body{:bgcolor => "rgb(255, 255, 255)", :style => "font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; line-height: 20px; color: rgb(51, 51, 51); padding-top: 60px; padding-left: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; background-color: rgb(255, 255, 255);"}
+    %div{:style => "width: 940px; margin-right: auto; margin-left: auto;"}
+      %div{:style => "margin-left: -20px;"}
+        %div{:style => "width: 620px;"}
+          %div
+            %div{:style => "width: 680px;"}
+              %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"} 
+                - if @name == "Undefined"
+                  Dear Member,
+                - else
+                  Dear #{ @name },
+              %br
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  You are receiving this email because your CERES membership has expired or will expire in the upcoming days.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  %b
+                    Customers are now acutely aware of end-of-life issues and this has become
+                    a selling point for our industry. Using the CERES system for end-of-life
+                    photovoltaic modules you put on the market is essential to protect your
+                    brand image and your production cost.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  The end of 2012 has brought many regulation changes for end-of-life
+                  photovoltaic modules. The recast of WEEE directive now includes
+                  photovoltaic modules. European Union member states have now until February
+                  14th to transpose these new regulations into national law.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  Large markets, such as Italy, have already imposed
+                  %b new requirements to deal with end-of-life photovoltaic modules.
+                  The Czech Republic is also expected to impose new regulations for
+                  end-of-life photovoltaic modules by this summer. You can
+                  %a{:href => "http://www.ceres-recycle.org/legal-obligations/country-specifications", :style => "color: rgb(0, 136, 204); text-decoration: none;", :title => "Legal oblications, country specifications"} stay up to date with national regulations
+                  by visiting our website.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  In order to adapt to those new regulations, CERES is evolving. We have
+                  lowered the membership Fee to a one-time €500 flat-fee that covers all EU
+                  countries. Additionally there now is a Contribution Fee of €1 per ton sold
+                  during the previous year. We believe that this new calculation method will
+                  allow a fairest repartition of the cost over our members while allowing us
+                  to ensure a full compliance with the new obligations. At the same time,
+                  we’ve ensured that
+                  %b CERES continues to be the most competitive pan-European take-back system.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"} Find out how much you can save by joining CERES with the following table:
+                %table{:bgcolor => "transparent", :style => "max-width: 100%; border-collapse: separate; border-spacing: 0px; width: 100%; margin-bottom: 20px; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; border-radius: 4px 4px 4px 4px; border-top-color: rgb(221,221,221); border-right-color: rgb(221,221,221); border-bottom-color: rgb(221,221,221); border-left-color: -moz-use-text-color; border-top-style: solid; border-right-style: solid; border-bottom-style: solid; border-left-style: none; border-top-width: 1px; border-right-width: 1px; border-bottom-width: 1px; border-left-width: 0px; background-color: transparent;"}
+                  %thead
+                    %tr
+                      %th{:align => "left", :style => "line-height: 20px; text-align: justify; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 0px; border-top-style: none; font-weight: bold; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; border-top-left-radius: 4px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;", :valign => "middle"} Nominal output power put on the market in 2012 (in MW)
+                      %th{:align => "left", :style => "line-height: 20px; text-align: justify; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 0px; border-top-style: none; font-weight: bold; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(70, 136, 71);color:white;", :valign => "middle"} CERES membership cost estimation for 2013 (in €)*
+                      %th{:align => "left", :style => "line-height: 20px; text-align: justify; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 0px; border-top-style: none; font-weight: bold; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; border-top-right-radius: 4px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;background-color: rgb(185, 74, 72); color:white;", :valign => "middle"} PV CYCLE membership cost estimation for 2013 (in €)*
+                  %tbody
+                    %tr
+                      %td{:align => "left", :bgcolor => "rgb(249, 249, 249)", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(249, 249, 249);", :valign => "middle"} 10
+                      %td{:align => "left", :bgcolor => "rgb(249, 249, 249)", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(223, 240, 216);", :valign => "middle"} 1500 €
+                      %td{:align => "left", :bgcolor => "rgb(249, 249, 249)", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(242, 222, 222);", :valign => "middle"} 2900 €
+                    %tr
+                      %td{:align => "left", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px;", :valign => "middle"} 50
+                      %td{:align => "left", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(223, 240, 216);", :valign => "middle"} 5500 €
+                      %td{:align => "left", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(242, 222, 222);", :valign => "middle"} 9500 €
+                    %tr
+                      %td{:align => "left", :bgcolor => "rgb(249, 249, 249)", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; border-bottom-left-radius: 4px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(249, 249, 249);", :valign => "middle"} 100
+                      %td{:align => "left", :bgcolor => "rgb(249, 249, 249)", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(223, 240, 216);", :valign => "middle"} 10500 €
+                      %td{:align => "left", :bgcolor => "rgb(249, 249, 249)", :style => "line-height: 20px; text-align: center; vertical-align: center; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid; border-left-width: 1px; border-left-color: rgb(221, 221, 221); border-left-style: solid; border-bottom-right-radius: 4px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; background-color: rgb(242, 222, 222);", :valign => "middle"} 17750 €
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  %small{:style => "font-size: 85%;"}
+                    %i *These estimations are for CERES and PV CYCLE general take-back programs.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  To renew you participation into the CERE take-back and recycling system,
+                  please return us the completed
+                  %a{:href => "http://www.ceres-recycle.org/documents/membership/CERES_2013_Membership_form.pdf", :style => "color: rgb(0, 136, 204); text-decoration: none;", :title => "Membership form 2013"} membership form
+                  and
+                  %a{:href => "http://www.ceres-recycle.org/documents/membership/CERES_2013_Service_Contract.pdf", :style => "color: rgb(0, 136, 204); text-decoration: none;", :title => "Service Agreement 2013"} confidential service agreement
+                  attached to this email.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  If you’ve any further questions, please contact us at +33 970 444 458 or at
+                  %a{:href => "http://localhost:3000/members/mail_to:join@ceres-recycle.org", :style => "color: rgb(0, 136, 204); text-decoration: none;"} join@ceres-recycle.org
+                  to arrange a conference call.
+                %br
+                %p{:style => "margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"} Best regards,
+                %p{:style => "margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  \--
+                  %br
+                  The CERES team.
