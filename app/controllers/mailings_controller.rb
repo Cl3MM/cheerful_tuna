@@ -46,6 +46,7 @@ class MailingsController < ApplicationController
     params[:mailing][:article_ids]  = params[:mailing][:article_ids].first.split(",") if params[:mailing].has_key? :article_ids
     params[:mailing][:tags]         = params[:mailing][:tags].sort.first              if params[:mailing][:tags].present?
     params[:mailing][:countries]    = params[:mailing][:countries].sort.join(";")     if params[:mailing][:countries].present?
+
     @mailing = Mailing.new(params[:mailing])
 
     respond_to do |format|
