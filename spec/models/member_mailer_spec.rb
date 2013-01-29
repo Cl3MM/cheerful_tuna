@@ -4,7 +4,7 @@ ActionMailer::Base.delivery_method = :letter_opener
 
 describe MemberMailer do
 
-  it "Email members", focus: true do
+  it "Email members" do
     create(:member, single_email: true)
     Member.all.each do |member|
       Rails.logger.debug "*"*10 + " Sending email !!!!" + "*"*10
