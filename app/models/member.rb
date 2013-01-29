@@ -2,6 +2,8 @@
 class Member < ActiveRecord::Base
 
   include MyTools
+  include Membership
+
   paginates_per 25
   acts_as_taggable_on           :brand, :activity
   mount_uploader                :logo_file, MemberFilesUploader
@@ -36,6 +38,17 @@ class Member < ActiveRecord::Base
     MEMBERS_STATUS
   end
 
+  def self.check_outdated_members
+    Member.all.each do |member|
+      if (not member.suspended?) && (member.end_date < Date.today)
+        member.delay.suspend!
+        member.contacts.each do |contact|
+          MemberMailer.delay.membership_2013_renewal(contact.full_name, contact.email_addresses) #testing
+        end
+      end
+    end
+  end
+
   def find_with_status status
     if Member.member_status.include? status
       if status == "due_date"
@@ -67,7 +80,17 @@ class Member < ActiveRecord::Base
   end
 
   def suspend
-    self.status = :suspended
+    update_attributes :status, :suspended
+  end
+
+  def update_status status
+    if Member.member_status.include? status.to_sym
+      update_attributes :status, status.to_sym
+    end
+  end
+
+  def suspended?
+    self.status.to_sym == :suspend
   end
 
   def end_date_to_human
@@ -86,6 +109,10 @@ class Member < ActiveRecord::Base
   end
 
   def category_price
+    prices = {"A" => "5000€", "B" => "2000€", "C" => "1000€", "D" => "600€", "FREE" => "Free" }
+    prices[self.category.upcase]
+  end
+  def old_category_price
     prices = {"A" => "5000€", "B" => "2000€", "C" => "1000€", "D" => "600€", "FREE" => "Free" }
     prices[self.category.upcase]
   end
