@@ -79,18 +79,18 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def suspend
-    update_attributes :status, :suspended
+  def suspend!
+    update_attribute :status, :suspended
   end
 
-  def update_status status
-    if Member.member_status.include? status.to_sym
+  def update_status! status
+    if status.respond_to?(:to_sym) && Member.member_status.include?(status.to_sym)
       update_attributes :status, status.to_sym
     end
   end
 
   def suspended?
-    self.status.to_sym == :suspend
+    self.status.to_sym == :suspended
   end
 
   def end_date_to_human
