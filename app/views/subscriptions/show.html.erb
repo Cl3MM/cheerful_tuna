@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Owner:</b>
+  <%= @subscription.owner_id %>
+</p>
+
+<p>
+  <b>Start date:</b>
+  <%= @subscription.start_date %>
+</p>
+
+<p>
+  <b>End date:</b>
+  <%= @subscription.end_date %>
+</p>
+
+<p>
+  <b>Current:</b>
+  <%= @subscription.current %>
+</p>
+
+<p>
+  <b>Cost:</b>
+  <%= @subscription.cost %>
+</p>
+
+<p>
+  <b>Paid:</b>
+  <%= @subscription.paid %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%= @subscription.status %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
+<%= link_to 'Back', subscriptions_path %>
