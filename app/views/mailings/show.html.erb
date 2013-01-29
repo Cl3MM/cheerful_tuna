@@ -19,7 +19,7 @@
   <dt><strong><%= model_class.human_attribute_name(:html_version) %>:</strong></dt>
   <dd><%= @mailing.html_version %></dd>
   <dt><strong><%= model_class.human_attribute_name(:send_at) %>:</strong></dt>
-  <dd><%= @mailing.send_at %></dd>
+  <dd><%= Time.zone.parse(@mailing.send_at.to_s) %></dd>
 </dl>
 
 <div class="form-actions">
