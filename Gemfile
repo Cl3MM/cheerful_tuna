@@ -6,7 +6,8 @@ gem 'rails', '~> 3.2.11'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-#gem 'sqlite3'
+gem 'sqlite3'
+gem "haml"
 #gem 'thin'
 #gem 'will_paginate-bootstrap'
 gem 'puma', git: "git://github.com/puma/puma.git"
