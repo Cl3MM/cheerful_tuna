@@ -3,9 +3,9 @@ class MemberMailer < ActionMailer::Base
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
-  #
   #   en.member_mailer.generic_send.subject
   #
+
   def newswire name, email
     mail to: "#{name} <#{email}>", subject: "CERES - Italian regulations update"
   end
@@ -18,6 +18,14 @@ class MemberMailer < ActionMailer::Base
 
   def notify_membership_expiry name, emails
     @name = name
-    mail to: emails, subject: "CERES - Your CERES has expired"
+    mail to: emails, subject: "CERES - Your CERES membership has expired", from: "no-reply@ceres-recycle.org"
   end
+
+  def membership_2013_renewal name, emails
+    @name = name
+    attachments['CERES_2013_Service_Agreement.pdf'] = File.read("#{Rails.root}/public/assets/members/CERES_2013_Service_Agreement.pdf")
+    attachments['CERES_2013_Membership_form.pdf'] = File.read("#{Rails.root}/public/assets/members/CERES_2013_Membership_form.pdf")
+    mail to: emails, subject: "CERES - Your CERES membership has expired", from: "contact@ceres-recycle.org"
+  end
+
 end
