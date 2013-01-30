@@ -23,6 +23,14 @@ COLLECTION_POINTS_STATUS                = ENVIRONMENT_CONFIG[:collection_points_
 CERES_CONTACT_CONFIG                    = ENVIRONMENT_CONFIG[:ceres_contacts].symbolize_keys!
 MEMBERS_STATUS                          = ENVIRONMENT_CONFIG[:members]["status"].symbolize_keys!
 
+# Fix for error: ActiveModel::MassAssignmentSecurity::Error: Can't mass-assign protected attributes: modifications, number, user
+module VestalVersions
+  # The ActiveRecord model representing versions.
+  class Version < ActiveRecord::Base
+    attr_accessible :modifications, :number, :user
+  end
+end
+
 module CheerfulTuna
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -44,6 +52,7 @@ module CheerfulTuna
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
+    config.time_zone = 'Paris'
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
