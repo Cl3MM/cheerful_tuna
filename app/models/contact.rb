@@ -40,7 +40,7 @@ class Contact < ActiveRecord::Base
   validates_presence_of :company, :country
   validates :company, uniqueness: {scope: [:country, :last_name, :address], message: " already exists with similar country, last name and address."}
 
-  validates :civility, inclusion: { in: %w[Undef Mr Mrs Ms Dr], message: "%{value} is not a valid category" }
+  validates :civility, inclusion: { in: %w(Undef Mr Mrs Ms Dr), message: "%{value} is not a valid category" }
 
   # scopes
   scope :active_contacts, where(is_active: true)
