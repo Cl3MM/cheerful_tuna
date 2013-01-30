@@ -178,7 +178,7 @@ EOL
     flash.clear
     begin
       @contact = Contact.find(params[:id])
-      @contact.update_attribute(:updated_by, current_user)
+      @contact.update_attribute(:updated_by, current_user.id)
     rescue ActiveRecord::RecordNotUnique => e
       if e.message =~ /for key 'index_emails_on_address'/
         email   = e.message.scan(/Duplicate entry '(.*)' for key 'index_emails_on_address'.*/).flatten.first
