@@ -21,10 +21,6 @@
   <% end -%>
   <li <%= @active == "all" ? raw("class=\"active\">All</li>") : raw(">#{link_to "All", delivery_requests_path}</li>") %>
 </ul>
-<p style="text-align:center;"><%= raw page_entries_info(@delivery_requests) %></p>
-<div class="pagination pagination-centered">
-  <%= paginate @delivery_requests %>
-</div>
 <% if @delivery_requests.any? %>
 <table class="table table-striped">
   <thead>
@@ -63,6 +59,7 @@
     <% end %>
   </tbody>
 </table>
+<p style="text-align:center;"><%= raw page_entries_info(@delivery_requests) %></p>
 <div class="pagination pagination-centered">
   <%= paginate @delivery_requests %>
 </div>

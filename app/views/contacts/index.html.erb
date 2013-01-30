@@ -32,10 +32,6 @@
     <strong>Search results: <%= "#{pluralize(@contacts.total, 'result')}" %> matching the patern</strong>
   </div>
   <% end %>
-  <p style="text-align:center;"><%= raw page_entries_info @contacts, entry_name: "Contact" %></p>
-  <div class="pagination pagination-centered">
-    <%= paginate @contacts %>
-  </div>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -83,7 +79,7 @@
       <% end %>
     </tbody>
   </table>
-
+  <p style="text-align:center;"><%= raw page_entries_info @contacts, entry_name: "Contact" %></p>
   <div class="pagination pagination-centered">
     <%= paginate @contacts %>
   </div>

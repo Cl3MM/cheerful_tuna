@@ -20,13 +20,6 @@
   <% end -%>
   <li <%= @active == "all" ? raw("class=\"active\">All</li>") : raw(">#{link_to "All", collection_points_path}</li>") %>
 </ul>
-<p style="text-align:center;">
-  <%= raw page_entries_info @collection_points, entry_name: "CollectionPoint" %>
-</p>
-
-<div class="pagination pagination-centered">
-  <%= paginate @collection_points %>
-</div>
 
 <% if @collection_points.any? %>
 <table class="table table-striped">
@@ -61,6 +54,10 @@
     <% end %>
   </tbody>
 </table>
+
+<p style="text-align:center;">
+  <%= raw page_entries_info @collection_points, entry_name: "CollectionPoint" %>
+</p>
 
 <div class="pagination pagination-centered">
   <%= paginate @collection_points %>
