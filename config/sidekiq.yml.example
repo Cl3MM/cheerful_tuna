@@ -1,0 +1,12 @@
+# Sample configuration file for Sidekiq.
+# Options here can still be overridden by cmd line args.
+#   sidekiq -C config.yml
+#---
+#:verbose: true
+#:pidfile: "/path/to/pid"
+#:namespace: "a-nice-namespace"
+#:concurrency:  20
+#:queues:
+#  - [often, 8]
+#  - [default, 5]
+#  - [seldom, 2]
