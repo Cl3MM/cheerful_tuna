@@ -13,16 +13,15 @@ namespace :mb do
   task :mail_2012_due_members => :environment do
     Member.all.each do |member|
       if (member.id != 65 ) && (not member.suspended?) && (member.end_date < Date.today)
-        #member.delay.suspend!
+        member.delay.suspend!
         puts "\nMember #id: #{member.id} | company: #{member.company}"
         member.contacts.each do |contact|
           puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
           puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
-          #MemberMailer.delay.membership_2013_renewal(contact.full_name, contact.email_addresses)
+          MemberMailer.delay.membership_2013_renewal(contact.full_name, contact.email_addresses)
         end
       end
     end
   end
 
 end
-
