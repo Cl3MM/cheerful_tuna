@@ -7,9 +7,20 @@ en:
     form:
       add_subscription:   Add Subscription
       membership_details: Membership details
-      subscriptions:
-        membership_details: Membership details
-        no_subscriptions:   This member don't have any subscription yet.
+    subscriptions:
+      title:              Membership details
+      no_subscriptions:   This member don't have any subscription yet.
+    contacts_details:
+      title:              Contact(s) details
+      no_contacts:        No contacts
+  contacts:
+    name:       Name
+    tags:       Tags
+    email:      Email
+    emails:     Emails
+    actions:    Actions
+    view:       View contact
+    edit:       Edit contact
   subscriptions:
     ends:     Ends
     paid:     Paid
