@@ -1,0 +1,21 @@
+%h3= t('.title')
+- if @member.contacts
+  %table.table.table-bordered.table-striped#contacts_table
+    %thead
+      %tr
+        %th= t('contacts.name')
+        %th= t('contacts.tags')
+        %th= t('contacts.emails')
+        %th.center= t('contacts.actions')
+    %tbody
+      - @member.contacts.each do |contact|
+        %tr
+          %td= link_to(contact.full_name, contact, target: "_blank")
+          %td= contact.tag_list
+          %td= raw(contact.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join("<br />"))
+          %td.center
+            .btn-group
+              = link_to raw('<i class="icon-user"></i>'), contact_path(contact), class: "btn btn-info btn-mini btn-tooltip", title: t("contacts.view"), target: :blank
+              = link_to raw('<i class="icon-edit"></i>'), edit_contact_path(contact), class: "btn btn-mini btn-tooltip", title: t("contacts.edit"), target: :blank
+- else
+  %p= t('.no_contacts')
