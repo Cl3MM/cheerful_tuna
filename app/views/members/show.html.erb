@@ -38,13 +38,11 @@
       </div>
        <hr />
       <div id="membership">
-        <h3>Membership details</h3>
-        <%= membership_details @member %>
+        <%#= render partial: "subscriptions" %>
       </div>
        <hr />
       <div id="contacts">
-        <h3>Associated contacts</h3>
-        <%= contact_details @member %>
+        <%= render partial: "contacts_details" %>
       </div>
        <hr />
       <div id="files">
