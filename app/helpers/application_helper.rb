@@ -13,7 +13,7 @@ module ApplicationHelper
     if model.respond_to? :contacts
       html = ["<dl>"]
       html << model.contacts.map do |c|
-        "<dt>#{c.full_name}</dt>
+        "<dt>#{link_to(c.full_name, c, target: "_blank")}</dt>
       <dd>#{c.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join("<br />")}</dd>"
       end
       html.delete_if{|o| o.respond_to?(:empty?) && o.empty? }
