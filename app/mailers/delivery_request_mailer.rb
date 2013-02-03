@@ -1,5 +1,6 @@
 class DeliveryRequestMailer < ActionMailer::Base
-  default from: "no-reply@ceres-recycle.org"
+  default from: "no-reply@ceres-recycle.org",
+          bcc:   "operations@ceres-recycle.org"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
