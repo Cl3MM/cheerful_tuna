@@ -24,4 +24,16 @@ namespace :mb do
     end
   end
 
+  desc "Mail members for GSE figures"
+  task :mail_members_for_gse_figures => :environment do
+    Member.all.each do |member|
+      puts "\nMember #id: #{member.id} | company: #{member.company}"
+      member.contacts.each do |contact|
+        puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+        puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+        MemberMailer.delay.gse_figures_september_december(contact.full_name, contact.email_addresses)
+      end
+    end
+  end
+
 end
