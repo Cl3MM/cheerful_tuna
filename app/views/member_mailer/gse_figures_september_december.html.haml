@@ -1,0 +1,51 @@
+!!!
+%html{:style => "font-size: 100%;"}
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+      %title CERES Membership 2013
+  %body{:bgcolor => "rgb(255, 255, 255)", :style => "font-family: 'Helvetica Neue',Helvetica,Arial,sans-serif; font-size: 14px; line-height: 20px; color: rgb(51, 51, 51); padding-top: 40px; padding-left: 20px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px; margin-left: 0px; background-color: rgb(255, 255, 255);"}
+    %div{:style => "width: 940px; margin-right: auto; margin-left: auto;"}
+      %div{:style => "margin-left: 0px;"}
+        %div{:style => "width: 620px;"}
+          %div
+            %div{:style => "width: 680px;"}
+              %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"} 
+                - if @name == "Undefined"
+                  Dear Member,
+                - else
+                  Dear #{ @name },
+              %br
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  The
+                  %a{href: "http://www.ceres-recycle.org/italy", title: "Updated Conto Energia 5"} updated Conto Energia 5 in Italy
+                  requires every take-back system to 
+                  %b
+                    account for the number of modules put on the Italian market by its members.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  In order to comply with this requirement,
+                  %b
+                    CERES is gathering data from every Producer.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  %i
+                    The Producer is any organization placing photovoltaic modules on the Italian market for the first time.
+                  This includes, but is not limited to, manufacturers, importers, distributors or installers selling under their brand.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  %b
+                    If you are exporting or distributing modules in Italy, you now have to provide CERES with the following data:
+                %ul
+                  %li{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                    Consolidated number of modules you put on the market between the 1st of October, 2012 and the 31st of December, 2012.
+                  %li{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                    The corresponding list of module's serial number for that period.
+                %p{:align => "justify", :style => "text-align: justify; margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  The data will be consolidated and transmitted to the GSE as
+                  required by the new Italian law. It may not be used by CERES
+                  for other purposes.
+                %p
+                  Don't hesitate to contact us should any question arise,
+                %br
+                %p{:style => "margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"} Best regards,
+                %p{:style => "margin-top: 0px; margin-right: 0px; margin-bottom: 10px; margin-left: 0px;"}
+                  \--
+                  %br
+                  The CERES team.
