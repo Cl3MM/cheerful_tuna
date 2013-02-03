@@ -1,0 +1,74 @@
+= simple_form_for @member, :html => { :class => 'form-horizontal', :multipart => true } do |f|
+  = render "shared/error_messages", target: @member
+
+  .row
+    .span4
+      %legend
+        %abbr{:title => "required"} *
+        Membership details
+      = f.input :company, :autofocus => true
+      = f.input :user_name, required: true
+      = f.input :web_profile_url, label: "Web Profile URL", required: true
+      = f.input :start_date, required: true, as: :string
+      = f.input :category, collection: %w[Free A B C D], required: true
+      = f.input :vat_number
+
+    .span4.offset1
+      %legend Member's contacts details
+      %p.muted Please start to type the contact name, and select from the list.
+      .control-group.select.required
+        %label.select.required.control-label{:for => "member_contact_ids"}
+          %abbr{:title => "required"} *
+          Select contacts
+        .controls
+          %input#member_contact_ids{:multiple => "multiple",
+              :name => "member[contact_ids][]", 
+              :type => "hidden",
+              :value => raw( @member.contacts.map(&:to_select2).to_json ) }
+      .control-group.select.required
+        %label.select.required.control-label{:for => "member_contact_ids"}
+        .controls
+          %p.muted Or create a new one
+          = link_to raw('<i class="icon-plus-sign"></i> New Contact'), new_contact_path(format: [:js], member: @member.id) , method: :get, remote: true, id: "more_contacts", class: "btn btn-primary"
+      #contact_modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog", :tabindex => "-1"}
+        .modal-header
+          %button.close{"aria-hidden" => "true", "data-dismiss" => "modal", :type => "button"} ×
+          %h3#ContactModalLabel Create a new Contact
+        .modal-body
+        .modal-footer
+          %button.btn{"aria-hidden" => "true", "data-dismiss" => "modal"} Close
+          %button.btn.btn-primary Create Contact
+      %legend Member's Brands & Activities
+      %p.muted Please enter brand and activity names. Press the comma key to separate tags.
+      = f.input :activity_list, label: "Member's activities(s)",                                          |
+        input_html: { data: { tags: {tokenSeparators: [","], tags: Member.activity_counts.map(&:name)}} } |
+      -#
+      = f.input :brand_list, label: "Member's Brand(s)",                                  |
+        input_html: { data: { tags: {tokenSeparators: [","], tags: @member.brand_list}} } |
+      %legend Member's files
+      = f.input :membership_file, disabled: true
+      = f.input :logo_file, disabled: true
+  .row
+    .span4
+      %legend
+        %abbr{:title => "required"} *
+        Member address details
+      = f.input :address, required: true
+      = f.input :address_continued
+      = f.input :city, required: true
+      = f.input :postal_code, required: true
+      = f.input :country, required: true
+    .span4.offset1
+      %legend
+        Member billing address details
+        %small.pull-right
+          Enable: #{check_box_tag 'enable_billing', false, false}
+      #billing_part
+        = f.input :billing_address
+        = f.input :billing_city
+        = f.input :billing_postal_code
+        = f.input :billing_country
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), |
+      :back, class: 'btn'                                       |
