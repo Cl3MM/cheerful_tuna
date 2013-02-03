@@ -37,10 +37,18 @@
         <%= display_address @member %>
       </div>
        <hr />
-      <div id="membership">
-        <%#= render partial: "subscriptions" %>
+      <div id="tags">
+        <h3>Member's tags</h3>
+        <strong>Brands:</strong> <%= @member.brand_list.map(&:titleize).join(", ") %><br/>
+        <strong>Activities:</strong> <%= @member.activity_list.map(&:titleize).join(", ") %>
       </div>
        <hr />
+       <% if false %>
+         <div id="membership">
+           <%#= render partial: "subscriptions" %>
+         </div>
+         <hr />
+      <% end %>
       <div id="contacts">
         <%= render partial: "contacts_details" %>
       </div>
