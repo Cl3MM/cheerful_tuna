@@ -106,7 +106,22 @@ class ContactsController < ApplicationController
   # GET /contacts/new
   # GET /contacts/new.json
   def new
-    @contact = Contact.new
+    if params[:member].present? && params[:member].respond_to?(:to_i) # prefill new form with member's data
+      @member = Member.find(params[:member])
+      if @member
+        @contact = Contact.new( company:          @member.company,
+                                country:          @member.country,
+                                address:          @member.address,
+                                city:             @member.city,
+                                postal_code:      @member.postal_code,
+                                is_ceres_member:  true,
+                              )
+        tag_list = @member.activity_list + @member.brand_list
+        tag_list << "member"
+        @contact.tag_list = tag_list.join(',')
+      end
+    end
+    @contact ||= Contact.new
     @contact.emails.new
     respond_to do |format|
       format.html # new.html.erb
