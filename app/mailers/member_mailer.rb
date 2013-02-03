@@ -21,6 +21,11 @@ class MemberMailer < ActionMailer::Base
     mail to: emails, subject: "CERES - Your CERES membership has expired", from: "no-reply@ceres-recycle.org"
   end
 
+  def gse_figures_september_december name, emails
+    @name = name
+    mail to: emails, subject: "CERES - Important: Action regarding Italian traceability requirements for PV modules", from: "noreply@ceres-recycle.org"
+  end
+
   def membership_2013_renewal name, emails
     @name = name
     attachments['CERES_2013_Service_Agreement.pdf'] = File.read("#{Rails.root}/public/assets/members/CERES_2013_Service_Agreement.pdf")
