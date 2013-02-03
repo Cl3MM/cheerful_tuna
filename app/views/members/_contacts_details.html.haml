@@ -11,7 +11,7 @@
       - @member.contacts.each do |contact|
         %tr
           %td= link_to(contact.full_name, contact, target: "_blank")
-          %td= contact.tag_list
+          %td= contact.tag_list.map(&:titleize).join(', ')
           %td= raw(contact.email_addresses.map{|e| "#{mail_to(e, e, encode:"hex")}"}.join("<br />"))
           %td.center
             .btn-group
