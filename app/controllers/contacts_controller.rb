@@ -107,8 +107,7 @@ class ContactsController < ApplicationController
   # GET /contacts/new.json
   def new
     if params[:member].present? && params[:member].respond_to?(:to_i) # prefill new form with member's data
-      @member = Member.find(params[:member])
-      if @member
+      if @member = Member.find(params[:member])
         @contact = Contact.new( company:          @member.company,
                                 country:          @member.country,
                                 address:          @member.address,
