@@ -1,35 +1,50 @@
-<h1>Listing subscriptions</h1>
-
-<table>
-  <tr>
-    <th>Owner</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Current</th>
-    <th>Cost</th>
-    <th>Paid</th>
-    <th>Status</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @subscriptions.each do |subscription| %>
-  <tr>
-    <td><%= subscription.owner_id %></td>
-    <td><%= subscription.start_date %></td>
-    <td><%= subscription.end_date %></td>
-    <td><%= subscription.current %></td>
-    <td><%= subscription.cost %></td>
-    <td><%= subscription.paid %></td>
-    <td><%= subscription.status %></td>
-    <td><%= link_to 'Show', subscription %></td>
-    <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-    <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+<%- model_class = Subscription -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.pluralize %></h1>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= model_class.human_attribute_name(:id) %></th>
+      <th><%= model_class.human_attribute_name(:owner_id) %></th>
+      <th><%= model_class.human_attribute_name(:owner_type) %></th>
+      <th><%= model_class.human_attribute_name(:current) %></th>
+      <th><%= model_class.human_attribute_name(:paid) %></th>
+      <th><%= model_class.human_attribute_name(:start_date) %></th>
+      <th><%= model_class.human_attribute_name(:end_date) %></th>
+      <th><%= model_class.human_attribute_name(:cost) %></th>
+      <th><%= model_class.human_attribute_name(:status) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @subscriptions.each do |subscription| %>
+      <tr>
+        <td><%= link_to subscription.id, subscription_path(subscription) %></td>
+        <td><%= subscription.owner_id %></td>
+        <td><%= subscription.owner_type %></td>
+        <td><%= subscription.current %></td>
+        <td><%= subscription.paid %></td>
+        <td><%= subscription.start_date %></td>
+        <td><%= subscription.end_date %></td>
+        <td><%= subscription.cost %></td>
+        <td><%= subscription.status %></td>
+        <td><%=l subscription.created_at %></td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_subscription_path(subscription), :class => 'btn btn-mini' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      subscription_path(subscription),
+                      :method => :delete,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-mini btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
 
-<br />
-
-<%= link_to 'New Subscription', new_subscription_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_subscription_path,
+            :class => 'btn btn-primary' %>

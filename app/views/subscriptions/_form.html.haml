@@ -1,0 +1,14 @@
+= simple_form_for [@owner, @subscription], html: { multipart: :true, class: 'form-horizontal' } do |f|
+  = f.input :start_date,  as: :string
+  = f.input :cost
+
+  - @owner.class.mandatory_documents.keys.each do |document|
+    - new_document = f.object.send( :documents ).klass.new
+    = f.simple_fields_for(:documents, new_document, child_index: new_document.object_id) do |d|
+      = d.input :designation, as: :hidden, require: false, input_html: { value: document  }
+      = d.input :nice_file, as: :file, label: @owner.class.mandatory_documents[document], require: false
+
+  .form-actions
+    = f.button :submit, :class => 'btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), @owner, class: 'btn'
+

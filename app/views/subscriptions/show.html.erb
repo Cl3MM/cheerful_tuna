@@ -1,40 +1,35 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Subscription -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human %></h1>
+</div>
 
-<p>
-  <b>Owner:</b>
-  <%= @subscription.owner_id %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:owner_id) %>:</strong></dt>
+  <dd><%= @subscription.owner_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:owner_type) %>:</strong></dt>
+  <dd><%= @subscription.owner_type %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:current) %>:</strong></dt>
+  <dd><%= @subscription.current %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:paid) %>:</strong></dt>
+  <dd><%= @subscription.paid %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:start_date) %>:</strong></dt>
+  <dd><%= @subscription.start_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:end_date) %>:</strong></dt>
+  <dd><%= @subscription.end_date %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:cost) %>:</strong></dt>
+  <dd><%= @subscription.cost %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:status) %>:</strong></dt>
+  <dd><%= @subscription.status %></dd>
+</dl>
 
-<p>
-  <b>Start date:</b>
-  <%= @subscription.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @subscription.end_date %>
-</p>
-
-<p>
-  <b>Current:</b>
-  <%= @subscription.current %>
-</p>
-
-<p>
-  <b>Cost:</b>
-  <%= @subscription.cost %>
-</p>
-
-<p>
-  <b>Paid:</b>
-  <%= @subscription.paid %>
-</p>
-
-<p>
-  <b>Status:</b>
-  <%= @subscription.status %>
-</p>
-
-
-<%= link_to 'Edit', edit_subscription_path(@subscription) %> |
-<%= link_to 'Back', subscriptions_path %>
+<div class="form-actions">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              subscriptions_path, :class => 'btn'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_subscription_path(@subscription), :class => 'btn' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              subscription_path(@subscription),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
