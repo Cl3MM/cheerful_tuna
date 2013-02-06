@@ -3,6 +3,7 @@ class Member < ActiveRecord::Base
 
   include MyTools
   include Membership
+  include ModelStatus
 
   paginates_per 25
   acts_as_taggable_on           :brand, :activity
@@ -38,15 +39,23 @@ class Member < ActiveRecord::Base
     MEMBERS_STATUS
   end
 
+  def self.members_mandatory_documents
+    MEMBERS_DOCUMENTS
+  end
+
   def self.check_outdated_members
     Member.all.each do |member|
       if (not member.suspended?) && (member.end_date < Date.today)
         member.delay.suspend!
         member.contacts.each do |contact|
-          MemberMailer.delay.membership_2013_renewal(contact.full_name, contact.email_addresses) #testing
+          MemberMailer.membership_2013_renewal(contact.full_name, contact.email_addresses) #testing
         end
       end
     end
+  end
+
+  def self.reset_status status = :pending
+    Member.all.each{ |m| m.update_status! status} if Member.member_status.include? status.to_sym
   end
 
   def find_with_status status
@@ -79,19 +88,19 @@ class Member < ActiveRecord::Base
     end
   end
 
-  def suspend!
-    update_attribute :status, :suspended
-  end
+  #def suspend!
+    #update_attribute :status, :suspended
+  #end
 
-  def update_status! status
-    if status.respond_to?(:to_sym) && Member.member_status.include?(status.to_sym)
-      update_attribute :status, status.to_sym
-    end
-  end
+  #def update_status! status
+    #if status.respond_to?(:to_sym) && Member.member_status.include?(status.to_sym)
+      #update_attribute :status, status.to_sym
+    #end
+  #end
 
-  def suspended?
-    self.status.to_sym == :suspended
-  end
+  #def suspended?
+    #self.status.to_sym == :suspended
+  #end
 
   def end_date_to_human
     day   = end_date.strftime('%d').to_i.ordinalize
@@ -126,8 +135,19 @@ class Member < ActiveRecord::Base
     false
   end
 
+  def interpolate_id str
+    dir = self.company.upcase.gsub(/[^A-Z]/,"A")[0] # Select first letter of the company name
+    str.sub(/:id/, "#{dir}/%08d" % self.id)
+  end
+
+  def asset_path
+    dir = interpolate_id ENVIRONMENT_CONFIG[:members]["asset_path"]
+    "#{Rails.root}/#{dir}" # create dir from config
+  end
+
   def qr_code_dir
-    "#{Rails.root}/#{ENVIRONMENT_CONFIG[:members]["qr_code_dir"]}" # create dir from config
+    #dir = interpolate_id ENVIRONMENT_CONFIG[:members]["qr_code_dir"]
+    "#{asset_path}/#{ENVIRONMENT_CONFIG[:members]["qr_code_dir"]}" # create dir from config
   end
 
   def qr_code_name
