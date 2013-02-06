@@ -7,11 +7,12 @@ gem 'rails', '~> 3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem "haml"
+gem 'haml'
+gem 'haml-rails'
 #gem 'thin'
 #gem 'will_paginate-bootstrap'
-gem 'puma', git: "git://github.com/puma/puma.git"
-#gem "puma", "~> 1.6.3"
+gem 'puma', git: 'git://github.com/puma/puma.git'
+#gem 'puma', '~> 1.6.3'
 gem 'kaminari'
 gem 'simple_form'
 gem 'roo'
@@ -21,7 +22,7 @@ gem 'irbtools', require: false
 gem 'country_select'
 gem 'devise'
 #gem 'vestal_versions' #, git:'git://github.com/milkfarm/vestal_versions.git'
-gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
+gem 'vestal_versions', git: 'git://github.com/laserlemon/vestal_versions'
 gem 'tire'
 gem 'yaml_db'
 gem 'prawn'#, git: 'git://github.com/prawnpdf/prawn', branch: 'master'
@@ -33,16 +34,17 @@ gem 'acts-as-taggable-on'
 gem 'geocoder'
 gem 'recaptcha', require: 'recaptcha/rails'
 gem 'mercury-rails'
-gem 'paperclip'
+gem 'paperclip' #, git: 'git://github.com/thoughtbot/paperclip.git', branch: 'master'
 gem 'friendly_id', '~> 4.0.1'
 gem 'sidekiq'
 gem 'sinatra', require: false
 gem 'slim'
-gem "redis", "~> 3.0.1"
-#gem 'whenever', require: false
-gem 'clockwork'
-#gem 'rack-mini-profiler'
+gem 'redis', '~> 3.0.1'
+gem 'daemons'
+gem 'clockwork', git: 'git@github.com:Cl3MM/clockwork.git', branch: 'optionparser-fix'
 
+#gem 'whenever', require: false
+#gem 'rack-mini-profiler'
 #gem 'thinking-sphinx', '2.0.10'
 
 #gem 'vestal_versions', :git => 'git://github.com/adamcooper/vestal_versions'
@@ -83,13 +85,13 @@ gem 'jquery-rails'
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
 group :development do
-  gem "better_errors"
-  gem "binding_of_caller"
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test, :development do
   gem 'rspec-rails' #, :group => [:test, :development]
-  gem "letter_opener"
+  gem 'letter_opener'
   gem 'pry'
 end
 
