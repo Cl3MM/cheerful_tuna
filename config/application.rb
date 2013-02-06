@@ -22,6 +22,9 @@ DELIVERY_REQUESTS_STATUS                = ENVIRONMENT_CONFIG[:delivery_requests_
 COLLECTION_POINTS_STATUS                = ENVIRONMENT_CONFIG[:collection_points_status].symbolize_keys!
 CERES_CONTACT_CONFIG                    = ENVIRONMENT_CONFIG[:ceres_contacts].symbolize_keys!
 MEMBERS_STATUS                          = ENVIRONMENT_CONFIG[:members]["status"].symbolize_keys!
+SUBSCRIPTIONS_STATUS                    = ENVIRONMENT_CONFIG[:subscriptions]["status"].symbolize_keys!
+MEMBERS_DOCUMENTS                       = ENVIRONMENT_CONFIG[:members]["documents"].symbolize_keys!
+MEMBERS_MEMBERSHIP_DOCUMENTS            = ENVIRONMENT_CONFIG[:members]["membership_documents"].symbolize_keys!
 
 # Fix for error: ActiveModel::MassAssignmentSecurity::Error: Can't mass-assign protected attributes: modifications, number, user
 module VestalVersions
