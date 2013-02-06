@@ -67,6 +67,7 @@ CheerfulTuna::Application.routes.draw do
   #resources :contacts
   resources :members do
     resources :subscriptions
+    #resources :memberships
     get 'page/:page', :action => :index, :on => :collection
   end
   match 'users/statistics' => 'users#statistics', as: :stats_users
