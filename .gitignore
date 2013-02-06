@@ -26,3 +26,6 @@ TAGS
 /config/sidekiq.yml
 /config/puma.rb
 /config/init/*
+puma
+sidekiq
+clockwork
