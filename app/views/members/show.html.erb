@@ -43,12 +43,10 @@
         <strong>Activities:</strong> <%= @member.activity_list.map(&:titleize).join(", ") %>
       </div>
        <hr />
-       <% if false %>
-         <div id="membership">
-           <%#= render partial: "subscriptions" %>
-         </div>
-         <hr />
-      <% end %>
+       <div id="membership">
+         <%= render partial: "subscriptions" %>
+       </div>
+       <hr />
       <div id="contacts">
         <%= render partial: "contacts_details" %>
       </div>
