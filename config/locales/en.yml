@@ -10,9 +10,13 @@ en:
     subscriptions:
       title:              Membership details
       no_subscriptions:   This member don't have any subscription yet.
+      new_subscription:   Add membership
     contacts_details:
       title:              Contact(s) details
       no_contacts:        No contacts
+      set_tags:           Set tags
+      tags:               "Tags:"
+      set:                Set
   contacts:
     name:       Name
     tags:       Tags
