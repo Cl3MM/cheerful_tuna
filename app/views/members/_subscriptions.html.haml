@@ -1,4 +1,7 @@
-%h3= t('.title')
+%h3
+  = t('.title')
+  %small
+    = link_to t(".new_subscription"), new_member_subscription_path(@member), class: "btn btn-success pull-right"
 - if @member.subscriptions.any?
   %table.table.table-bordered.table-striped#membership_table
     %thead
@@ -9,6 +12,7 @@
         %th
           = t('subscriptions.paid' )
           ?
+        %th.center= t('contacts.actions')
     %tbody
       - @member.subscriptions.each do |sub|
         %tr{ class: sub.current? ? "info" : "" }
@@ -16,87 +20,13 @@
           %td= sub.end_date.strftime("%b %d, %Y")
           %td= sub.cost
           %td= sub.paid? ? t('subscriptions.paid') : t('subscriptions.unpaid')
+          %td.center
+            .btn-group
+              = link_to raw('<i class="icon-user"></i>'), member_subscription_path(@member, sub), class: "btn btn-info btn-mini btn-tooltip", title: t("contacts.view"), target: :blank
+              = link_to raw('<i class="icon-edit"></i>'), edit_member_subscription_path(@member, sub), class: "btn btn-mini btn-tooltip", title: t("contacts.edit"), target: :blank
+              = link_to raw('<i class="icon-trash"></i>'),
+                      member_subscription_path(@member, sub),
+                      method: :delete, data: { confirm: 'Are you sure?' },
+                      class: 'btn btn-mini btn-danger btn-tooltip', title: "Delete subscription"
 - else
   %p= t('.no_subscriptions')
-
--#%div#toto{ style: "width: 680px;" }
-  -#%p{style: "text-align: justify;"} Dear Member,
-  -#%br
-  -#%p{style: "text-align: justify;"}
-    -#You are receiving this email because your CERES membership has expired or will expire in the upcoming days.
-
-  -#%p{style: "text-align: justify;"}
-    -#%b
-      -#Customers are now acutely aware of end-of-life issues and this has become
-      -#a selling point for our industry. Using the CERES system for end-of-life
-      -#photovoltaic modules you put on the market is essential to protect your
-      -#brand image and your production cost.
-
-  -#%p{style: "text-align: justify;"}
-    -#The end of 2012 has brought many regulation changes for end-of-life
-    -#photovoltaic modules. The recast of WEEE directive now includes
-    -#photovoltaic modules. European Union member states have now until February
-    -#14th to transpose these new regulations into national law.
-
-  -#%p{style: "text-align: justify;"}
-    -#Large markets, such as Italy, have already imposed 
-    -#%b new requirements to deal with end-of-life photovoltaic modules.
-    -#The Czech Republic is also expected to impose new regulations for
-    -#end-of-life photovoltaic modules by this summer. You can 
-    -#%a{ title: "Legal oblications, country specifications", href: "http://www.ceres-recycle.org/legal-obligations/country-specifications"} stay up to date with national regulations 
-    -#by visiting our website.
-
-  -#%p{style: "text-align: justify;"}
-    -#In order to adapt to those new regulations, CERES is evolving. We have
-    -#lowered the membership Fee to a one-time €500 flat-fee that covers all EU
-    -#countries. Additionally there now is a Contribution Fee of €1 per ton sold
-    -#during the previous year. We believe that this new calculation method will
-    -#allow a fairest repartition of the cost over our members while allowing us
-    -#to ensure a full compliance with the new obligations. At the same time,
-    -#we’ve ensured that 
-    -#%b CERES continues to be the most competitive pan-European take-back system.
-
-  -#%p{style: "text-align: justify;"} Find out how much you can save by joining CERES with the following table:
-
-  -#%table.table.table-bordered.table-striped#membership
-    -#%thead
-      -#%tr
-        -#%th{ style: "text-align: justify;"} Nominal output power put on the market in 2012 (in MW)
-        -#%th{ style: "color: white; background-color: rgb(70, 136, 71); text-align: justify;"} CERES membership cost estimation for 2013 (in €)*
-        -#%th{ style: "color: white; background-color: rgb(185, 74, 72); text-align: justify;"} PV CYCLE membership cost estimation for 2013 (in €)*
-    -#%tbody
-      -#%tr
-        -#%td{ style: "text-align: center;"} 10
-        -#%td{ style: "background-color: rgb(223, 240, 216); text-align: center;"} 1500 €
-        -#%td{ style: "background-color: rgb(242, 222, 222); text-align: center;"} 2900 €
-      -#%tr
-        -#%td{ style: "text-align: center;"} 50
-        -#%td{ style: "background-color: rgb(223, 240, 216); text-align: center;"} 5500 €
-        -#%td{ style: "background-color: rgb(242, 222, 222); text-align: center;"} 9500 €
-      -#%tr
-        -#%td{ style: "text-align: center;"} 100
-        -#%td{ style: "background-color: rgb(223, 240, 216); text-align: center;"} 10500 €
-        -#%td{ style: "background-color: rgb(242, 222, 222); text-align: center;"} 17750 €
-
-  -#%p{style: "text-align: justify;"}
-    -#%small
-      -#%i *These estimations are for CERES and PV CYCLE general take-back programs.
-  -#%p{style: "text-align: justify;"}
-    -#To renew you participation into the CERE take-back and recycling system,
-    -#please return us the completed 
-    -#%a{ title: "Membership form 2013", href: "http://www.ceres-recycle.org/documents/membership/CERES_2013_Membership_form.pdf"} membership form
-    -#and
-    -#%a{ title: "Service Agreement 2013", href: "http://www.ceres-recycle.org/documents/membership/CERES_2013_Service_Contract.pdf"} confidential service agreement
-    -#attached to this email.
-  -#%p{style: "text-align: justify;"}
-    -#If you’ve any further questions, please contact us at +33 970 444 458 or at
-    -#%a{ href: "mail_to:join@ceres-recycle.org"} join@ceres-recycle.org
-    -#to arrange a conference call.
-  -#%br
-  -#%p Best regards,
-
-  -#%p
-    -#\--
-    -#%br
-    -#The CERES team.
-

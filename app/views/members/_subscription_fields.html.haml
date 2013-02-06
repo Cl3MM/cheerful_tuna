@@ -1,0 +1,17 @@
+%fieldset
+  = f.select :field_type, %w[text_field check_box shirt_sizes]
+  = f.text_field :name, placeholder: "field_name"
+  = f.check_box :required
+  = f.label :required
+  = f.hidden_field :_destroy
+  = link_to "remove", '#', class: "remove_fields"
+
+-#%div{:class => "control-group #{@subscription_error}"}
+  -#= f.label raw("<abbr title=\"required\">*</abbr> Email address"), class: "control-label"
+  -#.controls
+    -#= f.text_field :start_date
+    -#%span.help-inline
+      -#- if @subscription_error
+        -#can't be blank
+      -#= link_to "remove", '#', class: "remove_fields"
+    -#= f.hidden_field :_destroy

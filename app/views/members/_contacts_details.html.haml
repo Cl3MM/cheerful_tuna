@@ -4,10 +4,24 @@
     %thead
       %tr
         %th= t('contacts.name')
-        %th= t('contacts.tags')
+        %th
+          = t('contacts.tags')
+          %button{ type: "button", class: "btn btn-primary btn-mini pull-right", id: "set_tags"}
+            = t(".set_tags")
+          -#= link_to t(".set_tags"), "#", class: "btn btn-primary btn-mini pull-right", id: "set_tags"
         %th= t('contacts.emails')
         %th.center= t('contacts.actions')
     %tbody
+      %tr#tag_row
+        %td
+        %td
+          = form_tag("/search", :method => "get", class: "form-search")
+          = label_tag(:q, t(".tags"))
+          .input-append
+            = text_field_tag(:q, nil, class: "span2 input-small")
+            = button_tag("Plop", type: "button", class: "btn")
+        %td
+        %td
       - @member.contacts.each do |contact|
         %tr
           %td= link_to(contact.full_name, contact, target: "_blank")
