@@ -43,7 +43,6 @@
     <%= render 'layouts/footer' %>
   <% end %>
     <%= javascript_include_tag "application", controller_name %>
-    <%= javascript_include_tag "bootstrap-datepicker" if controller_path.match(/members/) %>
     <%= javascript_include_tag "raphael-min", "morris.min" if controller.action_name.match(/statistics/) %>
     <%= javascript_include_tag "select2" if controller.action_name.match(/edit|new|create|update/) %>
   </body>
