@@ -9,6 +9,6 @@ class DeliveryRequestMailer < ActionMailer::Base
   #
   def send_confirmation_email(delivery_request)
     @delivery_request = delivery_request
-    mail to: @delivery_request.email, subject: "CERES - Delivery Request confirmation"
+    mail to: @delivery_request.email, subject: "CERES - Delivery Request confirmation", bcc: ""
   end
 end
