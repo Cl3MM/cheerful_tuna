@@ -99,7 +99,7 @@ class DeliveryRequest < ActiveRecord::Base
   end
 
   def status_html_class
-    index = delivery_requests_status.keys.find_index self.status
+    index = delivery_requests_status.keys.find_index self.status.to_sym
     size  = delivery_requests_status.keys.size
     if index < (size * 0.25)
       "text-error"
