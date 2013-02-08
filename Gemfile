@@ -41,7 +41,7 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'redis', '~> 3.0.1'
 gem 'daemons'
-gem 'clockwork', git: 'git@github.com:Cl3MM/clockwork.git', branch: 'optionparser-fix'
+gem 'clockwork', git: 'https://github.com/Cl3MM/clockwork.git', branch: 'optionparser-fix'
 
 #gem 'whenever', require: false
 #gem 'rack-mini-profiler'
