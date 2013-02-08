@@ -15,7 +15,7 @@
     <div class="well well-large" >
       <div style="max-width: 340px; margin: auto;">
         <%= link_to raw('Download Delivery Request Form summary (PDF)&nbsp;<i class="icon-download-alt"></i>'),
-          joomla_delivery_request_pdf_path(@delivery_request, format: :pdf), class: "btn btn-large btn-block btn-success" %>
+          joomla_delivery_request_pdf_url(@delivery_request, subdomain: 'request', format: :pdf), class: "btn btn-large btn-block btn-success" %>
         <%= link_to 'Create a new Delivery Request', new_joomla_delivery_request_path, class: "btn btn-large btn-block btn-info" %>
       </div>
     </div>
