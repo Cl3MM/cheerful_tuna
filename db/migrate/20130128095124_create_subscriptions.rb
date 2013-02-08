@@ -20,7 +20,7 @@ class CreateSubscriptions < ActiveRecord::Migration
     add_index     :subscriptions, [ :owner_id, :owner_type ]
     add_index     :subscriptions, :start_date
     add_index     :subscriptions, :end_date
-    add_index     :subscriptions, :status
+    add_index     :subscriptions, :status, default: :new
     add_index     :subscriptions, :current
     add_index     :subscriptions, [ :owner_id, :start_date, :end_date ], unique: true
 
@@ -30,7 +30,8 @@ class CreateSubscriptions < ActiveRecord::Migration
           start_date: m.start_date,
           end_date:   m.end_date,
           paid:       true,
-          current:    true
+          current:    true,
+          status:     new
         }
         fee = m.category_price =~ /\d/ ? m.category_price.chop.to_i : 0
         attrs.store( :cost, fee )
