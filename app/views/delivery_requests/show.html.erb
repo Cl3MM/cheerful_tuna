@@ -98,6 +98,7 @@
               :back, :class => 'btn'  %>
   <%= link_to "Edit",
               edit_delivery_request_path(@delivery_request), :class => 'btn' %>
+  <%= link_to "DRF PDF", joomla_delivery_request_pdf_url(@delivery_request, subdomain: 'request', format: :pdf), target: "_blank", class: "btn btn-success" %>
   <%= link_to "Destroy",
               delivery_request_path(@delivery_request),
               :method => 'delete',
