@@ -7,6 +7,17 @@ GIT
       activesupport (~> 3.0)
 
 GIT
+  remote: git://github.com/prawnpdf/prawn
+  revision: 2d40e4d73270a1e6a2a294aec12f5705a52969e6
+  branch: master
+  specs:
+    prawn (1.0.0.rc1)
+      afm
+      pdf-reader (>= 0.9.0, < 2.0)
+      ruby-rc4
+      ttfunk (~> 1.0.3)
+
+GIT
   remote: git://github.com/puma/puma.git
   revision: 0282f062d04ef22950b7261acc9ca57e2961de20
   specs:
@@ -256,9 +267,6 @@ GEM
       http_parser.rb (~> 0.5.3)
       multi_json (~> 1.0)
     polyglot (0.3.3)
-    prawn (0.12.0)
-      pdf-reader (>= 0.9.0)
-      ttfunk (~> 1.0.2)
     pry (0.9.11.4)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -445,7 +453,7 @@ DEPENDENCIES
   nokogiri
   paperclip
   poltergeist
-  prawn
+  prawn!
   pry
   puma!
   rails (~> 3.2.11)
