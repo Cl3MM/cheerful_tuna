@@ -3,7 +3,7 @@ class Member < ActiveRecord::Base
 
   include MyTools
   include Membership
-  include ModelStatus
+  #include ModelStatus
 
   paginates_per 25
   acts_as_taggable_on           :brand, :activity

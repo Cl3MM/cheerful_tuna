@@ -5,12 +5,14 @@ class Contact < ActiveRecord::Base
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
+  #include Scrollable
 
   Tire::Results::Collection.module_eval do
     def to_ary
       self.to_a
     end
   end if Rails.env.test?
+
 
   paginates_per 25
   acts_as_taggable
