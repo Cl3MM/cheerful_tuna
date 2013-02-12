@@ -24,6 +24,23 @@ namespace :mb do
     end
   end
 
+  desc "Due members"
+  task :due_members => :environment do
+    out = [ "Company;Country;Contact Name;Phone;Mobile;Start Date;End Date;Emails" ]
+    Member.all.each do |member|
+      if (member.end_date < Date.today)
+        puts "\nMember #id: #{member.id} | company: #{member.company}"
+        member.contacts.each do |contact|
+          out << [ member.company, member.country, contact.full_name, contact.phone, contact.cell, member.start_date.strftime("%B %d, %Y"), member.end_date.strftime("%B %d, %Y"), contact.email_addresses ].join(';')
+          puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+          puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+        end
+        puts out.join("\n")
+        File.open("#{Rails.root}/tmp/due_members.csv", "w") { |f| f.puts out }
+      end
+    end
+  end
+
   desc "Mail members for GSE figures"
   task :mail_members_for_gse_figures => :environment do
     Member.all.each do |member|
