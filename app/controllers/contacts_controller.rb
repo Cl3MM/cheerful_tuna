@@ -83,6 +83,7 @@ class ContactsController < ApplicationController
     @class = @contact.is_active ? "btn" : "btn disabled"
     @next_contact = @contact.next_company
     @previous_contact = @contact.previous
+    @members = @contact.members
 
     respond_to do |format|
       format.html # show.html.erb

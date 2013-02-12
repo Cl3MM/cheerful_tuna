@@ -26,7 +26,18 @@
       <dt><strong>Other Info:</strong></dt>
       <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.infos %></dd>
       <dt><strong>Member of CERES:</strong></dt>
-      <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= @contact.is_ceres_member ? "YES" : "NO" %></dd>
+      <% if @members.any? %>
+        <ul class="inline">
+          <% @members.each do | member | %>
+          <li style="padding-left: 20px;">
+            <%= link_to member.company, member_path(member), target: :blank %>
+          </li>
+          <% end %>
+        </ul>
+        </dd>
+      <% else %>
+        <dd<%= @contact.is_active ? "" : " class='inactive'" %>>No</dd>
+      <% end %>
       <dt><strong>Job Position:</strong></dt>
       <dd<%= @contact.is_active ? "" : " class='inactive'" %>><%= dash_display @contact.position %></dd>
       <dt><strong>Phone:</strong></dt>
