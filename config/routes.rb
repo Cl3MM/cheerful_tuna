@@ -2,11 +2,9 @@ require 'sidekiq/web'
 
 CheerfulTuna::Application.routes.draw do
 
-  get "costs_comparison/index"
-  post "costs_comparison/index"
-
+  # Price Comparator
   constraints subdomain: 'comparison' do
-    match '/', to: 'costs_comparison#index', via: [:get, :post],  as: :costs_comparison_index_path
+    match '/', to: 'costs_comparison#index', via: [:get, :post],   as: :pvcycle_comparator
   end
   constraint = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.is_admin? }
   constraints constraint do
