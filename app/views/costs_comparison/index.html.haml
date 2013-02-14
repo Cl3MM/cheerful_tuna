@@ -1,0 +1,112 @@
+-#= form_for @costs, url: { action: :index }, html: { class: 'form-horizontal' } do |f|
+  -#= f.input :operating_counties, as: :select
+  -#= f.input :megawatts
+
+= simple_form_for(@q, url: costs_comparison_index_path, html:{ class: 'form-horizontal', method: :post }) do |f|
+  %legend CERES / PV Cycle cost comparison engine
+  = render "shared/error_messages", target: @q
+  = f.input :megawatts, label: t("comparator.megawatts", year: (Date.current-1.year).year )
+  = f.input :operating_countries, collection: 1..27, label: t("comparator.countries")
+
+  .control-group
+    %label.control-label
+      = t("comparator.ton_equivalentt")
+    .controls
+      = @q.tons_of_modules
+
+  .form-actions
+    = f.button :submit, t("comparator.submit"), :class => 'btn-primary'
+%table.table.table-bordered.table-striped#membership_table
+  %thead
+    %tr
+      %th.center -
+      %th.center
+        = t("comparator.pvcycle")
+      %th.center
+        = t("comparator.ceres")
+  %tbody
+    %tr
+      %td
+        = t("comparator.membership_fee")
+      %td
+        = t("comparator.pvcycle_membership")
+      %td
+        = t("comparator.ceres_membership")
+    %tr
+      %td
+        = t("comparator.contribution_fee")
+      %td
+        %b
+          = @q.pvcycle_contribution_fee_per_ton
+          €
+        = t("comparator.per_ton")
+      %td
+        %b
+          = @q.ceres_contribution_fee_per_ton
+          €
+        = t("comparator.per_ton")
+    %tr
+      %td
+        = t("comparator.payment_delay")
+      %td
+        = t("comparator.pvcycle_payment")
+      %td
+        = t("comparator.ceres_payment")
+    %tr
+      %td
+        = t("comparator.min_per_country")
+      %td
+        = @q.pvcycle_minimum_fee
+        MW
+      %td
+        = @q.ceres_minimum_fee
+        MW
+    %tr
+      %td
+        %b
+          = t("comparator.total_mbship")
+      %td
+        %b
+          = @q.pvcycle_membership_fee
+          €
+      %td
+        %b
+          = @q.ceres_membership_fee
+          €
+    %tr
+      %td
+        %b
+          = t("comparator.total_contrib")
+      %td
+        %b
+          = @q.pvcycle_contribution_fee
+          €
+      %td
+        %b
+          = @q.ceres_contribution_fee
+          €
+    %tr.info
+      %td
+        %b
+          = t("comparator.total")
+      %td
+        %b
+          %span{ class: "badge #{@q.pvcycle_total_css_class}" }
+            = @q.pvcycle_total_fees
+            €
+      %td
+        %b
+          %span{ class: "badge #{@q.ceres_total_css_class}" }
+            = @q.ceres_total_fees
+            €
+    %tr
+      %td{colspan: "2", class: "right"}
+        Difference in favor of CERES
+      %td
+        %b
+          = @q.difference
+          € /
+          = "#{"%0.2f" % @q.difference_percent}"
+          \%
+
+-# 8300-> 10h00

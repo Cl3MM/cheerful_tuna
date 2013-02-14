@@ -24,7 +24,7 @@
     <br />
     <%= request.fullpath %>
   <% end %>
-  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) %>
+  <% if controller_path.match(/joomla/) or request.fullpath.match(/\/joomla\/delivery_request/) or request.subdomain.match(/comparison/) %>
     <%= yield %>
   <% else %>
     <%= render partial: 'layouts/navbar' %>

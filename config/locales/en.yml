@@ -2,43 +2,77 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  activerecord:
+    models:
+      member: Member
+  membership:
+    start_date_ge_last_end_date: >
+                      A subscription already exists with and end date later than the
+                      entered start date. Please set the start date at least to %{date}
+    start_date_to_far: >
+                      Can't create a subscription 18 months in advance/old.
+                      Start date should be in the %{lower} to %{upper} range.
+#   attributes:
+  confirm:                 Are you sure?
   members:
     form:
-      add_subscription:   Add Subscription
-      membership_details: Membership details
+      add_subscription:    Add Subscription
+      membership_details:  Membership details
     subscriptions:
-      title:              Membership details
-      no_subscriptions:   This member don't have any subscription yet.
-      new_subscription:   Add membership
+      title:               Membership details
+      no_subscriptions:    This member don't have any subscription yet.
+      new_subscription:    Add membership
+      send_invoice:        Send Invoice
+      send_payment:        Send Payment
     contacts_details:
-      title:              Contact(s) details
-      no_contacts:        No contacts
-      set_tags:           Set tags
-      tags:               "Tags:"
-      set:                Set
+      title:               Contact(s) details
+      no_contacts:         No contacts
+      set_tags:            Set tags
+      tags:                "Tags:                                        "
+      set:                 Set
   contacts:
-    name:       Name
-    tags:       Tags
-    email:      Email
-    emails:     Emails
-    actions:    Actions
-    view:       View contact
-    edit:       Edit contact
+    name:                  Name
+    tags:                  Tags
+    email:                 Email
+    emails:                Emails
+    actions:               Actions
+    view:                  View contact
+    edit:                  Edit contact
   subscriptions:
-    ends:     Ends
-    paid:     Paid
-    starts:   Starts
-    unpaid:   Unpaid
-    current:  Current
-    costs:    Price
+    files:                 Files
+    ends:                  Ends
+    paid:                  Paid
+    starts:                Starts
+    unpaid:                Unpaid
+    current:               Current
+    costs:                 Price
+    delete:                Delete subscription
+  comparator:
+    megawatts:             Megawatts put on the market in %{year}
+    countries:             European countries where you operate
+    submit:                Compare!
+    pvcycle:               PV CYCLE
+    ceres:                 CERES
+    membership_fee:        Membership fee
+    ceres_membership:      500€
+    pvcycle_membership:    250€ per country (up to 5)
+    contribution_fee:      Contribution fee
+    per_ton:               per ton
+    payment_delay:         Payment Delay
+    ceres_payment:         30 days after sign up
+    pvcycle_payment:       30 days after sign up
+    min_per_country:       Minimum per country
+    total_mbship:          Total Membership
+    total_contrib:         Total Contribution
+    total:                 Total
+    ton_equivalentt:       Equivalent in tons
   distance:
     centi:
-      one: "cm"
-      other: "cm"
+      one:                 "cm"
+      other:               "cm"
     unit:
-      one: "mr"
-      other: "m"
+      one:                 "mr"
+      other:               "m"
     thousand:
-      one: "km"
-      other: "km"
+      one:                 "km"
+      other:               "km"
