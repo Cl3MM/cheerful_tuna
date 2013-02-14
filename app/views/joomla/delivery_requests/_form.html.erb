@@ -52,45 +52,33 @@
 
 <legend>Technology</legend>
 <p class="muted">Please indicate the number of modules for each technology</p>
-<label class="control-label"></label>
-<div class="row-fluid">
-  <% DeliveryRequest.delivery_requests_technologies_formatted.each do |subarray| %>
-    <div class="span3">
-      <% subarray.each do |tech| %>
-        <%= f.radio_button :technology,  tech, style: "margin-bottom: 2px;" %>
-        <%= f.label :technology, "#{DeliveryRequest.delivery_requests_technologies[tech]}" , class: "radio inline", style: "margin-right:24px; padding-left: 3px;" %>
-        <br/>
-      <% end %>
-    </div>
-  <% end %>
 
-  <legend>Modules quantity</legend>
-  <div class="row-fluid">
-    <div class="span3">
-      <%= f.input :module_count, input_html: {class: "input-mini"}, label: "Number of modules" %>
-    </div>
-    <div class="span2">
-      <%= f.input :pallets_number, input_html: {class: "input-mini"}, label: "Number of pallets" %>
-    </div>
-  </div>
 <div class="row-fluid">
-  <div class="span3">
-  <p class="muted", style="padding-left: 60px;">Modules size</p>
-    <%= f.input :length, input_html: {class: "input-mini"}, label: "Length (cm)" %>
-    <%= f.input :width, input_html: {class: "input-mini"},  label: "Width  (cm)" %>
-  </div>
-  <div class="span2">
-    <p class="muted">&nbsp;</p>
-    <%= f.input :height, input_html: {class: "input-mini"}, label: "Height (cm)" %>
-    <%= f.input :weight, input_html: {class: "input-mini"}, label: "Weight (kg)" %>
+
+  <div class="control-group string optional">
+    <% DeliveryRequest.delivery_requests_technologies.keys.each do |tech| %>
+      <label class="control-label" for=""></label>
+      <div class="controls">
+        <%= f.radio_button :technology,  tech, style: "margin-bottom: 2px;" %>
+        <%= f.label :technology, "#{DeliveryRequest.delivery_requests_technologies[tech]}" , class: "radio inline", style: "" %>
+      </div>
+    <% end %>
   </div>
 </div>
-<%= f.input :comments, input_html: { class: "input-medium", rows: 5, cols: 30 } %>
+  <legend>Modules quantity</legend>
+  <div class="row-fluid">
+    <%= f.input :module_count, input_html: {class: "input-small"}, label: "Number of modules" %>
+    <%= f.input :pallets_number, input_html: {class: "input-small"}, label: "Number of pallets" %>
+    <%= f.input :length, input_html: {class: "input-small"}, label: "Length (cm)" %>
+    <%= f.input :width, input_html: {class: "input-small"},  label: "Width  (cm)" %>
+    <%= f.input :height, input_html: {class: "input-small"}, label: "Height (cm)" %>
+    <%= f.input :weight, input_html: {class: "input-small"}, label: "Weight (kg)" %>
+    <%= f.input :comments, input_html: { class: "input-large", rows: 5, cols: 40 } %>
+  </div>
+</div>
 <div class="row-fluid">
-  <div class="span5">
     <!--<label class="control-label" style="margin-right:0px;">Stop SPAM</label>-->
       <%= raw recaptcha_tags(ssl: true, display: {theme:  "clean"} ) %>
-  </div>
 </div>
 <div class="form-actions">
   <%= f.button :submit, "Send Delivery request", class: "btn-primary" %>
