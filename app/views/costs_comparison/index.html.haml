@@ -2,7 +2,7 @@
   -#= f.input :operating_counties, as: :select
   -#= f.input :megawatts
 
-= simple_form_for(@q, url: costs_comparison_index_path, html:{ class: 'form-horizontal', method: :post }) do |f|
+= simple_form_for(@q, url: pvcycle_comparator_path(subdomain: 'comparison'), html:{ class: 'form-horizontal', method: :post }) do |f|
   %legend CERES / PV Cycle cost comparison engine
   = render "shared/error_messages", target: @q
   = f.input :megawatts, label: t("comparator.megawatts", year: (Date.current-1.year).year )
