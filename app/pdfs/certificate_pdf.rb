@@ -159,7 +159,7 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
     font @fonts[:MPB]
 
     bounding_box([115,590], width: 470, height: 90) do
-      text @member.company.html_safe.titleize, size: 56, align: :center, valign: :center, overflow: :shrink_to_fit
+      text @member.company.html_safe, size: 56, align: :center, valign: :center, overflow: :shrink_to_fit
     end
     font @fonts[:MPR]
     bounding_box([115,490], width: 470, height: 100) do
