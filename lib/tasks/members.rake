@@ -31,7 +31,7 @@ namespace :mb do
       if (member.end_date < Date.today)
         puts "\nMember #id: #{member.id} | company: #{member.company}"
         member.contacts.each do |contact|
-          out << [ contact.last_name, contact.first_name, contact.emails.first, member.company ].join(';')
+          out << [ contact.last_name, contact.first_name, contact.emails.first.address, member.company ].join(';')
           puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
           puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
         end
