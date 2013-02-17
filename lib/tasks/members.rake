@@ -24,6 +24,23 @@ namespace :mb do
     end
   end
 
+  desc "ENR Members"
+  task :list_enr => :environment do
+    out = [ "nom;prénom;e-mail;société" ]
+    Member.all.each do |member|
+      if (member.end_date < Date.today)
+        puts "\nMember #id: #{member.id} | company: #{member.company}"
+        member.contacts.each do |contact|
+          out << [ contact.last_name, contact.first_name, contact.emails.first, member.company ].join(';')
+          puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+          puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+        end
+        puts out.join("\n")
+        File.open("#{Rails.root}/tmp/enr_list.csv", "w") { |f| f.puts out }
+      end
+    end
+  end
+
   desc "Due members"
   task :due_members => :environment do
     out = [ "Company;Country;Contact Name;Phone;Mobile;Start Date;End Date;Emails" ]
