@@ -26,11 +26,11 @@ namespace :mb do
 
   desc "ENR Members"
   task :list_enr => :environment do
-    out = [ "nom;prénom;e-mail;société" ]
+    out = [ "nom;prénom;e-mail;société;pays" ]
     Member.all.each do |member|
       puts "\nMember #id: #{member.id} | company: #{member.company}"
       member.contacts.each do |contact|
-        out << [ contact.last_name, contact.first_name, contact.emails.first.address, member.company ].join(';')
+        out << [ contact.last_name, contact.first_name, contact.emails.first.address, member.company, contact.country ].join(';')
         puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
         puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
       end
