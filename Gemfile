@@ -42,6 +42,7 @@ gem 'slim'
 gem 'redis', '~> 3.0.1'
 gem 'daemons'
 gem 'clockwork', git: 'https://github.com/Cl3MM/clockwork.git', branch: 'optionparser-fix'
+gem 'workflow'
 
 #gem 'whenever', require: false
 #gem 'rack-mini-profiler'
@@ -90,19 +91,21 @@ group :development do
 end
 
 group :test, :development do
-  gem 'rspec-rails' #, :group => [:test, :development]
   gem 'letter_opener'
   gem 'pry'
 end
 
 group :test do
+  gem 'rspec-rails' #, :group => [:test, :development]
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'capybara', '~> 1.1.0'
+  gem 'capybara'#, '~> 1.1.0'
+  gem 'cucumber', git: "git://github.com/cucumber/cucumber.git"
+  gem 'cucumber-rails', require: false
   gem 'poltergeist'
   gem 'guard-rspec'
-  gem 'spork', '~> 1.0rc'
+  gem 'spork'#, '~> 1.0rc'
   gem 'guard-spork'
   gem 'rb-inotify', '~> 0.8.8'
   gem 'database_cleaner'
