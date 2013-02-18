@@ -1,48 +1,74 @@
-
 #!/bin/sh
 
 DESC=Puma
 NAME=puma
+USER=admin
+SHELL=/usr/bin/zsh
+
 APP_PATH=/var/www/cheerful_tuna
 PUMA_PATH=${APP_PATH}/tmp/${NAME}
-PID_FILE=${PUMA_PATH}/${NAME}.pid
-STATE_FILE=${PUMA_PATH}/${NAME}.state
+PID_FILE=${PUMA_PATH}/pid
+STATE_FILE=${PUMA_PATH}/state
 SOCK_FILE=${PUMA_PATH}/${NAME}.sock
 CONFIG_FILE=${APP_PATH}/config/puma.rb
 RACKUP_FILE=${APP_PATH}/cheerful_tuna.ru
 LOG_FILE=${APP_PATH}/log/${NAME}.log
-#CONTROL_URL="tcp://127.0.0.1:9293"
+CONTROL_URL=${APP_PATH}/tmp/puma/control
 
-export PATH=/home/admin/.rbenv/shims:$PATH
-export PATH=/home/admin/.rbenv/bin:$PATH
+HOME=/home/${USER}
+RBENV_ROOT=${HOME}/.rbenv
+
+export HOME=/home/${USER}
+export RBENV_ROOT=${HOME}/.rbenv
+
+export PATH=/home/${USER}/.rbenv/shims:$PATH
+export PATH=/home/${USER}/.rbenv/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/sbin:$PATH
 export PATH=/bin:$PATH
-export PATH=/home/admin/.rbenv/bin/rbenv:$PATH
-export RBENV_ROOT=/home/admin/.rbenv
+export PATH=${RBENV}/bin/rbenv:$PATH
 
 cd ${APP_PATH}
 
 #rbenv init -
 
+do_start() {
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; nohup bundle exec puma --debug -C ${CONFIG_FILE} --control unix:${CONTROL_URL} >> ${LOG_FILE} 2>&1 &"
+}
+
+do_restart() {
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; bundle exec pumactl --state ${STATE_FILE} restart >> ${LOG_FILE} 2>&1"
+}
+
 start() {
-  /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; nohup bundle exec puma --verbose -C ${CONFIG_FILE} ${RACKUP_FILE} >> ${LOG_FILE} 2>&1" || true
-  # --control ${CONTROL_URL}
+  if [ -e $PID_FILE ]; then
+    PID=`cat $PID_FILE`
+    echo "PID File Found with number: ${PID}"
+    if [ "`ps -A -o pid= | grep -c $PID`" -eq 0 ]; then
+      echo "Could not find the PID in processes, starting the server..."
+      do_start
+    else
+      echo "PID found, restarting..."
+      do_restart
+    fi
+  else
+    echo "No PID File found, starting server..."
+    do_start
+  fi
 }
 status() {
-  /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} status"
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; bundle exec pumactl --state ${STATE_FILE} status >> ${LOG_FILE} 2>&1"
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} status"
 }
 restart() {
-  #/usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} restart"
-  stop
-  start
+  do_restart
 }
 stop() {
-  /usr/bin/env kill -s INT `cat ${PID_FILE}`
-  /bin/rm ${PUMA_PATH}/* -f
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; bundle exec pumactl --state ${STATE_FILE} stop >> ${LOG_FILE} 2>&1"
+  #/bin/rm ${PUMA_PATH}/* -f
   #/usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; bundle exec pumactl -S ${STATE_FILE} stop"
   #/var/www/cheerful_tuna/tmp/pids/sidekiq.pid 60 >> /var/www/cheerful_tuna/log/sidekiq.log 2>&1" || true
 }
