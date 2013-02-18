@@ -7,8 +7,8 @@ class CollectionPointsController < ApplicationController
     @per_page = session[:ppage].to_s
     params[:ppage] = session[:ppage]
 
-    if (params[:status].present? && CollectionPoint.collection_points_status.include?(params[:status]) )
-      @active = params[:status]
+    if (params[:status].present? && CollectionPoint.collection_points_status.include?(params[:status].to_sym) )
+      @active = params[:status].to_sym
       @collection_points = CollectionPoint.where(status: params[:status]).order(:name)
     else
       @collection_points = CollectionPoint.order(:name)
