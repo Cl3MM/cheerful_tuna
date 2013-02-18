@@ -1,26 +1,39 @@
 class Subscription < ActiveRecord::Base
 
-  #include ModelStatus
-  #include Scrollable
+  include ModelStatus
+  include Scrollable
 
   attr_accessible :current, :documents_attributes, :end_date,
                   :cost, :owner_id, :owner_type, :paid,
                   :start_date, :status
   belongs_to  :owner, polymorphic: true, inverse_of: :subscriptions
-  has_many    :documents, as: :owner#, inverse_of: :owner
+  has_many    :documents, as: :owner, inverse_of: :owner
 
   accepts_nested_attributes_for :documents
 
   validate                :start_date,  presence: true
-  after_validation        :validate_start_date
-  before_save             :set_end_date, :set_status_before_save
+  before_save             :set_end_date
+  after_save             :set_status_before_save
+  #after_save              :move_subscription_files
   before_update           :set_end_date, :set_status_before_save
 
   default_scope order: 'start_date DESC'
   scope :current, where( current: true).limit(1)
 
   def designations
-    @_designations ||= (documents.any? ? documents.map{ |d| d.designation.to_sym } : [])
+    (documents.any? ? documents.map{ |d| d.designation.to_sym unless d.id.blank? }.compact : [])
+    #(documents.any? ? documents.map{ |d| d.designation.to_sym } : [])
+    #@_designations ||= (documents.any? ? documents.map{ |d| d.designation.to_sym } : [])
+  end
+
+  def move_subscription_files
+    if documents.any?
+      documents.each do |doc|
+        debug "asset path"
+        debug "#{self.owner.asset_path}"
+        doc.rename_file! self.owner.asset_path unless doc.renamed?
+      end
+    end
   end
 
   private
@@ -34,6 +47,7 @@ class Subscription < ActiveRecord::Base
     else
       paid = false
       status = if documents.any?
+                 debug designations
                  # what if invoice but no MBF/SA ?
                  if designations.include? :invoice # Invoice?
                    :pending_payment
