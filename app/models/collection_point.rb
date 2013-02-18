@@ -99,6 +99,7 @@ class CollectionPoint < ActiveRecord::Base
   end
 
   def status_html_class
+    debug  [ collection_points_status.keys.inspect, self.status.to_sym.inspect, collection_points_status.keys.find_index(self.status.to_sym).inspect ]
     index = collection_points_status.keys.find_index self.status.to_sym
     size  = collection_points_status.keys.size
     if index < (size * 0.25)
