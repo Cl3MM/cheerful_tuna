@@ -99,7 +99,7 @@ class CollectionPoint < ActiveRecord::Base
   end
 
   def status_html_class
-    index = collection_points_status.keys.find_index self.status
+    index = collection_points_status.keys.find_index self.status.to_sym
     size  = collection_points_status.keys.size
     if index < (size * 0.25)
       "text-error"
