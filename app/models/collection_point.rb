@@ -20,9 +20,7 @@ class CollectionPoint < ActiveRecord::Base
   validates :country,     presence: true
   validates :address,     presence: true
 
-  after_validation :geocode,
-    if: lambda{ |obj| obj.address_changed? },
-    unless: Rails.env.test?
+  after_validation :geocode#, if: lambda{ |obj| obj.address_changed? }#, unless: Rails.env.test?
 
   def create_collection_point_tag_on_contacts
     contacts.each do |contact|
