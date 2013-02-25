@@ -86,8 +86,8 @@ namespace :mb do
       member.contacts.each do |contact|
         puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
         puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
-        MemberMailer.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses).deliver
-        #MemberMailer.delay.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses)
+        #MemberMailer.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses).deliver
+        MemberMailer.delay.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses)
       end
     end
   end
