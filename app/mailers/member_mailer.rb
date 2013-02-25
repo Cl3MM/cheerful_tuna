@@ -16,6 +16,10 @@ class MemberMailer < ActionMailer::Base
     mail to: email, subject: "Mailing Test" if email and name
   end
 
+  def notify_ceres_erp_partnership name, emails
+    mail to: emails, subject: "CERES - ERP Italia Partnership", from: "operations@ceres-recycle.org"
+  end
+
   def notify_membership_expiry name, emails
     @name = name
     mail to: emails, subject: "CERES - Your CERES membership has expired", from: "no-reply@ceres-recycle.org"

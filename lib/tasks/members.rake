@@ -24,6 +24,21 @@ namespace :mb do
     end
   end
 
+  desc "Italian Members"
+  task :italian_members => :environment do
+    out = [ "nom;prénom;e-mail;société;pays" ]
+    Member.all.each do |member|
+      puts "\nMember #id: #{member.id} | company: #{member.company}"
+      member.contacts.each do |contact|
+        out << [ contact.last_name, contact.first_name, contact.emails.first.address, member.company, contact.country ].join(';')
+        puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+        puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+      end
+      puts out.join("\n")
+      File.open("#{Rails.root}/tmp/enr_list.csv", "w") { |f| f.puts out }
+    end
+  end
+
   desc "ENR Members"
   task :list_enr => :environment do
     out = [ "nom;prénom;e-mail;société;pays" ]
@@ -56,6 +71,27 @@ namespace :mb do
     end
   end
 
+  desc "Inform members about CERES/ERP partnership"
+  task :test_mail_erp_partnership => :environment do
+    Contact.tagged_with("Admin").each do |contact|
+      MemberMailer.delay.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses)
+      #MemberMailer.delay.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses)
+    end
+  end
+
+  desc "Inform members about CERES/ERP partnership"
+  task :mail_erp_partnership => :environment do
+    Member.all.each do |member|
+      puts "\nMember #id: #{member.id} | company: #{member.company}"
+      member.contacts.each do |contact|
+        puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+        puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+        MemberMailer.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses).deliver
+        #MemberMailer.delay.notify_ceres_erp_partnership(contact.full_name, contact.email_addresses)
+      end
+    end
+  end
+
   desc "Mail members for GSE figures"
   task :mail_members_for_gse_figures => :environment do
     Member.all.each do |member|
@@ -63,7 +99,8 @@ namespace :mb do
       member.contacts.each do |contact|
         puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
         puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
-        MemberMailer.delay.gse_figures_september_december(contact.full_name, contact.email_addresses)
+        MemberMailer.gse_figures_september_december(contact.full_name, contact.email_addresses)
+        #MemberMailer.delay.gse_figures_september_december(contact.full_name, contact.email_addresses)
       end
     end
   end
