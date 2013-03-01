@@ -105,4 +105,16 @@ namespace :mb do
     end
   end
 
+  desc "GSE Clarification"
+  task :mail_gse_clarification => :environment do
+    Member.all.each do |member|
+      puts "\nMember #id: #{member.id} | company: #{member.company}"
+      member.contacts.each do |contact|
+        puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+        puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+        MemberMailer.delay.gse_clarification(contact.full_name, contact.email_addresses)
+      end
+    end
+  end
+
 end

@@ -16,6 +16,10 @@ class MemberMailer < ActionMailer::Base
     mail to: email, subject: "Mailing Test" if email and name
   end
 
+  def gse_clarification name, emails
+    mail to: emails, subject: "Urgent | CERES: Clarification about the new GSE regulation ", from: "operations@ceres-recycle.org", importance: "High", 'X-Priority' => '1'
+  end
+
   def notify_ceres_erp_partnership name, emails
     mail to: emails, subject: "CERES - ERP Italia Partnership", from: "operations@ceres-recycle.org"
   end
