@@ -20,6 +20,10 @@ class MemberMailer < ActionMailer::Base
     mail to: emails, subject: "Urgent | CERES: Clarification about the new GSE regulation ", from: "operations@ceres-recycle.org", importance: "High", 'X-Priority' => '1'
   end
 
+  def italian_producers_march(email)
+    mail to: email, subject: "Urgente : Chiarimenti in merito alla regolamentazione del Conto Energia V relativa alla fine del ciclo di vita dei moduli fotovoltaici", from: "CERES <italia@ceres-recycle.org>", importance: "High", 'X-Priority' => '1', bcc: ""
+  end
+
   def notify_ceres_erp_partnership name, emails
     mail to: emails, subject: "CERES - ERP Italia Partnership", from: "operations@ceres-recycle.org"
   end
