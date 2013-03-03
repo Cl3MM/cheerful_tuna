@@ -14,7 +14,7 @@ namespace :mail do
 
     emails = enf_emails + italian_emails - members_emails
     emails << ["clement.roullet@gmail.com", "nicolas.defrenne@ceres-recycle.org", "sabrina.zanin@erp-recycling.org", "mohamed.osman@erp-recycling.org", "sbesanger@gmail.com", "jppalier@ceres-recycle.org", "jppalier@ceres-recycle.cn", "jppalier@clean-power-solar.com"]
-    emails.each do |email|
+    emails.uniq.each do |email|
       MemberMailer.delay.italian_producers_march(email)
     end
   end
