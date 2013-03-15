@@ -117,4 +117,29 @@ namespace :mb do
     end
   end
 
+  #desc "Update Contact category"
+  #task :update_contact => :environment do
+    #tag_category = CategoriesToTags.new
+    #tch = tag_category.tags_categories_hash
+    #Contact.all.each do |contact|
+      #c = contact.dup
+      #if tch.keys.include? c.category
+        #tch_tags          = tch[c.category]
+        #c.tag_list  = tch.join(",")
+        #c.delay_for(60.seconds).
+      #end
+    #end
+  #end
+
+  desc "email retroactive clarification"
+  task :mail_retroactive_clarification => :environment do
+    Member.all.each do |member|
+      puts "\nMember #id: #{member.id} | company: #{member.company}"
+      member.contacts.each do |contact|
+        puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+        puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+        MemberMailer.delay.retroactive_clarification(contact.email_addresses)
+      end
+    end
+  end
 end

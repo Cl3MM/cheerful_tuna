@@ -16,12 +16,16 @@ class MemberMailer < ActionMailer::Base
     mail to: email, subject: "Mailing Test" if email and name
   end
 
-  def gse_clarification name, emails
-    mail to: emails, subject: "Urgent | CERES: Clarification about the new GSE regulation ", from: "operations@ceres-recycle.org", importance: "High", 'X-Priority' => '1'
+  def retroactive_clarification to
+    mail to: to, subject: "Clarification about the retroactive guarantee fee in Italy", from: "CERES <italia@ceres-recycle.org>", importance: "High", 'X-Priority' => '1', bcc: ""
   end
 
-  def italian_producers_march(email)
-    mail to: email, subject: "Urgente : Chiarimenti in merito alla regolamentazione del Conto Energia V relativa alla fine del ciclo di vita dei moduli fotovoltaici", from: "CERES <italia@ceres-recycle.org>", importance: "High", 'X-Priority' => '1', bcc: ""
+  def gse_clarification to, cc
+    mail cc: cc, to: to, subject: "[Mailing to CERES Members] Urgent | CERES: Clarification about the new GSE regulation ", from: "operations@ceres-recycle.org", importance: "High", 'X-Priority' => '1', bcc: ""
+  end
+
+  def italian_producers_march to, cc
+    mail cc: cc, to: to, subject: "[Mailing to Italian Distributors] Urgente : Chiarimenti in merito alla regolamentazione del Conto Energia V relativa alla fine del ciclo di vita dei moduli fotovoltaici", from: "CERES <italia@ceres-recycle.org>", importance: "High", 'X-Priority' => '1', bcc: ""
   end
 
   def notify_ceres_erp_partnership name, emails
