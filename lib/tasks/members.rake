@@ -142,4 +142,18 @@ namespace :mb do
       end
     end
   end
+
+  desc "erp phone call campaign march"
+  task :erp_phone_call_campaign_march => :environment do
+    Member.all.each do |member|
+      unless [28, 45].include?(member.id)
+        puts "\nMember #id: #{member.id} | company: #{member.company}"
+        member.contacts.each do |contact|
+          puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+          puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+          MemberMailer.delay.erp_phone_call_campaign_march(contact.full_name, contact.email_addresses)
+        end
+      end
+    end
+  end
 end

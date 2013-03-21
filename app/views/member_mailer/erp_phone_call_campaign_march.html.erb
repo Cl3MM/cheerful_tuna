@@ -31,14 +31,6 @@
       * @section email border
       * @tip Set the border for your email.
       */
-      #exergue{
-        /*@editable*/ border: 2px solid red;
-        /*@editable*/ color:#505050;
-        /*@editable*/ font-family:Arial;
-        /*@editable*/ font-size:14px;
-        /*@editable*/ line-height:150%;
-        /*@editable*/ text-align:justify;
-      }
       #templateContainer{
         /*@editable*/ border: 1px solid #DDDDDD;
       }
@@ -507,7 +499,7 @@
                       </td>
                       <td valign="top" width="400">
                         <div mc:edit="std_preheader_links">
-                          Is this email not displaying correctly? <a href="http://www.ceres-recycle.org/documents/mailings/2013/March/GSE_clarification.html?utm_source=newsletter&utm_medium=email&utm_campaign=CERES%2BERP%2BUpdate" target="_blank">View it in your browser</a>.
+                          Is this email not displaying correctly? <a href="http://www.ceres-recycle.org/documents/mailings/2013/March/erp_phone_call_campaign.html?utm_source=newsletter&utm_medium=email&utm_campaign=ERP%20Phone%20Call%20Campaign" target="_blank">View it in your browser</a>.
                         </div>
                       </td>
                     </tr>
@@ -525,7 +517,7 @@
                     <tr>
                       <td class="headerContent">
                         <!-- // Begin Module: Standard Header Image \\ -->
-                        <img src="http://www.ceres-recycle.org/images/illustrations/ceres/banners/CERES_header_ERP.jpg" style="width:600px;max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" alt="CERES Banner" title="CERES Banner" />
+                        <img src="http://www.ceres-recycle.org/images/illustrations/ceres/banners/CERES-ERP.jpg" style="width:600px;max-width:600px;" id="headerImage campaign-icon" mc:label="header_image" mc:edit="header_image" alt="CERES Banner" title="CERES Banner" />
                         <!-- // End Module: Standard Header Image \\ -->
                       </td>
                     </tr>
@@ -547,53 +539,44 @@
                                 <tr>
                                   <td valign="top">
                                     <div mc:edit="std_content00">
-                                      <!-- VICKY: YOU HAVE TO MODIFY THIS DIV -->
-                                      <h1 class="h1">Clarification about new GSE regulation</h1>
-                                      <br/>
-                                      As you are aware,
-                                      <strong>the GSE deadline for take-back systems regarding Conto Energia V is March 31st 2013.</strong>
-                                      In order to offer our members a fully compliant solution, CERES has partnered with ERP to offer a tailored made solution to Italian regulations.
-                                      <br/>
-                                      <br/>
-                                      The definition of a Producer under Conto Energia V is 
+                                      <% if @name =~ /Undefined/ %>
+                                        Dear Member,
+                                      <% else %>
+                                        Dear <%= "#{@name}" %>,
+                                      <% end %>
+                                      <br />
+                                      <br />
+                                      <br />
+                                      The deadline for PV modules registration in Italy under Conto Energia V is coming soon, on March 31st. To this day, CERES partner’s ERP Italia has already registered tens of thousands of modules. This will ensure that end-users who bought those registered modules cannot lose the incentive on their feed-in tariffs.
+                                      <br />
+                                      <br />
                                       <strong>
-                                        <span style="color: red;">any organization placing photovoltaic modules on the Italian market for the first time.</span>
+                                      To improve the coverage from next Monday, we will start a phone call campaign with ERP Italia, calling up directly our members’ clients in Italy who may be considered as Producers under the Conto Energia V regulation.
+                                      <br />
+                                      <br />
+                                      In order to ensure the most comprehensive coverage of PV modules sold in Italy, we kindly require our members to provide us with a contact name, phone number and approximate volume sold by customer.
+                                      <br />
+                                      <br />
+                                      Please send us this information to 
+                                      <a href="mailto:operations@ceres-recycle.org">operations@ceres-recycle.org</a>
+                                      to make sure that your customers get the most up-to-date information and don’t miss the deadline.
                                       </strong>
-                                      This includes, but is not limited to, manufacturers, importers, distributors or installers selling under their brand.
-                                      <br/>
-                                      <br/>
-                                      <strong>This means that you, as a member, if you put directly photovoltaic modules on the Italian market, or your customers who have imported your modules to Italy, may be considered as Producer.</strong>
-                                      <br/>
-                                      <br/>
-                                      <table cellpadding="20" cellspacing="0" width="100%" id="exergue">
-                                        <tr>
-                                          <td class="bodyContent">
-                                      Producers, as defined by the GSE, must provide a financial guarantee for all modules put on the Italian market since July 1st, 2012.
-                                      <ul>
-                                        <li> If you have put modules directly on the market in Italy and haven’t yet registered with ERP Italia, please email us at 
-                                        <a href="mailto:italia@ceres-recycle.org">italia@ceres-recycle.org</a>
-                                        so that we can proceed to the registration. 
-                                        </li>
-                                        <br/>
-                                        <li> If your customers have imported your modules to Italy, it is urgent and necessary for them to get in touch with us directly at
-                                        <a href="mailto:italia@ceres-recycle.org">italia@ceres-recycle.org</a>.
-                                        Indeed they are responsible and must register with a GSE compliant take-back system as soon as possible. Please send us your Italian importers list so that we can provide them with the relevant information. </li>
-                                      </ul>
-                                          </td>
-                                        </tr>
-                                      </table>
-                                      <br/>
-                                      <strong><b>
-                                          In order for CERES members to benefit from our service in Italy, it is mandatory for them to adhere to this partnership as soon as they receive the relevant documents from ERP Italia.
-                                      </b></strong>
-                                      <br/>
-                                      <br/>
-                                      Members who have already declared PV modules serial numbers to CERES will automatically receive the registration documents. If your company hasn't yet declared modules put on the italian market, please contact <strong>operations@ceres-recycle.org</strong> as soon as possible to ensure your compliance with Conto Energia requirements.
+                                      <br />
+                                      <br />
+                                      All collected information will be used in a strictly confidential manner and used only to fulfill Conto Energia V requirements.
+                                      <br />
+                                      <br />
+                                      The phone campaign will start by the biggest customers to achieve the highest possible PV modules registration rate. This will help us to ensure that all of your customers have a solution for every PV modules sold under your brand.
+                                      In the meantime CERES and ERP Italia are starting a press and advertising campaign in Italy to extend the reach and knowledge of the service. Indeed the CERES-ERP Italia partnership is the most cost-effective offer that benefits from both a GSE agreement and a CDCRAEE agreement.
+                                      <br />
+                                      <br />
+                                      --
+                                      <br />
+                                      The CERES team
                                     </div>
                                   </td>
                                 </tr>
                               </table>
-                              <!-- // End Module: Standard Content \\ -->
                             </td>
                           </tr>
                         </table>
@@ -614,8 +597,8 @@
                           <tr>
                             <td colspan="2" valign="middle" id="social">
                               <div mc:edit="std_social">
-                                &nbsp;<a target="_blank" href="https://twitter.com/#!/CeresRecycle?utm_source=Twitter&utm_medium=email&utm_campaign=CERES%2BERP%2BUpdate">follow on Twitter</a> | 
-                                <a target="_blank" href="https://www.facebook.com/pages/CERES-Recycle/255457807817105?utm_source=newsletter&utm_medium=email&utm_campaign=CERES%2BERP%2BUpdate">friend on Facebook</a> | 
+                                &nbsp;<a target="_blank" href="https://twitter.com/#!/CeresRecycle?utm_source=Twitter&utm_medium=email&utm_campaign=ERP%20Phone%20Call%20Campaigns">follow on Twitter</a> | 
+                                <a target="_blank" href="https://www.facebook.com/pages/CERES-Recycle/255457807817105?utm_source=newsletter&utm_medium=email&utm_campaign=ERP%20Phone%20Call%20Campaigns">friend on Facebook</a> | 
                                 <a href="mailto:?Subject=CERES - Photovoltaic modules recycling scheme&body=Hello, I'm sure you will take interest in CERES, the European Center for Solar Energy Recycling: http://www.ceres-recycle.org/">forward to a friend</a>&nbsp;
                               </div>
                             </td>
@@ -632,7 +615,7 @@
                           <tr>
                             <td colspan="2" valign="middle" id="utility">
                               <div mc:edit="std_utility">
-                                &nbsp;<a target="_blank" href="http://www.ceres-recycle.org/unsubscribe?utm_source=newsletter&utm_medium=email&utm_campaign=CERES%2BERP%2BUpdate">unsubscribe from this list</a>&nbsp;
+                                &nbsp;<a target="_blank" href="http://www.ceres-recycle.org/unsubscribe?utm_source=newsletter&utm_medium=email&utm_campaign=ERP%20Phone%20Call%20Campaigns">unsubscribe from this list</a>&nbsp;
                               </div>
                             </td>
                           </tr>

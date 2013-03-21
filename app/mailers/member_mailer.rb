@@ -16,6 +16,11 @@ class MemberMailer < ActionMailer::Base
     mail to: email, subject: "Mailing Test" if email and name
   end
 
+  def erp_phone_call_campaign_march name, email
+    @name = name
+    mail to: email, subject: "CERES-ERP Italia partnership : Action required - Phone call campaign to start regarding GSE regulations in Italy", from: "CERES <no-reply@ceres-recycle.org>", importance: "High", 'X-Priority' => '1'
+  end
+
   def retroactive_clarification to
     mail to: to, subject: "Clarification about the retroactive guarantee fee in Italy", from: "CERES <italia@ceres-recycle.org>", importance: "High", 'X-Priority' => '1', bcc: ""
   end
