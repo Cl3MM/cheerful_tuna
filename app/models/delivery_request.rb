@@ -20,6 +20,7 @@ class DeliveryRequest < ActiveRecord::Base
   validates :country,                 presence: true
   validates :reason_of_disposal,      presence: true
   validates :modules_condition,       presence: true
+  validates :technology,              presence: true
   validates :module_count,            presence: true, numericality: { :greater_than => 0 }
   validates :modules_production_year, presence: true, numericality: { :greater_than => 0 }
   validates :length,                  presence: true, numericality: { :greater_than => 0 }
