@@ -57,7 +57,7 @@
 
   <div class="control-group string optional">
     <% DeliveryRequest.delivery_requests_technologies.keys.each do |tech| %>
-      <label class="control-label" for=""></label>
+      <label class="control-label"></label>
       <div class="controls">
         <%= f.radio_button :technology,  tech, style: "margin-bottom: 2px;" %>
         <%= f.label :technology, "#{DeliveryRequest.delivery_requests_technologies[tech]}" , class: "radio inline", style: "" %>
