@@ -1,0 +1,41 @@
+- model_class = Invoice
+.page-header
+  %h1
+    =t '.title', :default => model_class.model_name.human.pluralize
+    = form_tag invoices_path, method: :get, :class=>"form-inline inline pull-right", style: " margin-left: 20px;" do
+      = select_per_page({selected: @per_page, select_options: %w(5 10 20 50 100 250 500 1000), html_input: {class: "span1", id: "per_page", name: "per_page"}})
+      %span.help-inline{ style: "font-size: 14px; font-weight: normal; color: #999;"}
+        per page
+    = link_to raw("<i class=\"icon-file\"></i> New invoice"), new_invoice_path, class: 'btn btn-primary pull-right btn-tooltip', title: "Create a new Member", style: "margin-top: 8px;"
+
+- if @invoices.any?
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= model_class.human_attribute_name(:code)
+        %th= model_class.human_attribute_name(:country)
+        %th= model_class.human_attribute_name(:designation)
+        %th= model_class.human_attribute_name(:price)
+        %th.right
+          =t '.actions', :default => t("helpers.actions")
+    %tbody
+      - @invoices.each do |invoice|
+        %tr
+          %td= link_to invoice.code, invoice_path(invoice)
+          %td= invoice.country
+          %td= invoice.designation
+          %td= invoice.total_price
+          %td.right
+            .btn-group
+              = link_to raw('<i class="icon-edit"></i>'), edit_invoice_path(invoice), :class => 'btn btn-mini'
+              = link_to raw('<i class="icon-trash"></i>'), invoice_path(invoice), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
+  .pagination.pagination-centered
+    = paginate @invoices
+  %p{ style: "text-align:center;"}
+    = raw page_entries_info @invoices
+- else
+  %p
+    %strong
+      There is currently no invoices.
+    You can create a new one by pressing the "New button".
+

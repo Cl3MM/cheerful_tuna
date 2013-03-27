@@ -1,0 +1,13 @@
+%tr
+  %td
+    = link_to raw("<i class=\"icon-remove\"></i>"), '#', class: "remove_fields"
+  %td
+    = f.input_field :designation, class: "no_margin input-xlarge", label: false
+    = f.error :designation, class: "error no-margin"
+  %td
+    = f.input_field :unit_price, class: "no_margin input-mini uprice", label: false
+    = f.error :unit_price, class: "error no-margin"
+  %td
+    = f.input_field :amount, class: "no_margin span1 input-mini amount", step: 1, type: :number
+    = f.error :amount, class: "error no-margin"
+  %td.center
