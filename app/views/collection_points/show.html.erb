@@ -42,4 +42,14 @@
               :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
               :class => 'btn btn-danger' %>
   </div>
+  <div class="btn-group">
+    <%= form_tag collection_point_path(@collection_point), method: :get, class: "no_margin form-inline inline pull-right" do %>
+      <%= hidden_field_tag "certif", true %>
+      <%= hidden_field_tag "format", "pdf" %>
+      <%#<%= link_to "Certificate", collection_point_path(certif: true, format: :pdf)  , :class => 'btn'  %>
+      <%#= select_per_page({selected: @per_page, select_options: %w(English Français), html_input: {class: "span2", name: "per_page"}})  %>
+      <%= select_per_page({select_options: %w(English Français), html_input: {class: "span2", name: "locale", style: "margin-right: 20px !important;"}})  %>
+      <%= submit_tag "Certificate", class: "btn btn-primary" %> <%#>, collection_point_path(certif: true, format: :pdf)  , :class => 'btn'  %>
+    <% end -%>
+  </div>
 </div>
