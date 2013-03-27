@@ -1,4 +1,7 @@
 class InvoicesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   # GET /invoices
   # GET /invoices.json
   def index
