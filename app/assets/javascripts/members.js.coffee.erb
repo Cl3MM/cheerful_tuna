@@ -103,7 +103,6 @@ jQuery ->
     $('form#new_contact .span4.offset1').removeClass "offset1"
 
   $('#contact_modal .btn.btn-primary').click (e) ->
-    <%#=j hidden_field_tag "remote", "true" %>
     $('form#new_contact').append('<input id="remote" name="remote" type="hidden" value="true">')
     $('form#new_contact').attr "data-remote", "true"
 

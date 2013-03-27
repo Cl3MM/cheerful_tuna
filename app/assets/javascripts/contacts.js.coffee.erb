@@ -7,7 +7,7 @@ jQuery ->
     $(this).closest('form').trigger('submit')
 
   $('form').on 'click', '.remove_fields', (event) ->
-    $(this).parent().prev().val(true)
+    $(this).prev().val(true)
     $(this).closest('.control-group').hide()
     event.preventDefault()
 

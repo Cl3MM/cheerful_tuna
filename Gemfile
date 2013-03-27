@@ -1,12 +1,11 @@
-if RUBY_VERSION =~ /1.9/
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
-end
+#if RUBY_VERSION =~ /1.9/
+  #Encoding.default_external = Encoding::UTF_8
+  #Encoding.default_internal = Encoding::UTF_8
+#end
 
 source 'https://rubygems.org'
 
 gem 'rails', '~> 3.2.11'
-#, '3.2.3'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -109,10 +108,13 @@ group :test do
   gem 'cucumber', git: "git://github.com/cucumber/cucumber.git"
   gem 'cucumber-rails', require: false
   gem 'poltergeist'
-  gem 'guard-rspec'
   gem 'spork'#, '~> 1.0rc'
+
+  gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'rb-inotify', '~> 0.8.8'
+  gem 'guard-bundler'
+
+  gem 'rb-inotify'#, '~> 0.8.8'
   gem 'database_cleaner'
   gem 'launchy'
   #gem 'vcr'
