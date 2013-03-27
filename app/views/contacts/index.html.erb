@@ -38,7 +38,7 @@
         <th>Company</th>
         <th>Email</th>
         <th class="center">Website</th>
-        <th>Category</th>
+        <th>Tags</th>
         <th>Country</th>
         <th class="actions">Actions</th>
       </tr>
@@ -52,7 +52,7 @@
             <%= h(contact.emails.map{|e| e.address.truncate(26)}.join("\n")) %>
           </td>
           <td class="center"><%= display_website contact.website %></td>
-          <td><%= contact.category.truncate(16) %></td>
+          <td><%= contact.tag_list.nil? ? "-" : contact.tag_list.join(", ").truncate(16) %></td>
           <td><%= contact.country.upcase.truncate(12) %></td>
           <td class="actions">
             <div class="btn-group pull-right">
