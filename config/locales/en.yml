@@ -19,16 +19,21 @@ en:
       add_subscription:    Add Subscription
       membership_details:  Membership details
     subscriptions:
+      edit_file : Edit file
+      download_file: Download %{name}
       title:               Membership details
       no_subscriptions:    This member don't have any subscription yet.
       new_subscription:    Add membership
+    membership_actions:
       send_invoice:        Send Invoice
       send_payment:        Send Payment
+      deactivate:          Deactivate
+      activate:            Activate
     contacts_details:
       title:               Contact(s) details
       no_contacts:         No contacts
       set_tags:            Set tags
-      tags:                "Tags:                                        "
+      tags:                "Tags: "
       set:                 Set
   contacts:
     name:                  Name
@@ -39,6 +44,11 @@ en:
     view:                  View contact
     edit:                  Edit contact
   subscriptions:
+    no_action:             No Action
+    status_actions:        Status action
+    status:                Status
+    actions:               Action
+    status_actions:        Status action
     files:                 Files
     ends:                  Ends
     paid:                  Paid
@@ -55,17 +65,34 @@ en:
     ceres:                 CERES
     membership_fee:        Membership fee
     ceres_membership:      500€
-    pvcycle_membership:    250€ per country (up to 5)
+    pvcycle_membership:    per country (up to 5)
     contribution_fee:      Contribution fee
     per_ton:               per ton
+    per_country:           per country
     payment_delay:         Payment Delay
     ceres_payment:         30 days after sign up
     pvcycle_payment:       30 days after sign up
-    min_per_country:       Minimum per country
+    min_contribution:      Minimum contribution fee
     total_mbship:          Total Membership
     total_contrib:         Total Contribution
     total:                 Total
     ton_equivalentt:       Equivalent in tons
+  collection_point_certificate:
+    author:   CERES - Centre Europeen pour le Recyclage de l'Energie Solaire
+    title:    CERES Collectinon Point Certificate for %{name}
+    certify:  is a Collection Point for CERES, which organizes for the collection and recycling of end-of-life photovoltaic modules at the European level.
+    hereby: We hereby certify that based upon the current commitment
+    president: President
+    certificate: CERTIFICATE
+    expiry: "Certificate Expiry Date: %{date}"
+  certificate:
+    author:   CERES - Centre Europeen pour le Recyclage de l'Energie Solaire
+    title:    CERES Membership Certificate for %{name}
+    certify:  is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.
+    hereby: We hereby certify that based upon the current commitment
+    president: President
+    certificate: CERTIFICATE
+    expiry: "Certificate Expiry Date: %{date}"
   distance:
     centi:
       one:                 "cm"
