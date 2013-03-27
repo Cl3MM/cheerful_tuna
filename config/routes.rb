@@ -2,6 +2,9 @@ require 'sidekiq/web'
 
 CheerfulTuna::Application.routes.draw do
 
+  resources :invoices
+
+
   # Price Comparator
   constraints subdomain: 'comparison' do
     match '/', to: 'costs_comparison#index', via: [:get, :post],   as: :pvcycle_comparator
