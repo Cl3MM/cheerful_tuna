@@ -18,4 +18,6 @@ namespace :mail do
       MemberMailer.delay.italian_producers_march(email)
     end
   end
+
 end
+
