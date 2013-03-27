@@ -5,7 +5,7 @@ class Contact < ActiveRecord::Base
 
   include Tire::Model::Search
   include Tire::Model::Callbacks
-  #include Scrollable
+  include Scrollable
 
   Tire::Results::Collection.module_eval do
     def to_ary
@@ -151,36 +151,36 @@ class Contact < ActiveRecord::Base
     end
   end
 
-  def method_missing(meth, *args, &block)
-    if meth.to_s =~ /^(previous|next)_?(\w*)$/
-      action, attribute = $1, $2
-      return run_previous_method(attribute, *args, &block)  if action =~ /previous/
-      return run_next_method(attribute, *args, &block)      if action =~ /next/
-      nil
-    else
-      super
-    end
-  end
+  #def method_missing(meth, *args, &block)
+    #if meth.to_s =~ /^(previous|next)_?(\w*)$/
+      #action, attribute = $1, $2
+      #return run_previous_method(attribute, *args, &block)  if action =~ /previous/
+      #return run_next_method(attribute, *args, &block)      if action =~ /next/
+      #nil
+    #else
+      #super
+    #end
+  #end
 
-  # run_next_method:
-  #     define_method for next, next_company, next_name...
-  def run_next_method(attrs, *args, &block)
-    puts "Attrs: #{attrs}"
-    puts "Attrs: #{attrs}"
-    if (not attrs.blank?) && (self.attribute_names.include?(attrs) )
-      return Contact.where( [ "#{attrs} > ?", self[attrs] ] ).first
-    else
-      return Contact.where(["id > ?", self.id]).first
-    end
-  end
+  ## run_next_method:
+  ##     define_method for next, next_company, next_name...
+  #def run_next_method(attrs, *args, &block)
+    #puts "Attrs: #{attrs}"
+    #puts "Attrs: #{attrs}"
+    #if (not attrs.blank?) && (self.attribute_names.include?(attrs) )
+      #return Contact.where( [ "#{attrs} > ?", self[attrs] ] ).first
+    #else
+      #return Contact.where(["id > ?", self.id]).first
+    #end
+  #end
 
-  def run_previous_method(attrs, *args, &block)
-    if (not attrs.blank?) && (self.attribute_names.include?(attrs) )
-      return Contact.where( [ "#{attrs} < ?", self[attrs] ] ).last
-    else
-      return Contact.where(["id < ?", self.id]).last
-    end
-  end
+  #def run_previous_method(attrs, *args, &block)
+    #if (not attrs.blank?) && (self.attribute_names.include?(attrs) )
+      #return Contact.where( [ "#{attrs} < ?", self[attrs] ] ).last
+    #else
+      #return Contact.where(["id < ?", self.id]).last
+    #end
+  #end
 
   def to_indexed_json
     #to_json(methods: [:email_addresses])
@@ -207,6 +207,23 @@ class Contact < ActiveRecord::Base
     copy_attributes
     new_contact = Contact.new(copy_attributes)
     return new_contact
+  end
+
+  def create_tags_from_category
+    tag_category = CategoriesToTags.new
+    tch = tag_category.tags_categories_hash
+    Contact.all.each do |contact|
+      c = contact.dup
+      if tch.keys.include? c.category
+        tch_tags          = tch[c.category]
+        c.tag_list  = tch.join(",")
+        c.delay_for(60.seconds).debug_job tch_tags.join(", ")
+      end
+    end
+  end
+
+  def debug_job tags
+    Rails.logger.debug "contact id: #{:id} | tag_list: #{tags}"
   end
 
   def to_label

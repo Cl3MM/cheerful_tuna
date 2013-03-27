@@ -5,9 +5,9 @@
     <span class="help-inline">
       <% if @email_error %>
         can't be blank
-    <% end %>
+      <% end %>
+      <%= f.hidden_field :_destroy %>
       <%= link_to "remove", '#', class: "remove_fields" %>
     </span>
-    <%= f.hidden_field :_destroy %>
   </div>
 </div>
