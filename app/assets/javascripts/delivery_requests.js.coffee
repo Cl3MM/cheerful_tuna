@@ -138,6 +138,6 @@ jQuery ->
   $('#delivery_request_collection_point.joomla').on 'open', (e) ->
     check_s2_enabler()
 
-  $('#delivery_request_address').attr     "value", "43 avenue Lanessan"
-  $('#delivery_request_city').attr        "value", "Champagne au mont d'or"
-  $('#delivery_request_postal_code').attr "value", "69410"
+#  $('#delivery_request_address').attr     "value", "43 avenue Lanessan"
+#  $('#delivery_request_city').attr        "value", "Champagne au mont d'or"
+#  $('#delivery_request_postal_code').attr "value", "69410"
