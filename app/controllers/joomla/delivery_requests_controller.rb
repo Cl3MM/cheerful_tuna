@@ -55,7 +55,7 @@ class Joomla::DeliveryRequestsController < ApplicationController
         if @delivery_request.save
         #binding.pry
         flash.delete(:recaptcha_error) if flash.key?(:recaptcha_error)
-        @delivery_request.send_confirmation_email
+        @delivery_request.delay.send_confirmation_email
         format.html { redirect_to joomla_delivery_request_path(@delivery_request), notice: 'Delivery request was successfully created.' }
         format.json { render json: @delivery_request, status: :created, location: @delivery_request }
       else
