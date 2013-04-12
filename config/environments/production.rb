@@ -10,7 +10,7 @@ CheerfulTuna::Application.configure do
     domain:               ENVIRONMENT_CONFIG[:mail_domain],
     user_name:            ENVIRONMENT_CONFIG[:mail_user_name],
     password:             ENVIRONMENT_CONFIG[:mail_password],
-    authentication:       plain,
+    authentication:       "plain",
     enable_starttls_auto: false,
     ssl:                  true
   }
