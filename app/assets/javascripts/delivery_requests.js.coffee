@@ -23,9 +23,10 @@ jQuery ->
 
   formatCollectionPointResults = (data) ->
     if "name" of data
-      return '<span style="width: 100%;"><b>' + data.name + '</b> [' + data.zip + ']<span style="float: right;">' + data.distance + '</span></span>'
+      #console.log data
+      '<span style="width: 100%;"><b>' + data.name + '</b> [' + data.zip + ']<span style="float: right;">' + data.distance + '</span></span>'
     else
-      return 'No Collection Point selected'
+      'No Collection Point selected'
 
   formatNoMatches = (e) ->
     #console.log "YEAHHHHAHAHAHAHHHH"
@@ -52,6 +53,7 @@ jQuery ->
       formatSelection: formatCollectionPointResults,
       formatNoMatches: formatNoMatches,
       dropdownCssClass: "njdr"
+      escapeMarkup: (m) -> return m
 
     if data.length == 0
       formatNoMatches(false)
@@ -82,6 +84,7 @@ jQuery ->
     nearbys = $.ajax
       type: "POST",
       url: "/joomla/delivery_request/nearbys",
+      dataType: 'json',
       data: { a: address, c: city, p: postal_code, co: country },
       success: success
 
@@ -135,6 +138,6 @@ jQuery ->
   $('#delivery_request_collection_point.joomla').on 'open', (e) ->
     check_s2_enabler()
 
-#  $('#delivery_request_address').attr     "value", "43 avenue Lanessan"
-#  $('#delivery_request_city').attr        "value", "Champagne au mont d'or"
-#  $('#delivery_request_postal_code').attr "value", "69410"
+  $('#delivery_request_address').attr     "value", "43 avenue Lanessan"
+  $('#delivery_request_city').attr        "value", "Champagne au mont d'or"
+  $('#delivery_request_postal_code').attr "value", "69410"
