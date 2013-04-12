@@ -45,7 +45,8 @@ gem 'sinatra', require: false
 gem 'slim'
 gem 'redis', '~> 3.0.1'
 gem 'daemons'
-gem 'clockwork', git: 'https://github.com/Cl3MM/clockwork.git', branch: 'optionparser-fix'
+#gem 'clockwork', git: 'https://github.com/Cl3MM/clockwork.git', branch: 'optionparser-fix'
+gem 'clockwork', git: 'https://github.com/tomykaira/clockwork.git'
 gem 'workflow'
 
 #gem 'whenever', require: false

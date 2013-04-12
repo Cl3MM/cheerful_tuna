@@ -41,12 +41,11 @@ GIT
     rqrcode (0.4.2)
 
 GIT
-  remote: https://github.com/Cl3MM/clockwork.git
-  revision: 1ef3540d53be67cd2431c21506feb34e3ce2a08d
-  branch: optionparser-fix
+  remote: https://github.com/tomykaira/clockwork.git
+  revision: 418b5cda069ff9cfa8d8e06161ce128f6d3ed3ee
   specs:
-    clockwork (0.4.1)
-      tzinfo
+    clockwork (0.5.0)
+      tzinfo (~> 0.3.35)
 
 GEM
   remote: https://rubygems.org/
