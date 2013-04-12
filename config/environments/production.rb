@@ -10,8 +10,9 @@ CheerfulTuna::Application.configure do
     domain:               ENVIRONMENT_CONFIG[:mail_domain],
     user_name:            ENVIRONMENT_CONFIG[:mail_user_name],
     password:             ENVIRONMENT_CONFIG[:mail_password],
-    authentication:       "plain",
-    enable_starttls_auto: true
+    authentication:       plain,
+    enable_starttls_auto: false,
+    ssl:                  true
   }
   config.roadie.enabled = true
   # Specify what domain to use for mailer URLs
