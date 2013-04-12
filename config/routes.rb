@@ -51,6 +51,7 @@ CheerfulTuna::Application.routes.draw do
   end
 
   constraints subdomain: 'request' do
+    match '/',    to: 'joomla/delivery_requests#new',     via: :get,  as: :new_joomla_delivery_request
     match '/new', to: 'joomla/delivery_requests#new',     via: :get,  as: :new_joomla_delivery_request
     match '/',    to: 'joomla/delivery_requests#create',  via: :post, as: :joomla_delivery_requests
     match '/:id.:format', to: 'joomla/delivery_requests#delivery_request_pdf', via: :get,  as: :joomla_delivery_request_pdf, format: :pdf
