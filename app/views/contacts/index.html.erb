@@ -49,10 +49,14 @@
           <td><%= link_to contact.company.truncate(18), contact_path(contact) %></td>
           <td>
             <%#= h(contact.email_addresses.map{|e| e.truncate(26)}.join("\n")) %>
-            <%= h(contact.emails.map{|e| e.address.truncate(26)}.join("\n")) %>
+            <%= h(contact.emails.map{|e| e.address.truncate(24)}.join("\n")) %>
           </td>
           <td class="center"><%= display_website contact.website %></td>
-          <td><%= contact.tag_list.empty? ? "-" : contact.tag_list.join(", ").truncate(16) %></td>
+          <%# if contact.tag_list.nil? %>
+          <%# else %>
+          <td><%= contact.tag_list.any? ? contact.tag_list.join(", ").truncate(20) : "-" %>
+          </td>
+          <%# end %>
           <td><%= contact.country.upcase.truncate(12) %></td>
           <td class="actions">
             <div class="btn-group pull-right">

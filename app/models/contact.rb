@@ -127,7 +127,8 @@ class Contact < ActiveRecord::Base
                   }
                 },
                 country:          { type: :string },
-                emails:           { type: :string }
+                emails:           { type: :string },
+                tags_list:             { type: :string }
                 #email_addresses:  { type: :string }
               }
             }
@@ -187,7 +188,10 @@ class Contact < ActiveRecord::Base
     to_json(
       only: [:id, :address, :city, :first_name, :last_name, :company, :country, :category],
       include: [
-        emails: { only: [ :address ] } ]
+        emails: { only: [ :address ] }
+        #tags:   { only: [ :name ] }
+      ],
+      methods: [ :tag_list ]
     )
   end
 
