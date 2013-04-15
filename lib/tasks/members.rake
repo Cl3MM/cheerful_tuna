@@ -162,12 +162,13 @@ namespace :mb do
     tag_category = CategoriesToTags.new
     tch = tag_category.tags_categories_hash
     Contact.all.each do |contact|
-      c = contact.dup
+      c = contact.clone
       if tch.keys.include? c.category
         tch_tags    = tch[c.category]
         c.tag_list.add(tch_tags)
-        c.delay_for(1.seconds).debug_job tch_tags.join(", ")
-        c.delay_for(90.seconds).save
+        #c.delay_for(1.seconds).debug_job tch_tags.join(", ")
+        c.save
+        c = nil
       end
     end
   end
