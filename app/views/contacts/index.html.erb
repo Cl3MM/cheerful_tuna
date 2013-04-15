@@ -52,7 +52,7 @@
             <%= h(contact.emails.map{|e| e.address.truncate(26)}.join("\n")) %>
           </td>
           <td class="center"><%= display_website contact.website %></td>
-          <td><%= contact.tag_list.nil? ? "-" : contact.tag_list.join(", ").truncate(16) %></td>
+          <td><%= contact.tag_list.empty? ? "-" : contact.tag_list.join(", ").truncate(16) %></td>
           <td><%= contact.country.upcase.truncate(12) %></td>
           <td class="actions">
             <div class="btn-group pull-right">
