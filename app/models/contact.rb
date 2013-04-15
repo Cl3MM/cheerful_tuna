@@ -215,9 +215,10 @@ class Contact < ActiveRecord::Base
     Contact.all.each do |contact|
       c = contact.dup
       if tch.keys.include? c.category
-        tch_tags          = tch[c.category]
-        c.tag_list  = tch.join(",")
-        c.delay_for(60.seconds).debug_job tch_tags.join(", ")
+        tch_tags    = tch[c.category]
+        c.tag_list.add(tch_tags)
+        c.delay_for(1.seconds).debug_job tch_tags.join(", ")
+        c.delay_for(90.seconds).save
       end
     end
   end
