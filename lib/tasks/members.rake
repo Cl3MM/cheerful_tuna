@@ -156,4 +156,23 @@ namespace :mb do
       end
     end
   end
+
+  desc "Update Contact category"
+  task :update_contact => :environment do
+    tag_category = CategoriesToTags.new
+    tch = tag_category.tags_categories_hash
+    Contact.all.each do |contact|
+      c = contact.dup
+      if tch.keys.include? c.category
+        tch_tags    = tch[c.category]
+        c.tag_list.add(tch_tags)
+        c.delay_for(1.seconds).debug_job tch_tags.join(", ")
+        c.delay_for(90.seconds).save
+      end
+    end
+  end
+
+  def debug_job tags
+    Rails.logger.debug "contact id: #{:id} | tag_list: #{tags}"
+  end
 end
