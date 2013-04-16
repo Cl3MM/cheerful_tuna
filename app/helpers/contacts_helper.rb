@@ -25,21 +25,19 @@ module ContactsHelper
     raw html.join()
   end
 
-  #def previous_contact contact
-    #id = contact.id
-    #Rails.logger.debug "contact : #{contact.company}" + "*" * 100
-    #Rails.logger.debug "id : #{contact.id}" + "*" * 100
-    #Rails.logger.debug "id : #{id.class}" + "*" * 100
-    #10.times do |time|
-      #id -= 1
-      #break if Contact.order('company ASC').find_by_id(id)
-      #Rails.logger.debug "#{time}. id : #{id} \n" + "*" * 100
-    #end
-    #Rails.logger.debug "##" * 100
-    #Rails.logger.debug "Contact id : #{contact.id}" + "*" * 100
-    #Rails.logger.debug "id : #{id}" + "*" * 100
-    #Rails.logger.debug "contact : #{Contact.find_by_id(id).company}"+ "*" * 100
-    #Contact.find_by_id(id) if id != contact.id
-  #end
+  def contact_tags_display contact
+    unless contact.respond_to? :tag_list
+      raise "Error, not a contact"
+    else
+      if contact.tag_list.any?
+        raw "<span>toto toto</span>"
+        content_tag :span, title: contact.tag_list.join(", ") do
+          contact.tag_list.map(&:titleize).join(", ").truncate(15)
+        end
+      else
+        "-"
+      end
+    end
+  end
 
 end
