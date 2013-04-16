@@ -1,0 +1,49 @@
+fr:
+  delete: "Supprimer"
+  collection_point_certificate:
+    author:   CERES - Centre Europeen pour le Recyclage de l'Energie Solaire
+    title:    "Certificat d'adhésion à l'assiociation CERES du membre : %{name}"
+    certify:  est un Point de Collecte du CERES et qu'elle est habilitée par le CERES à collecter les panneaux photovoltaiques en fin de vie. #is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.
+    hereby:   CERES certifie par la présente que l'entreprise #We hereby certify that based upon the current commitment
+    president: Président
+    certificate: CERTIFICAT
+    expiry: "Date d'expiration : %{date}"
+
+  certificate:
+    author:   CERES - Centre Europeen pour le Recyclage de l'Energie Solaire
+    title:    "Certificat d'adhésion à l'assiociation CERES du membre : %{name}"
+    certify:  est membre du CERES qui organise la collecte et le recyclage des panneaux photovoltaïques usagés au niveau européen.
+    hereby:   CERES certifie par la présente que l'entreprise #We hereby certify that based upon the current commitment
+    president: Président
+    certificate: CERTIFICAT
+    expiry: "Date d'expiration : %{date}"
+  invoices:
+    generate_pdf:         Génerer le PDF
+    total:                Total
+    designation: Désignation
+    amount: Quantité
+    unit_price: Prix Unitaire
+    total_price: Prix Total
+    items: Articles
+  invoices_pdf:
+    invoice: Facture
+    quantity: Qté
+    date: "Date :"
+    number: "N° "
+    date_format: "%d/%m/%y"
+    description: Description
+    price: Prix
+    unit_price: Prix Unitaire
+    total_price: "Prix Total (EUR)"
+    please_pay_to: "Paiement à l'attention de :"
+    remittance: Coordonnées bancaires
+    beneficiary: Banque du bénéficiaire
+    account_number: Numéro de compte
+    swift_code:   Code SWIFT
+    terms_of_payment: "Termes de paiement:"
+    terms: 100% virement bancaire
+    date_location: Date et Lieu
+    signature: Signature
+    footer: "Adresse: 96 rue Raymond Losserand, 75014 Paris, France | Tél: +33 970 444 458 | Fax: +33 9 57 76 18 38 | Web : www.ceres-recycle.org\nIBAN n° FR76 1751 5900 0008 0028 2383 742 | VAT n° FR91 539167122"
+
+
