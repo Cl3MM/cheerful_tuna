@@ -30,6 +30,7 @@ class ContactsController < ApplicationController
     else
       @contacts = Contact.search(params)
     end
+
     params.delete :ppage
     params.delete :per_page
 
@@ -87,19 +88,6 @@ class ContactsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.pdf do # show.html.erb
-        if params[:certif].present?
-          pdf = CertificatePdf.new(Member.first)
-          send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{Member.first.company.capitalize.gsub(/ /,"_")}.pdf",
-            type: "application/pdf",
-            disposition: "inline"
-        else
-          pdf = ContactPdf.new(@contact)
-          send_data pdf.render, filename: "Contact_#{@contact.company.gsub(/ /, "_").capitalize}.pdf",
-            type: "application/pdf",
-            disposition: "inline"
-        end
-      end
       format.json { render json: @contact }
     end
   end
