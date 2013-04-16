@@ -27,8 +27,8 @@ class InvoicesController < ApplicationController
       format.pdf  do
         pdf = InvoicePdf.new(@invoice)
         send_data pdf.render, filename: "CERES_invoice_#{@invoice.code}.pdf",
-          type: "application/pdf",
-          disposition: "inline"
+          type: "application/pdf"
+          #disposition: "inline"
       end
     end
   end
