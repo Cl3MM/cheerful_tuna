@@ -92,7 +92,7 @@ class InvoicePdf < Prawn::Document
 
   def invoice_items
     font "Helvetica"
-    move_down 15
+    move_down 30
     table([
       [{ content: "<b>#{I18n.t("invoices_pdf.description")}</b>", width: 326 },
        { content: "<b>#{I18n.t("invoices_pdf.quantity")}</b>",    width: 50},
@@ -114,7 +114,7 @@ class InvoicePdf < Prawn::Document
     ], width: 516, cell_style: { size: 11, inline_format: true, font: "Helvetica", background_color: "DDDDDD", padding: [3,5,3,3] } )
   end
   def recipient
-    move_down 10
+    move_down 30
     y = cursor
     bounding_box([320, y], :width => 196) do
       font( @fonts[:MPR], size: 11 ) do
@@ -135,7 +135,7 @@ class InvoicePdf < Prawn::Document
 
   def remittance_route
     font "Helvetica"
-    move_down 10
+    move_down 30
     table([
       [{ content: "<b>#{I18n.t("invoices_pdf.remittance")}</b>",       width: 516}]
     ], width: 516, cell_style: { size: 11, inline_format: true, font: "Helvetica", padding: [3,3,3,3], align: :center, background_color: "DDDDDD" } )
@@ -155,7 +155,7 @@ class InvoicePdf < Prawn::Document
   end
 
   def date_and_signature
-    move_down 20
+    move_down 30
     y = cursor
     font @fonts[:MPSB], size: 11 do
       bounding_box([0, y], :width => 258 ) do
