@@ -32,7 +32,6 @@ class CollectionPointsController < ApplicationController
           if params[:certif].present?
             specimen = params[:specimen].present? ? true : nil
             locales  = (params[:locale].present? && ["english", "français"].include?(params[:locale].downcase) ? params[:locale][0..1].downcase : "en")
-            debug locales
             #disposition = params[:disposition].present? ? "inline" : false
             pdf = CollectionPointsPdf.new(@collection_point, locales, specimen)
             send_data pdf.render, filename: "CERES_Collection_Point_Certificate_for_#{@collection_point.name.capitalize.gsub(/ /,"_")}.pdf",
