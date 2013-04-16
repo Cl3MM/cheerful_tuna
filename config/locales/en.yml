@@ -14,6 +14,36 @@ en:
                       Start date should be in the %{lower} to %{upper} range.
 #   attributes:
   confirm:                 Are you sure?
+  invoices:
+    generate_pdf:         Generate PDF
+    total:                Total
+    designation: Designation
+    amount: Amount
+    unit_price: Unit Price
+    total_price: Total Price
+    items: Items
+  invoices_pdf:
+    invoice: Invoice
+    quantity: Qty
+    date: "Date:"
+    number: "#"
+    date_format: "%m/%d/%y"
+    description: Description
+    price: Price
+    unit_price: Unit Price
+    total_price: "Total Price (EUR)"
+    please_pay_to: "Please pay to:"
+    remittance: Remittance route
+    beneficiary: Bank of beneficiary
+    account_number: Account Number
+    swift_code:   SWIFT Code
+    terms_of_payment: "Terms of payment:"
+    terms: 100% Bank transfert
+    date_location: Date and Location
+    signature: Signature
+    footer: "Address: 96 rue Raymond Losserand, 75014 Paris, France | Tél: +33 970 444 458 | Fax: +33 9 57 76 18 38 | Web : www.ceres-recycle.org\nIBAN n° FR76 1751 5900 0008 0028 2383 742 | VAT n° FR91 539167122"
+
+  ceres: Centre Européen pour le Recyclage des Équipements Solaire
   members:
     form:
       add_subscription:    Add Subscription
