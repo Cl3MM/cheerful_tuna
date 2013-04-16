@@ -1,7 +1,8 @@
 #encoding: utf-8
 #
 class InvoicePdf < Prawn::Document
-  def initialize(invoice, specimen = false)
+  def initialize(invoice, locales = "en", specimen = false)
+    I18n.locale = locales
     @specimen = specimen
     @fonts = { UB: "#{Rails.root}/app/assets/fonts/Ubuntu-B.ttf",
                UR: "#{Rails.root}/app/assets/fonts/Ubuntu-R.ttf",

@@ -28,7 +28,7 @@ class InvoicesController < ApplicationController
       format.json { render json: @invoice }
       format.pdf  do
         locales  = params[:locale].present? && ["english", "français"].include?(params[:locale].downcase) ? params[:locale][0..1].downcase : "en"
-        pdf = InvoicePdf.new(@invoice, locales)
+        pdf = InvoicePdf.new(@invoice, locales, false)
         send_data pdf.render, filename: "CERES_invoice_#{@invoice.code}.pdf",
           type: "application/pdf"
           #disposition: "inline"
