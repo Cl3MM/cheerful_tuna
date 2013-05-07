@@ -2,7 +2,7 @@
 
 DESC=Puma
 NAME=puma
-USER=admin
+USER=clem
 SHELL=/usr/bin/zsh
 
 APP_PATH=/var/www/cheerful_tuna
@@ -36,9 +36,11 @@ cd ${APP_PATH}
 #rbenv init -
 
 do_start() {
-  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; nohup bundle exec puma --debug -C ${CONFIG_FILE} --control unix:${CONTROL_URL} >> ${LOG_FILE} 2>&1 &"
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; nohup bundle exec puma -C ${CONFIG_FILE} --control unix:${CONTROL_URL} >> ${LOG_FILE} 2>&1 &"
 }
-
+remove_pid_files() {
+  /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; /bin/rm ${PUMA_PATH}/* -rf"
+}
 do_restart() {
   /usr/bin/env HOME=${HOME} ${SHELL} -l -c "cd ${APP_PATH}; bundle exec pumactl --state ${STATE_FILE} restart >> ${LOG_FILE} 2>&1"
 }
@@ -49,6 +51,7 @@ start() {
     echo "PID File Found with number: ${PID}"
     if [ "`ps -A -o pid= | grep -c $PID`" -eq 0 ]; then
       echo "Could not find the PID in processes, starting the server..."
+      remove_pid_files
       do_start
     else
       echo "PID found, restarting..."
@@ -56,6 +59,7 @@ start() {
     fi
   else
     echo "No PID File found, starting server..."
+    remove_pid_files
     do_start
   fi
 }
