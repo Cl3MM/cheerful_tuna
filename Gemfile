@@ -112,8 +112,11 @@ group :test do
   gem 'spork'#, '~> 1.0rc'
 
   gem 'guard-rspec'
+  gem 'guard-cucumber'
   gem 'guard-spork'
   gem 'guard-bundler'
+
+  gem "email_spec"
 
   gem 'rb-inotify'#, '~> 0.8.8'
   gem 'database_cleaner'

@@ -157,6 +157,30 @@ namespace :mb do
     end
   end
 
+  desc "Mailing Collection Points April 2013"
+  task :cp_04_2013 => :environment do
+    countries = %w(Austria Belgium Bulgaria Cyprus Czech Republic Denmark Estonia Finland Germany Greece Hungary Ireland Latvia Lithuania Luxembourg Malta Netherlands Poland Portugal Romania Slovakia Slovenia Spain Sweden United Kingdom)
+    tags      = Contact.tag_counts.map { |t| t.name if t.name.downcase =~ /instal|distri/ }.compact.uniq
+    Contact.tagged_with(tags, any: true).where('country IN (?)', countries).each do | contact |
+      MemberMailer.delay.collection_points_april_2013(contact.full_name, contact.email_addresses)
+    end
+    MemberMailer.delay.collection_points_april_2013("Clement Roullet", "clement.roullet@gmail.com, clement.roullet@ceres-recycle.org")
+  end
+
+  desc "Mailing Wheelie bin May 2013"
+  task :wb_05_2013 => :environment do
+    Member.all.each do |member|
+      unless [38].include?(member.id)
+        puts "\nMember #id: #{member.id} | company: #{member.company}"
+        member.contacts.each do |contact|
+          puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+          puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+          MemberMailer.delay.wheelie_bin_05_2013(contact.email_addresses)
+        end
+      end
+    end
+  end
+
   desc "Update Contact category"
   task :update_contact => :environment do
     tag_category = CategoriesToTags.new

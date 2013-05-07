@@ -4,7 +4,7 @@ def debug msg, sep = "*", width = 100
   puts "#{sep}" * width
   if msg.is_a? Array
     msg.each do |m|
-      m = m.ljust(50).truncate(50)
+      #m = m.ljust(50).truncate(50)
       Rails.logger.debug "#{sep}#{m.center(width - 2)}#{sep}"
       puts "#{sep}#{m.center(width - 2)}#{sep}"
     end

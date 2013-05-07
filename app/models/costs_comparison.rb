@@ -1,6 +1,7 @@
 #require 'ostruct'
 
 class CostsComparison < OpenStruct
+
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend  ActiveModel::Naming
@@ -11,19 +12,20 @@ class CostsComparison < OpenStruct
   ContributionFeeCERES    = 1
   ContributionFeePVCYCLE  = 1.65
 
+  CERESAdministrativeFee  = 500
+
   MinimumFeeCERES         = 1500
   MinimumFeePVCYCLE       = 150
 
-  validates :megawatts,     :operating_countries, presence: true
-  validates :megawatts,     numericality: { only_integer: true, greater_than: 0 }
-
-  validates :operating_countries, numericality: { only_integer: true, greater_than: 0, less_than: 28 }
+  #validates_presence_of :megawatts, :operating_countries
+  validates  :megawatts,           presence: true, numericality: { greater_than: 0 }
+  validates  :operating_countries, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 28 }
 
   attr_accessor :megawatts,
                 :operating_countries,
                 :tons_of_modules
 
-  #after_validation :convert_to_integer
+  before_validation :convert_to_integer
 
   def initialize(attributes = InitValues)
     attributes.each do |name, value|
@@ -40,7 +42,7 @@ class CostsComparison < OpenStruct
   end
 
   def convert_to_integer
-    @megawatts            = @megawatts.to_i
+    @megawatts            = @megawatts.to_f
     @tons_of_modules      = @megawatts * 100
     @operating_countries  = @operating_countries.to_i
   end
@@ -77,7 +79,7 @@ class CostsComparison < OpenStruct
   end
 
   def ceres_membership_fee
-    500
+    CERESAdministrativeFee
   end
 
   def ceres_total_fees

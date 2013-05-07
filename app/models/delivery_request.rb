@@ -77,6 +77,7 @@ class DeliveryRequest < ActiveRecord::Base
 
       delivery_location_address = "#{delivery_location[:address]}, #{delivery_location[:postal_code]} #{delivery_location[:city]}, #{delivery_location[:country].upcase}"
       locations = CollectionPoint.near_delivery_location delivery_location
+      #locations
       locations.to_json
     else
       { json: { error: "Wrong params" }, status: :unprocessable_entity }

@@ -1,5 +1,5 @@
 class MemberMailer < ActionMailer::Base
-  default from: "contact@ceres-recycle.org", bcc: "contact@ceres-recycle.org"
+  default from: "CERES <contact@ceres-recycle.org>", bcc: "contact@ceres-recycle.org"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -37,6 +37,11 @@ class MemberMailer < ActionMailer::Base
     mail to: emails, subject: "CERES - ERP Italia Partnership", from: "operations@ceres-recycle.org"
   end
 
+  def collection_points_april_2013 name, emails
+    @name = name
+    mail to: emails, subject: "CERES Expands its Collection Network", from: "CERES <no-reply@ceres-recycle.org>", bcc: ""
+  end
+
   def notify_membership_expiry name, emails
     @name = name
     mail to: emails, subject: "CERES - Your CERES membership has expired", from: "no-reply@ceres-recycle.org"
@@ -45,6 +50,10 @@ class MemberMailer < ActionMailer::Base
   def gse_figures_september_december name, emails
     @name = name
     mail to: emails, subject: "CERES - Important: Action regarding Italian traceability requirements for PV modules", from: "noreply@ceres-recycle.org"
+  end
+
+  def wheelie_bin_05_2013 emails
+    mail to: emails, subject: "[CERES] - WEEE transposition update: the wheelie bin logo"
   end
 
   def membership_2013_renewal name, emails

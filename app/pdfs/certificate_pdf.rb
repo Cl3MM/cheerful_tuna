@@ -1,7 +1,8 @@
 #encoding: utf-8
 #
 class CertificatePdf < Prawn::Document
-  def initialize(member, specimen = false)
+  def initialize(member, locales = "en", specimen = false)
+    I18n.locale = locales
     @specimen = specimen
     @fonts = { UB: "#{Rails.root}/app/assets/fonts/Ubuntu-B.ttf",
                UR: "#{Rails.root}/app/assets/fonts/Ubuntu-R.ttf",
@@ -23,8 +24,8 @@ class CertificatePdf < Prawn::Document
             right_margin: 0,
             left_margin: 0,
             info: {
-              Title: "CERES Membership Certificate for #{@member.company.html_safe}",
-              Author: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaire",
+              Title:  I18n.t("certificate.title", name: "#{@member.company.html_safe}"),
+              Author: I18n.t("certificate.author"),
               Keywords: "CERES Membership Certificate #{@member.company.html_safe} http://www.ceres-recycle.org",
               Creator: "CERES - Centre Europeen pour le Recyclage de l'Energie Solaire",
               Producer: "CERES Certificate Generator",
@@ -83,42 +84,42 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
 
   def images
     head = "#{Rails.root}/app/assets/images/CERES_480px.jpg"
-    image head, :width => 145, at: [280,845]
+    image head, :width => 145, at: [280,800]
     background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_6.jpg"
     #background = "#{Rails.root}/app/assets/images/CERES_LOGO_opacity_20.jpg"
     image background, width: 500, at: [100,650]
-    signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
-    image signature, width: 105, at: [300,230]
+    #signature = "#{Rails.root}/app/assets/images/Signature_JP_white_bg.jpg"
+    #image signature, width: 105, at: [300,230]
   end
 
   def body
     opts = [
       {
-        font:  @fonts[:MPB], height: 695,
-        text: "CERTIFICATE",
+        font:  @fonts[:MPB], height: 645,
+        text: I18n.t("certificate.certificate"),
         options: {size: 50, :leading => 5, align: :center }
       },
       {
         #font:  @fonts[:MPR], height: 596,
-        font:  @fonts[:MPR], height: 630,
-        text: "We hereby certify that based upon the current commitment",
+        font:   @fonts[:MPR], height: 580,
+        text:   I18n.t("certificate.hereby"),
         options: {size: 18, :leading => 5, shift: 10, align: :center }
       },
       {
-        font:  @fonts[:MPB], height: 365,
-        text: "is a member of CERES, which organizes for its members the collection and recycling of end-of-life photovoltaic modules at the European level.",
+        font:  @fonts[:MPB], height: 275,
+        text: I18n.t("certificate.certify"),
         options: {size: 21, :leading => 0, shift: 18}
       },
-      {
-        font:  @fonts[:MPSB], height: 115,
-        text: "Jean-Pierre Palier",
-        options: {size: 11, :leading => 5, shift: 10, align: :center }
-      },
-      {
-        font:  @fonts[:MPSB], height: 100,
-        text: "President",
-        options: {size: 11, :leading => 5, shift: 10, align: :center }
-      }
+      #{
+        #font:  @fonts[:MPSB], height: 115,
+        #text: "Jean-Pierre Palier",
+        #options: {size: 11, :leading => 5, shift: 10, align: :center }
+      #},
+      #{
+        #font:  @fonts[:MPSB], height: 100,
+        #text: I18n.t("certificate.president"),
+        #options: {size: 11, :leading => 5, shift: 10, align: :center }
+      #}
     ]
 
     opts.each do |item|
@@ -158,16 +159,18 @@ to #{(@member.start_date + 1.year).strftime('%B %d, %Y')}",
   def display_company
     font @fonts[:MPB]
 
-    bounding_box([115,590], width: 470, height: 90) do
+    bounding_box([115,520], width: 470, height: 90) do
       text @member.company.html_safe, size: 56, align: :center, valign: :center, overflow: :shrink_to_fit
     end
     font @fonts[:MPR]
-    bounding_box([115,490], width: 470, height: 100) do
+    bounding_box([115,420], width: 470, height: 100) do
       text "#{@member.address.html_safe}\n#{@member.postal_code.html_safe}, #{@member.city.html_safe.titleize}\n#{@member.country.html_safe.capitalize}",
       size: 28, align: :center, valign: :center, overflow: :shrink_to_fit, leading: 5
     end
 
-    bounding_box([115,270], width: 470, height: 30) do
+    bounding_box([115,160], width: 470, height: 30) do
+      #text "Certificate Expiry Date: #{@member.end_date_to_human}", size: 16, align: :center,
+            #valign: :center, overflow: :shrink_to_fit, leading: 5
       text "Certificate Expiry Date: #{@member.end_date_to_human}", size: 16, align: :center,
             valign: :center, overflow: :shrink_to_fit, leading: 5
     end

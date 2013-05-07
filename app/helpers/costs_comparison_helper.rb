@@ -1,0 +1,2 @@
+module CostsComparisonHelper
+end

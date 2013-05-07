@@ -54,13 +54,16 @@
         = t("comparator.ceres_payment")
     %tr
       %td
-        = t("comparator.min_per_country")
+        = t("comparator.min_contribution")
       %td
-        = @q.pvcycle_minimum_fee
-        MW
+        %b
+          = @q.pvcycle_max_minimal_fee
+          €
+          -#= t("comparator.per_country")
       %td
-        = @q.ceres_minimum_fee
-        MW
+        %b
+          = @q.ceres_minimum_fee
+          €
     %tr
       %td
         %b

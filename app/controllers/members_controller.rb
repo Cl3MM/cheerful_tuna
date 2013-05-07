@@ -1,3 +1,4 @@
+#encoding: utf-8
 class MembersController < ApplicationController
 
   #before_filter :redirect_member!
@@ -63,7 +64,8 @@ class MembersController < ApplicationController
         if params[:certif].present?
           specimen = params[:specimen].present? ? true : nil
           #disposition = params[:disposition].present? ? "inline" : false
-          pdf = CertificatePdf.new(@member, specimen)
+          locales = ( params[:locale].present? && ["english", "français"].include?(params[:locale].downcase) ) ? params[:locale][0..1].downcase : "en"
+          pdf = CertificatePdf.new(@member, locales, specimen)
           send_data pdf.render, filename: "CERES_Membership_Certificate_for_#{@member.company.capitalize.gsub(/ /,"_")}.pdf",
             disposition: "inline",
             type: "application/pdf"
@@ -93,7 +95,7 @@ class MembersController < ApplicationController
   # POST /members.json
   def create
     if params[:member].has_key? :contact_ids
-      params[:member][:contact_ids] = params[:member][:contact_ids].first.split(",")
+      params[:member][:contact_ids] = ( params["member"]["contact_ids"].first =~ /\[\]/? [] : params[:member][:contact_ids].first.split(",") )
     end
     @member = Member.new(params[:member])
     respond_to do |format|

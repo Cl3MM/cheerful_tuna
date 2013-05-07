@@ -3,7 +3,7 @@ class Member < ActiveRecord::Base
 
   include MyTools
   include Membership
-  #include ModelStatus
+  include ModelStatus
 
   paginates_per 25
   acts_as_taggable_on           :brand, :activity
@@ -22,7 +22,7 @@ class Member < ActiveRecord::Base
   attr_reader :end_date, :category_price
 
   validates_presence_of :user_name, :company, :country, :web_profile_url,
-                        :start_date, :category, :address, :city, :postal_code,
+                        :address, :city, :postal_code,
                         :activity_list, :contact_ids
   validates             :category, inclusion: { in: %w[Free A B C D],
                                                 message: "%{value} is not a valid category" }
@@ -102,15 +102,31 @@ class Member < ActiveRecord::Base
     #self.status.to_sym == :suspended
   #end
 
+  #def self.mail_zanin
+    #cc = ["'Andrea Bizzi' <andrea.bizzi@erp-recycling.org>", "'Alberto Canni Ferrari' <alberto.canni.ferrari@erp-recycling.org>", "nicolas.defrenne@ceres-recycle.org", "clement.roullet@ceres-recycle.org"]
+    #to = ["Sabrina Zanin <sabrina.zanin@erp-recycling.org>"]
+
+    #MemberMailer.italian_producers_march(to, cc).deliver
+    #MemberMailer.gse_clarification(to, cc).deliver
+  #end
   def end_date_to_human
-    day   = end_date.strftime('%d').to_i.ordinalize
-    month = end_date.strftime('%B')
-    year  = end_date.strftime('%Y')
+    bob = Date.parse("2012-01-01")
+    day   = bob.strftime('%d').to_i.ordinalize
+    month = bob.strftime('%B')
+    year  = bob.strftime('%Y')
     "#{month} #{day}, #{year}"
   end
 
   def end_date
-    self.start_date.strftime("%Y").to_i < 2013 ? self.old_end_date : self.start_date.end_of_year
+    (self.start_date + 30.days ).end_of_month
+      #begin
+      #self.start_date.strftime("%Y").to_i < 2013 ? self.old_end_date : self.start_date.end_of_year
+    #rescue NoMethodError => e
+      #if e.message =~ /NilClass/
+        #Rails.logger.debug "[ERROR] Member.end_date NoMethodError: #{e.message}"
+        #return Date.current.strftime("%Y").to_i < 2013 ? (Date.current + 1.year).prev_month.end_of_month : Date.current.end_of_year
+      #end
+    #end
   end
 
   def old_end_date
@@ -179,7 +195,7 @@ class Member < ActiveRecord::Base
   end
 
   def generate_username
-    names = Member.all.map(&:user_name).to_set
+    names    = Member.all.map(&:user_name).to_set
     username = MyTools.friendly_user_name self.company
     Rails.logger.debug "username:#{username}"
     Rails.logger.debug "names:#{names.to_a.to_s}"
@@ -189,7 +205,7 @@ class Member < ActiveRecord::Base
     username
   end
   def self.generate_username str
-    names = Member.all.map(&:user_name).to_set
+    names    = Member.all.map(&:user_name).to_set
     username = MyTools.friendly_user_name str
     Rails.logger.debug "username:#{username}"
     Rails.logger.debug "names:#{names.to_a.to_s}"

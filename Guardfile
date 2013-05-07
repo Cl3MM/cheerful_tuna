@@ -1,6 +1,3 @@
-# A sample Guardfile
-# More info at https://github.com/guard/guard#readme
-
 guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAILS_ENV' => 'test' } do
   watch('config/application.rb')
   watch('config/environment.rb')
@@ -10,13 +7,7 @@ guard 'spork', :cucumber_env => { 'RAILS_ENV' => 'test' }, :rspec_env => { 'RAIL
   watch('Gemfile.lock')
   watch('spec/spec_helper.rb') { :rspec }
   watch('test/test_helper.rb') { :test_unit }
-  #watch(%r{features/support/}) { :cucumber }
-end
-
-guard 'cucumber', :cli => '--drb --format progress --no-profile' do
-  watch(%r{^features/.+\.feature$})
-  watch(%r{^features/support/.+$})                      { 'features' }
-  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
+  watch(%r{features/support/}) { :cucumber }
 end
 
 guard 'rspec' do
@@ -38,17 +29,10 @@ guard 'rspec' do
   # Turnip features and steps
   watch(%r{^spec/acceptance/(.+)\.feature$})
   watch(%r{^spec/acceptance/steps/(.+)_steps\.rb$})   { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'spec/acceptance' }
-
-  # Clem
-  watch(%r{^spec/factories/(.+).rb$})                 { "spec" }
-  watch(%r{^spec/models/.+.rb$})                     { "spec/models" }
-  watch(%r{^spec/routing/.+.rb$})                    { "spec/routing" }
 end
 
-guard 'bundler' do
-
-  watch('Gemfile')
-  # Uncomment next line if Gemfile contain `gemspec' command
-  # watch(/^.+.gemspec/)
-
+guard 'cucumber', cli: '-c --drb --profile default', all_after_pass: false, all_on_start: false do
+  watch(%r{^features/.+\.feature$})
+  watch(%r{^features/support/.+$})          { 'features' }
+  watch(%r{^features/step_definitions/(.+)_steps\.rb$}) { |m| Dir[File.join("**/#{m[1]}.feature")][0] || 'features' }
 end

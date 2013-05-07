@@ -115,6 +115,16 @@ class CollectionPoint < ActiveRecord::Base
     collection_points_status[self.status]
   end
 
+  def end_date_to_human
+    day   = end_date.strftime('%d').to_i.ordinalize
+    month = end_date.strftime('%B')
+    year  = end_date.strftime('%Y')
+    "#{month} #{day}, #{year}"
+  end
+  def end_date
+    Date.current.end_of_year
+  end
+
   private
 
   def calculate_distance_to location

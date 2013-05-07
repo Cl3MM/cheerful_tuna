@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="span2 offset1">
+    <div class="span2">
       <div class="well" style="max-width: 340px; padding: 8px 0; margin-top: 24px;">
         <ul class="nav nav-list" id="sidebar">
           <li class="nav-header">Member's Menu</li>
@@ -12,7 +12,7 @@
         </ul>
       </div>
     </div>
-    <div class="span8">
+    <div class="span9">
       <div class="page-header">
         <h1><%= @member.company.upcase %></h1>
       </div>
@@ -28,9 +28,22 @@
           :class => 'btn btn-danger' %>
 
         <%= link_to raw('<i class="icon-download"></i> Logo'), @member.logo_file_url, class: "btn", target: "_blank" if @member.logo_file %>
-          <%= link_to raw('<i class="icon-download"></i> Membership Form'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
-          <%= link_to raw('<i class="icon-download"></i> Certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-inverse" %>
-          <%= link_to raw('<i class="icon-qrcode"></i> QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
+        <%= link_to raw('<i class="icon-download"></i> Membership Form'), @member.membership_file_url, class: "btn", target: "_blank" if @member.membership_file %>
+        <%#= link_to raw('<i class="icon-download"></i> Certificate'), member_path(@member, format: "pdf", certif: 1), :class => "btn btn-inverse" %>
+        <%= link_to raw('<i class="icon-qrcode"></i> QR Code'), member_path(@member, qr_code: true), :class => "btn btn-info" %>
+
+        <div class="btn-group">
+          <%= form_tag member_path(@member), method: :get, class: "no_margin form-inline inline pull-right" do %>
+            <%= hidden_field_tag "certif", true %>
+            <%= hidden_field_tag "format", "pdf" %>
+            <%= select_per_page({select_options: %w(English Français),
+                                 html_input: {
+                                      style: "margin: 0 5px !important;",
+                                      class: "span2", name: "locale",
+                                      }}) %>
+            <%= submit_tag "Certificate", class: "btn btn-primary", style: "margin-left: 5px;" %>
+          <% end %>
+        </div>
       </div>
       <div id="company">
         <h3>Company details</h3>
@@ -44,7 +57,7 @@
       </div>
        <hr />
        <div id="membership">
-         <%#= render partial: "subscriptions" %>
+         <%= render partial: "subscriptions" %>
        </div>
        <hr />
       <div id="contacts">

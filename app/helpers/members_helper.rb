@@ -1,5 +1,20 @@
 #encoding: utf-8
 module MembersHelper
+  def display_subscription_files_actions subscription
+    links = []
+    if subscription.documents.any?
+      links << '<div class="btn-group">'
+      subscription.documents.each do |doc|
+        links << "#{link_to raw("<i class='icon-download'></i>"), doc.nice_file.url, class: "btn btn-primary btn-tooltip btn-mini", title: t(".download_file", name: doc.file_name ) }"
+        #{link_to raw("<i class='icon-edit'></i>"), "#",  class: "btn btn-danger  btn-tooltip btn-mini", title: t(".edit_file") }
+      end
+      links << '</div>'
+    else
+      links << "No documents"
+    end
+    links.map{ |l| raw(l) }.join()
+  end
+
   def format_date date, short = false
     date.strftime("#{short ? "%b" : "%B"} #{date.day.ordinalize}, %Y")
   end
@@ -9,7 +24,9 @@ module MembersHelper
     opts = { html_input: {class: "span2", id: "super_select"},
              selected: false, select_options: %w"5 10 20 50 100 250"
     }.merge(opts)
-    attr = opts[:html_input].reduce([]){ |o, (k, v)| o << "#{k}=#{v}" }.join(" ") if opts[:html_input].present?
+    attr = opts[:html_input].reduce([]){ |o, (k, v)| o << "#{k}=\"#{v}\"" }.join(" ") if opts[:html_input].present?
+    Rails.logger.debug "+" * 200
+    Rails.logger.debug attr
     html = ["<select #{attr if attr}>"]
     html<< opts[:select_options].map do |val|
       "<option value=\"#{val}\" #{" selected=\"selected\"" if val == opts[:selected] }>#{val}</option>"

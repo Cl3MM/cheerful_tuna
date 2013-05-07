@@ -146,6 +146,9 @@ GEM
     diff-lcs (1.2.1)
     domain_name (0.5.7)
       unf (~> 0.0.3)
+    email_spec (1.4.0)
+      launchy (~> 2.1)
+      mail (~> 2.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
     every_day_irb (1.4.0)
@@ -179,6 +182,9 @@ GEM
     guard-bundler (1.0.0)
       bundler (~> 1.0)
       guard (~> 1.1)
+    guard-cucumber (1.4.0)
+      cucumber (>= 1.2.0)
+      guard (>= 1.1.0)
     guard-rspec (2.5.0)
       guard (>= 1.1)
       rspec (~> 2.11)
@@ -460,12 +466,14 @@ DEPENDENCIES
   daemons
   database_cleaner
   devise
+  email_spec
   execjs
   factory_girl_rails
   faker
   friendly_id (~> 4.0.1)
   geocoder
   guard-bundler
+  guard-cucumber
   guard-rspec
   guard-spork
   haml

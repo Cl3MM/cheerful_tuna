@@ -7,7 +7,7 @@ describe "Members Subscriptions" do
     member.subscriptions.create( start_date: Date.parse("01/01/2012") )
   end
 
-  it "Preview renewal mailing", focus: true do
+  it "Preview renewal mailing" do
     MemberMailer.membership_2013_renewal( "Clement Roullet", "clement.roullet@gmail.com").deliver
   end
 
