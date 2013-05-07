@@ -22,6 +22,7 @@ cd ${APP_PATH}
 #rbenv init -
 
 start() {
+  /bin/rm ${PID_FILE} -f
   /usr/bin/env HOME=/home/admin /bin/sh -l -c "cd ${APP_PATH}; nohup bundle exec sidekiq -C ${CONFIG_FILE} -v -e production -P ${PID_FILE} >> /var/www/cheerful_tuna/log/sidekiq.log 2>&1" || true
 }
 stop() {
@@ -44,3 +45,4 @@ case "$1" in
 esac
 
 exit 0
+
