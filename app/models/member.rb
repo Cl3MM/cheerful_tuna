@@ -2,7 +2,7 @@
 class Member < ActiveRecord::Base
 
   include MyTools
-  include Membership
+#  include Membership
   include ModelStatus
 
   paginates_per 25
@@ -109,11 +109,20 @@ class Member < ActiveRecord::Base
     #MemberMailer.italian_producers_march(to, cc).deliver
     #MemberMailer.gse_clarification(to, cc).deliver
   #end
+  def end_date_to_french
+    end_date = Date.parse("2013-12-31")
+    day   = end_date.strftime('%d')
+    day = "#{day}#{day == 1 ? "er" : ""}"
+    month = end_date.strftime('%B')
+    year  = end_date.strftime('%Y')
+    "#{day} #{month} #{year}"
+  end
+
   def end_date_to_human
-    bob = Date.parse("2012-01-01")
-    day   = bob.strftime('%d').to_i.ordinalize
-    month = bob.strftime('%B')
-    year  = bob.strftime('%Y')
+    end_date = Date.parse("2013-12-31")
+    day   = end_date.strftime('%d').to_i.ordinalize
+    month = end_date.strftime('%B')
+    year  = end_date.strftime('%Y')
     "#{month} #{day}, #{year}"
   end
 
