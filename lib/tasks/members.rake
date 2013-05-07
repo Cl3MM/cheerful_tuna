@@ -190,7 +190,6 @@ namespace :mb do
       if tch.keys.include? c.category
         tch_tags    = tch[c.category]
         c.tag_list.add(tch_tags)
-        #c.delay_for(1.seconds).debug_job tch_tags.join(", ")
         c.save
         c = nil
       end
