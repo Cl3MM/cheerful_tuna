@@ -4,6 +4,7 @@ CheerfulTuna::Application.routes.draw do
 
   resources :invoices
 
+  match '/ISsYdQwCSALG36XEMkOmgM7yroE', to: 'members#proxy_check', via: [:get, :post],   as: :proxy_check
   # Price Comparator
   constraints subdomain: 'comparison' do
     match '/', to: 'costs_comparison#index', via: [:get, :post],   as: :pvcycle_comparator

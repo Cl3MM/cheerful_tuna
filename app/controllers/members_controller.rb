@@ -2,8 +2,26 @@
 class MembersController < ApplicationController
 
   #before_filter :redirect_member!
-  before_filter :authenticate_user!, except: :generate_certificate
+  before_filter :authenticate_user!, except: [:generate_certificate, :proxy_check]
 
+  def proxy_check
+    infos = [ 'REMOTE_ADDR',
+              'REMOTE_HOST',
+              'HTTP_X_FORWARDED_FOR',
+              'HTTP_VIA',
+              'HTTP_CLIENT_IP',
+              'HTTP_PROXY_CONNECTION',
+              'FORWARDED_FOR',
+              'X_FORWARDED_FOR',
+              'X_HTTP_FORWARDED_FOR',
+              'HTTP_FORWARDED',
+              'HTTP_REFERER']
+    #reply = infos.reduce({}) do | h, var |
+      #h[var] = request.env(var)
+      #h
+    #end
+    render text: request.env.map { |item| "#{item[0]} : #{item[1]}" }.join("\n")
+  end
   def generate_certificate
     if params[:checksum].present?
       @member = Member.find_encrypted_member params[:checksum]
@@ -32,15 +50,18 @@ class MembersController < ApplicationController
     @per_page = session[:ppage].to_s
     params.delete :per_page
 
-    if (params[:status].present? && Member.member_status.include?(params[:status]) )
-      @active = params[:status]
+    if (params[:status].present? && Member.member_status.include?(params[:status].to_sym) )
+      @active = params[:status].to_sym
       @members = Member.find_with_status(params[:status])
+      #@members = Member.order("company DESC")
     else
       @members = Member.order("company ASC")
       @active = "all"
     end
+    debug [@members.class.to_s]
 
     @members = @members.page(params[:page]).per(session[:ppage]) #.per_page((@per_page.to_i rescue 20))
+    #@members = Kaminari.paginate_array(@members).page(params[:page]).per(session[:ppage]) #.per_page((@per_page.to_i rescue 20))
 
     respond_to do |format|
       format.html # index.html.erb
