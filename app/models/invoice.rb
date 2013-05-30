@@ -1,11 +1,14 @@
 class Invoice < ActiveRecord::Base
   paginates_per 25
-  attr_accessible               :country, :designation, :line_items_attributes
+  attr_accessible               :country, :designation, :invoicee, :invoicee_infos, :line_items_attributes
+  #belongs_to                    :member, inverse_of: :invoices
   has_many                      :line_items, inverse_of: :invoice,
                                   dependent: :destroy
   accepts_nested_attributes_for :line_items, allow_destroy: true
 
-  validates :designation, presence: true
+  validates :designation,     presence: true
+  validates :invoicee,        presence: true
+  validates :invoicee_infos,  presence: true
 
   def total_price
     self.line_items.map(&:total_price).sum

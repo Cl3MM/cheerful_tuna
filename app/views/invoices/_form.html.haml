@@ -1,12 +1,19 @@
 = simple_form_for @invoice do |f|
   = render "shared/error_messages", target: @invoice
 
-  %legend Invoice details
-  = f.error :designation, class: "error no-margin"
-  = f.input_field :designation, placeholder: "Designation", class: "no-margin input-xxlarge"
-  = f.input_field :country, placeholder: "Country", class: "no-margin", prompt: "France"
-  = f.error :country, class: "error no-margin"
-  %br
+  %div.row-fluid
+    %div.span5
+      %legend Invoicee
+      %div.well
+        = f.input :invoicee, placeholder: "Company name", input_html: { class: "input-xlarge" }
+        = f.input :invoicee_infos, as: :text, placeholder: "Company address and details", input_html: { cols: "100", :rows => "5", style: "width:330px;" }
+    %div.span7
+      %legend Invoice details
+      %div.well
+        = f.error :designation, class: "error no-margin"
+        = f.input_field :designation, placeholder: "Designation", class: "no-margin input-xlarge"
+        = f.input_field :country, placeholder: "Country", class: "no-margin", prompt: "France"
+        = f.error :country, class: "error no-margin"
   %br
   -#.control-group.country.optional.invoice_country
     %label.country.optional.control-label{ for: "invoice_country"}
@@ -16,17 +23,18 @@
         id: "invoice_country", name: "invoice[country]" }
   %legend Invoice's items
 
-  %table.table.table-hover#invoice
-    %thead
-      %tr
-        %th Del
-        %th Designation
-        %th Unit Price
-        %th Amount
-        %th Total Price
-    %tbody
-      = f.simple_fields_for :line_items do |item|
-        = render 'line_item_fields', f: item
+  %div.well
+    %table.table.table-hover#invoice
+      %thead
+        %tr
+          %th Del
+          %th Designation
+          %th Unit Price
+          %th Amount
+          %th Total Price
+      %tbody
+        = f.simple_fields_for :line_items do |item|
+          = render 'line_item_fields', f: item
 
   .control-group
     .controls

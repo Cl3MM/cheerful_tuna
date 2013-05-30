@@ -75,13 +75,21 @@ class InvoicePdf < Prawn::Document
   end
 
   def pay_to
-    font @fonts[:MPB]
+    gap = 5
     bounding_box([0, 630], :width => 258, :height => 120) do
+      bounding_box([gap, (bounds.top - gap) ] , :width => (250 - gap * 2) ) do
+        font @fonts[:MPB]
+        text @invoice.invoicee, size: 11, align: :justify
+        font @fonts[:MPR]
+        move_down 5
+        #text "436 Bd de Normandie\n76360 Barentin, FRANCE\n\nA l'attention de :\nMr Fabien COCART, Directeur Général", size: 11, align: :justify
+        text @invoice.invoicee_infos, size: 11, align: :justify
+      end
       transparent(0.5) { stroke_bounds }
     end
-    gap = 5
     bounding_box([258, 630], :width => 258, :height => 120) do
       bounding_box([gap, (bounds.top - gap) ] , :width => (250 - gap * 2) ) do
+        font @fonts[:MPB]
         text @ceres, size: 11, align: :justify
         font @fonts[:MPR]
         move_down 5
@@ -99,7 +107,7 @@ class InvoicePdf < Prawn::Document
        { content: "<b>#{I18n.t("invoices_pdf.quantity")}</b>",    width: 50},
        { content: "<b>#{I18n.t("invoices_pdf.unit_price")}</b>",  width: 70},
        { content: "<b>#{I18n.t("invoices_pdf.price")}</b>",       width: 70}]
-    ], width: 516, cell_style: { size: 11, inline_format: true, font: "Helvetica", padding: [3,3,3,3], align: :center, background_color: "DDDDDD" } )
+    ], width: 516, cell_style: { size: 11, inline_format: true, font: "Helvetica", padding: [1,3,3,3], align: :center, background_color: "DDDDDD" } )
 
     table(@invoice.line_items.map do | item |
       [{ content: "#{item.designation}",          width: 326 },
