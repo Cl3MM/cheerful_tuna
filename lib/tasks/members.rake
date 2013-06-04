@@ -181,6 +181,13 @@ namespace :mb do
     end
   end
 
+  desc "Mailing Transenergie June 2013"
+  task :transenergie_06_2013 => :environment do
+    Contact.where('country IN (?)',["France"]).each do | contact |
+      MemberMailer.delay.transenergie_june_2013(contact.email_addresses)
+    end
+  end
+
   desc "Update Contact category"
   task :update_contact => :environment do
     tag_category = CategoriesToTags.new

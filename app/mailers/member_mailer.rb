@@ -1,3 +1,5 @@
+## encoding: utf-8
+
 class MemberMailer < ActionMailer::Base
   default from: "CERES <contact@ceres-recycle.org>", bcc: "contact@ceres-recycle.org"
 
@@ -50,6 +52,10 @@ class MemberMailer < ActionMailer::Base
   def gse_figures_september_december name, emails
     @name = name
     mail to: emails, subject: "CERES - Important: Action regarding Italian traceability requirements for PV modules", from: "noreply@ceres-recycle.org"
+  end
+
+  def transenergie_june_2013 emails
+    mail to: emails, subject: "Rappel : Forum Transenergie éco-conception / Recyclage photovoltaique - 13 Juin", from: "CERES <no-reply@ceres-recycle.org>", bcc: ""
   end
 
   def wheelie_bin_05_2013 emails
