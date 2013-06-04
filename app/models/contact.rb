@@ -106,9 +106,12 @@ class Contact < ActiveRecord::Base
         puts "- new addr: #{contact.full_address}"
       end
     end
-
+    def rebuild_index
+      Contact.delete_search_index
+      Contact.create_search_index
+      Contact.import_index
+    end
     def create_search_index
-      search_index.delete
       Tire.index Contact.index_name do
         create mappings: {
             contact: {
