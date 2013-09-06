@@ -206,4 +206,20 @@ namespace :mb do
   def debug_job tags
     Rails.logger.debug "contact id: #{:id} | tag_list: #{tags}"
   end
+
+  desc "Final Mailing"
+  task :final_mailing => :environment do
+    Member.all.each do |member|
+      if [ 62, 79, 65, 71, 80, 45, 23, 16, 39 ].include?(member.id)
+        puts "\nMember #id: #{member.id} | company: #{member.company}"
+        member.contacts.each do |contact|
+          puts " - contact #id: #{contact.id} | company: #{contact.full_name}"
+          puts "   * emails     : #{contact.email_addresses.join(' | ').truncate(120)}"
+          MemberMailer.delay.final_mailing(contact.email_addresses)
+        end
+      end
+    end
+  end
+
+
 end

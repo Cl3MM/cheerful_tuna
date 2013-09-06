@@ -68,5 +68,8 @@ class MemberMailer < ActionMailer::Base
     attachments['CERES_2013_Membership_form.pdf'] = File.read("#{Rails.root}/public/assets/members/CERES_2013_Membership_form.pdf")
     mail to: emails, subject: "CERES - 2013 Membership renewal", from: "noreply@ceres-recycle.org", bcc: ""
   end
+  def final_mailing emails
+    mail to: emails, subject: "[CERES] - Important organizational change", bcc: "contact@ceres-recycle.org, sbesanger@gmail.com", from: "CERES <no-reply@ceres-recycle.org>"
+  end
 
 end
